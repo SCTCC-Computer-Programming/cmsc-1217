@@ -1,0 +1,8 @@
+.venv/
+_site/
+.quarto/
+*_cache/
+.ipynb_checkpoints/
+d2l/uploads/
+d2l/downloads/
+.DS_Store
