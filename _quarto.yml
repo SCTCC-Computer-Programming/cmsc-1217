@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "CMSC-1217"
+  title: "CMSC 1217 - Introduction to Data Analytics"
   navbar:
     left:
       - href: index.qmd
