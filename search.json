@@ -117,11 +117,11 @@
     ]
   },
   {
-    "objectID": "weeks/index.html#title-weekly-modules",
-    "href": "weeks/index.html#title-weekly-modules",
+    "objectID": "weeks/index.html",
+    "href": "weeks/index.html",
     "title": "Weekly Modules",
-    "section": "title: “Weekly Modules”",
-    "text": "title: “Weekly Modules”\n\nWeek 1\nWeek 2 EOF",
+    "section": "",
+    "text": "Week 1\nWeek 2",
     "crumbs": [
       "Home",
       "Weekly materials",
@@ -402,18 +402,6 @@
     "title": "Guides",
     "section": "",
     "text": "Miniconda setup",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Guides Home"
-    ]
-  },
-  {
-    "objectID": "guides/index.html#troubleshooting",
-    "href": "guides/index.html#troubleshooting",
-    "title": "Guides",
-    "section": "Troubleshooting",
-    "text": "Troubleshooting\n\n(Add common fixes here over time)",
     "crumbs": [
       "Home",
       "Guides",
