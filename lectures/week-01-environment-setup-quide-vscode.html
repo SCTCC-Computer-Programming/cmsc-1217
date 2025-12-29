@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CMSC 1217 Course Schedule – CMSC 1217 : Introduction to Data Analytics</title>
+<title>Week 1 — VSCode Setup and First Notebook (Windows) – CMSC 1217 - Introduction to Data Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -40,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">CMSC 1217 : Introduction to Data Analytics</span>
+    <span class="navbar-title">CMSC 1217 - Introduction to Data Analytics</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -104,112 +139,35 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../course/schedule.html">Schedule</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../course/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../course/schedule.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Schedule</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../course/policies.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Policies</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Weekly materials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../weeks/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weekly Modules</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../weeks/week-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../weeks/week-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#course-rhythm" id="toc-course-rhythm" class="nav-link active" data-scroll-target="#course-rhythm">Course rhythm</a></li>
-  <li><a href="#assessment-intent" id="toc-assessment-intent" class="nav-link" data-scroll-target="#assessment-intent">Assessment intent</a></li>
-  <li><a href="#weekly-schedule" id="toc-weekly-schedule" class="nav-link" data-scroll-target="#weekly-schedule">Weekly schedule</a></li>
-  <li><a href="#final-project-apr-27may-11" id="toc-final-project-apr-27may-11" class="nav-link" data-scroll-target="#final-project-apr-27may-11">Final project (Apr 27–May 11)</a></li>
+  <li><a href="#what-youre-doing" id="toc-what-youre-doing" class="nav-link active" data-scroll-target="#what-youre-doing">What you’re doing</a></li>
+  <li><a href="#open-the-course-folder-in-vs-code" id="toc-open-the-course-folder-in-vs-code" class="nav-link" data-scroll-target="#open-the-course-folder-in-vs-code">1) Open the course folder in VS Code</a></li>
+  <li><a href="#install-the-extensions-if-you-dont-already-have-them" id="toc-install-the-extensions-if-you-dont-already-have-them" class="nav-link" data-scroll-target="#install-the-extensions-if-you-dont-already-have-them">2) Install the extensions (if you don’t already have them)</a></li>
+  <li><a href="#create-the-course-python-environment-and-select-it-in-vs-code-one-time" id="toc-create-the-course-python-environment-and-select-it-in-vs-code-one-time" class="nav-link" data-scroll-target="#create-the-course-python-environment-and-select-it-in-vs-code-one-time">3) Create the course Python environment and select it in VS Code (one-time)</a></li>
+  <li><a href="#open-the-notebook" id="toc-open-the-notebook" class="nav-link" data-scroll-target="#open-the-notebook">4) Open the notebook</a></li>
+  <li><a href="#select-the-notebook-kernel-first-time-only" id="toc-select-the-notebook-kernel-first-time-only" class="nav-link" data-scroll-target="#select-the-notebook-kernel-first-time-only">5) Select the notebook kernel (first time only)</a></li>
+  <li><a href="#select-the-kernel-then-run-a-quick-test" id="toc-select-the-kernel-then-run-a-quick-test" class="nav-link" data-scroll-target="#select-the-kernel-then-run-a-quick-test">6) Select the kernel, then run a quick test</a></li>
+  <li><a href="#quick-confirmation-your-instructor-may-ask-for-this" id="toc-quick-confirmation-your-instructor-may-ask-for-this" class="nav-link" data-scroll-target="#quick-confirmation-your-instructor-may-ask-for-this">7) Quick confirmation (your instructor may ask for this)</a></li>
+  <li><a href="#if-something-goes-wrong" id="toc-if-something-goes-wrong" class="nav-link" data-scroll-target="#if-something-goes-wrong">If something goes wrong</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../course/schedule.html">Schedule</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CMSC 1217 Course Schedule</h1>
+<h1 class="title">Week 1 — VSCode Setup and First Notebook (Windows)</h1>
+<p class="subtitle lead">Core tools and notebook workflow</p>
 </div>
 
 
@@ -226,183 +184,122 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="course-rhythm" class="level2">
-<h2 class="anchored" data-anchor-id="course-rhythm">Course rhythm</h2>
+<section id="what-youre-doing" class="level3">
+<h3 class="anchored" data-anchor-id="what-youre-doing">What you’re doing</h3>
+<p>You are going to open a Jupyter notebook in VS Code and run it successfully using the course Python environment.</p>
+</section>
+<section id="open-the-course-folder-in-vs-code" class="level3">
+<h3 class="anchored" data-anchor-id="open-the-course-folder-in-vs-code">1) Open the course folder in VS Code</h3>
+<ol type="1">
+<li>Open <strong>VS Code</strong></li>
+<li>Go to <strong>File → Open Folder…</strong></li>
+<li>Open your course work folder (example: <code>C:\cmsc-1217\</code>)</li>
+</ol>
+</section>
+<section id="install-the-extensions-if-you-dont-already-have-them" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-extensions-if-you-dont-already-have-them">2) Install the extensions (if you don’t already have them)</h3>
+<p>In VS Code, install:</p>
 <ul>
-<li><p><strong>Weekly module opens:</strong> Monday 8:00 AM</p></li>
-<li><p><strong>Assignments due:</strong> Sunday 11:30 PM</p></li>
-<li><p><strong>Work cadence:</strong></p>
+<li><strong>Python</strong> (Microsoft)</li>
+<li><strong>Jupyter</strong> (Microsoft)</li>
+</ul>
+</section>
+<section id="create-the-course-python-environment-and-select-it-in-vs-code-one-time" class="level3">
+<h3 class="anchored" data-anchor-id="create-the-course-python-environment-and-select-it-in-vs-code-one-time">3) Create the course Python environment and select it in VS Code (one-time)</h3>
+<section id="a-create-the-course-environment-folder" class="level4">
+<h4 class="anchored" data-anchor-id="a-create-the-course-environment-folder">3A) Create the course environment folder</h4>
+<ol type="1">
+<li><p>Create a folder on your C: drive named:</p>
 <ul>
-<li><p><strong>Mon–Thu:</strong> work through reading + practice notebook</p></li>
-<li><p><strong>Sun:</strong> graded items due (when assigned)</p></li>
+<li><code>C:\cmsc-1217-env\</code></li>
 </ul></li>
-<li><p><strong>Spring break:</strong> <strong>Mar 9–13, 2026</strong></p></li>
-<li><p><strong>Final project block:</strong> <strong>Apr 27–May 10, 2026</strong></p></li>
-<li><p><strong>Final project due:</strong> <strong>May 11, 2026</strong></p></li>
+</ol>
+</section>
+<section id="b-create-the-virtual-environment-.venv" class="level4">
+<h4 class="anchored" data-anchor-id="b-create-the-virtual-environment-.venv">3B) Create the virtual environment (.venv)</h4>
+<ol type="1">
+<li>Open <strong>Command Prompt</strong> (Windows search → type “Command Prompt”)</li>
+<li>Run:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bat code-with-copy"><code class="sourceCode dosbat"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> C:\cmsc-1217-env</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>python <span class="at">-m</span> venv .venv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="c-activate-the-environment" class="level4">
+<h4 class="anchored" data-anchor-id="c-activate-the-environment">3C) Activate the environment</h4>
+<p>In the same Command Prompt window, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bat code-with-copy"><code class="sourceCode dosbat"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>C:\cmsc-1217-env\.venv\Scripts\activate.bat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see <code>(.venv)</code> appear at the start of the line.</p>
+</section>
+<section id="d-install-the-notebook-packages-first-time-setup" class="level4">
+<h4 class="anchored" data-anchor-id="d-install-the-notebook-packages-first-time-setup">3D) Install the notebook packages (first-time setup)</h4>
+<p>Still in the activated environment, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bat code-with-copy"><code class="sourceCode dosbat"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>python <span class="at">-m</span> pip install -<span class="at">-upgrade</span> pip</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>python <span class="at">-m</span> pip install numpy pandas matplotlib jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="e-select-the-environment-in-vs-code-interpreter" class="level4">
+<h4 class="anchored" data-anchor-id="e-select-the-environment-in-vs-code-interpreter">3E) Select the environment in VS Code (Interpreter)</h4>
+<ol type="1">
+<li>In VS Code, press <strong>Ctrl + Shift + P</strong></li>
+<li>Type <strong>Python: Select Interpreter</strong></li>
+<li>Choose the interpreter that looks like:</li>
+</ol>
+<ul>
+<li><code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></li>
+</ul>
+<p>If you don’t see it:</p>
+<ul>
+<li>choose <strong>Enter interpreter path…</strong></li>
+<li>paste: <code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></li>
+</ul>
+<p>This is the environment we will use all semester.</p>
+</section>
+</section>
+<section id="open-the-notebook" class="level3">
+<h3 class="anchored" data-anchor-id="open-the-notebook">4) Open the notebook</h3>
+<ul>
+<li>In the Explorer panel, click the notebook file (<code>.ipynb</code>) your instructor provided.</li>
 </ul>
 </section>
-<section id="assessment-intent" class="level2">
-<h2 class="anchored" data-anchor-id="assessment-intent">Assessment intent</h2>
+<section id="select-the-notebook-kernel-first-time-only" class="level3">
+<h3 class="anchored" data-anchor-id="select-the-notebook-kernel-first-time-only">5) Select the notebook kernel (first time only)</h3>
+<p>The first time you run a notebook, VS Code may ask you to pick a <strong>kernel</strong>.</p>
+<p>Choose the kernel that matches the course environment path:</p>
 <ul>
-<li><p><strong>Practice Notebooks (completion):</strong> guided work with built-in self-check cells</p></li>
-<li><p><strong>Skill Checks (autograded notebooks):</strong> short, testable tasks (functions / named outputs)</p></li>
-<li><p><strong>Reflections (graded):</strong> brief, rubric-based video explanations of choices, debugging, and interpretation</p></li>
-<li><p><strong>Final Project (graded):</strong> notebook report + deliverables (Video Based)</p></li>
+<li><code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></li>
 </ul>
+<p>This can feel repetitive the first time. That’s normal. Once selected, it usually stays set for that folder.</p>
 </section>
-<section id="weekly-schedule" class="level2">
-<h2 class="anchored" data-anchor-id="weekly-schedule">Weekly schedule</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 18%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;">Week</th>
-<th>Dates</th>
-<th>Topics</th>
-<th>Deliverable</th>
-<th>Reading</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td>Jan 12, 2026–Jan 18, 2026</td>
-<td>Onboarding + Jupyter basics</td>
-<td>Practice Notebook 1 (completion)</td>
-<td>Ch. 2 (Jupyter/IPython) + Ch. 1 overview</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td>Jan 19, 2026–Jan 25, 2026</td>
-<td>Python refresh for data work (functions, files, pathlib)</td>
-<td>Practice Notebook 2 (completion)</td>
-<td>Ch. 3 (Built-in Python for data work)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td>Jan 26, 2026–Feb 01, 2026</td>
-<td>NumPy essentials (arrays, vectorization, boolean masks)</td>
-<td>Practice Notebook 3 (completion)</td>
-<td>Ch. 4 (NumPy basics)</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">4</td>
-<td>Feb 02, 2026–Feb 08, 2026</td>
-<td>pandas foundations I (Series/DataFrame, indexing, filtering)</td>
-<td>Skill Check 1 (autograded notebook)</td>
-<td>Ch. 5 (pandas intro)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">5</td>
-<td>Feb 09, 2026–Feb 15, 2026</td>
-<td>pandas foundations II (sorting, basic summaries, missingness intro)</td>
-<td>Practice Notebook 5 (completion)</td>
-<td>Ch. 5 (pandas continued)</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">6</td>
-<td>Feb 16, 2026–Feb 22, 2026</td>
-<td>Data I/O (CSV, Excel/JSON basics, parsing dates, dtypes)</td>
-<td>Practice Notebook 6 (completion)</td>
-<td>Ch. 6 (Data loading/storage)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">7</td>
-<td>Feb 23, 2026–Mar 01, 2026</td>
-<td>Cleaning I (missing data, types, duplicates, string cleanup)</td>
-<td>Reflection 1 (graded)</td>
-<td>Ch. 7 (Data cleaning/prep)</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">8</td>
-<td>Mar 02, 2026–Mar 08, 2026</td>
-<td>Cleaning II (validation rules, outliers as data-quality topic)</td>
-<td>Practice Notebook 8 (completion)</td>
-<td>Ch. 7 (Data cleaning/prep)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">9</td>
-<td>Mar 09, 2026–Mar 15, 2026</td>
-<td>Spring Break (no due dates)</td>
-<td>—</td>
-<td>—</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">10</td>
-<td>Mar 16, 2026–Mar 22, 2026</td>
-<td>Wrangling I (merge/join, concat; keys &amp; pitfalls)</td>
-<td>Skill Check 2 (autograded notebook)</td>
-<td>Ch. 8 (Wrangling: join/reshape)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">11</td>
-<td>Mar 23, 2026–Mar 29, 2026</td>
-<td>Wrangling II (reshape: pivot/melt; tidy layouts)</td>
-<td>Practice Notebook 11 (completion)</td>
-<td>Ch. 8 (Wrangling: reshape)</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">12</td>
-<td>Mar 30, 2026–Apr 05, 2026</td>
-<td>Groupby + aggregation (report tables, transform vs agg)</td>
-<td>Reflection 2 (graded)</td>
-<td>Ch. 10 (Aggregation &amp; groupby)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">13</td>
-<td>Apr 06, 2026–Apr 12, 2026</td>
-<td>Visualization I (plot selection, labeling, communication)</td>
-<td>Practice Notebook 13 (completion)</td>
-<td>Ch. 9 (Visualization)</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">14</td>
-<td>Apr 13, 2026–Apr 19, 2026</td>
-<td>Visualization II (+ optional time series basics)</td>
-<td>Skill Check 3 (autograded notebook)</td>
-<td>Ch. 9 (Visualization) + optional Ch. 11 (Time series)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">15</td>
-<td>Apr 20, 2026–Apr 26, 2026</td>
-<td>Project setup week (topic + dataset approval + plan)</td>
-<td>Reflection 3 / Project Proposal (graded)</td>
-<td>Ch. 13 (Examples) for inspiration (optional)</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">16</td>
-<td>Apr 27, 2026–May 03, 2026</td>
-<td>Final project work time (milestone: cleaned dataset + initial EDA)</td>
-<td>— (work week)</td>
-<td>Ch. 13 (Examples) (optional)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">17</td>
-<td>May 04, 2026–May 10, 2026</td>
-<td>Final project work time (milestone: visuals + narrative + polish)</td>
-<td>— (work week)</td>
-<td>Ch. 13 (Examples) (optional)</td>
-</tr>
-</tbody>
-</table>
+<section id="select-the-kernel-then-run-a-quick-test" class="level3">
+<h3 class="anchored" data-anchor-id="select-the-kernel-then-run-a-quick-test">6) Select the kernel, then run a quick test</h3>
+<ol type="1">
+<li><p>In the top-right of the notebook, click <strong>Select Kernel</strong>.</p></li>
+<li><p>Choose the kernel that points to the course environment:</p>
+<p><code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></p>
+<p>(It may also show up as “Python 3.x (.venv)”—the key is that it points to <code>cmsc-1217-env\.venv</code>.)</p></li>
+<li><p>Click <strong>+ Code</strong>.</p></li>
+<li><p>In the code block that appears, paste:</p></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Notebook is running"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="5" type="1">
+<li>Run it by clicking the <strong>Run (▶)</strong> icon on the code block, or press <strong>Shift + Enter</strong>.</li>
+<li>You should see <code>Notebook is running</code> appear underneath.</li>
+</ol>
 </section>
-<section id="final-project-apr-27may-11" class="level2">
-<h2 class="anchored" data-anchor-id="final-project-apr-27may-11">Final project (Apr 27–May 11)</h2>
-<p><strong>Deliverable (May 11, 2026):</strong> a single notebook-based report that demonstrates an end-to-end workflow.</p>
-<p>Minimum components:</p>
+<section id="quick-confirmation-your-instructor-may-ask-for-this" class="level3">
+<h3 class="anchored" data-anchor-id="quick-confirmation-your-instructor-may-ask-for-this">7) Quick confirmation (your instructor may ask for this)</h3>
+<p>Run this in a cell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sys.executable</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It should show something like:</p>
+<p><code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></p>
+</section>
+<section id="if-something-goes-wrong" class="level3">
+<h3 class="anchored" data-anchor-id="if-something-goes-wrong">If something goes wrong</h3>
 <ul>
-<li><p>Load one real dataset (CSV/JSON/Excel)</p></li>
-<li><p>Cleaning + preparation steps (with brief justification)</p></li>
-<li><p>Wrangling/aggregation (at least one <code>merge</code> or <code>groupby</code> style task)</p></li>
-<li><p><strong>2–4</strong> clear visualizations with labels</p></li>
-<li><p>Short written narrative: what you did, what you found, limitations/next steps</p></li>
-<li><p>Export at least one output artifact (cleaned CSV and/or saved figures)</p></li>
+<li><p>If you see <code>ModuleNotFoundError</code> (missing package), you are almost always using the wrong interpreter/kernel.</p>
+<ul>
+<li>Re-do <strong>Step 3</strong> and <strong>Step 5</strong> and pick the one that points to <code>cmsc-1217-env\.venv</code>.</li>
+</ul></li>
 </ul>
 
 
@@ -482,7 +379,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/SCTCC-Computer-Programming\.github\.io\/cmsc-1217\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
