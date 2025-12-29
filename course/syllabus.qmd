@@ -55,6 +55,10 @@ This course introduces data analytics using Python to extract and communicate in
 
 Students acquire foundational skills in data manipulation, including transformation and cleansing, alongside techniques for visualizing data distributions and managing file-based data input/output, preparing them for machine learning applications in subsequent semesters. The course focuses on technical concepts such as trend identification through graphical analysis, data structuring for computational efficiency, and processing real-world datasets for artificial intelligence applications. Through programming exercises and a capstone project analyzing a representative dataset, students develop practical Python programming competencies essential for advanced coursework in machine learning.
 
+### Course Philosophy
+
+This course follows a **tools-first** approach to “data analytics.” Our focus is on the Python programming skills and the data library ecosystem (especially **pandas** and related tools) used to manipulate, process, clean, and summarize real datasets. We will cover analytical concepts only as needed to motivate a tool or technique, but this course is **not** focused on statistical methodology (hypothesis testing, inference, or model theory), which is addressed in other courses.
+
 ***This online class requires extensive use of your webcam***
 
 ## Course Outcomes

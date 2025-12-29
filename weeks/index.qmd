@@ -1,0 +1,8 @@
+cat > weeks/index.qmd << 'EOF'
+---
+title: "Weekly Modules"
+---
+
+- [Week 1](week-01.qmd)
+- [Week 2](week-02.qmd)
+EOF

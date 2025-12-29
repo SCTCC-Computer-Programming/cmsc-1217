@@ -2,20 +2,42 @@ project:
   type: website
 
 website:
-  title: "CMSC 1217 - Introduction to Data Analytics"
+  title: "CMSC 1217 : Introduction to Data Analytics"
+
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About
+
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "Course information"
+        contents:
+          - href: course/syllabus.qmd
+            text: Syllabus
+          - href: course/schedule.qmd
+            text: Schedule
+          - href: course/policies.qmd
+            text: Policies
+
+      - section: "Weekly materials"
+        contents:
+          - href: weeks/index.qmd
+            text: Weekly Modules
+          - href: weeks/week-01.qmd
+            text: Week 1
+          - href: weeks/week-02.qmd
+            text: Week 2
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    toc: false
+    theme: cosmo
     css: styles.css
-    toc: true
 
 
 
