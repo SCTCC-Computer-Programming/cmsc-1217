@@ -7,40 +7,11 @@
     "text": "Lectures\nLinks coming soon."
   },
   {
-    "objectID": "guides/index.html",
-    "href": "guides/index.html",
-    "title": "Guides",
+    "objectID": "guides/week-01/environment-setup-quide-vscode.html",
+    "href": "guides/week-01/environment-setup-quide-vscode.html",
+    "title": "Week 1 — VSCode Setup and First Notebook (Windows)",
     "section": "",
-    "text": "Miniconda setup",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Guides Home"
-    ]
-  },
-  {
-    "objectID": "guides/index.html#setup",
-    "href": "guides/index.html#setup",
-    "title": "Guides",
-    "section": "",
-    "text": "Miniconda setup",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Guides Home"
-    ]
-  },
-  {
-    "objectID": "guides/index.html#troubleshooting",
-    "href": "guides/index.html#troubleshooting",
-    "title": "Guides",
-    "section": "Troubleshooting",
-    "text": "Troubleshooting\n\n(Add common fixes here over time)",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Guides Home"
-    ]
+    "text": "What you’re doing\nYou are going to open a Jupyter notebook in VS Code and run it successfully using the course Python environment.\n\n\n1) Open the course folder in VS Code\n\nOpen VS Code\nGo to File → Open Folder…\nOpen your course work folder (example: C:\\cmsc-1217\\)\n\n\n\n2) Install the extensions (if you don’t already have them)\nIn VS Code, install:\n\nPython (Microsoft)\nJupyter (Microsoft)\n\n\n\n3) Create the course Python environment and select it in VS Code (one-time)\n\n3A) Create the course environment folder\n\nCreate a folder on your C: drive named:\n\nC:\\cmsc-1217-env\\\n\n\n\n\n3B) Create the virtual environment (.venv)\n\nOpen Command Prompt (Windows search → type “Command Prompt”)\nRun:\n\ncd C:\\cmsc-1217-env\npython -m venv .venv\n\n\n3C) Activate the environment\nIn the same Command Prompt window, run:\nC:\\cmsc-1217-env\\.venv\\Scripts\\activate.bat\nYou should see (.venv) appear at the start of the line.\n\n\n3D) Install the notebook packages (first-time setup)\nStill in the activated environment, run:\npython -m pip install --upgrade pip\npython -m pip install numpy pandas matplotlib jupyter\n\n\n3E) Select the environment in VS Code (Interpreter)\n\nIn VS Code, press Ctrl + Shift + P\nType Python: Select Interpreter\nChoose the interpreter that looks like:\n\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nIf you don’t see it:\n\nchoose Enter interpreter path…\npaste: C:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis is the environment we will use all semester.\n\n\n\n4) Open the notebook\n\nIn the Explorer panel, click the notebook file (.ipynb) your instructor provided.\n\n\n\n5) Select the notebook kernel (first time only)\nThe first time you run a notebook, VS Code may ask you to pick a kernel.\nChoose the kernel that matches the course environment path:\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis can feel repetitive the first time. That’s normal. Once selected, it usually stays set for that folder.\n\n\n6) Select the kernel, then run a quick test\n\nIn the top-right of the notebook, click Select Kernel.\nChoose the kernel that points to the course environment:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n(It may also show up as “Python 3.x (.venv)”—the key is that it points to cmsc-1217-env\\.venv.)\nClick + Code.\nIn the code block that appears, paste:\n\nprint(\"Notebook is running\")\n\nRun it by clicking the Run (▶) icon on the code block, or press Shift + Enter.\nYou should see Notebook is running appear underneath.\n\n\n\n7) Quick confirmation (your instructor may ask for this)\nRun this in a cell:\nimport sys\nsys.executable\nIt should show something like:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\n\nIf something goes wrong\n\nIf you see ModuleNotFoundError (missing package), you are almost always using the wrong interpreter/kernel.\n\nRe-do Step 3 and Step 5 and pick the one that points to cmsc-1217-env\\.venv."
   },
   {
     "objectID": "about.html",
@@ -400,24 +371,53 @@
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   },
   {
-    "objectID": "guides/week-01/environment-setup-quide-vscode.html",
-    "href": "guides/week-01/environment-setup-quide-vscode.html",
-    "title": "Week 1 — VSCode Setup and First Notebook (Windows)",
-    "section": "",
-    "text": "What you’re doing\nYou are going to open a Jupyter notebook in VS Code and run it successfully using the course Python environment.\n\n\n1) Open the course folder in VS Code\n\nOpen VS Code\nGo to File → Open Folder…\nOpen your course work folder (example: C:\\cmsc-1217\\)\n\n\n\n2) Install the extensions (if you don’t already have them)\nIn VS Code, install:\n\nPython (Microsoft)\nJupyter (Microsoft)\n\n\n\n3) Create the course Python environment and select it in VS Code (one-time)\n\n3A) Create the course environment folder\n\nCreate a folder on your C: drive named:\n\nC:\\cmsc-1217-env\\\n\n\n\n\n3B) Create the virtual environment (.venv)\n\nOpen Command Prompt (Windows search → type “Command Prompt”)\nRun:\n\ncd C:\\cmsc-1217-env\npython -m venv .venv\n\n\n3C) Activate the environment\nIn the same Command Prompt window, run:\nC:\\cmsc-1217-env\\.venv\\Scripts\\activate.bat\nYou should see (.venv) appear at the start of the line.\n\n\n3D) Install the notebook packages (first-time setup)\nStill in the activated environment, run:\npython -m pip install --upgrade pip\npython -m pip install numpy pandas matplotlib jupyter\n\n\n3E) Select the environment in VS Code (Interpreter)\n\nIn VS Code, press Ctrl + Shift + P\nType Python: Select Interpreter\nChoose the interpreter that looks like:\n\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nIf you don’t see it:\n\nchoose Enter interpreter path…\npaste: C:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis is the environment we will use all semester.\n\n\n\n4) Open the notebook\n\nIn the Explorer panel, click the notebook file (.ipynb) your instructor provided.\n\n\n\n5) Select the notebook kernel (first time only)\nThe first time you run a notebook, VS Code may ask you to pick a kernel.\nChoose the kernel that matches the course environment path:\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis can feel repetitive the first time. That’s normal. Once selected, it usually stays set for that folder.\n\n\n6) Select the kernel, then run a quick test\n\nIn the top-right of the notebook, click Select Kernel.\nChoose the kernel that points to the course environment:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n(It may also show up as “Python 3.x (.venv)”—the key is that it points to cmsc-1217-env\\.venv.)\nClick + Code.\nIn the code block that appears, paste:\n\nprint(\"Notebook is running\")\n\nRun it by clicking the Run (▶) icon on the code block, or press Shift + Enter.\nYou should see Notebook is running appear underneath.\n\n\n\n7) Quick confirmation (your instructor may ask for this)\nRun this in a cell:\nimport sys\nsys.executable\nIt should show something like:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\n\nIf something goes wrong\n\nIf you see ModuleNotFoundError (missing package), you are almost always using the wrong interpreter/kernel.\n\nRe-do Step 3 and Step 5 and pick the one that points to cmsc-1217-env\\.venv."
-  },
-  {
-    "objectID": "guides/environment-setup-quide-miniconda.html",
-    "href": "guides/environment-setup-quide-miniconda.html",
+    "objectID": "guides/week-01/environment-setup-quide-miniconda.html",
+    "href": "guides/week-01/environment-setup-quide-miniconda.html",
     "title": "Week 1 — Miniconda Setup and First Notebook (Windows)",
     "section": "",
     "text": "What you know from Structured: you installed Python from python.org, and VS Code used that Python.\nWhat’s different here: instead of installing Python directly, we install Miniconda, which is an environment manager. Think of Miniconda as a tool that can install Python + data libraries into a self-contained folder so this course has a consistent setup.\n\nDownload and install Miniconda (64-bit).\nDuring install, do not add Miniconda to PATH.\n\nWhy not add to PATH: you might already have a python.org install. We don’t want Miniconda to “take over” the python command everywhere on your machine. Instead, we’ll use the Miniconda/Anaconda Prompt when we want the course setup."
   },
   {
-    "objectID": "guides/environment-setup-quide-miniconda.html#optional-ipython",
-    "href": "guides/environment-setup-quide-miniconda.html#optional-ipython",
+    "objectID": "guides/week-01/environment-setup-quide-miniconda.html#optional-ipython",
+    "href": "guides/week-01/environment-setup-quide-miniconda.html#optional-ipython",
     "title": "Week 1 — Miniconda Setup and First Notebook (Windows)",
     "section": "Optional: IPython",
     "text": "Optional: IPython\nConnection to what you know: this is like running Python in a terminal, but more helpful for exploration (history, tab completion, quick testing).\n\nOpen an Anaconda tab (not PowerShell)\nIf you’re using Windows Terminal:\n\nClick the small dropdown arrow next to the plus (˅) (Do not just click the + — that usually opens PowerShell.)\nClick Anaconda Prompt (miniconda3) (or “Anaconda PowerShell Prompt (miniconda3)” — either works, but the Prompt is simplest)\n\nYou should see a prompt like:\n(base) C:\\Users\\yourname&gt;\n\n\nActivate the course environment and start IPython\nRun:\nconda activate pydata-book\nipython\nYou should then see:\nIn [1]:\n\n\nExit IPython\nRun:\nexit()\n\n\nOptional: JupyterLab (modern web interface)\n\nActivate the course environment:\n\nconda activate pydata-book\n\nInstall JupyterLab (inside the environment):\n\nconda install -c conda-forge jupyterlab\n\nStart JupyterLab from your course-work folder:\n\ncd C:\\cmsc-1217\\course-work\njupyter lab\nA browser tab will open and the file browser will start in:\nC:\\cmsc-1217\\course-work\\\nImportant: keep the terminal window open while you use JupyterLab (it’s running the server)."
+  },
+  {
+    "objectID": "guides/index.html",
+    "href": "guides/index.html",
+    "title": "Guides",
+    "section": "",
+    "text": "Miniconda setup",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Guides Home"
+    ]
+  },
+  {
+    "objectID": "guides/index.html#setup",
+    "href": "guides/index.html#setup",
+    "title": "Guides",
+    "section": "",
+    "text": "Miniconda setup",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Guides Home"
+    ]
+  },
+  {
+    "objectID": "guides/index.html#troubleshooting",
+    "href": "guides/index.html#troubleshooting",
+    "title": "Guides",
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\n\n(Add common fixes here over time)",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Guides Home"
+    ]
   }
 ]
