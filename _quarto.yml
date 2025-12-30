@@ -7,9 +7,7 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - href: about.qmd
-        text: About
+        text: Home      
 
   sidebar:
     style: "docked"
@@ -21,17 +19,27 @@ website:
             text: Syllabus
           - href: course/schedule.qmd
             text: Schedule
-          - href: course/policies.qmd
-            text: Policies
+          - href: shared/policies/office-hours.qmd
+            text: Office Hours
 
-      - section: "Weekly materials"
+      - section: "Weekly Overview"
         contents:
-          - href: weeks/index.qmd
-            text: Weekly Modules
           - href: weeks/week-01.qmd
             text: Week 1
-          - href: weeks/week-02.qmd
-            text: Week 2
+          #- href: weeks/week-02.qmd
+            #text: Week 2
+
+      - section: "Weekly Assignments"
+        contents:
+          - href: weeks/week-01.qmd
+            text: Week 1
+           
+      
+      
+      - section: "Guides"
+        contents:
+          - href: guides/week-01/environment-setup-guide-miniconda.qmd
+            text: Miniconda Setup
 
 format:
   html:

@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Course: Sync shared into this course",
+      "type": "shell",
+      "command": "rsync -a --delete \"/Volumes/Anger/work/courses/shared/\" \"${workspaceFolder}/shared/\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Course: Preview (sync + quarto preview)",
+      "type": "shell",
+      "command": "rsync -a --delete \"/Volumes/Anger/work/courses/shared/\" \"${workspaceFolder}/shared/\" && quarto preview",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Course: Render site (sync + quarto render)",
+      "type": "shell",
+      "command": "rsync -a --delete \"/Volumes/Anger/work/courses/shared/\" \"${workspaceFolder}/shared/\" && quarto render",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Course: Publish GitHub Pages (sync + publish)",
+      "type": "shell",
+      "command": "rsync -a --delete \"/Volumes/Anger/work/courses/shared/\" \"${workspaceFolder}/shared/\" && quarto publish gh-pages --no-prompt",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ]
+}

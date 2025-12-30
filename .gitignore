@@ -5,6 +5,7 @@ _site/
 .ipynb_checkpoints/
 d2l/uploads/
 d2l/downloads/
+shared/
 .DS_Store
 
 /.quarto/
