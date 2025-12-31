@@ -37,13 +37,7 @@ format:
     toc: false
 ---
 
-Instructor(s): Joseph Silman Office: Online
-
-E-mail: jsilman\@sctcc.edu (PRIMARY COMMUNICATION METHOD) Phone: (320)308-6595
-
-Office Hours: See Attached Course Schedule in D2L.
-
-Credits: 3 (Lecture 2; Lab 1)
+{{< include ../shared/templates/syllabus/header.qmd >}}
 
 #### Prerequisites:
 
@@ -133,173 +127,32 @@ Grades are weighted as follows:
 
 Some assignments will be based off a pass/fail criterion. Grading Rubrics will be assigned to most course activities. Some assignments are automatically graded. Activities may be assigned but not be graded, these are for self-review to prepare you for graded activities. ‘Proof’ files will be provided to you on occasion to help you identify any issues with your assignment. It is expected that you review these when you receive your rubric feedback. Extra credit assignments or additional assignments are not offered in this course.
 
-## Course Policies/Practices
+{{< include ../shared/templates/syllabus/course-policies.qmd >}}
 
-### Academic Integrity
+{{< include ../shared/templates/syllabus/accomodations.qmd >}}
 
-Academic integrity is highly valued at St. Cloud Technical & Community College and throughout higher education. Maintaining academic integrity is the responsibility of every member of the college community: faculty, staff, administrators and students. Academic integrity requires students to refrain from engaging in or tolerating acts including, but not limited to, submitting false academic records, cheating, plagiarizing, altering, forging, or misusing a college academic record; acquiring or using test materials without faculty permission; acting alone or in cooperation with another to falsify records or to obtain dishonest grades, honors, or awards.
-
-Any violation of the St. Cloud Technical & Community College’s Academic Integrity Policy S3.28 is considered a disciplinary offense and will be subject to the policies of this instructor, entrance into the Academic Integrity Database, and possible disciplinary action as outlined in the Academic Integrity Procedure S3.28.1. Students accused of academic dishonesty may appeal the decision. Students may review the Academic Integrity process and access the Academic Integrity Appeal Form at https://www.sctcc.edu/academic-integrity.
-
-Class policy for Academic Integrity Violations will result in a reduction of your grade.
-
-<http://sctcc.edu/sites/default/files/policies/S3.24%20Complaint%20Grievance.pdf>
-
-### Classroom Behavior
-
-Attendance is a necessary part of this course. Refer to the attendance policy outlined later in the syllabus
-
-Online discussions should be civilized and respectful to everyone and relevant to the topic we are discussing.
-
-Disruptive behavior on any communication platform will not be tolerated.
-
-You are expected to do your own work unless otherwise directed. Cheating, plagiarism, and any other form of academic dishonesty will not be tolerated. Please refer to the Code of Student Conduct and Academic Integrity policy for details.
-
-Any indication of inebriation or being under the influence, and/or displaying of alcohol or use of paraphernalia that could be associated with drug usage during assignments/course activities will result in removal from the session and/or course. No smoking during any online sessions. My policy is to remove you from the course and leave it to you to file a grievance to return.
-
-Meaningful and constructive dialogue is encouraged, but this also requires a degree of mutual respect, willingness to listen, and tolerance of opposing points of view. Respect for individual differences and alternative viewpoints will always be expected in this course. One’s words and use of language should be temperate and within acceptable bounds of civility and decency.
-
-Disruptive behaviors, including excessive talking about off topic items, arriving late to the start of meetings or returning late from breaks, sleeping, reading, or watching media, or game playing is not permitted and will result in a grade penalty.
-
-Extreme disruptive behavior, fighting (verbally), using repetitive profanity, personal or physical threats or insults, and angry outbursts, will result in your removal from the course in accordance with policies and procedures outlined in the SCTCC’s Code of Student Conduct.
-
-If a student’s disruptive behavior causes them to miss an assignment, they will not receive credit for that assignment. If a student has been sanctioned due to disruptive behavior, they waive the right to a warning on a second occurrence.
-
-### Data Privacy and Student Course Progress
-
-Students are encouraged to take ownership over their academic progress and communicate with faculty directly for any questions or concerns regarding their coursework. I am reachable at my listed contact information and office hours on this syllabus and happy to discuss your progress with you.
-
-Per the College’s Student Data Practices policy, I am unable to share information about a student’s course progress to anyone other than the student, including third parties such as parents/guardians, unless a current Information Release is on file with the Records and Registration Office. Faculty are often unable to confirm if an Information Release is on file, so it is always preferred that the student speak with the faculty one-on-one.
-
-Because of the items outlined above, should a third party contact me directly with a question or concern about your progress, I will defer my response to you and not the third party. Students shall also not invite third parties to attend class meetings (online), as this causes a disruption to the learning environment.
-
-If a student would like their course progress information released to a third party, they may do so by contacting the Dean’s office to make a request for specific information to be shared with the third party.
-
-### Computer Requirements
-
-A Computer meeting the program requirements and able to run multiple instances of Windows or Linux OS concurrently (using virtualization) is required for this class.
-
-Computer requirements are outlined here:
-
-<https://www.sctcc.edu/degrees-programs/computer-programming>
-
-### D2L
-
-A fundamental understanding of D2L is required for this course as it is the primary method to communicate course schedules, grade information, and class news. It is the student’s responsibility to learn to navigate and find information on D2L. SCTCC does offer information sessions on this tool.
-
-### Attendance/Participation:
-
-Attendance is expected and monitored. You are responsible for monitoring your attendance and your absence count.
-
-Attendance will be determined by up to two contributing factors, logging into your D2L Brightspace course, and submission of weekly assignments. Failure to log into class and/or submit assignments for a week will result in an absence. Failure to log into class during a week where an assignment is not due and is not a scheduled holiday/spring break week will result in an absence. I will check logins and assignment submission for the previous week every Monday.
-
-You must log into your online class and complete an activity by 11:30 PM on the first Wednesday of the first week of class. Failure to log in will result in being dropped from the course.
-
-Missing two consecutive weeks of class will result in being dropped from the course.
-
-Missing two total weeks of class (non-consecutive and any combination of unexcused/excused) will result in a reduction of one letter grade (10% of total points). Missing three total weeks of class will result in an additional reduction of a letter grade. Any absence over three will result in a further reduction of a letter grade for each occurrence. Classes I teach are considered independent of each other with respect to attendance. You may meet attendance requirements in one of my classes but fail attendance requirements in another class.
-
-### Testing:
-
-D2L tests are electronic quizzes. These may be scheduled ahead of time or given without warning. If a D2L test is password protected, sharing passwords with another student will constitute an integrity violation.
-
-Tests are not restricted to a specific day for this course but must be completed by the assignment due date as scheduled. You may have multiple attempts at an Online D2L quiz. Time for each question is normally 45 seconds per question. If multiple attempts are allowed, you must score greater than 60% on your first attempt to be allowed a second attempt and you must score greater than an 80% on your second attempt to be allowed a third attempt (if there is a third attempt). If you exceed the time limit on the quiz, the grading engine will mark the test as a 0 and will not allow any further work on your quiz. Always be aware of the time remaining on your quiz. You may not leave a quiz once you start it.
-
-**Note on auto generated D2L Tests:** You may not be able to backtrack through the questions on a D2L quiz. The Next Page and Submit Button are close to each other on the test page. It is possible to Submit a quiz inadvertently if you are not paying attention so ensure that you are reading the popup messages.
-
-Tests and quizzes cannot be made up.
-
-### Schedule
-
-Subject to change based on instructor and class needs.
-
-### Assignments/Projects
-
-All assignments must be turned in by the due date. Due dates will be announced during class and posted on D2L . Late assignments will not be accepted. A late assignment is any assignment that is not in the dropbox by the due/end date. Sometimes assignments will consist of two parts, a video submission, and a file submission. Missing either portion of the assignment will make the assignment ineligible for grading. Video assignments that cannot be accessed by the instructor at the time of grading will also not be accepted. All projects and assignments should be archived and kept. Any group work assigned is also ineligible for makeup so make sure that you are a responsible, considerate groupmate.
-
-**Types of assignments you may encounter in this course:**
-
-Weekly practice assignments – are based on the week’s topics. You will normally receive 5 – 7 days to complete these types of assignment.
-
-Projects – are longer assignments that are bigger in scope than a practice assignment and usually have a timeline with concrete checkpoints. These assignments may be done in a group setting or individually depending on the project.
-
-Video Assignments – are assignments in which you will use your webcam and record your desktop to complete a specific activity. Some video assignments are group-based activities. Ensure that you review the assignment and the assignment rubric for specific instructions.
-
-### Dress
-
-Students are expected to dress in a manner that is considerate of their classmates and the instructor for any online video assignments.
-
-## Standards for Materials Submitted
-
-Specific standards for submitting assignments will be outlined by the instructor in the assignment instructions. Any assignment that does not follow these standards will not be accepted or subject to a significant grade penalty, this includes not submitting files in the correct file format and/or misnaming the file. If you have a question on a file submission, please ensure that you contact the instructor before the due date.
-
-### Student Email
-
-Students will be expected to use email as the primary method of communication with the instructor. **Students must use their college email account for all email communication with the instructor.** Assignments will not be accepted via email. All students must abide by the following requirements:
-
--   If the subject line is missing, your email will not be accepted. The subject line MUST have your course name and course section/class time.
-
--   Students will check their email at least once per day.
-
--   Students will read all emails and attachments sent by the instructor.
-
--   Any attachments submitted via email must pertain to the course.
-
-Email communication is encouraged, however only administrative items will be answered on the night homework is due. An example of an administrative item is informing me of the birth of a child. Technical questions regarding homework will not be addressed. The purpose behind this policy is to limit procrastination.
-
-Expect email to be answered by the end of the next business day. Email sent on Friday will be answered the following Monday.
-
-## Student Responsibilities/Contributions
-
--   Attendance and participation is crucial to succeed in this class.
-
--   Every student will be required to produce projects based on professional standard for the industry.
-
--   Every student is expected to turn in all work as assigned.
-
--   Every student is expected to work cooperatively with classmates and the instructor.
-
-## Statement of Accomodations
-
-St. Cloud Technical & Community College is committed to supporting students with disabilities in obtaining, understanding, and advocating for equitable and inclusive access in all aspects of their education and campus life. It is the role of Accessibility Services to provide and/or arrange reasonable accommodations to qualified students who have a disability (or have acquired a disability) during any point of their tenure at SCTCC. Accommodations are established through collaboration between students, Accessibility Services, faculty, and staff to empower students to pursue their academic goals free from barriers while upholding the integrity of the academic experience.
-
-Disabilities take on several forms including but not limited to mental health, cognitive, learning, behavioral, chronic health/systemic, and physical.
-
-If you have a disability (or think you may have a disability) contact Accessibility Services at 320-308-5064 or acc\@sctcc.edu to establish an accommodation plan.
-
-It is the responsibility of the student requesting accommodations to provide their instructor with their accommodation plan via email. It is encouraged that students with approved accommodations connect with their instructor as soon as they are able in order to proactively discuss how reasonable accommodation will be implemented in class and/or to address any concerns regarding emergency procedures. Students may submit their plan to faculty at any time during the semester, but accommodations cannot be retroactively applied.
-
-More information and guidelines are available at www.sctcc.edu/accessibility.
-
-This syllabus is available in alternate formats upon request by contacting Accessibility Services at 320-308-5757, 1-800-222-1009, or acc\@sctcc.edu. TTY users may call MN Relay Service at 711 to contact the college. Discrimination against individuals on the grounds of disability is prohibited.
-
-## Statement of Diversity
-
-The entire class will benefit from the wealth of diversity brought by each individual, so students are asked to extend every courtesy and respect that they, in turn, would expect from the class.
-
-This college is committed to creating a positive, supportive environment that welcomes diversity of opinions and ideas for students. There will be no tolerance of race discrimination/harassment, sexual discrimination/harassment, or discrimination/harassment based on age, disability, color, creed, national origin, religion, sexual orientation, marital status, status with regard to public assistance, or membership in a local commission.
+{{< include ../shared/templates/syllabus/diversity.qmd >}}
 
 ## Course Calendar
 
 See News and Content page on D2L. The Instructor may make adjustments or changes. Notification will be given in class prior to change.
 
-| DATE    | TOPIC                                              |
-|---------|----------------------------------------------------|
-| Week 1  | Class Acclimation                                  |
-| Week 2  | Using Excel                                        |
-| Week 3  | Formatting a Workbook                              |
-| Week 4  | Calculating with Formulas and Functions            |
-| Week 5  | Analyzing and Charting Financial Data              |
-| Week 6  | Week 1 – 4 Video Assignment                        |
-| Week 7  | Generating Reports                                 |
-| Week 8  | Managing Data with the Excel Data Tools            |
-| Week 9  | Spring Break No Class                              |
-| Week 10 | Summarizing Data with PivotTables                  |
-| Week 11 | Performing What-If Analyses                        |
-| Week 12 | Week 5 – 8 Video Assignment                        |
-| Week 13 | Exploring Analytical Tools and Functions           |
-| Week 14 | Analyzing Data with Business Intelligence Tools    |
-| Week 15 | Exploring PivotTable Design                        |
-| Week 16 | Data Analysis with Power Tools and Creating Macros |
-| Week 16 | User Interfaces, VBA’s and Collaboration Features  |
-| Week 17 | Project                                            |
+| Week | Dates | Topics | Deliverable | Reading |
+|---:|---|---|---|---|
+| 1 | Jan 12, 2026–Jan 18, 2026 | Onboarding + Jupyter basics | Practice Notebook 1 (completion) | Ch. 2 (Jupyter/IPython) + Ch. 1 overview |
+| 2 | Jan 19, 2026–Jan 25, 2026 | Python refresh for data work (functions, files, pathlib) | Practice Notebook 2 (completion) | Ch. 3 (Built-in Python for data work) |
+| 3 | Jan 26, 2026–Feb 01, 2026 | NumPy essentials (arrays, vectorization, boolean masks) | Practice Notebook 3 (completion) | Ch. 4 (NumPy basics) |
+| 4 | Feb 02, 2026–Feb 08, 2026 | pandas foundations I (Series/DataFrame, indexing, filtering) | Skill Check 1 (autograded notebook) | Ch. 5 (pandas intro) |
+| 5 | Feb 09, 2026–Feb 15, 2026 | pandas foundations II (sorting, basic summaries, missingness intro) | Practice Notebook 5 (completion) | Ch. 5 (pandas continued) |
+| 6 | Feb 16, 2026–Feb 22, 2026 | Data I/O (CSV, Excel/JSON basics, parsing dates, dtypes) | Practice Notebook 6 (completion) | Ch. 6 (Data loading/storage) |
+| 7 | Feb 23, 2026–Mar 01, 2026 | Cleaning I (missing data, types, duplicates, string cleanup) | Reflection 1 (graded) | Ch. 7 (Data cleaning/prep) |
+| 8 | Mar 02, 2026–Mar 08, 2026 | Cleaning II (validation rules, outliers as data-quality topic) | Practice Notebook 8 (completion) | Ch. 7 (Data cleaning/prep) |
+| 9 | Mar 09, 2026–Mar 15, 2026 | Spring Break (no due dates) | — | — |
+| 10 | Mar 16, 2026–Mar 22, 2026 | Wrangling I (merge/join, concat; keys & pitfalls) | Skill Check 2 (autograded notebook) | Ch. 8 (Wrangling: join/reshape) |
+| 11 | Mar 23, 2026–Mar 29, 2026 | Wrangling II (reshape: pivot/melt; tidy layouts) | Practice Notebook 11 (completion) | Ch. 8 (Wrangling: reshape) |
+| 12 | Mar 30, 2026–Apr 05, 2026 | Groupby + aggregation (report tables, transform vs agg) | Reflection 2 (graded) | Ch. 10 (Aggregation & groupby) |
+| 13 | Apr 06, 2026–Apr 12, 2026 | Visualization I (plot selection, labeling, communication) | Practice Notebook 13 (completion) | Ch. 9 (Visualization) |
+| 14 | Apr 13, 2026–Apr 19, 2026 | Visualization II (+ optional time series basics) | Skill Check 3 (autograded notebook) | Ch. 9 (Visualization) + optional Ch. 11 (Time series) |
+| 15 | Apr 20, 2026–Apr 26, 2026 | Project setup week (topic + dataset approval + plan) | Reflection 3 / Project Proposal (graded) | Ch. 13 (Examples) for inspiration (optional) |
+| 16 | Apr 27, 2026–May 03, 2026 | Final project work time (milestone: cleaned dataset + initial EDA) | — (work week) | Ch. 13 (Examples) (optional) |
+| 17 | May 04, 2026–May 10, 2026 | Final project work time (milestone: visuals + narrative + polish) | — (work week) | Ch. 13 (Examples) (optional) |

@@ -21,17 +21,22 @@ website:
             text: Schedule
           - href: shared/policies/office-hours.qmd
             text: Office Hours
+          - href: shared/policies/homework-coursework.qmd
+            text: Assignment Policies
+          - href: shared/policies/general-policies.qmd
+            text: General Policies
+
 
       - section: "Weekly Overview"
         contents:
-          - href: weeks/week-01.qmd
+          - href: weeks/week-01/week-01.qmd
             text: Week 1
           #- href: weeks/week-02.qmd
             #text: Week 2
 
       - section: "Weekly Assignments"
         contents:
-          - href: weeks/week-01.qmd
+          - href: assignments/week-01.qmd
             text: Week 1
            
       
