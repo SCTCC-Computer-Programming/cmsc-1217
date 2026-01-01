@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/lectures/index.html</loc>
-    <lastmod>2025-12-26T05:06:01.589Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/guides/week-01/environment-setup-guide-vscode.html</loc>
-    <lastmod>2025-12-28T03:14:15.951Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/about.html</loc>
-    <lastmod>2025-12-26T05:06:01.588Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/weekly-overview/week-02/index.html</loc>
+    <lastmod>2025-12-31T21:02:11.224Z</lastmod>
   </url>
   <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/shared/policies/office-hours.html</loc>
     <lastmod>2025-12-29T06:36:44.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/weeks/week-02.html</loc>
-    <lastmod>2025-12-28T21:38:21.885Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/shared/policies/general-policies.html</loc>
+    <lastmod>2025-12-31T02:09:56.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/shared/guides/setup/environment-setup-guide-vscode.html</loc>
+    <lastmod>2025-12-31T19:16:43.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/course/syllabus.html</loc>
+    <lastmod>2025-12-31T09:55:41.468Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/assignments/week-02/index.html</loc>
+    <lastmod>2025-12-31T21:08:06.600Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/about.html</loc>
+    <lastmod>2025-12-26T05:06:01.588Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/assignments/week-01/index.html</loc>
+    <lastmod>2025-12-31T19:42:35.498Z</lastmod>
   </url>
   <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/course/schedule.html</loc>
     <lastmod>2025-12-27T01:52:54.853Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/course/policies.html</loc>
-    <lastmod>2025-12-26T05:06:01.588Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/course/syllabus.html</loc>
-    <lastmod>2025-12-27T01:54:30.732Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/weeks/index.html</loc>
-    <lastmod>2025-12-29T02:24:32.870Z</lastmod>
-  </url>
-  <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/weeks/week-01.html</loc>
-    <lastmod>2025-12-29T02:12:19.425Z</lastmod>
-  </url>
-  <url>
     <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/index.html</loc>
-    <lastmod>2025-12-26T05:06:01.588Z</lastmod>
+    <lastmod>2025-12-31T06:42:20.460Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/guides/week-01/environment-setup-guide-miniconda.html</loc>
-    <lastmod>2025-12-28T08:50:21.623Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/shared/guides/setup/miniconda.html</loc>
+    <lastmod>2025-12-31T19:16:43.000Z</lastmod>
   </url>
   <url>
-    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/guides/index.html</loc>
-    <lastmod>2025-12-29T04:38:58.695Z</lastmod>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/shared/policies/homework-coursework.html</loc>
+    <lastmod>2025-12-31T02:01:14.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://SCTCC-Computer-Programming.github.io/cmsc-1217/weekly-overview/week-01/index.html</loc>
+    <lastmod>2025-12-31T20:32:33.434Z</lastmod>
   </url>
 </urlset>
