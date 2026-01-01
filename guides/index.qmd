@@ -1,8 +1,0 @@
----
-title: "Guides"
----
-
-## Setup
-- [Miniconda setup](week-01/environment-setup-guide-miniconda)
-
-

@@ -29,28 +29,32 @@ website:
 
       - section: "Weekly Overview"
         contents:
-          - href: weeks/week-01/week-01.qmd
+          - href: weekly-overview/week-01/
             text: Week 1
-          #- href: weeks/week-02.qmd
+          #- href: weekly-overview/week-02/
             #text: Week 2
 
       - section: "Weekly Assignments"
         contents:
-          - href: assignments/week-01.qmd
+          - href: assignments/week-01-assignments/
             text: Week 1
            
       
       
       - section: "Guides"
         contents:
-          - href: guides/week-01/environment-setup-guide-miniconda.qmd
+          - href: shared/guides/setup/miniconda.qmd
             text: Miniconda Setup
+
 
 format:
   html:
     toc: false
     theme: cosmo
-    css: styles.css
+    css:
+      - shared/assets/course.css
+      - styles.css
+
 
 
 

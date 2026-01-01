@@ -58,9 +58,9 @@ From Anaconda Prompt:
 2.  `cd C:\cmsc-1217\course-work`
 3.  `jupyter lab`
 
-#### B) Create and run a notebook
+#### B) Create a `Week01` folder in `cmsc-1217` and then create and run a notebook
 
-Create: `week01-notebook-practice.ipynb` in `course-work`.
+Create: `week01-notebook-practice.ipynb` in `course-work\week01`.
 
 Run these cells:
 
@@ -103,7 +103,7 @@ These behaviors are part of the Chapter 2 IPython/Jupyter workflow.
 
 #### Required screenshots
 
-6.  **JupyterLab opened in course-work** Screenshot name: `lastname_jupyterlab-course-work.png` Show the JupyterLab file browser open in `C:\cmsc-1217\course-work`.
+6.  **JupyterLab opened in course-work** Screenshot name: `lastname_jupyterlab-course-work.png` Show the JupyterLab file browser open in `C:\cmsc-1217\course-work\week01`.
 
 7.  **sys.executable output** Screenshot name: `lastname_sys-executable.png`
 
@@ -141,10 +141,10 @@ In your video, address:
 -   Clear video and audio quality
 -   Introduce yourself at the beginning (name)
 -   Name your video file: `lastname_Week01Reflection`
--   Upload your video using **Kaltura** (or an approved video platform)
+-   Upload your video to **Kaltura**
 -   **Do not** embed the video in the Dropbox submission
 -   Paste the **share link** into the D2L assignment text submission box
--   Make sure the link text includes: `lastname_Week01Reflection`
+-   Make sure the link text includes `lastname_Week01Reflection`in the link name. This will appear if you copy the link.
 
 ## D2L submission checklist
 
@@ -152,19 +152,17 @@ Submit the following items to the Week 1 D2L dropboxes.
 
 ### Screenshot files (upload as separate files, not a zip)
 
-1. `lastname_git-version.png`
-2. `lastname_course-folders.png`
-3. `lastname_book-clone.png`
-4. `lastname_conda-env-list.png`
-5. `lastname_pandas-version.png`
-6. `lastname_jupyterlab-course-work.png`
-7. `lastname_sys-executable.png`
-8. `lastname_ipython-help.png`
-9. `lastname_ipython-prompt.png`
+1.  `lastname_git-version.png`
+2.  `lastname_course-folders.png`
+3.  `lastname_book-clone.png`
+4.  `lastname_conda-env-list.png`
+5.  `lastname_pandas-version.png`
+6.  `lastname_jupyterlab-course-work.png`
+7.  `lastname_sys-executable.png`
+8.  `lastname_ipython-help.png`
+9.  `lastname_ipython-prompt.png`
 
 ### Video submission (link only)
 
-* Video filename: `lastname_Week01Reflection`
-* Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox).
-
-
+-   Video filename: `lastname_Week01Reflection`
+-   Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox).
