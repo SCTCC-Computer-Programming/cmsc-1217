@@ -227,7 +227,7 @@
     "href": "shared/guides/setup/miniconda.html#optional-cmsc-1217-ipython-in-the-terminal",
     "title": "Shared Setup (Windows) — Miniconda, Course Environments, IPython, and JupyterLab",
     "section": "Optional (CMSC-1217): IPython in the terminal",
-    "text": "Optional (CMSC-1217): IPython in the terminal\n\nCMSC-1217 only: You will use IPython for interactive exploration.\n\nIn Anaconda/Miniconda Prompt:\nconda activate pydata-book\nIPythone\nYou should see an In [1]: prompt.\nTo exit:\nexit()",
+    "text": "Optional (CMSC-1217): IPython in the terminal\n\nCMSC-1217 only: You will use IPython for interactive exploration.\n\nIn Anaconda/Miniconda Prompt:\nconda activate pydata-book\nIPython\nYou should see an In [1]: prompt.\nTo exit:\nexit()",
     "crumbs": [
       "Home",
       "Guides",
@@ -354,7 +354,7 @@
     "href": "assignments/week-01/index.html#part-3-jupyterlab-practice",
     "title": "Week 1 Assignments",
     "section": "Part 3: JupyterLab practice",
-    "text": "Part 3: JupyterLab practice\n\nA) Launch JupyterLab in the correct folder\nFrom Anaconda Prompt:\n\nconda activate pydata-book\ncd C:\\cmsc-1217\\course-work\njupyter lab\n\n\n\nB) Create a Week01 folder in cmsc-1217 and then create and run a notebook\nCreate: week01-notebook-practice.ipynb in course-work\\week01.\nRun these cells:\nimport sys\nsys.executable\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmessage = \"Notebooks run Python too\"\nmessage\nx = 10\nx + 5\nThen use JupyterLab to:\n\nRestart the kernel\nRun all cells\n\nFinally, do:\n\nTab completion: type np.random. and use completion\nHelp/introspection:\n\nnp.random.standard_normal?\nThese behaviors are part of the Chapter 2 IPython/Jupyter workflow.\n\n\nRequired screenshots\n\nJupyterLab opened in course-work Screenshot name: lastname_jupyterlab-course-work.png Show the JupyterLab file browser open in C:\\cmsc-1217\\course-work\\week01.\nsys.executable output Screenshot name: lastname_sys-executable.png\nIntrospection output (?) Screenshot name: lastname_ipython-help.png",
+    "text": "Part 3: JupyterLab practice\n\nA) Launch JupyterLab in the correct folder\nFrom Anaconda Prompt:\n\nconda activate pydata-book\ncd C:\\cmsc-1217\\course-work\njupyter lab\n\n\n\nB) Create a week01 folder in cmsc-1217 and then create and run a notebook\nCreate: week01-notebook-practice.ipynb in course-work\\week01.\nRun these cells:\nimport sys\nsys.executable\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmessage = \"Notebooks run Python too\"\nmessage\nx = 10\nx + 5\nThen use JupyterLab to:\n\nRestart the kernel\nRun all cells\n\nFinally, do:\n\nTab completion: type np.random. and use completion\nHelp/introspection:\n\nnp.random.standard_normal?\nThese behaviors are part of the Chapter 2 IPython/Jupyter workflow.\n\n\nRequired screenshots\n\nJupyterLab opened in course-work Screenshot name: lastname_jupyterlab-course-work.png Show the JupyterLab file browser open in C:\\cmsc-1217\\course-work\\week01.\nsys.executable output Screenshot name: lastname_sys-executable.png\nIntrospection output (?) Screenshot name: lastname_ipython-help.png",
     "crumbs": [
       "Home",
       "Weekly Assignments",
@@ -428,7 +428,7 @@
     "href": "course/syllabus.html",
     "title": "CMSC 1217 – Introduction to Data Analytics",
     "section": "",
-    "text": "Instructor(s): Joseph Silman Office: Online\nE-mail: jsilman@sctcc.edu (PRIMARY COMMUNICATION METHOD) Phone: (320)308-6595\nOffice Hours: See Attached Course Schedule in D2L.\nCredits: 3 (Lecture 2; Lab 1)",
+    "text": "Instructor(s): Joseph Silman Office: Online\nE-mail: jsilman@sctcc.edu (PRIMARY COMMUNICATION METHOD) Phone: (320)308-6595\nOffice Hours: See Attached Course Schedule in D2L or on Course Page.\nCredits: 3 (Lecture 2; Lab 1)",
     "crumbs": [
       "Home",
       "Course information",
@@ -476,7 +476,7 @@
     "href": "course/syllabus.html#required-materials",
     "title": "CMSC 1217 – Introduction to Data Analytics",
     "section": "Required Materials",
-    "text": "Required Materials\nPython for Data Analyis, 3rd Edition : Wes McKinney\nComputer running current OS that supports Microsoft Office\nWebcam Required\n*** STUDENTS ARE REQUIRED TO HAVE THEIR MATERIALS AT THE START OF THE COURSE***",
+    "text": "Required Materials\nPython for Data Analysis, 3rd Edition : Wes McKinney\nComputer running current OS that supports Microsoft Office\nWebcam Required\n*** STUDENTS ARE REQUIRED TO HAVE THEIR MATERIALS AT THE START OF THE COURSE***",
     "crumbs": [
       "Home",
       "Course information",
