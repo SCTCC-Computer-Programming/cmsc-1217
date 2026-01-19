@@ -6,6 +6,8 @@ title-block-banner: false
 format:
   html:
     toc: false
+    css:
+      - styles.css
 
   pdf:
     toc: false
@@ -87,7 +89,7 @@ This course follows a **tools-first** approach to “data analytics.” Our focu
 
 ## Required Materials
 
-Python for Data Analyis, 3rd Edition : Wes McKinney
+Python for Data Analysis, 3rd Edition : Wes McKinney
 
 Computer running current OS that supports Microsoft Office
 

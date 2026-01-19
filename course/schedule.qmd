@@ -3,6 +3,8 @@ title: "CMSC 1217 Course Schedule"
 format:
   html:
     toc: true
+    css:
+      - styles.css
 ---
 
 ## Course rhythm

@@ -1,5 +1,138 @@
 ---
-title: "Week 2"
+title: Week 2 Guide
+subtitle: Chapter 3 — From a CSV File to Clean Records and Summaries
+format:
+  html:
+    toc: true
+    css:
+      - styles.css
 ---
 
-This page will be published before Week 2 begins.
+## Week 2 focus
+
+This week focuses on learning the *core workflow* you’ll repeat throughout data analytics: starting with a file, converting it into structured records, and producing summaries that answer questions.
+
+In the Week 2 demo, you practice the pipeline end-to-end:
+
+* create or obtain a small CSV-style dataset
+* inspect what the file contains
+* parse each row into fields and convert types
+* validate rows and handle errors safely with `try/except`
+* build a clean in-memory dataset you can analyze
+* compute unique values, frequency counts, rankings, and summary statistics
+* compare results across subsets (success vs error)
+* see a streaming approach using a generator (`yield`) for large files
+
+## Chapter 3 concepts used this week
+
+### Files and paths
+
+Chapter 3 reviews file input/output using `open(...)` and the standard read/write patterns. You’ll use these skills to create a data file, read it back, and confirm that the contents are what you expect before you try to analyze anything.
+
+### CSV file and records
+
+The demo uses a CSV-file structure: a header row followed by data rows. A key analytics habit is thinking in terms of **records**:
+
+* one row represents one record
+* the header describes what each field means
+* the goal is to turn each record into something Python can work with by name
+
+### Parsing and validation
+
+Parsing is the bridge between “a line of text” and “a record we can analyze.” In the demo, parsing includes:
+
+* splitting a line into fields
+* stripping whitespace so fields are consistent
+* converting numeric fields to integers so we can compute and compare
+* checking that the row has the expected shape (the expected number of fields)
+
+### Exceptions as workflow control
+
+In data work, a single bad record shouldn’t stop the entire process. This week emphasizes a standard pattern:
+
+* try to parse a row
+* if it works, keep it
+* if it fails, record the failure and keep going
+
+### Core data structures for analytics
+
+This week is intentionally standard Python” data work, using standard structures in a data context:
+
+* **list**: storing many records (your cleaned dataset)
+* **dictionary**: representing one record (field names → values)
+* **set**: getting unique values (distinct users/endpoints)
+* **dictionary counting with `.get()`**: building frequency tables
+* **tuples from `.items()`**: working with (key, value) pairs for ranking and sorting
+
+
+### Lambda 
+
+Sometimes you need a small function only once—usually to plug into something like `sorted(..., key=...)` or `max(..., key=...)`. Writing a full `def` function for that can feel heavy when the logic is simple.
+
+`lambda` is Python’s way to write a **small anonymous function** in a single line. It’s not a different kind of function—it’s still a function. The difference is that it has no name and is typically used inline when you need a quick “extract this value” rule.
+
+The important learning goal this week is understanding what role the lambda is playing:
+
+* it takes one item at a time
+* it returns the value Python should use for comparison
+
+
+### Sorting, selecting, and `key=` (functions as inputs)
+
+Chapter 3 reinforces that in Python, **functions are tools you can pass into other functions**. Some built-in functions don’t just work on simple numbers or strings—they work on more complex items like **tuples** or **dictionary records**. In those cases, Python needs help deciding what value it should compare.
+
+That is what the `key=` parameter is for. A **key function** takes one item and returns the value that should be used for comparison. You’ll see this idea in more than one form this week:
+
+* `sorted(..., key=...)` uses the key function to decide how to order items.
+* `max(..., key=...)` uses the key function to decide what “largest” means, even if the items are not plain numbers.
+
+### Generators as a scaling pattern
+
+The generator section introduces `yield` and the streaming mindset:
+
+* lists are convenient when data is small
+* generators help when files are large because they produce one record at a time during iteration
+* you trade convenience (random access, reusing lists) for memory efficiency
+
+
+As you work through Chapter 3, keep connecting the chapter skills to the demo workflow:
+
+* file I/O is how the data gets from disk into Python
+* parsing is how a text row becomes a structured record
+* exceptions let you keep processing even when some rows are invalid
+* core data structures let you answer real questions: “how many?”, “how often?”, “which is most common?”, “what changes between groups?”
+* generators introduce what changes when the dataset is too large to load all at once
+
+## Reading expectations for Week 2
+
+As you read and run the demo, check whether you can explain the following in your own words:
+
+1. What is the difference between the **header row** and the **data rows** in a CSV-style file?
+2. What does **parsing** mean?
+3. What kinds of problems make a row invalid for the demo dataset?
+4. Why do we use `try/except` while processing rows instead of letting the program crash?
+5. When would you use a **set** vs a **dictionary** in this workflow?
+6. What does `key=` do in `sorted(...)`, and what is the `lambda` returning?
+7. What does `yield` change about how rows are processed, and what are the tradeoffs?
+
+## Week 2 tasks
+
+1. Watch the **Week 2 demo overview** in your cmsc-1217 YouTube playsist.   
+- Here is the link to the **[Week 2 demo](../../assignments/week-02/week-2-demo.html)**. 
+- <a href="week-2-demo.ipynb" download="week-2-demo.ipynb"> Download Jupyter Notebook </a>
+2. Read **Chapter 3** (complete).
+3. Complete the **Week 2 D2L quiz** (Chapter 3 concepts + demo workflow).
+4. Complete the **Week 2 Weekly Assignment**.
+
+## Knowledge goals for Week 2
+
+By the end of the week, you should be able to:
+
+* explain what a “record” is in a row-based dataset and why headers matter
+* parse a CSV file into a dictionary with consistent keys and correct types
+* use `try/except` to skip invalid rows while keeping track of errors
+* build and analyze a list of dictionary records
+* use sets for distinct values and dictionaries for frequency counts
+* rank results using sorting with `key=` (and explain what the lambda returns)
+* explain what a generator is and when streaming is the better approach
+

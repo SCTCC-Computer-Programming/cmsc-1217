@@ -4,6 +4,8 @@ subtitle: Core tools and notebook workflow
 format:
   html:
     toc: true
+    css:
+      - styles.css
 ---
 
 ## Week 1 focus

@@ -1,5 +1,125 @@
 ---
-title: "Week 2"
+title: Week 2 Assignments
+subtitle: Chapter 3 Reading, Demo Activity, and D2L Quiz
+format:
+  html:
+    toc: true
+    css:
+      - /styles.css
 ---
 
-This page will be published before Week 2 begins.
+## Week 2 Assignments
+
+**Submission location:** All files are submitted in D2L (Week 2 Dropbox).
+
+## Part 1: Reading
+
+Read **all of Chapter 3**.
+
+Pay special attention to:
+
+* **File I/O basics**: `open(...)`, read mode vs write mode, `encoding="utf-8"`
+* **Working with text files as rows**: header vs data lines, “one line = one record”
+* **Core data structures used in the demo**: lists, dictionaries, sets, tuples
+* **Exceptions and `try/except`** as a workflow for skipping bad rows without crashing
+* **Sorting with `key=`** (including `lambda`)
+* **Generators and `yield`** (streaming / row-by-row processing)
+
+## Part 2: Week 2 Demo Activity
+
+You will make two small changes to the Week 2 demo and submit evidence outputs showing what happened.
+
+### Task A: Trigger and observe a parsing error
+
+In the “Quick check: confirm the parser works on one line” section:
+
+1. Replace the valid `sample_line` with a malformed line that should fail parsing.
+   
+   * Missing a field:
+     `2026-01-19T09:01:10,alice,/home,200`
+   * Not enough commas:
+     `bad_row_with_no_commas`
+   * Non-numeric `ms`:
+     `2026-01-19T09:01:10,alice,/home,200,not_a_number`
+   * Extra field:
+     `2026-01-19T09:01:10,alice,/home,200,34,EXTRA`
+
+2. Run the cell and confirm you see an error message.
+
+3. Change the line back to the valid example and re-run successfully.
+
+**What to submit (evidence):**
+
+* A screenshot showing the error message output for one malformed line.
+
+**Required filename:**
+
+* `lastname_week02_taskA.png`
+
+### Task B: Make one small data change and observe how results change
+
+Choose **ONE** option below.
+
+#### Option 1: Add one valid row and observe how counts change
+
+1. Add **one new valid row** to `raw_lines` in the dataset-creation section.
+   Example format (must have 5 fields):
+   `2026-01-19T09:02:00,alice,/home,200,35`
+
+2. Re-run the cells needed to rebuild the cleaned data and the endpoint counts.
+
+3. Show that the results changed (for example, endpoint counts or the “top endpoints” output).
+
+**Evidence to capture:**
+
+* Output showing the updated counts or updated `top_endpoints`.
+
+#### Option 2: Change the “error” threshold and compare summaries
+
+1. In the “Compare summaries on different subsets of the data” section, change the error definition from:
+
+   * `status >= 400` (errors)
+     to:
+   * `status >= 500` (errors)
+
+2. Re-run the cell and compare the three printed summaries.
+
+**Evidence to capture:**
+
+* Output showing the updated summaries for All / Success only / Errors only.
+
+**What to submit (evidence):**
+
+* A screenshot showing the updated output.
+
+**Required filename:**
+
+* `lastname_week02_taskB.png`
+
+## Part 3: D2L Quiz
+
+Complete the **Week 2 D2L quiz**.
+
+The quiz focuses on:
+
+* what “parsing” means and what the parser returns
+* why we use `try/except` when reading rows
+* when to use a **set** vs a **dictionary**
+* how the `.get(..., 0) + 1` counting pattern works
+* what `dict.items()` returns (tuples)
+* how sorting with `key=` works, and what the `lambda` returns
+* what a generator does, what `yield` changes, and when streaming is useful
+
+## D2L submission checklist
+
+Submit **two screenshot files** to the **Week 2 Dropbox** (upload as separate files, not a zip):
+
+1. `lastname_week02_taskA.png`
+2. `lastname_week02_taskB.png`
+
+Also complete:
+
+* **Week 2 D2L quiz**
+
+
+

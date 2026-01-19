@@ -1,0 +1,11 @@
+timestamp,user,endpoint,status,ms
+2026-01-19T09:01:10,alice,/home,200,34
+2026-01-19T09:01:12,bob,/login,401,18
+2026-01-19T09:01:13,alice,/items,200,51
+2026-01-19T09:01:15,carol,/items,500,73
+2026-01-19T09:01:16,dan,/home,200,not_a_number
+2026-01-19T09:01:20,erin,/search,200,44
+2026-01-19T09:01:21,  frank  ,/search,200, 40  
+2026-01-19T09:01:25,alice,/checkout,200,62
+2026-01-19T09:01:26,bob,/items,200
+bad_row_with_no_commas

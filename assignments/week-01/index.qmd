@@ -4,6 +4,8 @@ subtitle: Course Workflow, Miniconda, IPython, and JupyterLab
 format:
   html:
     toc: true
+    css:
+      - styles.css
 ---
 
 **Submission location:** **All items are submitted in D2L** (Week 1 dropboxes). **Reading:** Chapter 1 and Chapter 2 (complete).
@@ -58,7 +60,7 @@ From Anaconda Prompt:
 2.  `cd C:\cmsc-1217\course-work`
 3.  `jupyter lab`
 
-#### B) Create a `Week01` folder in `cmsc-1217` and then create and run a notebook
+#### B) Create a `week01` folder in `cmsc-1217` and then create and run a notebook
 
 Create: `week01-notebook-practice.ipynb` in `course-work\week01`.
 

@@ -1,0 +1,812 @@
+---
+title: "Week 2 Demo: Wrangling a Log File with Python"
+format:
+  html:
+    toc: true
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+---
+
+<a href="week-2-demo.ipynb" download="week-2-demo.ipynb"> Download Jupyter Notebook </a>
+
+This demo cleans and summarizes a small “messy” dataset.
+
+The goals are to practice:
+
+-   **Data structures**: lists, dicts, tuples, sets\
+-   **Comprehensions**: quick transformations\
+-   **Functions**: reusable parsing + summaries\
+-   **Exceptions**: handling bad rows gracefully\
+-   **Files**: reading/writing data from disk\
+-   **Iteration**: processing row-by-row (like real datasets)
+
+## Create a small dataset and save it to a file
+
+We’ll generate a fake server log file. Some rows are intentionally messy: - missing fields - non-numeric values - extra whitespace
+
+We’re doing this so we can practice file I/O (`open`, read/write) and then practice data structures + functions on the contents.
+
+```{python}
+import os
+
+# Make a folder named "data" if it doesn't already exist
+os.makedirs("data", exist_ok=True)
+
+filename = "data/tiny_access_log.csv"
+
+raw_lines = [
+    "timestamp,user,endpoint,status,ms",
+    "2026-01-19T09:01:10,alice,/home,200,34",
+    "2026-01-19T09:01:12,bob,/login,401,18",
+    "2026-01-19T09:01:13,alice,/items,200,51",
+    "2026-01-19T09:01:15,carol,/items,500,73",
+    "2026-01-19T09:01:16,dan,/home,200,not_a_number",   # bad ms
+    "2026-01-19T09:01:20,erin,/search,200,44",
+    "2026-01-19T09:01:21,  frank  ,/search,200, 40  ",  # extra whitespace
+    "2026-01-19T09:01:25,alice,/checkout,200,62",
+    "2026-01-19T09:01:26,bob,/items,200",               # missing ms
+    "bad_row_with_no_commas",                           # completely malformed
+]
+
+with open(filename, "w", encoding="utf-8") as f:
+    for line in raw_lines:
+        f.write(line + "\n")
+
+filename
+```
+
+**Loading the tool we need**
+
+-   `import os` loads Python’s standard library module for interacting with the operating system.
+
+**Creating a folder**
+
+-   `os.makedirs("data", exist_ok=True)` creates a folder named `data`.
+-   `exist_ok=True` means: if the folder already exists, don’t raise an error.
+
+**Choosing a filename**
+
+-   `filename = "data/tiny_access_log.csv"` stores the path to our file as a string.
+-   We use a string path because Chapter 3’s file section is built around passing filenames into `open(...)`.
+
+**Building the dataset in memory**
+
+-   `raw_lines = [...]` creates a **list** of strings.
+-   Each string is one line we plan to write to the file.
+-   The first line is a header: `timestamp,user,endpoint,status,ms`.
+
+**Why the data is “messy”** Some rows are intentionally flawed so we can practice robust parsing later:
+
+-   `"not_a_number"` will fail when we try to convert the `ms` field to an integer.
+-   One row is missing a field (no `ms` value at the end).
+-   One row has extra whitespace around values.
+-   One row is completely malformed (no commas).
+
+**Opening the file (write mode)**
+
+-   `with open(filename, "w", encoding="utf-8") as f:` opens the file for writing.
+-   `"w"` means “write mode” (create/overwrite the file).
+-   `encoding="utf-8"` ensures the file is written as standard UTF-8 text.
+-   The `with` statement ensures the file closes automatically when we finish.
+
+**Writing each line**
+
+-   `for line in raw_lines:` loops through the list of lines.
+-   `f.write(line + "\n")` writes the line and adds a newline so each entry becomes its own line in the file.
+
+**Showing the result**
+
+-   The final `filename` prints the file path so you can confirm where it was created.
+
+## Read the file and preview the raw lines
+
+Now that we’ve created the file, we need to look at what’s inside it.  We’ll read the entire file into a single string and print it. That lets us see the header row, the expected rows, and the intentionally messy rows we’ll need to handle when we start parsing.
+
+```{python}
+# Read the entire file as one string
+with open(filename, "r", encoding="utf-8") as f:
+    text = f.read()
+
+print(text)
+```
+
+**Opening the file for reading**
+
+* `with open(filename, "r", encoding="utf-8") as f:` opens the file named by `filename`.
+* `"r"` means **read mode** (we are not changing the file).
+* `encoding="utf-8"` tells Python how to interpret the bytes in the file as text.
+* The `with` statement ensures the file closes automatically when we’re done.
+
+**Reading the full contents**
+
+* `text = f.read()` reads the entire file into a single string named `text`.
+
+**Previewing what we read**
+
+* `print(text)` prints the string so we can verify:
+
+  * the header line is present
+  * each record is on its own line
+  * the “messy” rows are visible (missing fields, bad values, etc.)
+
+## Parse one row into a dictionary
+
+We’ve confirmed that the file exists and we’ve seen the raw text. The next goal is to turn each line of text into something we can work with programmatically. We’ll write a function that parses one line at a time. In programming, parsing means taking unstructured text (like a line from a file) and breaking it into meaningful pieces. The result is usually a more structured object (like a list or a dictionary) that Python can work with more easily for counting, filtering, and summarizing.
+
+We are parsing each line because we want to build a clean dataset in memory. Each line in the file represents one “record” (one request), and we want to convert that record into a dictionary so we can later do analytics tasks like counting users, finding the most common endpoints, and computing average response times. Here we’ll represent each row as a dictionary:
+
+* keys = column names (`timestamp`, `user`, `endpoint`, `status`, `ms`)
+* values = the data from that row (with numeric fields converted to integers)
+
+This parser function also helps us detect problems in the raw data. If a line is missing fields, has extra fields, or contains values that can’t be converted to numbers, this function will raise an error. In the next section, we’ll use `try/except` to catch those errors so we can skip bad rows without stopping the whole program.
+
+```{python}
+def parse_log_line(line):
+    # Split the line into fields and remove extra whitespace around each field
+    parts = [p.strip() for p in line.split(",")]
+
+    # We expect exactly 5 fields: timestamp, user, endpoint, status, ms
+    if len(parts) != 5:
+        raise ValueError(f"Expected 5 fields, got {len(parts)}: {line!r}")
+
+    # Unpack the five fields into separate variables
+    timestamp, user, endpoint, status, ms = parts
+
+    # Build a dictionary for one record (one row)
+    return {
+        "timestamp": timestamp,
+        "user": user,
+        "endpoint": endpoint,
+        "status": int(status),
+        "ms": int(ms),
+    }
+```
+
+**List comprehension vs a normal loop (same result)**
+
+A list comprehension is often just a shorter way to write a loop that builds a list.
+
+For example, these two blocks do the same thing (they both build a list of users).
+
+**List comprehension version**
+
+```python
+users = [r["user"] for r in good_rows]
+```
+
+**Equivalent loop version**
+
+```python
+users = []
+for r in good_rows:
+    users.append(r["user"])
+```
+
+In both cases:
+
+* we loop over each record dictionary `r` in `good_rows`
+* we take the `"user"` value from that dictionary
+* we add it to the `users` list
+
+The list comprehension is just the “compact form” of the same idea.
+
+
+**Defining a function**
+
+* `def parse_log_line(line):` creates a function named `parse_log_line`.
+
+  * `def` is the keyword Python uses to start a function definition.
+  * `parse_log_line` is the function name we’ll call later.
+  * `line` is a **parameter**: when we call the function, we will pass in one line of text from the file.
+* Everything indented under the `def` line is the **function body** (the steps Python runs when the function is called).
+* The `return` statement ends the function and sends a value back to the caller.
+
+  * In this case, the function returns a dictionary representing one parsed row.
+
+**Why we’re writing a parser function**
+
+* This file is still just text.
+* A parser function gives us a repeatable way to turn a line into a structured record.
+* Once each row is a dictionary, we can count, filter, summarize, and sort using normal Python tools.
+
+**Splitting the line into fields**
+
+* `line.split(",")` breaks the row into pieces wherever there is a comma.
+* `[p.strip() for p in ...]` removes extra spaces around each field.
+
+  * This matters because our file includes rows with extra whitespace (for example: `"  frank  "` and `" 40  "`).
+
+**Checking that the row has the right number of fields**
+
+* `if len(parts) != 5:` checks whether the row has exactly 5 fields.
+* `raise ValueError(...)` stops and reports a clear error message if the row is malformed.
+
+  * This catches rows that are missing a field or don’t have commas at all.
+
+**Unpacking the fields**
+
+* `timestamp, user, endpoint, status, ms = parts` assigns each piece to a named variable.
+* Unpacking is convenient here because it keeps the rest of the code readable.
+
+**Building a dictionary record**
+
+* `return {...}` creates one dictionary representing one row.
+* `int(status)` converts the status code from text to an integer (e.g., `"200"` → `200`).
+* `int(ms)` converts the response time from text to an integer.
+
+  * This will fail for `"not_a_number"` — and that’s okay. In the next section, we’ll use `try/except` so we can skip bad rows without crashing the whole process.
+
+## Quick check: confirm the parser works on one line
+
+This function we just created doesn’t produce output by itself. To confirm it works, we’ll call it once with a known-good line and display the result.
+
+```{python}
+sample_line = "2026-01-19T09:01:10,alice,/home,200,34"
+parse_log_line(sample_line)
+```
+
+**Testing the function**
+
+* `sample_line = ...` creates one correctly formatted row.
+* `parse_log_line(sample_line)` runs the parser and returns a dictionary.
+*  The output should be a dictionary with the expected keys.
+ 
+
+## Read the file safely and build a clean list of rows
+
+Real-world datasets almost always contain a few rows that are incomplete, malformed, or inconsistent. Instead of letting one bad row crash the whole program, we want a workflow that:
+
+* keeps the rows we *can* parse
+* skips the rows we *can’t* parse
+* records how many problems we saw (and a few examples) so we can diagnose the data later
+
+In this step, we’ll read the file line-by-line, use the `parse_log_line(...)` function on each row, and build a clean dataset called `good_rows`.
+
+```{python}
+good_rows = []
+bad_count = 0
+errors = []
+
+# Read all lines from the file (each line is one string)
+with open(filename, "r", encoding="utf-8") as f:
+    lines = f.read().splitlines()
+
+header = lines[0]
+data_lines = lines[1:]
+
+for line in data_lines:
+    try:
+        row = parse_log_line(line)
+        good_rows.append(row)
+    except Exception as e:
+        bad_count += 1
+        errors.append(str(e))
+
+print("Good rows:", len(good_rows))
+print("Bad rows:", bad_count)
+print("\nErrors:")
+for msg in errors[:3]:
+    print("-", msg)
+```
+
+**Setting up containers for our results**
+
+* `good_rows = []` is a **list** that will store the successfully parsed rows.
+
+  * Each item we append to this list will be a **dictionary** (one record).
+* `bad_count = 0` will count how many rows failed to parse.
+* `errors = []` is a **list** that will store error messages from failed rows (for debugging).
+
+**Reading the file into a list of lines**
+
+* `with open(filename, "r", encoding="utf-8") as f:` opens the file for reading.
+* `f.read()` reads the whole file as one string.
+* `.splitlines()` turns that one string into a list where each element is one line (without the newline characters).
+
+**Separating the header from the data**
+
+* `header = lines[0]` stores the header line (the column names).
+* `data_lines = lines[1:]` stores everything after the header (the actual records).
+* We separate these because the header is not a data row and shouldn’t be parsed into a record.
+
+**Parsing each line with error handling**
+
+* `for line in data_lines:` loops through each raw record line.
+* `try:` tells Python: “attempt to parse this line.”
+* `row = parse_log_line(line)` runs our parser and returns a dictionary if successful.
+* `good_rows.append(row)` adds the dictionary to our clean dataset.
+
+**Handling bad rows**
+
+* `except Exception as e:` runs if anything goes wrong (missing fields, non-numeric values, etc.).
+* `bad_count += 1` increments our count of failures.
+* `errors.append(str(e))` saves a readable version of the error message.
+
+**Printing a summary**
+
+* The `print(...)` lines show:
+
+  * how many rows we successfully kept
+  * how many rows we had to skip
+  * a few example error messages so we can see what went wrong
+
+**What we built**
+
+* After this cell runs, `good_rows` is a **list of dictionaries**.
+* For example, `good_rows[0]` will be one dictionary record that looks like:
+  `{'timestamp': '2026-01-19T09:01:10', 'user': 'alice', 'endpoint': '/home', 'status': 200, 'ms': 34}`
+
+## Quick look at the cleaned data
+
+At this point we’ve turned the file into a clean dataset in memory: `good_rows`, a list of dictionary records. Before we start counting or summarizing, it’s a good idea to preview a few records and confirm they look the way we expect.
+
+```{python}
+good_rows[:3]
+```
+
+**Selecting a small sample**
+
+* `good_rows[:3]` uses **list slicing** to take a piece (a “slice”) of the list.
+* Slicing has the form `list[start:stop]`:
+
+  * `start` is the index where you begin (inclusive)
+  * `stop` is the index where you stop (exclusive)
+* In this case, we left `start` blank, so Python assumes we start at the beginning (`0`).
+* The `stop` value is `3`, so this returns items at indexes `0`, `1`, and `2`.
+
+**What you should see**
+
+* The output should be a **list** containing three **dictionaries**.
+* Each dictionary should have the same keys:
+
+  * `timestamp`, `user`, `endpoint`, `status`, `ms`
+* The values for `status` and `ms` should be integers (not strings).
+* If this looks right, we can confidently start doing analysis tasks like counting, filtering, and summarizing.
+
+
+## Extract “columns” from our records (list comprehensions)
+
+Right now, our dataset is a list of dictionaries (`good_rows`). That’s great for keeping each record together, but many analytics tasks are easier when you work with **one field at a time**—like a list of all users or a list of all endpoints.
+
+In a spreadsheet, these would be columns. We'll pull out these columns using **list comprehensions**.
+
+**What does “endpoint” mean?**
+In web-style logs, an **endpoint** is the *path* being requested on a website or service—like `/home`, `/login`, or `/search`. You can think of it as “which page or resource was accessed.”
+
+```{python}
+users = [r["user"] for r in good_rows]
+endpoints = [r["endpoint"] for r in good_rows]
+statuses = [r["status"] for r in good_rows]
+times_ms = [r["ms"] for r in good_rows]
+
+print("First 5 users:     ", users[:5])
+print("First 5 endpoints: ", endpoints[:5])
+print("First 5 statuses:  ", statuses[:5])
+print("First 5 times (ms):", times_ms[:5])
+```
+
+
+**Extracting one field from each record**
+
+* `users = [r["user"] for r in good_rows]`
+
+  * `for r in good_rows` loops through each record dictionary.
+  * `r["user"]` pulls the value associated with the `"user"` key.
+  * The result is a list containing the user value from every record.
+
+The other lines do the same thing for other keys:
+
+* `endpoints = [r["endpoint"] for r in good_rows]` → list of endpoints (requested paths)
+* `statuses = [r["status"] for r in good_rows]` → list of HTTP-style status codes
+* `times_ms = [r["ms"] for r in good_rows]` → list of response times in milliseconds
+
+**Printing a readable preview**
+
+* Instead of printing the entire lists, we print just the first 5 values from each list.
+* `users[:5]`, `endpoints[:5]`, etc. use slicing to take the first five items so the output stays readable.
+
+This gives us clean “columns” we can now use for analysis tasks like unique counts, frequency tables, and summary statistics.
+
+
+## Using Sets to find uniqueness
+
+When you’re exploring a dataset, a question you often ask is: how many distinct values do we have? For example:
+
+* How many different users appear in the log?
+* How many different endpoints were accessed?
+
+A **set** is a built-in Python collection that stores unique values only. If you add the same value multiple times, the set keeps just one copy. That makes sets perfect for “distinct count” questions.
+
+```{python}
+unique_users = set(users)
+unique_endpoints = set(endpoints)
+
+print("Unique users:", unique_users)
+print("Unique endpoints:", unique_endpoints)
+print("Number of unique users:", len(unique_users))
+print("Number of unique endpoints:", len(unique_endpoints))
+```
+
+**What a set is (quick refresher)**
+
+* A **list** can contain duplicates: `["alice", "alice", "bob"]`
+* A **set** automatically removes duplicates: `{"alice", "bob"}`
+* Sets are also great for fast membership tests (for example: `"alice" in unique_users`).
+
+**Converting a list into a set**
+
+* `unique_users = set(users)` converts the `users` list into a set.
+
+  * If `"alice"` appears 10 times in the list, it appears once in the set.
+* `unique_endpoints = set(endpoints)` does the same thing for endpoints.
+
+**Printing the sets**
+
+* `print("Unique users:", unique_users)` shows the distinct user names.
+* `print("Unique endpoints:", unique_endpoints)` shows the distinct endpoints.
+
+Note: sets do not keep a guaranteed order, so the values may appear in a different order each time you run it.
+
+**Counting distinct values**
+
+* `len(unique_users)` is the number of distinct users.
+* `len(unique_endpoints)` is the number of distinct endpoints.
+
+This gives us a quick “shape” of the data: how many different users and endpoints show up in our log.
+
+
+## Counts using dictionaries (a simple “group by”)
+
+Another common analytical task is to count how often different values appear. In pandas or SQL, you might call this a “group by.” In Python, a **dictionary** is a natural tool for this:
+
+* keys = the category we’re counting (status code, endpoint, user, etc.)
+* values = the count so far
+
+A helpful method for counting is the dictionary `.get()`.
+
+### Count requests by status code
+
+```{python}
+counts_by_status = {}
+
+for s in statuses:
+    counts_by_status[s] = counts_by_status.get(s, 0) + 1
+
+counts_by_status
+```
+
+**Setting up the dictionary**
+
+* `counts_by_status = {}` starts an empty dictionary.
+* We will fill it with:
+
+  * key = a status code (like `200`, `401`, `500`)
+  * value = how many times that status appears
+
+**Looping over the values we want to count**
+
+* `for s in statuses:` goes through the list of status codes, one at a time.
+
+**Using `.get()` to handle “first time we see a key”**
+
+* `counts_by_status.get(s, 0)` means:
+
+  * “Look up the key `s` in the dictionary.”
+  * If `s` is not in the dictionary yet, use `0` instead.
+* Then we add `1`, because we just saw one more occurrence of that status code.
+
+So this line:
+
+* `counts_by_status[s] = counts_by_status.get(s, 0) + 1`
+
+means:
+
+1. start with the current count for `s` (or 0 if it’s new)
+2. add 1
+3. store it back in the dictionary
+
+**Displaying the result**
+
+* `counts_by_status` on the last line displays the dictionary of counts.
+
+### Count requests per endpoint
+
+```{python}
+counts_by_endpoint = {}
+
+for ep in endpoints:
+    counts_by_endpoint[ep] = counts_by_endpoint.get(ep, 0) + 1
+
+counts_by_endpoint
+```
+
+**Same idea, different key**
+
+* `counts_by_endpoint = {}` starts an empty dictionary for endpoint counts.
+* `for ep in endpoints:` loops through each endpoint string (like `"/home"` or `"/search"`).
+* `counts_by_endpoint.get(ep, 0) + 1` updates the count for that endpoint, creating it if it doesn’t exist yet.
+* `counts_by_endpoint` displays the final counts.
+
+At the end of these two cells, we have two useful frequency tables in Python: one for status codes and one for endpoints.
+
+
+## Sorting with `key=` (finding the “top endpoints”)
+
+Right now, `counts_by_endpoint` tells us how many times each endpoint appears. The next natural question in analytics is:
+
+**Which endpoints are the most common?**
+
+To answer that, we need to sort the dictionary items by their counts (largest to smallest).
+
+* `dict.items()` gives us pairs like `(endpoint, count)`
+* `sorted(..., key=...)` lets us tell Python *what to sort by*
+
+```{python}
+top_endpoints = sorted(
+    counts_by_endpoint.items(),
+    key=lambda pair: pair[1],   # pair is (endpoint, count)
+    reverse=True
+)
+
+top_endpoints
+```
+
+**Getting (key, value) pairs from a dictionary**
+
+* `counts_by_endpoint.items()` returns a view of the dictionary as `(key, value)` pairs.
+* In our case, each pair looks like:
+
+  * `("/search", 2)` or `("/home", 2)`
+* These pairs are **tuples**: small, ordered containers.
+
+**Sorting with `sorted`**
+
+* `sorted(...)` takes an iterable and returns a new list in sorted order.
+* By default, `sorted` sorts by the *whole value* it sees.
+
+  * But here, each item is a tuple `(endpoint, count)`, and we specifically want to sort by the **count**.
+
+**The `key=` argument**
+
+* `key=` is how we tell `sorted` *what to use for sorting*.
+* The `key` must be a function that takes one item and returns the value we want to sort by.
+
+In our code, each item is a tuple called `pair`, so we want:
+
+* input: `pair` (like `("/search", 2)`)
+* output: the count part (`2`)
+
+That’s what this does:
+
+* `key=lambda pair: pair[1]`
+
+**What `lambda` means (first introduction)**
+
+* `lambda` creates a **small anonymous function** (a function without a name).
+* It’s useful when you need a simple function once and don’t want to define it with `def`.
+
+This lambda:
+
+* `lambda pair: pair[1]`
+
+means:
+
+* “Take one argument named `pair`”
+* “Return `pair[1]`” (the second element of the tuple)
+
+So if `pair` is `("/home", 5)`, the lambda returns `5`.
+
+**Equivalent `def` version (same behavior)**
+
+The lambda is short, but it’s the same as writing:
+
+```python
+def get_count(pair):
+    return pair[1]
+```
+
+and then using:
+
+```python
+sorted(counts_by_endpoint.items(), key=get_count, reverse=True)
+```
+
+**Sorting in descending order**
+
+* `reverse=True` means “largest first.”
+* Without it, the smallest counts would appear first.
+
+**Displaying the result**
+
+* `top_endpoints` is now a list of tuples sorted by count, like:
+
+  * `[('/items', 3), ('/home', 2), ('/search', 2), ...]`
+
+## Write a reusable summary function
+
+At this point, we’ve already written several small analysis steps: counting, filtering, and computing averages. If we keep writing those same patterns over and over, our notebook gets longer, harder to read, and easier to break.
+
+We should always try to bundle a repeated set of steps into a single function—so we can reuse it anytime we want a quick summary of a dataset (or a filtered subset of a dataset).
+
+This function computes:
+
+* average response time
+* percent errors (status `>= 400`)
+* most common endpoint
+
+```{python}
+def summarize(rows):
+    if not rows:
+        return {"n": 0}
+
+    n = len(rows)
+    avg_ms = sum(r["ms"] for r in rows) / n
+
+    error_rows = [r for r in rows if r["status"] >= 400]
+    error_rate = len(error_rows) / n
+
+    endpoint_counts = {}
+    for r in rows:
+        ep = r["endpoint"]
+        endpoint_counts[ep] = endpoint_counts.get(ep, 0) + 1
+
+    most_common = max(endpoint_counts.items(), key=lambda pair: pair[1])
+
+    return {
+        "n": n,
+        "avg_ms": round(avg_ms, 2),
+        "error_rate": round(error_rate, 3),
+        "most_common_endpoint": most_common[0],
+        "most_common_count": most_common[1],
+    }
+
+summarize(good_rows)
+```
+
+**Why make a summary function**
+
+* We often want the same basic summary for different slices of data (all rows, only successful rows, only error rows).
+* Putting the steps in a function keeps our notebook cleaner and reduces copy/paste code.
+
+**Handling the empty-data case**
+
+* `if not rows:` checks whether the list is empty.
+* If it is, we return a minimal summary so we don’t divide by zero later.
+
+**Counting how many records we have**
+
+* `n = len(rows)` stores the number of records (rows) we’re summarizing.
+
+**Computing average response time**
+
+* `sum(r["ms"] for r in rows)` adds up the `ms` values across all records.
+* Dividing by `n` gives the average.
+
+**Finding error rows and error rate**
+
+* `error_rows = [r for r in rows if r["status"] >= 400]` filters the records down to just error responses.
+* `error_rate = len(error_rows) / n` computes the fraction of rows that were errors.
+
+**Counting endpoints again (inside the function)**
+
+* We build `endpoint_counts` again because this function is meant to work on *any* list of rows we pass in.
+* The loop uses the same `.get(..., 0) + 1` counting pattern from earlier.
+
+**Finding the most common endpoint**
+
+* `endpoint_counts.items()` produces `(endpoint, count)` pairs.
+* `max(..., key=lambda pair: pair[1])` selects the pair with the largest count.
+
+**Returning a compact summary**
+
+* The function returns a dictionary so the results are labeled and easy to read.
+* The final line `summarize(good_rows)` runs the function and displays the summary for our full cleaned dataset.
+
+## Compare summaries on different subsets of the data
+
+We rarely summarize only the full dataset. We usually break the data into meaningful subsets (groups) and compare them. An example here is:
+
+* requests that were successful (`status < 400`)
+* requests that were errors (`status >= 400`)
+
+The key idea is that we can reuse the **same** `summarize(...)` function on each subset, which makes the comparison consistent.
+
+```{python}
+success_rows = [r for r in good_rows if r["status"] < 400]
+error_rows = [r for r in good_rows if r["status"] >= 400]
+
+print("All:", summarize(good_rows))
+print("Success only:", summarize(success_rows))
+print("Errors only:", summarize(error_rows))
+```
+
+**Creating subsets with filtering**
+
+* `success_rows = [r for r in good_rows if r["status"] < 400]` builds a list of records that are not errors.
+* `error_rows = [r for r in good_rows if r["status"] >= 400]` builds a list of records that are errors.
+
+**Reusing the same summary function**
+
+* `summarize(good_rows)` gives the overall summary.
+* `summarize(success_rows)` summarizes only the successful requests.
+* `summarize(error_rows)` summarizes only the error requests.
+
+
+## A streaming approach with a generator (processing one row at a time)
+
+So far, we’ve been reading the entire file into memory and building full lists like `lines` and `good_rows`. That’s totally fine for small datasets, but real data files can be huge. When a file is large, it’s often better to process it one line at a time instead of loading everything at once.
+
+A **generator** is a Python tool that helps with this. A generator function looks like a normal function, but it uses `yield` instead of `return`. Each time the generator `yield`s a value, it “pauses” and remembers where it left off. The next time you ask for another value (usually by looping), it picks up right where it stopped.
+
+In this step, we’ll build a generator that reads the file and produces parsed rows one at a time.
+
+```{python}
+def iter_parsed_rows(filename):
+    with open(filename, "r", encoding="utf-8") as f:
+        header = next(f)  # skip the header line
+        for line in f:
+            line = line.rstrip("\n")
+            try:
+                yield parse_log_line(line)
+            except Exception:
+                continue
+
+# Example: compute average ms without storing all rows
+total_ms = 0
+count = 0
+
+for row in iter_parsed_rows(filename):
+    total_ms += row["ms"]
+    count += 1
+
+avg_ms_streaming = total_ms / count if count else None
+avg_ms_streaming
+```
+
+**Defining a generator function**
+
+* `def iter_parsed_rows(filename):` defines a function that will produce rows from the file.
+* This function is different from our earlier functions because it uses `yield`.
+
+**Opening the file and skipping the header**
+
+* `with open(filename, "r", encoding="utf-8") as f:` opens the file for reading.
+* `header = next(f)` reads the first line from the file (the header) and moves the file cursor forward by one line.
+
+  * We store it in `header` but we don’t use it further, because we don’t want to parse the header as data.
+
+**Looping over the file one line at a time**
+
+* `for line in f:` iterates through the remaining lines in the file.
+
+  * This is a memory-friendly pattern: Python reads lines as needed instead of loading the whole file at once.
+
+**Cleaning the line**
+
+* `line = line.rstrip("\n")` removes the trailing newline character from the end of the line.
+
+**Parsing and yielding good rows**
+
+* `yield parse_log_line(line)` attempts to parse the line and **yields** the resulting dictionary.
+* `yield` means: “produce one value now, and pause until the next one is needed.”
+* If parsing fails, the `except Exception:` block runs and `continue` skips that bad line.
+
+**Using the generator to compute an average**
+
+* `total_ms = 0` and `count = 0` set up running totals.
+* `for row in iter_parsed_rows(filename):` loops over the generator.
+
+  * Each `row` is one parsed dictionary record.
+* We add `row["ms"]` into `total_ms` and increment `count`.
+
+**Finishing the calculation**
+
+* `avg_ms_streaming = total_ms / count if count else None` computes the average safely.
+
+  * If `count` is 0 (no good rows), we avoid dividing by zero.
+
+
