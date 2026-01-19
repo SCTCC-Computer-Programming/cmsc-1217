@@ -336,88 +336,69 @@
     "text": "What you’re doing\nYou are going to open a Jupyter notebook in VS Code and run it successfully using the course Python environment.\n\n\n1) Open the course folder in VS Code\n\nOpen VS Code\nGo to File → Open Folder…\nOpen your course work folder (example: C:\\cmsc-1217\\)\n\n\n\n2) Install the extensions (if you don’t already have them)\nIn VS Code, install:\n\nPython (Microsoft)\nJupyter (Microsoft)\n\n\n\n3) Create the course Python environment and select it in VS Code (one-time)\n\n3A) Create the course environment folder\n\nCreate a folder on your C: drive named:\n\nC:\\cmsc-1217-env\\\n\n\n\n\n3B) Create the virtual environment (.venv)\n\nOpen Command Prompt (Windows search → type “Command Prompt”)\nRun:\n\ncd C:\\cmsc-1217-env\npython -m venv .venv\n\n\n3C) Activate the environment\nIn the same Command Prompt window, run:\nC:\\cmsc-1217-env\\.venv\\Scripts\\activate.bat\nYou should see (.venv) appear at the start of the line.\n\n\n3D) Install the notebook packages (first-time setup)\nStill in the activated environment, run:\npython -m pip install --upgrade pip\npython -m pip install numpy pandas matplotlib jupyter\n\n\n3E) Select the environment in VS Code (Interpreter)\n\nIn VS Code, press Ctrl + Shift + P\nType Python: Select Interpreter\nChoose the interpreter that looks like:\n\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nIf you don’t see it:\n\nchoose Enter interpreter path…\npaste: C:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis is the environment we will use all semester.\n\n\n\n4) Open the notebook\n\nIn the Explorer panel, click the notebook file (.ipynb) your instructor provided.\n\n\n\n5) Select the notebook kernel (first time only)\nThe first time you run a notebook, VS Code may ask you to pick a kernel.\nChoose the kernel that matches the course environment path:\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis can feel repetitive the first time. That’s normal. Once selected, it usually stays set for that folder.\n\n\n6) Select the kernel, then run a quick test\n\nIn the top-right of the notebook, click Select Kernel.\nChoose the kernel that points to the course environment:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n(It may also show up as “Python 3.x (.venv)”—the key is that it points to cmsc-1217-env\\.venv.)\nClick + Code.\nIn the code block that appears, paste:\n\nprint(\"Notebook is running\")\n\nRun it by clicking the Run (▶) icon on the code block, or press Shift + Enter.\nYou should see Notebook is running appear underneath.\n\n\n\n7) Quick confirmation (your instructor may ask for this)\nRun this in a cell:\nimport sys\nsys.executable\nIt should show something like:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\n\nIf something goes wrong\n\nIf you see ModuleNotFoundError (missing package), you are almost always using the wrong interpreter/kernel.\n\nRe-do Step 3 and Step 5 and pick the one that points to cmsc-1217-env\\.venv."
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
+    "text": "Try / Except | Python (Tutorial)\nby Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#exceptions-and-safe-processing-tryexcept",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#exceptions-and-safe-processing-tryexcept",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
+    "text": "Try / Except | Python (Tutorial)\nby Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Exceptions and safe processing (try/except)",
-    "text": "Exceptions and safe processing (try/except)\nTry / Except | Python (Tutorial) by Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Parsing: turning one line into fields you can work with",
-    "text": "Parsing: turning one line into fields you can work with"
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#list-comprehensions-compact-build-a-new-list-loops",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#list-comprehensions-compact-build-a-new-list-loops",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "List comprehensions (compact “build a new list” loops)",
-    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial) by Socratica — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets."
+    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial)\nby CS Dojo — List comprehension basics in Python - let’s go!\n\nPython Tutorial: List Comprehensions\nby Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Sorting, ranking, and the key= idea",
-    "text": "Sorting, ranking, and the key= idea\nPython sorted() Function – key Parameter Explained\nby Real Python — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#lambda-a-small-function-used-inline",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#lambda-a-small-function-used-inline",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Lambda (a small function used inline)",
-    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Lambda Functions – Anonymous Functions Explained\nby Tech With Tim — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more."
+    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Tutorial: Lambda Functions\nby Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...).",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
   },
   {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "title": "Week 2: Chapter 3 Additional Reference Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Generators and iteration (yield, streaming one row at a time)",
-    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained – yield Keyword Tutorial\nby Tech With Tim — Shows what generators are, how yield works, and why they save memory when processing large data.\n\nUnderstanding Generators and yield in Python\nby Corey Schafer — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.\n\n\nOptional long-form (advanced, but very good)\nPython Generators: The Final Frontier\nby David Beazley (PyCon) — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Exceptions: handling bad rows without crashing",
-    "text": "Exceptions: handling bad rows without crashing"
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "List comprehensions (building lists from other sequences)",
-    "text": "List comprehensions (building lists from other sequences)\nPython Tutorial: List Comprehensions by Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Sorting, ranking, and key= with lambda",
-    "text": "Sorting, ranking, and key= with lambda\nPython Tutorial: Lambda Functions by Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...)."
-  },
-  {
-    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
-    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
-    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
-    "section": "Generators and streaming (processing one row at a time)",
-    "text": "Generators and streaming (processing one row at a time)\nPython Tutorial: Generators by Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator."
+    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained\nby Programming with Mosh — Clear, beginner-friendly explanation of generators, how they work, and why they’re useful for memory-efficient data processing.\n\nPython Tutorial: Generators - How to use them and the benefits you receive\nby Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Reference Videos"
+    ]
   },
   {
     "objectID": "course/syllabus.html",
