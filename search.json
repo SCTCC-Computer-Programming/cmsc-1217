@@ -340,156 +340,84 @@
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "",
-    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)"
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Exceptions and safe processing (try/except)",
-    "text": "Exceptions and safe processing (try/except)\nTry / Except | Python (Tutorial) by Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "Exceptions and safe processing (try/except)\nTry / Except | Python (Tutorial) by Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure."
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Parsing: turning one line into fields you can work with",
-    "text": "Parsing: turning one line into fields you can work with",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "Parsing: turning one line into fields you can work with"
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "List comprehensions (compact “build a new list” loops)",
-    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial) by Socratica — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial) by Socratica — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets."
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Sorting, ranking, and the key= idea",
-    "text": "Sorting, ranking, and the key= idea\nPython sorted() Function – key Parameter Explained\nby Real Python — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "Sorting, ranking, and the key= idea\nPython sorted() Function – key Parameter Explained\nby Real Python — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures."
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Lambda (a small function used inline)",
-    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Lambda Functions – Anonymous Functions Explained\nby Tech With Tim — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Lambda Functions – Anonymous Functions Explained\nby Tech With Tim — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more."
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Generators and iteration (yield, streaming one row at a time)",
-    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained – yield Keyword Tutorial\nby Tech With Tim — Shows what generators are, how yield works, and why they save memory when processing large data.\n\nUnderstanding Generators and yield in Python\nby Corey Schafer — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.\n\n\nOptional long-form (advanced, but very good)\nPython Generators: The Final Frontier\nby David Beazley (PyCon) — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained – yield Keyword Tutorial\nby Tech With Tim — Shows what generators are, how yield works, and why they save memory when processing large data.\n\nUnderstanding Generators and yield in Python\nby Corey Schafer — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.\n\n\nOptional long-form (advanced, but very good)\nPython Generators: The Final Frontier\nby David Beazley (PyCon) — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system."
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Exceptions: handling bad rows without crashing",
-    "text": "Exceptions: handling bad rows without crashing",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "Exceptions: handling bad rows without crashing"
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "List comprehensions (building lists from other sequences)",
-    "text": "List comprehensions (building lists from other sequences)\nPython Tutorial: List Comprehensions by Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "List comprehensions (building lists from other sequences)\nPython Tutorial: List Comprehensions by Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form."
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Sorting, ranking, and key= with lambda",
-    "text": "Sorting, ranking, and key= with lambda\nPython Tutorial: Lambda Functions by Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...).",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "Sorting, ranking, and key= with lambda\nPython Tutorial: Lambda Functions by Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...)."
   },
   {
     "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
     "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
     "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
     "section": "Generators and streaming (processing one row at a time)",
-    "text": "Generators and streaming (processing one row at a time)\nPython Tutorial: Generators by Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Week 2",
-      "Chapter 3 Learning Videos"
-    ]
+    "text": "Generators and streaming (processing one row at a time)\nPython Tutorial: Generators by Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator."
   },
   {
     "objectID": "course/syllabus.html",
