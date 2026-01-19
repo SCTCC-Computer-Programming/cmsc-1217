@@ -2,9 +2,74 @@
   {
     "objectID": "weekly-overview/week-02/index.html",
     "href": "weekly-overview/week-02/index.html",
-    "title": "Week 2",
+    "title": "Week 2 Guide",
     "section": "",
-    "text": "This page will be published before Week 2 begins."
+    "text": "This week focuses on learning the core workflow you’ll repeat throughout data analytics: starting with a file, converting it into structured records, and producing summaries that answer questions.\nIn the Week 2 demo, you practice the pipeline end-to-end:\n\ncreate or obtain a small CSV-style dataset\ninspect what the file contains\nparse each row into fields and convert types\nvalidate rows and handle errors safely with try/except\nbuild a clean in-memory dataset you can analyze\ncompute unique values, frequency counts, rankings, and summary statistics\ncompare results across subsets (success vs error)\nsee a streaming approach using a generator (yield) for large files",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-02/index.html#week-2-focus",
+    "href": "weekly-overview/week-02/index.html#week-2-focus",
+    "title": "Week 2 Guide",
+    "section": "",
+    "text": "This week focuses on learning the core workflow you’ll repeat throughout data analytics: starting with a file, converting it into structured records, and producing summaries that answer questions.\nIn the Week 2 demo, you practice the pipeline end-to-end:\n\ncreate or obtain a small CSV-style dataset\ninspect what the file contains\nparse each row into fields and convert types\nvalidate rows and handle errors safely with try/except\nbuild a clean in-memory dataset you can analyze\ncompute unique values, frequency counts, rankings, and summary statistics\ncompare results across subsets (success vs error)\nsee a streaming approach using a generator (yield) for large files",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-02/index.html#chapter-3-concepts-used-this-week",
+    "href": "weekly-overview/week-02/index.html#chapter-3-concepts-used-this-week",
+    "title": "Week 2 Guide",
+    "section": "Chapter 3 concepts used this week",
+    "text": "Chapter 3 concepts used this week\n\nFiles and paths\nChapter 3 reviews file input/output using open(...) and the standard read/write patterns. You’ll use these skills to create a data file, read it back, and confirm that the contents are what you expect before you try to analyze anything.\n\n\nCSV file and records\nThe demo uses a CSV-file structure: a header row followed by data rows. A key analytics habit is thinking in terms of records:\n\none row represents one record\nthe header describes what each field means\nthe goal is to turn each record into something Python can work with by name\n\n\n\nParsing and validation\nParsing is the bridge between “a line of text” and “a record we can analyze.” In the demo, parsing includes:\n\nsplitting a line into fields\nstripping whitespace so fields are consistent\nconverting numeric fields to integers so we can compute and compare\nchecking that the row has the expected shape (the expected number of fields)\n\n\n\nExceptions as workflow control\nIn data work, a single bad record shouldn’t stop the entire process. This week emphasizes a standard pattern:\n\ntry to parse a row\nif it works, keep it\nif it fails, record the failure and keep going\n\n\n\nCore data structures for analytics\nThis week is intentionally standard Python” data work, using standard structures in a data context:\n\nlist: storing many records (your cleaned dataset)\ndictionary: representing one record (field names → values)\nset: getting unique values (distinct users/endpoints)\ndictionary counting with .get(): building frequency tables\ntuples from .items(): working with (key, value) pairs for ranking and sorting\n\n\n\nLambda\nSometimes you need a small function only once—usually to plug into something like sorted(..., key=...) or max(..., key=...). Writing a full def function for that can feel heavy when the logic is simple.\nlambda is Python’s way to write a small anonymous function in a single line. It’s not a different kind of function—it’s still a function. The difference is that it has no name and is typically used inline when you need a quick “extract this value” rule.\nThe important learning goal this week is understanding what role the lambda is playing:\n\nit takes one item at a time\nit returns the value Python should use for comparison\n\n\n\nSorting, selecting, and key= (functions as inputs)\nChapter 3 reinforces that in Python, functions are tools you can pass into other functions. Some built-in functions don’t just work on simple numbers or strings—they work on more complex items like tuples or dictionary records. In those cases, Python needs help deciding what value it should compare.\nThat is what the key= parameter is for. A key function takes one item and returns the value that should be used for comparison. You’ll see this idea in more than one form this week:\n\nsorted(..., key=...) uses the key function to decide how to order items.\nmax(..., key=...) uses the key function to decide what “largest” means, even if the items are not plain numbers.\n\n\n\nGenerators as a scaling pattern\nThe generator section introduces yield and the streaming mindset:\n\nlists are convenient when data is small\ngenerators help when files are large because they produce one record at a time during iteration\nyou trade convenience (random access, reusing lists) for memory efficiency\n\nAs you work through Chapter 3, keep connecting the chapter skills to the demo workflow:\n\nfile I/O is how the data gets from disk into Python\nparsing is how a text row becomes a structured record\nexceptions let you keep processing even when some rows are invalid\ncore data structures let you answer real questions: “how many?”, “how often?”, “which is most common?”, “what changes between groups?”\ngenerators introduce what changes when the dataset is too large to load all at once",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-02/index.html#reading-expectations-for-week-2",
+    "href": "weekly-overview/week-02/index.html#reading-expectations-for-week-2",
+    "title": "Week 2 Guide",
+    "section": "Reading expectations for Week 2",
+    "text": "Reading expectations for Week 2\nAs you read and run the demo, check whether you can explain the following in your own words:\n\nWhat is the difference between the header row and the data rows in a CSV-style file?\nWhat does parsing mean?\nWhat kinds of problems make a row invalid for the demo dataset?\nWhy do we use try/except while processing rows instead of letting the program crash?\nWhen would you use a set vs a dictionary in this workflow?\nWhat does key= do in sorted(...), and what is the lambda returning?\nWhat does yield change about how rows are processed, and what are the tradeoffs?",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-02/index.html#week-2-tasks",
+    "href": "weekly-overview/week-02/index.html#week-2-tasks",
+    "title": "Week 2 Guide",
+    "section": "Week 2 tasks",
+    "text": "Week 2 tasks\n\nWatch the Week 2 demo overview in your cmsc-1217 YouTube playsist.\n\n\n\nHere is the link to the Week 2 demo.\n Download Jupyter Notebook \n\n\nRead Chapter 3 (complete).\nComplete the Week 2 D2L quiz (Chapter 3 concepts + demo workflow).\nComplete the Week 2 Weekly Assignment.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-02/index.html#knowledge-goals-for-week-2",
+    "href": "weekly-overview/week-02/index.html#knowledge-goals-for-week-2",
+    "title": "Week 2 Guide",
+    "section": "Knowledge goals for Week 2",
+    "text": "Knowledge goals for Week 2\nBy the end of the week, you should be able to:\n\nexplain what a “record” is in a row-based dataset and why headers matter\nparse a CSV file into a dictionary with consistent keys and correct types\nuse try/except to skip invalid rows while keeping track of errors\nbuild and analyze a list of dictionary records\nuse sets for distinct values and dictionaries for frequency counts\nrank results using sorting with key= (and explain what the lambda returns)\nexplain what a generator is and when streaming is the better approach",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 2"
+    ]
   },
   {
     "objectID": "shared/policies/office-hours.html",
@@ -51,6 +116,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -63,6 +129,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -75,6 +142,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -87,6 +155,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -99,6 +168,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -111,6 +181,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -123,6 +194,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -135,6 +207,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -147,6 +220,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -159,6 +233,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -171,6 +246,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -183,6 +259,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -195,6 +272,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -207,6 +285,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -219,6 +298,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -231,6 +311,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -243,6 +324,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Miniconda Setup"
     ]
   },
@@ -252,6 +334,162 @@
     "title": "Week 1 — VSCode Setup and First Notebook (Windows)",
     "section": "",
     "text": "What you’re doing\nYou are going to open a Jupyter notebook in VS Code and run it successfully using the course Python environment.\n\n\n1) Open the course folder in VS Code\n\nOpen VS Code\nGo to File → Open Folder…\nOpen your course work folder (example: C:\\cmsc-1217\\)\n\n\n\n2) Install the extensions (if you don’t already have them)\nIn VS Code, install:\n\nPython (Microsoft)\nJupyter (Microsoft)\n\n\n\n3) Create the course Python environment and select it in VS Code (one-time)\n\n3A) Create the course environment folder\n\nCreate a folder on your C: drive named:\n\nC:\\cmsc-1217-env\\\n\n\n\n\n3B) Create the virtual environment (.venv)\n\nOpen Command Prompt (Windows search → type “Command Prompt”)\nRun:\n\ncd C:\\cmsc-1217-env\npython -m venv .venv\n\n\n3C) Activate the environment\nIn the same Command Prompt window, run:\nC:\\cmsc-1217-env\\.venv\\Scripts\\activate.bat\nYou should see (.venv) appear at the start of the line.\n\n\n3D) Install the notebook packages (first-time setup)\nStill in the activated environment, run:\npython -m pip install --upgrade pip\npython -m pip install numpy pandas matplotlib jupyter\n\n\n3E) Select the environment in VS Code (Interpreter)\n\nIn VS Code, press Ctrl + Shift + P\nType Python: Select Interpreter\nChoose the interpreter that looks like:\n\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nIf you don’t see it:\n\nchoose Enter interpreter path…\npaste: C:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis is the environment we will use all semester.\n\n\n\n4) Open the notebook\n\nIn the Explorer panel, click the notebook file (.ipynb) your instructor provided.\n\n\n\n5) Select the notebook kernel (first time only)\nThe first time you run a notebook, VS Code may ask you to pick a kernel.\nChoose the kernel that matches the course environment path:\n\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\nThis can feel repetitive the first time. That’s normal. Once selected, it usually stays set for that folder.\n\n\n6) Select the kernel, then run a quick test\n\nIn the top-right of the notebook, click Select Kernel.\nChoose the kernel that points to the course environment:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n(It may also show up as “Python 3.x (.venv)”—the key is that it points to cmsc-1217-env\\.venv.)\nClick + Code.\nIn the code block that appears, paste:\n\nprint(\"Notebook is running\")\n\nRun it by clicking the Run (▶) icon on the code block, or press Shift + Enter.\nYou should see Notebook is running appear underneath.\n\n\n\n7) Quick confirmation (your instructor may ask for this)\nRun this in a cell:\nimport sys\nsys.executable\nIt should show something like:\nC:\\cmsc-1217-env\\.venv\\Scripts\\python.exe\n\n\nIf something goes wrong\n\nIf you see ModuleNotFoundError (missing package), you are almost always using the wrong interpreter/kernel.\n\nRe-do Step 3 and Step 5 and pick the one that points to cmsc-1217-env\\.venv."
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#how-to-use-these-videos",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract, when you want a second explanation of the same idea, or when you want a deeper (more advanced) take on a topic.\nA good strategy is:\n- Watch one short video first (to get the basic idea)\n- Then come back to the demo and re-run the relevant section\n- If you want more depth, watch one “long-form” talk (PyCon / conference style)",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-and-safe-processing-tryexcept",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Exceptions and safe processing (try/except)",
+    "text": "Exceptions and safe processing (try/except)\nTry / Except | Python (Tutorial) by Socratica — A focused explanation of what try and except actually do, and why this pattern is useful when you want to keep processing after one failure.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#parsing-turning-one-line-into-fields-you-can-work-with",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Parsing: turning one line into fields you can work with",
+    "text": "Parsing: turning one line into fields you can work with",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-compact-build-a-new-list-loops",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "List comprehensions (compact “build a new list” loops)",
+    "text": "List comprehensions (compact “build a new list” loops)\nLearn Python LIST COMPREHENSIONS in 10 minutes!\nby Bro Code — Quick overview of list comprehension syntax, comparing them to regular for loops with many clear examples.\n\nList Comprehensions | Python (Tutorial) by Socratica — A clean “what it is and why it works” explanation, including the mental model for how the loop happens inside the brackets.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-the-key-idea",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Sorting, ranking, and the key= idea",
+    "text": "Sorting, ranking, and the key= idea\nPython sorted() Function – key Parameter Explained\nby Real Python — Focuses on using the key= argument to sort lists of tuples, objects, and custom data structures.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#lambda-a-small-function-used-inline",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Lambda (a small function used inline)",
+    "text": "Lambda (a small function used inline)\nLearn Python LAMBDA in 6 minutes!\nby Bro Code — Introduces lambda functions as short, anonymous functions and shows common use cases like sorting and mapping.\n\nPython Lambda Functions – Anonymous Functions Explained\nby Tech With Tim — Covers lambda syntax and how they are used inline with sorted(), map(), filter(), and more.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-iteration-yield-streaming-one-row-at-a-time",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Generators and iteration (yield, streaming one row at a time)",
+    "text": "Generators and iteration (yield, streaming one row at a time)\nPython Generators Explained – yield Keyword Tutorial\nby Tech With Tim — Shows what generators are, how yield works, and why they save memory when processing large data.\n\nUnderstanding Generators and yield in Python\nby Corey Schafer — Clear explanation of generators, the yield keyword, and converting functions into memory-efficient generators.\n\n\nOptional long-form (advanced, but very good)\nPython Generators: The Final Frontier\nby David Beazley (PyCon) — Deep, advanced exploration of generators, coroutines, and how they power Python’s iteration system.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#exceptions-handling-bad-rows-without-crashing",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Exceptions: handling bad rows without crashing",
+    "text": "Exceptions: handling bad rows without crashing",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#list-comprehensions-building-lists-from-other-sequences",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "List comprehensions (building lists from other sequences)",
+    "text": "List comprehensions (building lists from other sequences)\nPython Tutorial: List Comprehensions by Corey Schafer — A deeper walkthrough showing common patterns and how comprehensions relate to the equivalent loop form.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#sorting-ranking-and-key-with-lambda",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Sorting, ranking, and key= with lambda",
+    "text": "Sorting, ranking, and key= with lambda\nPython Tutorial: Lambda Functions by Corey Schafer — Explains what a lambda is, when it’s useful, and how it connects to patterns like sorted(..., key=...) and max(..., key=...).",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
+  },
+  {
+    "objectID": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
+    "href": "shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resoursces.html#generators-and-streaming-processing-one-row-at-a-time",
+    "title": "Week 2: Chapter 3 Learning Videos (Files, Parsing, Comprehensions, Lambda, Generators)",
+    "section": "Generators and streaming (processing one row at a time)",
+    "text": "Generators and streaming (processing one row at a time)\nPython Tutorial: Generators by Corey Schafer — A practical explanation of yield, how generator functions behave differently from normal functions, and what changes when you iterate over a generator.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Week 2",
+      "Chapter 3 Learning Videos"
+    ]
   },
   {
     "objectID": "course/syllabus.html",
@@ -410,18 +648,102 @@
     ]
   },
   {
-    "objectID": "assignments/week-02/index.html",
-    "href": "assignments/week-02/index.html",
-    "title": "Week 2",
+    "objectID": "assignments/week-02/week-2-demo.html",
+    "href": "assignments/week-02/week-2-demo.html",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
     "section": "",
-    "text": "This page will be published before Week 2 begins."
+    "text": "Download Jupyter Notebook\nThis demo cleans and summarizes a small “messy” dataset.\nThe goals are to practice:"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
+    "objectID": "assignments/week-02/week-2-demo.html#create-a-small-dataset-and-save-it-to-a-file",
+    "href": "assignments/week-02/week-2-demo.html#create-a-small-dataset-and-save-it-to-a-file",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Create a small dataset and save it to a file",
+    "text": "Create a small dataset and save it to a file\nWe’ll generate a fake server log file. Some rows are intentionally messy: - missing fields - non-numeric values - extra whitespace\nWe’re doing this so we can practice file I/O (open, read/write) and then practice data structures + functions on the contents.\n\nimport os\n\n# Make a folder named \"data\" if it doesn't already exist\nos.makedirs(\"data\", exist_ok=True)\n\nfilename = \"data/tiny_access_log.csv\"\n\nraw_lines = [\n    \"timestamp,user,endpoint,status,ms\",\n    \"2026-01-19T09:01:10,alice,/home,200,34\",\n    \"2026-01-19T09:01:12,bob,/login,401,18\",\n    \"2026-01-19T09:01:13,alice,/items,200,51\",\n    \"2026-01-19T09:01:15,carol,/items,500,73\",\n    \"2026-01-19T09:01:16,dan,/home,200,not_a_number\",   # bad ms\n    \"2026-01-19T09:01:20,erin,/search,200,44\",\n    \"2026-01-19T09:01:21,  frank  ,/search,200, 40  \",  # extra whitespace\n    \"2026-01-19T09:01:25,alice,/checkout,200,62\",\n    \"2026-01-19T09:01:26,bob,/items,200\",               # missing ms\n    \"bad_row_with_no_commas\",                           # completely malformed\n]\n\nwith open(filename, \"w\", encoding=\"utf-8\") as f:\n    for line in raw_lines:\n        f.write(line + \"\\n\")\n\nfilename\n\n'data/tiny_access_log.csv'\n\n\nLoading the tool we need\n\nimport os loads Python’s standard library module for interacting with the operating system.\n\nCreating a folder\n\nos.makedirs(\"data\", exist_ok=True) creates a folder named data.\nexist_ok=True means: if the folder already exists, don’t raise an error.\n\nChoosing a filename\n\nfilename = \"data/tiny_access_log.csv\" stores the path to our file as a string.\nWe use a string path because Chapter 3’s file section is built around passing filenames into open(...).\n\nBuilding the dataset in memory\n\nraw_lines = [...] creates a list of strings.\nEach string is one line we plan to write to the file.\nThe first line is a header: timestamp,user,endpoint,status,ms.\n\nWhy the data is “messy” Some rows are intentionally flawed so we can practice robust parsing later:\n\n\"not_a_number\" will fail when we try to convert the ms field to an integer.\nOne row is missing a field (no ms value at the end).\nOne row has extra whitespace around values.\nOne row is completely malformed (no commas).\n\nOpening the file (write mode)\n\nwith open(filename, \"w\", encoding=\"utf-8\") as f: opens the file for writing.\n\"w\" means “write mode” (create/overwrite the file).\nencoding=\"utf-8\" ensures the file is written as standard UTF-8 text.\nThe with statement ensures the file closes automatically when we finish.\n\nWriting each line\n\nfor line in raw_lines: loops through the list of lines.\nf.write(line + \"\\n\") writes the line and adds a newline so each entry becomes its own line in the file.\n\nShowing the result\n\nThe final filename prints the file path so you can confirm where it was created."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#read-the-file-and-preview-the-raw-lines",
+    "href": "assignments/week-02/week-2-demo.html#read-the-file-and-preview-the-raw-lines",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Read the file and preview the raw lines",
+    "text": "Read the file and preview the raw lines\nNow that we’ve created the file, we need to look at what’s inside it. We’ll read the entire file into a single string and print it. That lets us see the header row, the expected rows, and the intentionally messy rows we’ll need to handle when we start parsing.\n\n# Read the entire file as one string\nwith open(filename, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n\nprint(text)\n\ntimestamp,user,endpoint,status,ms\n2026-01-19T09:01:10,alice,/home,200,34\n2026-01-19T09:01:12,bob,/login,401,18\n2026-01-19T09:01:13,alice,/items,200,51\n2026-01-19T09:01:15,carol,/items,500,73\n2026-01-19T09:01:16,dan,/home,200,not_a_number\n2026-01-19T09:01:20,erin,/search,200,44\n2026-01-19T09:01:21,  frank  ,/search,200, 40  \n2026-01-19T09:01:25,alice,/checkout,200,62\n2026-01-19T09:01:26,bob,/items,200\nbad_row_with_no_commas\n\n\n\nOpening the file for reading\n\nwith open(filename, \"r\", encoding=\"utf-8\") as f: opens the file named by filename.\n\"r\" means read mode (we are not changing the file).\nencoding=\"utf-8\" tells Python how to interpret the bytes in the file as text.\nThe with statement ensures the file closes automatically when we’re done.\n\nReading the full contents\n\ntext = f.read() reads the entire file into a single string named text.\n\nPreviewing what we read\n\nprint(text) prints the string so we can verify:\n\nthe header line is present\neach record is on its own line\nthe “messy” rows are visible (missing fields, bad values, etc.)"
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#parse-one-row-into-a-dictionary",
+    "href": "assignments/week-02/week-2-demo.html#parse-one-row-into-a-dictionary",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Parse one row into a dictionary",
+    "text": "Parse one row into a dictionary\nWe’ve confirmed that the file exists and we’ve seen the raw text. The next goal is to turn each line of text into something we can work with programmatically. We’ll write a function that parses one line at a time. In programming, parsing means taking unstructured text (like a line from a file) and breaking it into meaningful pieces. The result is usually a more structured object (like a list or a dictionary) that Python can work with more easily for counting, filtering, and summarizing.\nWe are parsing each line because we want to build a clean dataset in memory. Each line in the file represents one “record” (one request), and we want to convert that record into a dictionary so we can later do analytics tasks like counting users, finding the most common endpoints, and computing average response times. Here we’ll represent each row as a dictionary:\n\nkeys = column names (timestamp, user, endpoint, status, ms)\nvalues = the data from that row (with numeric fields converted to integers)\n\nThis parser function also helps us detect problems in the raw data. If a line is missing fields, has extra fields, or contains values that can’t be converted to numbers, this function will raise an error. In the next section, we’ll use try/except to catch those errors so we can skip bad rows without stopping the whole program.\n\ndef parse_log_line(line):\n    # Split the line into fields and remove extra whitespace around each field\n    parts = [p.strip() for p in line.split(\",\")]\n\n    # We expect exactly 5 fields: timestamp, user, endpoint, status, ms\n    if len(parts) != 5:\n        raise ValueError(f\"Expected 5 fields, got {len(parts)}: {line!r}\")\n\n    # Unpack the five fields into separate variables\n    timestamp, user, endpoint, status, ms = parts\n\n    # Build a dictionary for one record (one row)\n    return {\n        \"timestamp\": timestamp,\n        \"user\": user,\n        \"endpoint\": endpoint,\n        \"status\": int(status),\n        \"ms\": int(ms),\n    }\n\nList comprehension vs a normal loop (same result)\nA list comprehension is often just a shorter way to write a loop that builds a list.\nFor example, these two blocks do the same thing (they both build a list of users).\nList comprehension version\nusers = [r[\"user\"] for r in good_rows]\nEquivalent loop version\nusers = []\nfor r in good_rows:\n    users.append(r[\"user\"])\nIn both cases:\n\nwe loop over each record dictionary r in good_rows\nwe take the \"user\" value from that dictionary\nwe add it to the users list\n\nThe list comprehension is just the “compact form” of the same idea.\nDefining a function\n\ndef parse_log_line(line): creates a function named parse_log_line.\n\ndef is the keyword Python uses to start a function definition.\nparse_log_line is the function name we’ll call later.\nline is a parameter: when we call the function, we will pass in one line of text from the file.\n\nEverything indented under the def line is the function body (the steps Python runs when the function is called).\nThe return statement ends the function and sends a value back to the caller.\n\nIn this case, the function returns a dictionary representing one parsed row.\n\n\nWhy we’re writing a parser function\n\nThis file is still just text.\nA parser function gives us a repeatable way to turn a line into a structured record.\nOnce each row is a dictionary, we can count, filter, summarize, and sort using normal Python tools.\n\nSplitting the line into fields\n\nline.split(\",\") breaks the row into pieces wherever there is a comma.\n[p.strip() for p in ...] removes extra spaces around each field.\n\nThis matters because our file includes rows with extra whitespace (for example: \"  frank  \" and \" 40  \").\n\n\nChecking that the row has the right number of fields\n\nif len(parts) != 5: checks whether the row has exactly 5 fields.\nraise ValueError(...) stops and reports a clear error message if the row is malformed.\n\nThis catches rows that are missing a field or don’t have commas at all.\n\n\nUnpacking the fields\n\ntimestamp, user, endpoint, status, ms = parts assigns each piece to a named variable.\nUnpacking is convenient here because it keeps the rest of the code readable.\n\nBuilding a dictionary record\n\nreturn {...} creates one dictionary representing one row.\nint(status) converts the status code from text to an integer (e.g., \"200\" → 200).\nint(ms) converts the response time from text to an integer.\n\nThis will fail for \"not_a_number\" — and that’s okay. In the next section, we’ll use try/except so we can skip bad rows without crashing the whole process."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#quick-check-confirm-the-parser-works-on-one-line",
+    "href": "assignments/week-02/week-2-demo.html#quick-check-confirm-the-parser-works-on-one-line",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Quick check: confirm the parser works on one line",
+    "text": "Quick check: confirm the parser works on one line\nThis function we just created doesn’t produce output by itself. To confirm it works, we’ll call it once with a known-good line and display the result.\n\nsample_line = \"2026-01-19T09:01:10,alice,/home,200,34\"\nparse_log_line(sample_line)\n\n{'timestamp': '2026-01-19T09:01:10',\n 'user': 'alice',\n 'endpoint': '/home',\n 'status': 200,\n 'ms': 34}\n\n\nTesting the function\n\nsample_line = ... creates one correctly formatted row.\nparse_log_line(sample_line) runs the parser and returns a dictionary.\nThe output should be a dictionary with the expected keys."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#read-the-file-safely-and-build-a-clean-list-of-rows",
+    "href": "assignments/week-02/week-2-demo.html#read-the-file-safely-and-build-a-clean-list-of-rows",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Read the file safely and build a clean list of rows",
+    "text": "Read the file safely and build a clean list of rows\nReal-world datasets almost always contain a few rows that are incomplete, malformed, or inconsistent. Instead of letting one bad row crash the whole program, we want a workflow that:\n\nkeeps the rows we can parse\nskips the rows we can’t parse\nrecords how many problems we saw (and a few examples) so we can diagnose the data later\n\nIn this step, we’ll read the file line-by-line, use the parse_log_line(...) function on each row, and build a clean dataset called good_rows.\n\ngood_rows = []\nbad_count = 0\nerrors = []\n\n# Read all lines from the file (each line is one string)\nwith open(filename, \"r\", encoding=\"utf-8\") as f:\n    lines = f.read().splitlines()\n\nheader = lines[0]\ndata_lines = lines[1:]\n\nfor line in data_lines:\n    try:\n        row = parse_log_line(line)\n        good_rows.append(row)\n    except Exception as e:\n        bad_count += 1\n        errors.append(str(e))\n\nprint(\"Good rows:\", len(good_rows))\nprint(\"Bad rows:\", bad_count)\nprint(\"\\nErrors:\")\nfor msg in errors[:3]:\n    print(\"-\", msg)\n\nGood rows: 7\nBad rows: 3\n\nErrors:\n- invalid literal for int() with base 10: 'not_a_number'\n- Expected 5 fields, got 4: '2026-01-19T09:01:26,bob,/items,200'\n- Expected 5 fields, got 1: 'bad_row_with_no_commas'\n\n\nSetting up containers for our results\n\ngood_rows = [] is a list that will store the successfully parsed rows.\n\nEach item we append to this list will be a dictionary (one record).\n\nbad_count = 0 will count how many rows failed to parse.\nerrors = [] is a list that will store error messages from failed rows (for debugging).\n\nReading the file into a list of lines\n\nwith open(filename, \"r\", encoding=\"utf-8\") as f: opens the file for reading.\nf.read() reads the whole file as one string.\n.splitlines() turns that one string into a list where each element is one line (without the newline characters).\n\nSeparating the header from the data\n\nheader = lines[0] stores the header line (the column names).\ndata_lines = lines[1:] stores everything after the header (the actual records).\nWe separate these because the header is not a data row and shouldn’t be parsed into a record.\n\nParsing each line with error handling\n\nfor line in data_lines: loops through each raw record line.\ntry: tells Python: “attempt to parse this line.”\nrow = parse_log_line(line) runs our parser and returns a dictionary if successful.\ngood_rows.append(row) adds the dictionary to our clean dataset.\n\nHandling bad rows\n\nexcept Exception as e: runs if anything goes wrong (missing fields, non-numeric values, etc.).\nbad_count += 1 increments our count of failures.\nerrors.append(str(e)) saves a readable version of the error message.\n\nPrinting a summary\n\nThe print(...) lines show:\n\nhow many rows we successfully kept\nhow many rows we had to skip\na few example error messages so we can see what went wrong\n\n\nWhat we built\n\nAfter this cell runs, good_rows is a list of dictionaries.\nFor example, good_rows[0] will be one dictionary record that looks like: {'timestamp': '2026-01-19T09:01:10', 'user': 'alice', 'endpoint': '/home', 'status': 200, 'ms': 34}"
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#quick-look-at-the-cleaned-data",
+    "href": "assignments/week-02/week-2-demo.html#quick-look-at-the-cleaned-data",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Quick look at the cleaned data",
+    "text": "Quick look at the cleaned data\nAt this point we’ve turned the file into a clean dataset in memory: good_rows, a list of dictionary records. Before we start counting or summarizing, it’s a good idea to preview a few records and confirm they look the way we expect.\n\ngood_rows[:3]\n\n[{'timestamp': '2026-01-19T09:01:10',\n  'user': 'alice',\n  'endpoint': '/home',\n  'status': 200,\n  'ms': 34},\n {'timestamp': '2026-01-19T09:01:12',\n  'user': 'bob',\n  'endpoint': '/login',\n  'status': 401,\n  'ms': 18},\n {'timestamp': '2026-01-19T09:01:13',\n  'user': 'alice',\n  'endpoint': '/items',\n  'status': 200,\n  'ms': 51}]\n\n\nSelecting a small sample\n\ngood_rows[:3] uses list slicing to take a piece (a “slice”) of the list.\nSlicing has the form list[start:stop]:\n\nstart is the index where you begin (inclusive)\nstop is the index where you stop (exclusive)\n\nIn this case, we left start blank, so Python assumes we start at the beginning (0).\nThe stop value is 3, so this returns items at indexes 0, 1, and 2.\n\nWhat you should see\n\nThe output should be a list containing three dictionaries.\nEach dictionary should have the same keys:\n\ntimestamp, user, endpoint, status, ms\n\nThe values for status and ms should be integers (not strings).\nIf this looks right, we can confidently start doing analysis tasks like counting, filtering, and summarizing."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#extract-columns-from-our-records-list-comprehensions",
+    "href": "assignments/week-02/week-2-demo.html#extract-columns-from-our-records-list-comprehensions",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Extract “columns” from our records (list comprehensions)",
+    "text": "Extract “columns” from our records (list comprehensions)\nRight now, our dataset is a list of dictionaries (good_rows). That’s great for keeping each record together, but many analytics tasks are easier when you work with one field at a time—like a list of all users or a list of all endpoints.\nIn a spreadsheet, these would be columns. We’ll pull out these columns using list comprehensions.\nWhat does “endpoint” mean? In web-style logs, an endpoint is the path being requested on a website or service—like /home, /login, or /search. You can think of it as “which page or resource was accessed.”\n\nusers = [r[\"user\"] for r in good_rows]\nendpoints = [r[\"endpoint\"] for r in good_rows]\nstatuses = [r[\"status\"] for r in good_rows]\ntimes_ms = [r[\"ms\"] for r in good_rows]\n\nprint(\"First 5 users:     \", users[:5])\nprint(\"First 5 endpoints: \", endpoints[:5])\nprint(\"First 5 statuses:  \", statuses[:5])\nprint(\"First 5 times (ms):\", times_ms[:5])\n\nFirst 5 users:      ['alice', 'bob', 'alice', 'carol', 'erin']\nFirst 5 endpoints:  ['/home', '/login', '/items', '/items', '/search']\nFirst 5 statuses:   [200, 401, 200, 500, 200]\nFirst 5 times (ms): [34, 18, 51, 73, 44]\n\n\nExtracting one field from each record\n\nusers = [r[\"user\"] for r in good_rows]\n\nfor r in good_rows loops through each record dictionary.\nr[\"user\"] pulls the value associated with the \"user\" key.\nThe result is a list containing the user value from every record.\n\n\nThe other lines do the same thing for other keys:\n\nendpoints = [r[\"endpoint\"] for r in good_rows] → list of endpoints (requested paths)\nstatuses = [r[\"status\"] for r in good_rows] → list of HTTP-style status codes\ntimes_ms = [r[\"ms\"] for r in good_rows] → list of response times in milliseconds\n\nPrinting a readable preview\n\nInstead of printing the entire lists, we print just the first 5 values from each list.\nusers[:5], endpoints[:5], etc. use slicing to take the first five items so the output stays readable.\n\nThis gives us clean “columns” we can now use for analysis tasks like unique counts, frequency tables, and summary statistics."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#using-sets-to-find-uniqueness",
+    "href": "assignments/week-02/week-2-demo.html#using-sets-to-find-uniqueness",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Using Sets to find uniqueness",
+    "text": "Using Sets to find uniqueness\nWhen you’re exploring a dataset, a question you often ask is: how many distinct values do we have? For example:\n\nHow many different users appear in the log?\nHow many different endpoints were accessed?\n\nA set is a built-in Python collection that stores unique values only. If you add the same value multiple times, the set keeps just one copy. That makes sets perfect for “distinct count” questions.\n\nunique_users = set(users)\nunique_endpoints = set(endpoints)\n\nprint(\"Unique users:\", unique_users)\nprint(\"Unique endpoints:\", unique_endpoints)\nprint(\"Number of unique users:\", len(unique_users))\nprint(\"Number of unique endpoints:\", len(unique_endpoints))\n\nUnique users: {'alice', 'carol', 'frank', 'erin', 'bob'}\nUnique endpoints: {'/home', '/checkout', '/search', '/items', '/login'}\nNumber of unique users: 5\nNumber of unique endpoints: 5\n\n\nWhat a set is (quick refresher)\n\nA list can contain duplicates: [\"alice\", \"alice\", \"bob\"]\nA set automatically removes duplicates: {\"alice\", \"bob\"}\nSets are also great for fast membership tests (for example: \"alice\" in unique_users).\n\nConverting a list into a set\n\nunique_users = set(users) converts the users list into a set.\n\nIf \"alice\" appears 10 times in the list, it appears once in the set.\n\nunique_endpoints = set(endpoints) does the same thing for endpoints.\n\nPrinting the sets\n\nprint(\"Unique users:\", unique_users) shows the distinct user names.\nprint(\"Unique endpoints:\", unique_endpoints) shows the distinct endpoints.\n\nNote: sets do not keep a guaranteed order, so the values may appear in a different order each time you run it.\nCounting distinct values\n\nlen(unique_users) is the number of distinct users.\nlen(unique_endpoints) is the number of distinct endpoints.\n\nThis gives us a quick “shape” of the data: how many different users and endpoints show up in our log."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#counts-using-dictionaries-a-simple-group-by",
+    "href": "assignments/week-02/week-2-demo.html#counts-using-dictionaries-a-simple-group-by",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Counts using dictionaries (a simple “group by”)",
+    "text": "Counts using dictionaries (a simple “group by”)\nAnother common analytical task is to count how often different values appear. In pandas or SQL, you might call this a “group by.” In Python, a dictionary is a natural tool for this:\n\nkeys = the category we’re counting (status code, endpoint, user, etc.)\nvalues = the count so far\n\nA helpful method for counting is the dictionary .get().\n\nCount requests by status code\n\ncounts_by_status = {}\n\nfor s in statuses:\n    counts_by_status[s] = counts_by_status.get(s, 0) + 1\n\ncounts_by_status\n\n{200: 5, 401: 1, 500: 1}\n\n\nSetting up the dictionary\n\ncounts_by_status = {} starts an empty dictionary.\nWe will fill it with:\n\nkey = a status code (like 200, 401, 500)\nvalue = how many times that status appears\n\n\nLooping over the values we want to count\n\nfor s in statuses: goes through the list of status codes, one at a time.\n\nUsing .get() to handle “first time we see a key”\n\ncounts_by_status.get(s, 0) means:\n\n“Look up the key s in the dictionary.”\nIf s is not in the dictionary yet, use 0 instead.\n\nThen we add 1, because we just saw one more occurrence of that status code.\n\nSo this line:\n\ncounts_by_status[s] = counts_by_status.get(s, 0) + 1\n\nmeans:\n\nstart with the current count for s (or 0 if it’s new)\nadd 1\nstore it back in the dictionary\n\nDisplaying the result\n\ncounts_by_status on the last line displays the dictionary of counts.\n\n\n\nCount requests per endpoint\n\ncounts_by_endpoint = {}\n\nfor ep in endpoints:\n    counts_by_endpoint[ep] = counts_by_endpoint.get(ep, 0) + 1\n\ncounts_by_endpoint\n\n{'/home': 1, '/login': 1, '/items': 2, '/search': 2, '/checkout': 1}\n\n\nSame idea, different key\n\ncounts_by_endpoint = {} starts an empty dictionary for endpoint counts.\nfor ep in endpoints: loops through each endpoint string (like \"/home\" or \"/search\").\ncounts_by_endpoint.get(ep, 0) + 1 updates the count for that endpoint, creating it if it doesn’t exist yet.\ncounts_by_endpoint displays the final counts.\n\nAt the end of these two cells, we have two useful frequency tables in Python: one for status codes and one for endpoints."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#sorting-with-key-finding-the-top-endpoints",
+    "href": "assignments/week-02/week-2-demo.html#sorting-with-key-finding-the-top-endpoints",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Sorting with key= (finding the “top endpoints”)",
+    "text": "Sorting with key= (finding the “top endpoints”)\nRight now, counts_by_endpoint tells us how many times each endpoint appears. The next natural question in analytics is:\nWhich endpoints are the most common?\nTo answer that, we need to sort the dictionary items by their counts (largest to smallest).\n\ndict.items() gives us pairs like (endpoint, count)\nsorted(..., key=...) lets us tell Python what to sort by\n\n\ntop_endpoints = sorted(\n    counts_by_endpoint.items(),\n    key=lambda pair: pair[1],   # pair is (endpoint, count)\n    reverse=True\n)\n\ntop_endpoints\n\n[('/items', 2), ('/search', 2), ('/home', 1), ('/login', 1), ('/checkout', 1)]\n\n\nGetting (key, value) pairs from a dictionary\n\ncounts_by_endpoint.items() returns a view of the dictionary as (key, value) pairs.\nIn our case, each pair looks like:\n\n(\"/search\", 2) or (\"/home\", 2)\n\nThese pairs are tuples: small, ordered containers.\n\nSorting with sorted\n\nsorted(...) takes an iterable and returns a new list in sorted order.\nBy default, sorted sorts by the whole value it sees.\n\nBut here, each item is a tuple (endpoint, count), and we specifically want to sort by the count.\n\n\nThe key= argument\n\nkey= is how we tell sorted what to use for sorting.\nThe key must be a function that takes one item and returns the value we want to sort by.\n\nIn our code, each item is a tuple called pair, so we want:\n\ninput: pair (like (\"/search\", 2))\noutput: the count part (2)\n\nThat’s what this does:\n\nkey=lambda pair: pair[1]\n\nWhat lambda means (first introduction)\n\nlambda creates a small anonymous function (a function without a name).\nIt’s useful when you need a simple function once and don’t want to define it with def.\n\nThis lambda:\n\nlambda pair: pair[1]\n\nmeans:\n\n“Take one argument named pair”\n“Return pair[1]” (the second element of the tuple)\n\nSo if pair is (\"/home\", 5), the lambda returns 5.\nEquivalent def version (same behavior)\nThe lambda is short, but it’s the same as writing:\ndef get_count(pair):\n    return pair[1]\nand then using:\nsorted(counts_by_endpoint.items(), key=get_count, reverse=True)\nSorting in descending order\n\nreverse=True means “largest first.”\nWithout it, the smallest counts would appear first.\n\nDisplaying the result\n\ntop_endpoints is now a list of tuples sorted by count, like:\n\n[('/items', 3), ('/home', 2), ('/search', 2), ...]"
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#write-a-reusable-summary-function",
+    "href": "assignments/week-02/week-2-demo.html#write-a-reusable-summary-function",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Write a reusable summary function",
+    "text": "Write a reusable summary function\nAt this point, we’ve already written several small analysis steps: counting, filtering, and computing averages. If we keep writing those same patterns over and over, our notebook gets longer, harder to read, and easier to break.\nWe should always try to bundle a repeated set of steps into a single function—so we can reuse it anytime we want a quick summary of a dataset (or a filtered subset of a dataset).\nThis function computes:\n\naverage response time\npercent errors (status &gt;= 400)\nmost common endpoint\n\n\ndef summarize(rows):\n    if not rows:\n        return {\"n\": 0}\n\n    n = len(rows)\n    avg_ms = sum(r[\"ms\"] for r in rows) / n\n\n    error_rows = [r for r in rows if r[\"status\"] &gt;= 400]\n    error_rate = len(error_rows) / n\n\n    endpoint_counts = {}\n    for r in rows:\n        ep = r[\"endpoint\"]\n        endpoint_counts[ep] = endpoint_counts.get(ep, 0) + 1\n\n    most_common = max(endpoint_counts.items(), key=lambda pair: pair[1])\n\n    return {\n        \"n\": n,\n        \"avg_ms\": round(avg_ms, 2),\n        \"error_rate\": round(error_rate, 3),\n        \"most_common_endpoint\": most_common[0],\n        \"most_common_count\": most_common[1],\n    }\n\nsummarize(good_rows)\n\n{'n': 7,\n 'avg_ms': 46.0,\n 'error_rate': 0.286,\n 'most_common_endpoint': '/items',\n 'most_common_count': 2}\n\n\nWhy make a summary function\n\nWe often want the same basic summary for different slices of data (all rows, only successful rows, only error rows).\nPutting the steps in a function keeps our notebook cleaner and reduces copy/paste code.\n\nHandling the empty-data case\n\nif not rows: checks whether the list is empty.\nIf it is, we return a minimal summary so we don’t divide by zero later.\n\nCounting how many records we have\n\nn = len(rows) stores the number of records (rows) we’re summarizing.\n\nComputing average response time\n\nsum(r[\"ms\"] for r in rows) adds up the ms values across all records.\nDividing by n gives the average.\n\nFinding error rows and error rate\n\nerror_rows = [r for r in rows if r[\"status\"] &gt;= 400] filters the records down to just error responses.\nerror_rate = len(error_rows) / n computes the fraction of rows that were errors.\n\nCounting endpoints again (inside the function)\n\nWe build endpoint_counts again because this function is meant to work on any list of rows we pass in.\nThe loop uses the same .get(..., 0) + 1 counting pattern from earlier.\n\nFinding the most common endpoint\n\nendpoint_counts.items() produces (endpoint, count) pairs.\nmax(..., key=lambda pair: pair[1]) selects the pair with the largest count.\n\nReturning a compact summary\n\nThe function returns a dictionary so the results are labeled and easy to read.\nThe final line summarize(good_rows) runs the function and displays the summary for our full cleaned dataset."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#compare-summaries-on-different-subsets-of-the-data",
+    "href": "assignments/week-02/week-2-demo.html#compare-summaries-on-different-subsets-of-the-data",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Compare summaries on different subsets of the data",
+    "text": "Compare summaries on different subsets of the data\nWe rarely summarize only the full dataset. We usually break the data into meaningful subsets (groups) and compare them. An example here is:\n\nrequests that were successful (status &lt; 400)\nrequests that were errors (status &gt;= 400)\n\nThe key idea is that we can reuse the same summarize(...) function on each subset, which makes the comparison consistent.\n\nsuccess_rows = [r for r in good_rows if r[\"status\"] &lt; 400]\nerror_rows = [r for r in good_rows if r[\"status\"] &gt;= 400]\n\nprint(\"All:\", summarize(good_rows))\nprint(\"Success only:\", summarize(success_rows))\nprint(\"Errors only:\", summarize(error_rows))\n\nAll: {'n': 7, 'avg_ms': 46.0, 'error_rate': 0.286, 'most_common_endpoint': '/items', 'most_common_count': 2}\nSuccess only: {'n': 5, 'avg_ms': 46.2, 'error_rate': 0.0, 'most_common_endpoint': '/search', 'most_common_count': 2}\nErrors only: {'n': 2, 'avg_ms': 45.5, 'error_rate': 1.0, 'most_common_endpoint': '/login', 'most_common_count': 1}\n\n\nCreating subsets with filtering\n\nsuccess_rows = [r for r in good_rows if r[\"status\"] &lt; 400] builds a list of records that are not errors.\nerror_rows = [r for r in good_rows if r[\"status\"] &gt;= 400] builds a list of records that are errors.\n\nReusing the same summary function\n\nsummarize(good_rows) gives the overall summary.\nsummarize(success_rows) summarizes only the successful requests.\nsummarize(error_rows) summarizes only the error requests."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#a-streaming-approach-with-a-generator-processing-one-row-at-a-time",
+    "href": "assignments/week-02/week-2-demo.html#a-streaming-approach-with-a-generator-processing-one-row-at-a-time",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "A streaming approach with a generator (processing one row at a time)",
+    "text": "A streaming approach with a generator (processing one row at a time)\nSo far, we’ve been reading the entire file into memory and building full lists like lines and good_rows. That’s totally fine for small datasets, but real data files can be huge. When a file is large, it’s often better to process it one line at a time instead of loading everything at once.\nA generator is a Python tool that helps with this. A generator function looks like a normal function, but it uses yield instead of return. Each time the generator yields a value, it “pauses” and remembers where it left off. The next time you ask for another value (usually by looping), it picks up right where it stopped.\nIn this step, we’ll build a generator that reads the file and produces parsed rows one at a time.\n\ndef iter_parsed_rows(filename):\n    with open(filename, \"r\", encoding=\"utf-8\") as f:\n        header = next(f)  # skip the header line\n        for line in f:\n            line = line.rstrip(\"\\n\")\n            try:\n                yield parse_log_line(line)\n            except Exception:\n                continue\n\n# Example: compute average ms without storing all rows\ntotal_ms = 0\ncount = 0\n\nfor row in iter_parsed_rows(filename):\n    total_ms += row[\"ms\"]\n    count += 1\n\navg_ms_streaming = total_ms / count if count else None\navg_ms_streaming\n\n46.0\n\n\nDefining a generator function\n\ndef iter_parsed_rows(filename): defines a function that will produce rows from the file.\nThis function is different from our earlier functions because it uses yield.\n\nOpening the file and skipping the header\n\nwith open(filename, \"r\", encoding=\"utf-8\") as f: opens the file for reading.\nheader = next(f) reads the first line from the file (the header) and moves the file cursor forward by one line.\n\nWe store it in header but we don’t use it further, because we don’t want to parse the header as data.\n\n\nLooping over the file one line at a time\n\nfor line in f: iterates through the remaining lines in the file.\n\nThis is a memory-friendly pattern: Python reads lines as needed instead of loading the whole file at once.\n\n\nCleaning the line\n\nline = line.rstrip(\"\\n\") removes the trailing newline character from the end of the line.\n\nParsing and yielding good rows\n\nyield parse_log_line(line) attempts to parse the line and yields the resulting dictionary.\nyield means: “produce one value now, and pause until the next one is needed.”\nIf parsing fails, the except Exception: block runs and continue skips that bad line.\n\nUsing the generator to compute an average\n\ntotal_ms = 0 and count = 0 set up running totals.\nfor row in iter_parsed_rows(filename): loops over the generator.\n\nEach row is one parsed dictionary record.\n\nWe add row[\"ms\"] into total_ms and increment count.\n\nFinishing the calculation\n\navg_ms_streaming = total_ms / count if count else None computes the average safely.\n\nIf count is 0 (no good rows), we avoid dividing by zero."
   },
   {
     "objectID": "assignments/week-01/index.html",
@@ -520,6 +842,85 @@
     ]
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "assignments/week-02/index.html",
+    "href": "assignments/week-02/index.html",
+    "title": "Week 2 Assignments",
+    "section": "",
+    "text": "Submission location: All files are submitted in D2L (Week 2 Dropbox).",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#week-2-assignments",
+    "href": "assignments/week-02/index.html#week-2-assignments",
+    "title": "Week 2 Assignments",
+    "section": "",
+    "text": "Submission location: All files are submitted in D2L (Week 2 Dropbox).",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#part-1-reading",
+    "href": "assignments/week-02/index.html#part-1-reading",
+    "title": "Week 2 Assignments",
+    "section": "Part 1: Reading",
+    "text": "Part 1: Reading\nRead all of Chapter 3.\nPay special attention to:\n\nFile I/O basics: open(...), read mode vs write mode, encoding=\"utf-8\"\nWorking with text files as rows: header vs data lines, “one line = one record”\nCore data structures used in the demo: lists, dictionaries, sets, tuples\nExceptions and try/except as a workflow for skipping bad rows without crashing\nSorting with key= (including lambda)\nGenerators and yield (streaming / row-by-row processing)",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#part-2-week-2-demo-activity",
+    "href": "assignments/week-02/index.html#part-2-week-2-demo-activity",
+    "title": "Week 2 Assignments",
+    "section": "Part 2: Week 2 Demo Activity",
+    "text": "Part 2: Week 2 Demo Activity\nYou will make two small changes to the Week 2 demo and submit evidence outputs showing what happened.\n\nTask A: Trigger and observe a parsing error\nIn the “Quick check: confirm the parser works on one line” section:\n\nReplace the valid sample_line with a malformed line that should fail parsing.\n\nMissing a field: 2026-01-19T09:01:10,alice,/home,200\nNot enough commas: bad_row_with_no_commas\nNon-numeric ms: 2026-01-19T09:01:10,alice,/home,200,not_a_number\nExtra field: 2026-01-19T09:01:10,alice,/home,200,34,EXTRA\n\nRun the cell and confirm you see an error message.\nChange the line back to the valid example and re-run successfully.\n\nWhat to submit (evidence):\n\nA screenshot showing the error message output for one malformed line.\n\nRequired filename:\n\nlastname_week02_taskA.png\n\n\n\nTask B: Make one small data change and observe how results change\nChoose ONE option below.\n\nOption 1: Add one valid row and observe how counts change\n\nAdd one new valid row to raw_lines in the dataset-creation section. Example format (must have 5 fields): 2026-01-19T09:02:00,alice,/home,200,35\nRe-run the cells needed to rebuild the cleaned data and the endpoint counts.\nShow that the results changed (for example, endpoint counts or the “top endpoints” output).\n\nEvidence to capture:\n\nOutput showing the updated counts or updated top_endpoints.\n\n\n\nOption 2: Change the “error” threshold and compare summaries\n\nIn the “Compare summaries on different subsets of the data” section, change the error definition from:\n\nstatus &gt;= 400 (errors) to:\nstatus &gt;= 500 (errors)\n\nRe-run the cell and compare the three printed summaries.\n\nEvidence to capture:\n\nOutput showing the updated summaries for All / Success only / Errors only.\n\nWhat to submit (evidence):\n\nA screenshot showing the updated output.\n\nRequired filename:\n\nlastname_week02_taskB.png",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#part-3-d2l-quiz",
+    "href": "assignments/week-02/index.html#part-3-d2l-quiz",
+    "title": "Week 2 Assignments",
+    "section": "Part 3: D2L Quiz",
+    "text": "Part 3: D2L Quiz\nComplete the Week 2 D2L quiz.\nThe quiz focuses on:\n\nwhat “parsing” means and what the parser returns\nwhy we use try/except when reading rows\nwhen to use a set vs a dictionary\nhow the .get(..., 0) + 1 counting pattern works\nwhat dict.items() returns (tuples)\nhow sorting with key= works, and what the lambda returns\nwhat a generator does, what yield changes, and when streaming is useful",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
+    "objectID": "assignments/week-02/index.html#d2l-submission-checklist",
+    "href": "assignments/week-02/index.html#d2l-submission-checklist",
+    "title": "Week 2 Assignments",
+    "section": "D2L submission checklist",
+    "text": "D2L submission checklist\nSubmit two screenshot files to the Week 2 Dropbox (upload as separate files, not a zip):\n\nlastname_week02_taskA.png\nlastname_week02_taskB.png\n\nAlso complete:\n\nWeek 2 D2L quiz",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 2"
+    ]
+  },
+  {
     "objectID": "course/schedule.html",
     "href": "course/schedule.html",
     "title": "CMSC 1217 Course Schedule",
@@ -587,6 +988,55 @@
     "text": "Use this site as your course handbook. It stays up to date all semester.\n\nUse the left sidebar to find weekly materials and guides.\nD2L is the starting point for announcements, grades, and submissions.\nCourse information (syllabus, schedule, policies, office hours) is maintained here.\n\n\nCourse workflow\n\nCheck D2L for announcements, deadlines, and any updates.\nRead the Weekly Overview on this site (Week 1, Week 2, …) and follow the links provided.\nComplete the work (assignments) and submit in D2L.\n\n\n\nSupport\n\nOffice hours: see the Office Hours page.\nZoom: Office Zoom Link\n\nHow to get help:\n\nUse Discord/email for course questions.\nAdd troubleshooting policy.\n\n\n\n\nInstructor contact\n\nInstructor: Joseph Silman\n\nEmail: jsilman@sctcc.edu\nPhone Number: (320) 308 - 6595\n\n\n\nQuick links\n\nSyllabus\nSchedule"
   },
   {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract or when you want a second explanation of the same concept."
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#how-to-use-these-videos",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#how-to-use-these-videos",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "",
+    "text": "These are optional “extra help” videos for Week 2.\nWatch them when the reading feels abstract or when you want a second explanation of the same concept."
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#classification-vs-regression",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#classification-vs-regression",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Classification vs Regression",
+    "text": "Classification vs Regression\nRegression vs. Classification — What’s the difference?\nby AWS Educate (2020s, ~5–10 min) — Beginner explanation of what changes when your target is a number vs a label."
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#generalization-why-we-split-into-training-vs-test",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#generalization-why-we-split-into-training-vs-test",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Generalization: why we split into training vs test",
+    "text": "Generalization: why we split into training vs test\nTrain/Test Split (and why training accuracy can mislead you)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Why we don’t evaluate on the same rows we trained on.\n\nCross Validation (bonus idea for small datasets)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Why results can be unstable when you don’t have many rows."
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#underfitting-and-overfitting",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#underfitting-and-overfitting",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Underfitting and Overfitting",
+    "text": "Underfitting and Overfitting\nOverfitting (video)\nby deeplizard (~4 min) — Explains what overfitting is and what it tends to look like when you compare training vs test performance.\n\nUnderfitting (video)\nby deeplizard (~3–4 min) — Explains underfitting (model too simple to learn the real pattern) and why it performs poorly."
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#k-nearest-neighbors-knn",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#k-nearest-neighbors-knn",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "k-Nearest Neighbors (kNN)",
+    "text": "k-Nearest Neighbors (kNN)\nK-Nearest Neighbors (kNN) clearly explained\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — Neighbors “vote” and how changing k changes behavior."
+  },
+  {
+    "objectID": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#accuracy-what-does-correct-mean",
+    "href": "shared/guides/cmsc-2208/week-02/cmsc-2208-chap-02-learning-resources.html#accuracy-what-does-correct-mean",
+    "title": "Week 2: Chapter 2 Learning Videos (Supervised Learning + kNN)",
+    "section": "Accuracy: what does “correct” mean?",
+    "text": "Accuracy: what does “correct” mean?\nThe Confusion Matrix (what accuracy is measuring)\nby StatQuest (Josh Starmer) (2018–2020s, ~10–15 min) — What “correct vs incorrect” means in classification."
+  },
+  {
     "objectID": "shared/guides/setup/jupyter-learning-links.html",
     "href": "shared/guides/setup/jupyter-learning-links.html",
     "title": "Jupyter Notebooks & JupyterLab Learning Resources",
@@ -595,6 +1045,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Jupyter Learning Links"
     ]
   },
@@ -607,6 +1058,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Jupyter Learning Links"
     ]
   },
@@ -619,6 +1071,7 @@
     "crumbs": [
       "Home",
       "Guides",
+      "Week 1",
       "Jupyter Learning Links"
     ]
   },
