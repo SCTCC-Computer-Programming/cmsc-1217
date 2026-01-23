@@ -1,0 +1,2483 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Week 3 Demo: NumPy Basics – CMSC 1217 : Introduction to Data Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-feb0c0ed7aac57d66ec8dce0f6a48183.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CMSC 1217 : Introduction to Data Analytics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 3 Demo: NumPy Basics</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+        <div class="sidebar-tools-collapse">
+    <a href="https://discord.gg/az8cmeqJdc" title="" class="quarto-navigation-tool px-1" aria-label="Discord"><i class="bi bi-chat-dots"></i></a>
+    <a href="https://sctcc.learn.minnstate.edu/d2l/login" title="" class="quarto-navigation-tool px-1" aria-label="D2L"><i class="bi bi-book-half"></i></a>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Office Hours</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment Policies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Policies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI Policy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Weekly Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3(Current)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Weekly Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3(Current)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 1</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Miniconda Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter Learning Links</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 2</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 Reference Videos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 3</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/cmsc-1217/week-03/cmsc-1217-chap-04-learning-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 Reference Videos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 3 Demo: NumPy Basics</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">January 20, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="week-3-demo.ipynb" download="week-3-demo.ipynb">Download Jupyter Notebook</a></p>
+<p>This demonstration introduces the <strong>NumPy library</strong>, the foundation for numerical computing in Python. NumPy provides powerful tools for working with arrays of numbers efficiently—tools like fast mathematical operations, easy data manipulation, and the ability to process thousands or millions of numbers at once without writing loops.</p>
+<section id="numpy-in-context" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-in-context">NumPy in Context</h2>
+<p>Python lists and loops are essential skills from first semester. However, working with real data—analyzing sales figures, processing sensor measurements, or training machine learning models—requires efficient handling of large collections of numbers. NumPy addresses this need through specialized array structures optimized for numerical computation.</p>
+<p>NumPy is used throughout data science, scientific computing, and machine learning. Libraries like pandas (data manipulation), matplotlib (visualizations), and scikit-learn (machine learning) are all built on top of NumPy. Understanding NumPy provides the foundation for these advanced tools.</p>
+</section>
+<section id="numpy-arrays-vs.-python-lists" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-arrays-vs.-python-lists">NumPy Arrays vs.&nbsp;Python Lists</h2>
+<p>NumPy arrays can perform mathematical operations on entire datasets in a single line of code—operations that would require loops and extensive code with regular lists. NumPy is implemented in C, making it 10-100 times faster than pure Python for numerical work with large arrays. The exact speedup depends on the operation and array size.</p>
+</section>
+<section id="topics-covered" class="level2">
+<h2 class="anchored" data-anchor-id="topics-covered">Topics Covered</h2>
+<ul>
+<li><strong>ndarrays</strong>: NumPy’s array object and why it’s better than lists for numerical data</li>
+<li><strong>Array creation</strong>: Different ways to create arrays</li>
+<li><strong>Data types (dtypes)</strong>: How NumPy stores numbers efficiently</li>
+<li><strong>Vectorized operations</strong>: Doing math on entire arrays without loops</li>
+<li><strong>Indexing and slicing</strong>: Accessing and modifying array data</li>
+<li><strong>Boolean indexing</strong>: Filtering data based on conditions</li>
+<li><strong>Universal functions (ufuncs)</strong>: Fast mathematical operations</li>
+<li><strong>Array-oriented programming</strong>: Solving problems with array operations</li>
+<li><strong>Random number generation</strong>: Creating sample data</li>
+<li><strong>File I/O</strong>: Saving and loading array data</li>
+</ul>
+</section>
+<section id="importing-numpy" class="level2">
+<h2 class="anchored" data-anchor-id="importing-numpy">Importing NumPy</h2>
+<div id="9aef2772" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Importing the library</strong></p>
+<ul>
+<li><code>import numpy as np</code> loads the NumPy library and gives it a shorter name <code>np</code>.</li>
+<li>This is a universal convention in the Python data science community.</li>
+<li>Throughout this demonstration, whenever we write <code>np.something</code>, we’re using a NumPy function or class.</li>
+</ul>
+</section>
+<section id="why-numpy-a-quick-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="why-numpy-a-quick-comparison">Why NumPy? A Quick Comparison</h2>
+<p>Lists are flexible and can hold any type of data. But that flexibility comes at a cost. When you want to do mathematical operations on a list of numbers, you have to write loops or list comprehensions to process each element individually. Python also has to check the type of each element every single time it does an operation, which slows things down.</p>
+<p><strong>NumPy’s key advantages:</strong></p>
+<p>NumPy arrays are specialized for numerical data. They’re: - <strong>Faster</strong>: Operations run at speeds close to compiled C code (10-100x faster than pure Python) - <strong>More convenient</strong>: Write mathematical operations in a single line instead of loops - <strong>Memory efficient</strong>: Store data more compactly than Python lists - <strong>Expressive</strong>: Code that works with arrays often reads more like mathematical notation</p>
+<p>Here is an example. We’ll do the same task (multiply every number by 2) using both approaches:</p>
+<div id="b199cbc6" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python list approach</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>doubled_list <span class="op">=</span> [x <span class="op">*</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> my_list]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"List result:"</span>, doubled_list)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># NumPy array approach</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>my_array <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>doubled_array <span class="op">=</span> my_array <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array result:"</span>, doubled_array)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List result: [2, 4, 6, 8, 10]
+Array result: [ 2  4  6  8 10]</code></pre>
+</div>
+</div>
+<p><strong>Comparing Python lists to NumPy arrays</strong></p>
+<ul>
+<li><code>my_list = [1, 2, 3, 4, 5]</code> creates a regular Python list of numbers.</li>
+<li><code>doubled_list = [x * 2 for x in my_list]</code> uses a list comprehension to multiply each element by 2.
+<ul>
+<li>This requires writing a loop (even though it’s compact).</li>
+<li>Python processes each element one at a time.</li>
+<li>Python has to check that each element can be multiplied every time through the loop.</li>
+</ul></li>
+<li><code>my_array = np.array([1, 2, 3, 4, 5])</code> converts the list into a NumPy array.</li>
+<li><code>doubled_array = my_array * 2</code> multiplies the entire array by 2 in one operation.
+<ul>
+<li>No loop needed.</li>
+<li>NumPy handles all elements at once (this is called “vectorization”).</li>
+<li>The operation happens in optimized C code, not Python.</li>
+<li>For large datasets, this is much faster.</li>
+</ul></li>
+</ul>
+<p>When working with thousands or millions of numbers (common in data analysis), NumPy’s approach is 10-100x faster than pure Python loops. That difference between seconds and milliseconds becomes critical when you’re exploring data interactively or need to process large datasets repeatedly.</p>
+</section>
+<section id="creating-numpy-arrays-the-basics" class="level2">
+<h2 class="anchored" data-anchor-id="creating-numpy-arrays-the-basics">Creating NumPy Arrays: The Basics</h2>
+<p>The fundamental object in NumPy is the <strong>ndarray</strong> (n-dimensional array). It is a container for numbers arranged in one or more dimensions. Arrays are similar to Python lists, but with important differences: all elements must be the same data type (like all integers or all floats), and arrays support efficient mathematical operations on entire collections of data at once.</p>
+<div id="012bf5b3" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array from a Python list</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array from list:"</span>, arr1)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Type:"</span>, <span class="bu">type</span>(arr1))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 2D array (array of arrays)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">2D array:"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array from list: [1 2 3 4 5]
+Type: &lt;class 'numpy.ndarray'&gt;
+
+2D array:
+[[1 2 3]
+ [4 5 6]]</code></pre>
+</div>
+</div>
+<p><strong>Creating a 1D array from a list</strong></p>
+<ul>
+<li><code>np.array([1, 2, 3, 4, 5])</code> is the most basic way to create a NumPy array.
+<ul>
+<li>A Python list is passed to the <code>np.array()</code> function.</li>
+<li>NumPy converts it into an ndarray object.</li>
+</ul></li>
+<li><code>print("Array from list:", arr1)</code> displays the array contents.</li>
+<li><code>type(arr1)</code> returns the type of the object.
+<ul>
+<li>This shows <code>numpy.ndarray</code>, not a regular Python list.</li>
+</ul></li>
+</ul>
+<p><strong>Creating a 2D array from nested lists</strong></p>
+<ul>
+<li><code>np.array([[1, 2, 3], [4, 5, 6]])</code> creates a 2D array.
+<ul>
+<li>A list of lists (nested lists) is passed to the function.</li>
+<li>The outer list represents rows.</li>
+<li>Each inner list represents the values in that row.</li>
+<li>This creates a 2-row by 3-column array.</li>
+</ul></li>
+<li><code>print(arr2)</code> displays the 2D array.
+<ul>
+<li>NumPy formats it to show the row and column structure.</li>
+</ul></li>
+</ul>
+<p><strong>Understanding dimensions</strong>: In NumPy, ‘dimension’ refers to the number of axes (directions) in the array. A 1D array has one axis (like a single row of numbers). A 2D array has two axes (rows and columns, like a table).</p>
+</section>
+<section id="array-attributes-understanding-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="array-attributes-understanding-your-data">Array Attributes: Understanding Your Data</h2>
+<p>Every NumPy array has attributes that provide important information about its structure and contents. These attributes help you understand the shape, size, and type of data you’re working with.</p>
+<div id="ba06e722" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>], [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array:"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Shape:"</span>, arr.shape)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of dimensions:"</span>, arr.ndim)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data type:"</span>, arr.dtype)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total elements:"</span>, arr.size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array:
+[[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]]
+
+Shape: (3, 4)
+Number of dimensions: 2
+Data type: int64
+Total elements: 12</code></pre>
+</div>
+</div>
+<p><strong>Creating the array</strong></p>
+<ul>
+<li><code>np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])</code> creates a 2D array.
+<ul>
+<li>Three inner lists create three rows.</li>
+<li>Each inner list has four elements, creating four columns.</li>
+</ul></li>
+<li><code>print(arr)</code> displays the array with its row and column structure.</li>
+</ul>
+<p><strong>The shape attribute</strong></p>
+<ul>
+<li><code>arr.shape</code> returns a tuple showing the dimensions of the array.
+<ul>
+<li><code>(3, 4)</code> means 3 rows and 4 columns.</li>
+<li>For a 1D array, shape would be something like <code>(5,)</code> (note the comma indicating a 1-element tuple).</li>
+<li>Shape is crucial for understanding your data’s structure and ensuring arrays are compatible for operations.</li>
+</ul></li>
+</ul>
+<p><strong>The ndim attribute</strong></p>
+<ul>
+<li><code>arr.ndim</code> tells you how many dimensions the array has.
+<ul>
+<li>This array is 2D, so <code>ndim</code> returns 2.</li>
+<li>A 1D array (like a simple list of numbers) would have <code>ndim</code> equal to 1.</li>
+<li>A 3D array (like a stack of tables) would have <code>ndim</code> equal to 3.</li>
+</ul></li>
+</ul>
+<p><strong>The dtype attribute</strong></p>
+<ul>
+<li><code>arr.dtype</code> shows the data type of the elements.
+<ul>
+<li><code>int64</code> means 64-bit integers (whole numbers).</li>
+<li>NumPy requires all elements in an array to have the same type.</li>
+<li>This uniform typing is what allows NumPy to perform fast operations.</li>
+<li>Different dtypes will be explored in detail in the next section.</li>
+</ul></li>
+</ul>
+<p><strong>The size attribute</strong></p>
+<ul>
+<li><code>arr.size</code> gives the total number of elements in the array.
+<ul>
+<li>This is the product of all dimensions: 3 × 4 = 12 elements.</li>
+<li>Useful for understanding how much data you’re working with.</li>
+</ul></li>
+</ul>
+</section>
+<section id="array-creation-functions" class="level2">
+<h2 class="anchored" data-anchor-id="array-creation-functions">Array Creation Functions</h2>
+<p>Instead of manually typing out values, NumPy provides convenient functions to create arrays with specific patterns. This is especially useful when you need placeholder arrays or want to generate sequences of numbers.</p>
+<div id="359f808d" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array of zeros</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>zeros <span class="op">=</span> np.zeros(<span class="dv">5</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Zeros:"</span>, zeros)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2D array of zeros</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>zeros_2d <span class="op">=</span> np.zeros((<span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Zeros 2D:"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zeros_2d)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Array of ones</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ones <span class="op">=</span> np.ones((<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Ones:"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ones)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Empty array (uninitialized values)</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>empty <span class="op">=</span> np.empty((<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Empty (random values):"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Zeros: [0. 0. 0. 0. 0.]
+
+Zeros 2D:
+[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+
+Ones:
+[[1. 1. 1.]
+ [1. 1. 1.]]
+
+Empty (random values):
+[[0. 0.]
+ [0. 0.]]</code></pre>
+</div>
+</div>
+<p><strong>Creating a 1D array of zeros</strong></p>
+<ul>
+<li><code>np.zeros(5)</code> creates a 1D array with 5 zeros.
+<ul>
+<li>A single integer is passed to specify the length.</li>
+<li>The resulting array is <code>[0. 0. 0. 0. 0.]</code> (float64 by default).</li>
+<li>This is useful when you want to initialize an array before filling it with data.</li>
+</ul></li>
+</ul>
+<p><strong>Creating a 2D array of zeros</strong></p>
+<ul>
+<li><code>np.zeros((3, 4))</code> creates a 2D array of zeros.
+<ul>
+<li>A tuple <code>(rows, columns)</code> is passed to specify the shape.</li>
+<li>Note the double parentheses: one for the function call, one for the tuple.</li>
+<li>This creates a 3-row by 4-column array filled with zeros.</li>
+</ul></li>
+</ul>
+<p><strong>Creating arrays of ones</strong></p>
+<ul>
+<li><code>np.ones((2, 3))</code> works the same way as <code>zeros()</code> but fills the array with ones.
+<ul>
+<li>A tuple specifies the shape.</li>
+<li>The resulting array has all elements set to 1.0.</li>
+<li>Common use case: creating a matrix of weights or coefficients that you’ll modify later.</li>
+</ul></li>
+</ul>
+<p><strong>Creating empty (uninitialized) arrays</strong></p>
+<ul>
+<li><code>np.empty((2, 2))</code> creates an array without initializing the values.
+<ul>
+<li>The values will be whatever was in that memory location (essentially random garbage).</li>
+<li>This is slightly faster than <code>zeros()</code> or <code>ones()</code> because it skips initialization.</li>
+<li>Use this only when you plan to immediately overwrite all values.</li>
+<li>The output will vary each time you run the code because the values are uninitialized.</li>
+</ul></li>
+</ul>
+</section>
+<section id="creating-sequences-with-arange-and-linspace" class="level2">
+<h2 class="anchored" data-anchor-id="creating-sequences-with-arange-and-linspace">Creating Sequences with arange and linspace</h2>
+<p>Two of the most useful array creation functions generate sequences of numbers. These are similar to Python’s <code>range()</code> but return NumPy arrays and have additional features.</p>
+<div id="9c8c3d7f" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arange: like Python's range, but returns an array</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>seq1 <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"arange(10):"</span>, seq1)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>seq2 <span class="op">=</span> np.arange(<span class="dv">5</span>, <span class="dv">15</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"arange(5, 15):"</span>, seq2)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>seq3 <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"arange(0, 1, 0.1):"</span>, seq3)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># linspace: evenly spaced values (including endpoint)</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>seq4 <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">linspace(0, 1, 11):"</span>, seq4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>arange(10): [0 1 2 3 4 5 6 7 8 9]
+arange(5, 15): [ 5  6  7  8  9 10 11 12 13 14]
+arange(0, 1, 0.1): [0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9]
+
+linspace(0, 1, 11): [0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. ]</code></pre>
+</div>
+</div>
+<p><strong>Creating sequences with arange</strong></p>
+<ul>
+<li><code>np.arange(10)</code> creates an array from 0 to 9.
+<ul>
+<li>Works like Python’s <code>range(10)</code>, but returns a NumPy array instead of a range object.</li>
+<li>The endpoint (10) is excluded.</li>
+<li>Result: <code>[0 1 2 3 4 5 6 7 8 9]</code></li>
+</ul></li>
+<li><code>np.arange(5, 15)</code> creates an array from 5 to 14.
+<ul>
+<li>First argument is the start value (included).</li>
+<li>Second argument is the stop value (excluded).</li>
+<li>Result: <code>[5 6 7 8 9 10 11 12 13 14]</code></li>
+</ul></li>
+<li><code>np.arange(0, 1, 0.1)</code> uses a step size of 0.1.
+<ul>
+<li>First argument: start value (0)</li>
+<li>Second argument: stop value (1, excluded)</li>
+<li>Third argument: step size (0.1)</li>
+<li>Unlike Python’s <code>range()</code>, <code>arange()</code> can handle float step sizes.</li>
+<li>Result: <code>[0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9]</code></li>
+</ul></li>
+</ul>
+<p><strong>Creating sequences with linspace</strong></p>
+<ul>
+<li><code>np.linspace(0, 1, 11)</code> creates 11 evenly spaced values from 0 to 1.
+<ul>
+<li>First argument: start value (0, included)</li>
+<li>Second argument: end value (1, included, unlike arange)</li>
+<li>Third argument: number of values you want (11)</li>
+<li>NumPy calculates the step size automatically.</li>
+<li>Result: <code>[0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. ]</code></li>
+<li>This is useful when you care about the endpoints more than the step size.</li>
+</ul></li>
+</ul>
+<p><strong>Choosing between arange and linspace</strong></p>
+<ul>
+<li>Use <code>arange()</code> when you know the step size you want.
+<ul>
+<li>Example: counting by 5s, or incrementing by 0.01</li>
+</ul></li>
+<li>Use <code>linspace()</code> when you know how many values you want between two endpoints.
+<ul>
+<li>Example: dividing a range into exactly 100 points for plotting</li>
+</ul></li>
+</ul>
+</section>
+<section id="data-types-dtypes" class="level2">
+<h2 class="anchored" data-anchor-id="data-types-dtypes">Data Types (dtypes)</h2>
+<p>In a previous section, we saw that arrays have a <code>dtype</code> attribute. Now we’ll explore how to work with data types: how NumPy infers them, how to specify them explicitly, and how to convert between them. Understanding data types is important for memory management, numerical precision, and ensuring your calculations produce the correct results.</p>
+<div id="8a88b88d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NumPy infers the dtype</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>int_arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Integer array dtype:"</span>, int_arr.dtype)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>float_arr <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="fl">2.5</span>, <span class="fl">3.7</span>])</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Float array dtype:"</span>, float_arr.dtype)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Explicitly specify dtype</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>explicit_float <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], dtype<span class="op">=</span>np.float64)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Explicit float dtype:"</span>, explicit_float.dtype)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Values:"</span>, explicit_float)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert between types with astype</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>float_to_int <span class="op">=</span> float_arr.astype(np.int32)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Float to int:"</span>, float_to_int)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Original:"</span>, float_arr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Integer array dtype: int64
+Float array dtype: float64
+Explicit float dtype: float64
+Values: [1. 2. 3.]
+
+Float to int: [1 2 3]
+Original: [1.  2.5 3.7]</code></pre>
+</div>
+</div>
+<p><strong>How NumPy infers data types</strong></p>
+<ul>
+<li><code>np.array([1, 2, 3])</code> creates an array from integers.
+<ul>
+<li>NumPy automatically infers the integer type.</li>
+<li><code>int_arr.dtype</code> shows <code>int64</code> (or possibly <code>int32</code> on some systems).</li>
+<li><code>int64</code> means each number uses 64 bits of memory.</li>
+</ul></li>
+<li><code>np.array([1.0, 2.5, 3.7])</code> creates an array from decimal numbers.
+<ul>
+<li>NumPy infers a floating-point type.</li>
+<li><code>float_arr.dtype</code> shows <code>float64</code>.</li>
+<li><code>float64</code> is also called “double precision” (64 bits per number).</li>
+</ul></li>
+</ul>
+<p><strong>Explicitly specifying data types</strong></p>
+<ul>
+<li><code>np.array([1, 2, 3], dtype=np.float64)</code> explicitly sets the data type.
+<ul>
+<li>The <code>dtype=</code> parameter overrides NumPy’s automatic type inference.</li>
+<li>Even though integers are passed, NumPy converts them to floats: <code>[1., 2., 3.]</code></li>
+<li>This is useful when you need a specific type regardless of your input data.</li>
+</ul></li>
+</ul>
+<p><strong>Converting between data types</strong></p>
+<ul>
+<li><code>float_arr.astype(np.int32)</code> converts the array to a different type.
+<ul>
+<li><code>.astype()</code> creates a new array with the specified type.</li>
+<li>It does NOT modify the original array.</li>
+<li>The original <code>float_arr</code> remains unchanged.</li>
+<li>Decimal values are truncated (not rounded): 2.5 becomes 2, not 3.</li>
+</ul></li>
+</ul>
+<p><strong>Common data types</strong></p>
+<ul>
+<li><code>int32</code>, <code>int64</code>: integers (different memory sizes)</li>
+<li><code>float32</code>, <code>float64</code>: floating-point numbers</li>
+<li><code>bool</code>: Boolean (True/False values)</li>
+<li><code>object</code>: Python objects (avoid if possible, operations are slow)</li>
+</ul>
+</section>
+<section id="array-arithmetic-vectorized-operations" class="level2">
+<h2 class="anchored" data-anchor-id="array-arithmetic-vectorized-operations">Array Arithmetic: Vectorized Operations</h2>
+<p>One of NumPy’s core features is <strong>vectorization</strong>, which allows mathematical operations to be applied to entire arrays without explicit loops. When you perform an operation on a NumPy array, the operation is automatically applied to every element in the array. This approach, called vectorized computing, produces cleaner code and significantly faster execution compared to iterating through arrays with Python loops. Vectorization works with both scalar values (single numbers) and operations between multiple arrays of the same shape.</p>
+<div id="8d9058b4" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Arithmetic with scalars</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Original:"</span>, arr)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Add 10:"</span>, arr <span class="op">+</span> <span class="dv">10</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Multiply by 2:"</span>, arr <span class="op">*</span> <span class="dv">2</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Square:"</span>, arr <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Arithmetic between arrays</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>])</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Array 1:"</span>, arr)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array 2:"</span>, arr2)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Add arrays:"</span>, arr <span class="op">+</span> arr2)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Multiply arrays:"</span>, arr <span class="op">*</span> arr2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Original: [1 2 3 4 5]
+Add 10: [11 12 13 14 15]
+Multiply by 2: [ 2  4  6  8 10]
+Square: [ 1  4  9 16 25]
+
+Array 1: [1 2 3 4 5]
+Array 2: [10 20 30 40 50]
+Add arrays: [11 22 33 44 55]
+Multiply arrays: [ 10  40  90 160 250]</code></pre>
+</div>
+</div>
+<p><strong>Vectorized operations with scalars</strong></p>
+<ul>
+<li><code>arr + 10</code> adds 10 to every element in the array.
+<ul>
+<li>No loop is needed.</li>
+<li>NumPy applies the operation to each element automatically.</li>
+<li>Result: <code>[11, 12, 13, 14, 15]</code></li>
+<li>This creates a new array; the original is unchanged.</li>
+</ul></li>
+<li><code>arr * 2</code> multiplies every element by 2.
+<ul>
+<li>The scalar value 2 is applied to each element.</li>
+<li>Result: <code>[2, 4, 6, 8, 10]</code></li>
+</ul></li>
+<li><code>arr ** 2</code> squares every element.
+<ul>
+<li>The <code>**</code> operator means “to the power of.”</li>
+<li>Each element is raised to the power of 2.</li>
+<li>Result: <code>[1, 4, 9, 16, 25]</code></li>
+</ul></li>
+</ul>
+<p><strong>Vectorized operations between arrays</strong></p>
+<ul>
+<li><code>arr + arr2</code> adds corresponding elements from both arrays.
+<ul>
+<li>Element 0 of <code>arr</code> + element 0 of <code>arr2</code>: 1 + 10 = 11</li>
+<li>Element 1 of <code>arr</code> + element 1 of <code>arr2</code>: 2 + 20 = 22, and so on.</li>
+<li>Result: <code>[11, 22, 33, 44, 55]</code></li>
+<li>Both arrays must have the same shape.</li>
+</ul></li>
+<li><code>arr * arr2</code> multiplies corresponding elements.
+<ul>
+<li>This is element-wise multiplication, NOT matrix multiplication.</li>
+<li>Element 0: 1 × 10 = 10</li>
+<li>Element 1: 2 × 20 = 40, and so on.</li>
+<li>Result: <code>[10, 40, 90, 160, 250]</code></li>
+</ul></li>
+</ul>
+<p><strong>Performance advantages</strong>: In pure Python, these operations would require loops or list comprehensions. NumPy handles them in optimized C code, making them significantly faster, especially with large datasets.</p>
+</section>
+<section id="basic-indexing-and-slicing-1d-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="basic-indexing-and-slicing-1d-arrays">Basic Indexing and Slicing (1D Arrays)</h2>
+<p>NumPy arrays support indexing and slicing operations similar to Python lists, allowing you to access individual elements or subsets of data. However, NumPy introduces important behavioral differences, particularly in how slices are handled. Understanding these differences is critical for working with arrays effectively. The most significant difference is that NumPy array slices create <strong>views</strong> rather than copies, meaning modifications to a slice affect the original array. This section covers single-element indexing, slice notation, and the distinction between views and copies.</p>
+<div id="3163e14e" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Single element indexing</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array:"</span>, arr)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First element (index 0):"</span>, arr[<span class="dv">0</span>])</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Last element (index -1):"</span>, arr[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Slicing</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Slicing:"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"arr[1:4]:"</span>, arr[<span class="dv">1</span>:<span class="dv">4</span>])</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"arr[:3]:"</span>, arr[:<span class="dv">3</span>])</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"arr[3:]:"</span>, arr[<span class="dv">3</span>:])</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"arr[::2]:"</span>, arr[::<span class="dv">2</span>])</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Important: slices are views, not copies</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>slice_view <span class="op">=</span> arr[<span class="dv">2</span>:<span class="dv">5</span>]</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Slice:"</span>, slice_view)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>slice_view[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">999</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"After modifying slice:"</span>, slice_view)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Original array:"</span>, arr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array: [10 20 30 40 50 60 70]
+First element (index 0): 10
+Last element (index -1): 70
+
+Slicing:
+arr[1:4]: [20 30 40]
+arr[:3]: [10 20 30]
+arr[3:]: [40 50 60 70]
+arr[::2]: [10 30 50 70]
+
+Slice: [30 40 50]
+After modifying slice: [999  40  50]
+Original array: [ 10  20 999  40  50  60  70]</code></pre>
+</div>
+</div>
+<p><strong>Single element indexing</strong></p>
+<ul>
+<li><code>arr[0]</code> gets the first element.
+<ul>
+<li>Array indexing starts at 0, just like Python lists.</li>
+<li>Returns the value at position 0: <code>10</code></li>
+</ul></li>
+<li><code>arr[-1]</code> gets the last element.
+<ul>
+<li>Negative indices count backward from the end.</li>
+<li><code>-1</code> is the last element, <code>-2</code> is second-to-last, etc.</li>
+<li>Returns: <code>70</code></li>
+</ul></li>
+</ul>
+<p><strong>Slicing arrays</strong></p>
+<ul>
+<li><code>arr[1:4]</code> gets elements at indices 1, 2, and 3.
+<ul>
+<li>Format is <code>[start:stop]</code></li>
+<li>Start index is included, stop index is excluded.</li>
+<li>Result: <code>[20, 30, 40]</code></li>
+</ul></li>
+<li><code>arr[:3]</code> gets the first three elements.
+<ul>
+<li>Omitting start means “from the beginning.”</li>
+<li>Equivalent to <code>arr[0:3]</code></li>
+<li>Result: <code>[10, 20, 30]</code></li>
+</ul></li>
+<li><code>arr[3:]</code> gets from index 3 to the end.
+<ul>
+<li>Omitting stop means “to the end.”</li>
+<li>Equivalent to <code>arr[3:7]</code> for this array.</li>
+<li>Result: <code>[40, 50, 60, 70]</code></li>
+</ul></li>
+<li><code>arr[::2]</code> gets every other element.
+<ul>
+<li>Format is <code>[start:stop:step]</code></li>
+<li>Step of 2 means skip one element each time.</li>
+<li>Omitting start and stop means use the entire array.</li>
+<li>Result: <code>[10, 30, 50, 70]</code></li>
+</ul></li>
+</ul>
+<p><strong>Critical difference from Python lists: Views vs Copies</strong></p>
+<ul>
+<li><code>slice_view = arr[2:5]</code> creates a <strong>view</strong> of the original array, not a copy.
+<ul>
+<li>A view is a reference to the same data in memory.</li>
+<li>No new array is created; both variables point to the same underlying data.</li>
+</ul></li>
+<li><code>slice_view[0] = 999</code> modifies the first element of the slice.
+<ul>
+<li>Because <code>slice_view</code> is a view, this modification affects the original array.</li>
+<li>The original <code>arr</code> now has <code>999</code> at index 2.</li>
+</ul></li>
+<li>This behavior is different from Python lists, where slicing creates an independent copy.
+<ul>
+<li>With lists: <code>list_slice = my_list[2:5]</code> creates a new list.</li>
+<li>With NumPy: <code>array_slice = arr[2:5]</code> creates a view.</li>
+</ul></li>
+<li>To create an independent copy: <code>arr[2:5].copy()</code>
+<ul>
+<li>The <code>.copy()</code> method creates a new array with the same values.</li>
+<li>Modifications to the copy will not affect the original.</li>
+</ul></li>
+</ul>
+<p><strong>Why views matter</strong>: Views save memory and improve performance by avoiding unnecessary data duplication. However, this behavior requires careful attention when modifying slices, as changes propagate to the original array.</p>
+</section>
+<section id="indexing-2d-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="indexing-2d-arrays">Indexing 2D Arrays</h2>
+<p>Two-dimensional arrays represent data in rows and columns, similar to spreadsheets or matrices. NumPy provides intuitive syntax for accessing elements, entire rows, entire columns, or rectangular sub-regions of 2D arrays. Indexing uses the format <code>[row, column]</code>, where both indices are specified within a single set of brackets separated by a comma. Understanding 2D indexing is essential for working with tabular data, images, and matrix operations.</p>
+<div id="297278a3" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>arr2d <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2D Array:"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Access single element</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Element at row 1, column 2:"</span>, arr2d[<span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Access entire row</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Row 0:"</span>, arr2d[<span class="dv">0</span>])</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Access entire column (using slice)</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Column 1:"</span>, arr2d[:, <span class="dv">1</span>])</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Slice rows and columns</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First 2 rows, first 2 columns:"</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d[:<span class="dv">2</span>, :<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2D Array:
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+
+Element at row 1, column 2: 6
+Row 0: [1 2 3]
+Column 1: [2 5 8]
+
+First 2 rows, first 2 columns:
+[[1 2]
+ [4 5]]</code></pre>
+</div>
+</div>
+<p><strong>Accessing single elements in 2D arrays</strong></p>
+<ul>
+<li><code>arr2d[1, 2]</code> gets the element at row 1, column 2.
+<ul>
+<li>Indexing starts at 0 for both dimensions.</li>
+<li>Row 1 is the second row: <code>[4, 5, 6]</code></li>
+<li>Column 2 is the third element in that row: <code>6</code></li>
+<li>The syntax is <code>[row, column]</code> with a comma, not two separate brackets like <code>arr2d[1][2]</code>.</li>
+</ul></li>
+</ul>
+<p><strong>Accessing entire rows</strong></p>
+<ul>
+<li><code>arr2d[0]</code> gets the entire first row.
+<ul>
+<li>When only one index is provided for a 2D array, it selects that row.</li>
+<li>Result: <code>[1, 2, 3]</code></li>
+<li>This is equivalent to <code>arr2d[0, :]</code> where <code>:</code> means “all columns.”</li>
+</ul></li>
+</ul>
+<p><strong>Accessing entire columns</strong></p>
+<ul>
+<li><code>arr2d[:, 1]</code> gets the entire second column.
+<ul>
+<li><code>:</code> means “all rows”</li>
+<li><code>1</code> means column at index 1 (the second column)</li>
+<li>Result: <code>[2, 5, 8]</code></li>
+<li>Note that this returns a 1D array, not a 2D column vector.</li>
+</ul></li>
+</ul>
+<p><strong>Slicing 2D arrays</strong></p>
+<ul>
+<li><code>arr2d[:2, :2]</code> extracts a rectangular sub-array.
+<ul>
+<li><p><code>:2</code> for rows means “first 2 rows” (rows 0 and 1)</p></li>
+<li><p><code>:2</code> for columns means “first 2 columns” (columns 0 and 1)</p></li>
+<li><p>Result is a 2×2 array:</p>
+<pre><code>[[1, 2],
+ [4, 5]]</code></pre></li>
+<li><p>Like 1D slices, this creates a view of the original array, not a copy.</p></li>
+</ul></li>
+</ul>
+<p>Row index corresponds to row numbers, and column index corresponds to column positions. The notation <code>arr2d[1, 2]</code> is analogous to accessing cell C2 in a spreadsheet (second row, third column).</p>
+</section>
+<section id="boolean-indexing-filtering-with-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="boolean-indexing-filtering-with-conditions">Boolean Indexing: Filtering with Conditions</h2>
+<p>Boolean indexing is a powerful NumPy feature that allows you to filter array elements based on conditional expressions. Instead of writing explicit loops with if statements, you can create boolean arrays (arrays of True/False values) by applying conditions to your data, then use those boolean arrays as indices to select only the elements that meet your criteria. This technique is fundamental to data analysis workflows, where filtering datasets based on conditions is a common operation. Boolean indexing is both more concise and more efficient than traditional loop-based filtering.</p>
+<div id="dc80aaae" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> np.array([<span class="dv">72</span>, <span class="dv">65</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">68</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">82</span>])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temperatures:"</span>, temperatures)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a boolean array</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>is_hot <span class="op">=</span> temperatures <span class="op">&gt;</span> <span class="dv">80</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Is hot (&gt;80)?:"</span>, is_hot)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Use boolean array to filter</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>hot_days <span class="op">=</span> temperatures[is_hot]</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hot day temperatures:"</span>, hot_days)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Can do it in one step</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>mild_days <span class="op">=</span> temperatures[temperatures <span class="op">&lt;</span> <span class="dv">75</span>]</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mild day temperatures (&lt;75):"</span>, mild_days)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine conditions</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>comfortable <span class="op">=</span> temperatures[(temperatures <span class="op">&gt;=</span> <span class="dv">70</span>) <span class="op">&amp;</span> (temperatures <span class="op">&lt;=</span> <span class="dv">80</span>)]</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Comfortable temps (70-80):"</span>, comfortable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Temperatures: [72 65 80 85 68 90 78 82]
+
+Is hot (&gt;80)?: [False False False  True False  True False  True]
+Hot day temperatures: [85 90 82]
+Mild day temperatures (&lt;75): [72 65 68]
+Comfortable temps (70-80): [72 80 78]</code></pre>
+</div>
+</div>
+<p><strong>Creating boolean arrays</strong></p>
+<ul>
+<li><code>temperatures &gt; 80</code> creates a boolean array by comparing each element to 80.
+<ul>
+<li>NumPy applies the comparison to every element automatically.</li>
+<li>Result: <code>[False, False, False, True, False, True, False, True]</code></li>
+<li>Each True corresponds to a temperature greater than 80.</li>
+</ul></li>
+<li><code>is_hot</code> stores this boolean array.
+<ul>
+<li>It has the same length as the original array.</li>
+<li>Each element is either True or False.</li>
+</ul></li>
+</ul>
+<p><strong>Using boolean arrays to filter</strong></p>
+<ul>
+<li><code>temperatures[is_hot]</code> selects only the elements where <code>is_hot</code> is True.
+<ul>
+<li>This is called “boolean indexing.”</li>
+<li>NumPy extracts only the values at positions where the boolean array has True.</li>
+<li>Result: <code>[85, 90, 82]</code> (only values greater than 80)</li>
+</ul></li>
+<li><code>temperatures[temperatures &lt; 75]</code> combines both steps in one line.
+<ul>
+<li>The expression <code>temperatures &lt; 75</code> creates the boolean array.</li>
+<li>That boolean array is immediately used as an index: <code>temperatures[...]</code></li>
+<li>Result: <code>[72, 65, 68]</code></li>
+</ul></li>
+</ul>
+<p><strong>Combining multiple conditions</strong></p>
+<ul>
+<li><code>(temperatures &gt;= 70) &amp; (temperatures &lt;= 80)</code> combines two conditions with a logical AND.
+<ul>
+<li><code>&amp;</code> is the element-wise “and” operator (both conditions must be True).</li>
+<li>Use <code>&amp;</code> not <code>and</code>. The keyword <code>and</code> does not work with NumPy arrays.</li>
+<li>Use <code>|</code> for “or” (either condition can be True).</li>
+<li>Use <code>~</code> for “not” (negates the condition).</li>
+<li>Parentheses are required around each condition to ensure correct evaluation order.</li>
+<li>Result: only temperatures between 70 and 80 (inclusive).</li>
+</ul></li>
+</ul>
+<p><strong>Comparison to pure Python</strong>: Without NumPy, filtering would require list comprehensions like <code>[t for t in temperatures if t &gt; 80]</code>. Boolean indexing is more readable and executes faster, especially with large datasets.</p>
+</section>
+<section id="universal-functions-ufuncs" class="level2">
+<h2 class="anchored" data-anchor-id="universal-functions-ufuncs">Universal Functions (ufuncs)</h2>
+<p>Universal functions, or ufuncs, are a core component of NumPy’s efficiency. These are functions that operate element-wise on arrays, applying a mathematical operation to each element without explicit loops. Ufuncs are implemented in compiled C code, making them significantly faster than equivalent Python loops. NumPy provides a comprehensive library of ufuncs covering mathematical operations, trigonometric functions, logarithms, exponentials, and comparison operations. Ufuncs can be unary (operating on a single array) or binary (operating on two arrays).</p>
+<div id="eaf0ced2" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">16</span>, <span class="dv">25</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array:"</span>, arr)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Square root:"</span>, np.sqrt(arr))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Exponential:"</span>, np.exp(arr))</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Trigonometric functions</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>angles <span class="op">=</span> np.array([<span class="dv">0</span>, np.pi<span class="op">/</span><span class="dv">2</span>, np.pi])</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Angles (radians):"</span>, angles)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sine:"</span>, np.sin(angles))</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Cosine:"</span>, np.cos(angles))</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Binary ufuncs (operate on two arrays)</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>])</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Array 1:"</span>, arr1)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array 2:"</span>, arr2)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Maximum (element-wise):"</span>, np.maximum(arr1, arr2))</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Minimum (element-wise):"</span>, np.minimum(arr1, arr2))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Array: [ 1  4  9 16 25]
+Square root: [1. 2. 3. 4. 5.]
+Exponential: [2.71828183e+00 5.45981500e+01 8.10308393e+03 8.88611052e+06
+ 7.20048993e+10]
+
+Angles (radians): [0.         1.57079633 3.14159265]
+Sine: [0.0000000e+00 1.0000000e+00 1.2246468e-16]
+Cosine: [ 1.000000e+00  6.123234e-17 -1.000000e+00]
+
+Array 1: [1 2 3 4 5]
+Array 2: [5 4 3 2 1]
+Maximum (element-wise): [5 4 3 4 5]
+Minimum (element-wise): [1 2 3 2 1]</code></pre>
+</div>
+</div>
+<p><strong>Unary universal functions (single input)</strong></p>
+<ul>
+<li><code>np.sqrt(arr)</code> calculates the square root of each element.
+<ul>
+<li>The function is applied to the entire array at once.</li>
+<li>Result: <code>[1., 2., 3., 4., 5.]</code></li>
+<li>Much faster than using a loop with <code>math.sqrt()</code> from the standard library.</li>
+</ul></li>
+<li><code>np.exp(arr)</code> computes e raised to the power of each element.
+<ul>
+<li>e is Euler’s number (approximately 2.718).</li>
+<li>The exponential function grows rapidly, so values can become very large.</li>
+</ul></li>
+<li><code>np.sin(angles)</code> and <code>np.cos(angles)</code> compute trigonometric functions.
+<ul>
+<li>Input values must be in radians, not degrees.</li>
+<li><code>np.pi</code> is NumPy’s constant for π (pi, approximately 3.14159).</li>
+<li><code>np.pi/2</code> represents 90 degrees in radians.</li>
+<li>These functions return values between -1 and 1.</li>
+</ul></li>
+</ul>
+<p><strong>Binary universal functions (two inputs)</strong></p>
+<ul>
+<li><code>np.maximum(arr1, arr2)</code> compares arrays element-wise and selects the larger value.
+<ul>
+<li>Takes the larger value from each corresponding position.</li>
+<li>Result: <code>[5, 4, 3, 4, 5]</code></li>
+<li>Index 0: max(1, 5) = 5</li>
+<li>Index 1: max(2, 4) = 4</li>
+<li>This continues for each position.</li>
+</ul></li>
+<li><code>np.minimum(arr1, arr2)</code> takes the smaller value from each corresponding position.
+<ul>
+<li>Result: <code>[1, 2, 3, 2, 1]</code></li>
+<li>Index 0: min(1, 5) = 1, and so on.</li>
+</ul></li>
+</ul>
+<p><strong>Additional common ufuncs</strong>: NumPy provides many other mathematical ufuncs including <code>np.abs()</code> (absolute value), <code>np.log()</code> (natural logarithm), <code>np.log10()</code> (base-10 logarithm), <code>np.ceil()</code> (round up), <code>np.floor()</code> (round down), <code>np.round()</code> (round to nearest), and <code>np.sign()</code> (sign of number).</p>
+</section>
+<section id="array-oriented-programming-statistical-methods" class="level2">
+<h2 class="anchored" data-anchor-id="array-oriented-programming-statistical-methods">Array-Oriented Programming: Statistical Methods</h2>
+<p>NumPy arrays include built-in methods for computing descriptive statistics, enabling efficient data analysis without explicit loops. These statistical methods operate on entire arrays and return summary values that describe the central tendency, spread, and other properties of the data. Because these methods are implemented in optimized C code, they execute significantly faster than equivalent Python loops. Understanding these methods is essential for exploratory data analysis and quantitative research.</p>
+<div id="a25ae31b" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>, <span class="dv">12</span>, <span class="dv">89</span>, <span class="dv">34</span>, <span class="dv">56</span>, <span class="dv">78</span>, <span class="dv">90</span>, <span class="dv">11</span>])</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data:"</span>, data)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Mean:"</span>, data.mean())</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Median:"</span>, np.median(data))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Standard deviation:"</span>, data.std())</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Minimum:"</span>, data.<span class="bu">min</span>())</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Maximum:"</span>, data.<span class="bu">max</span>())</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sum:"</span>, data.<span class="bu">sum</span>())</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Index of min/max values</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Index of minimum:"</span>, data.argmin())</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index of maximum:"</span>, data.argmax())</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative sum</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Cumulative sum:"</span>, data.cumsum())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Data: [23 45 67 12 89 34 56 78 90 11]
+
+Mean: 50.5
+Median: 50.5
+Standard deviation: 28.64000698323937
+Minimum: 11
+Maximum: 90
+Sum: 505
+
+Index of minimum: 9
+Index of maximum: 8
+
+Cumulative sum: [ 23  68 135 147 236 270 326 404 494 505]</code></pre>
+</div>
+</div>
+<p><strong>Basic statistical methods</strong></p>
+<ul>
+<li><code>data.mean()</code> calculates the arithmetic average.
+<ul>
+<li>Adds all values and divides by the count.</li>
+<li>Equivalent to <code>data.sum() / len(data)</code></li>
+<li>Provides a measure of central tendency.</li>
+</ul></li>
+<li><code>np.median(data)</code> finds the middle value when the data is sorted.
+<ul>
+<li>For arrays with an odd number of elements, returns the middle value.</li>
+<li>For arrays with an even number of elements, returns the average of the two middle values.</li>
+<li>Note: This is a function (<code>np.median()</code>), not a method (<code>.median()</code>).</li>
+<li>The median is less sensitive to outliers than the mean.</li>
+</ul></li>
+<li><code>data.std()</code> computes the standard deviation.
+<ul>
+<li>Measures how spread out the values are from the mean.</li>
+<li>A larger standard deviation indicates more variation in the data.</li>
+<li>A smaller standard deviation indicates values cluster closer to the mean.</li>
+</ul></li>
+<li><code>data.min()</code> and <code>data.max()</code> find the smallest and largest values.
+<ul>
+<li>Return the minimum and maximum values in the array.</li>
+<li>Useful for understanding the range of your data.</li>
+</ul></li>
+<li><code>data.sum()</code> adds all elements together.
+<ul>
+<li>Returns the total of all values in the array.</li>
+<li>The sum is used in many other calculations like mean and variance.</li>
+</ul></li>
+</ul>
+<p><strong>Finding positions of extreme values</strong></p>
+<ul>
+<li><code>data.argmin()</code> returns the index of the minimum value.
+<ul>
+<li>“arg” stands for “argument” (position or index).</li>
+<li>If the minimum value is 11 at index 9, this returns 9.</li>
+<li>Useful when you need to locate where the minimum occurs, not just its value.</li>
+</ul></li>
+<li><code>data.argmax()</code> returns the index of the maximum value.
+<ul>
+<li>Returns the position of the largest value in the array.</li>
+<li>Essential when the location of the maximum is as important as the value itself.</li>
+</ul></li>
+</ul>
+<p><strong>Cumulative operations</strong></p>
+<ul>
+<li><code>data.cumsum()</code> computes the cumulative sum.
+<ul>
+<li>Element i contains the sum of all elements from index 0 to index i.</li>
+<li>Example: if data is <code>[1, 2, 3]</code>, cumsum is <code>[1, 3, 6]</code>
+<ul>
+<li>First element: 1</li>
+<li>Second element: 1 + 2 = 3</li>
+<li>Third element: 1 + 2 + 3 = 6</li>
+</ul></li>
+<li>Useful for computing running totals, analyzing trends, and implementing random walks.</li>
+</ul></li>
+</ul>
+</section>
+<section id="operations-on-multidimensional-arrays-axis-argument" class="level2">
+<h2 class="anchored" data-anchor-id="operations-on-multidimensional-arrays-axis-argument">Operations on Multidimensional Arrays: Axis Argument</h2>
+<p>Statistical operations on multidimensional arrays can be performed along specific dimensions using the <code>axis</code> parameter. This allows you to compute statistics separately for different slices of your data. For example, consider a dataset tracking daily sales for multiple stores. You might want to know the total sales for each store (summing across days), the total sales for each day (summing across stores), or the overall total (summing everything). The <code>axis</code> parameter controls which dimension is collapsed during the calculation. Understanding how axis works is fundamental to working effectively with multidimensional data.</p>
+<p>In the following example, we’ll work with sales data for three stores over four days. Each row represents a store, and each column represents a day.</p>
+<div id="48848b07" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sales data: 3 stores, 4 days</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>sales <span class="op">=</span> np.array([</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">130</span>, <span class="dv">145</span>],  <span class="co"># Store A</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">100</span>, <span class="dv">110</span>, <span class="dv">105</span>, <span class="dv">115</span>],  <span class="co"># Store B</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">140</span>, <span class="dv">135</span>, <span class="dv">145</span>, <span class="dv">150</span>]   <span class="co"># Store C</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sales data (stores × days):"</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sales)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape:"</span>, sales.shape)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Overall statistics</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Total sales across all stores and days:"</span>, sales.<span class="bu">sum</span>())</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average sale:"</span>, sales.mean())</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Per-store totals (sum across days)</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Total sales per store (sum across axis 1):"</span>, sales.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Per-day totals (sum across stores)</span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total sales per day (sum across axis 0):"</span>, sales.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Per-store averages</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Average daily sales per store:"</span>, sales.mean(axis<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sales data (stores × days):
+[[120 150 130 145]
+ [100 110 105 115]
+ [140 135 145 150]]
+Shape: (3, 4)
+
+Total sales across all stores and days: 1545
+Average sale: 128.75
+
+Total sales per store (sum across axis 1): [545 430 570]
+Total sales per day (sum across axis 0): [360 395 380 410]
+
+Average daily sales per store: [136.25 107.5  142.5 ]</code></pre>
+</div>
+</div>
+<p><strong>Understanding the axis parameter</strong></p>
+<ul>
+<li>For a 2D array with shape <code>(3, 4)</code>:
+<ul>
+<li>Axis 0 refers to the rows (the first dimension).</li>
+<li>Axis 1 refers to the columns (the second dimension).</li>
+</ul></li>
+</ul>
+<p><strong>Computing overall statistics</strong></p>
+<ul>
+<li><code>sales.sum()</code> with no axis parameter sums all elements.
+<ul>
+<li>All 12 values are added together.</li>
+<li>Returns a single number representing total sales across all stores and days.</li>
+</ul></li>
+<li><code>sales.mean()</code> calculates the average across all elements.
+<ul>
+<li>Divides the total sum by the number of elements (12).</li>
+</ul></li>
+</ul>
+<p><strong>Summing along axis 1 (across columns)</strong></p>
+<ul>
+<li><code>sales.sum(axis=1)</code> sums across the columns for each row.
+<ul>
+<li>For each store (row), all daily values are added together.</li>
+<li>The columns dimension is collapsed.</li>
+<li>Returns 3 values (one total per store).</li>
+<li>Think of this as “sum horizontally across each row.”</li>
+</ul></li>
+</ul>
+<p><strong>Summing along axis 0 (across rows)</strong></p>
+<ul>
+<li><code>sales.sum(axis=0)</code> sums across the rows for each column.
+<ul>
+<li>For each day (column), all store values are added together.</li>
+<li>The rows dimension is collapsed.</li>
+<li>Returns 4 values (one total per day).</li>
+<li>Think of this as “sum vertically down each column.”</li>
+</ul></li>
+</ul>
+<p><strong>Computing averages along an axis</strong></p>
+<ul>
+<li><code>sales.mean(axis=1)</code> calculates the average for each row.
+<ul>
+<li>Returns the average daily sales for each store.</li>
+<li>Result has 3 values (one per store).</li>
+</ul></li>
+</ul>
+<p><strong>Mental model for axis operations</strong></p>
+<p>The axis you specify is the dimension that gets collapsed or eliminated: - <code>axis=0</code>: Rows are collapsed, result retains the number of columns. - <code>axis=1</code>: Columns are collapsed, result retains the number of rows.</p>
+</section>
+<section id="boolean-array-methods" class="level2">
+<h2 class="anchored" data-anchor-id="boolean-array-methods">Boolean Array Methods</h2>
+<p>Boolean arrays, which contain True and False values, have specialized methods for testing conditions and counting occurrences. These methods allow you to quickly answer questions like “Does any element meet this condition?” or “Do all elements meet this condition?” without writing explicit loops. Additionally, because NumPy treats True as 1 and False as 0 in numerical contexts, you can use arithmetic operations like <code>sum()</code> to count how many elements satisfy a condition. These methods are particularly useful for data validation and quality assessment.</p>
+<div id="991b1163" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> np.array([<span class="dv">85</span>, <span class="dv">92</span>, <span class="dv">78</span>, <span class="dv">95</span>, <span class="dv">88</span>, <span class="dv">73</span>, <span class="dv">90</span>, <span class="dv">87</span>])</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Scores:"</span>, scores)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create boolean array</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>passed <span class="op">=</span> scores <span class="op">&gt;=</span> <span class="dv">80</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Passed (&gt;=80):"</span>, passed)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if any student passed</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Did anyone pass?"</span>, passed.<span class="bu">any</span>())</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if all students passed</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Did everyone pass?"</span>, passed.<span class="bu">all</span>())</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Count how many passed</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number who passed:"</span>, passed.<span class="bu">sum</span>())</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentage who passed</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage who passed:"</span>, passed.<span class="bu">sum</span>() <span class="op">/</span> <span class="bu">len</span>(scores) <span class="op">*</span> <span class="dv">100</span>, <span class="st">"%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Scores: [85 92 78 95 88 73 90 87]
+
+Passed (&gt;=80): [ True  True False  True  True False  True  True]
+Did anyone pass? True
+Did everyone pass? False
+Number who passed: 6
+Percentage who passed: 75.0 %</code></pre>
+</div>
+</div>
+<p><strong>Creating the boolean array</strong></p>
+<ul>
+<li><code>scores &gt;= 80</code> creates a boolean array by comparing each score to 80.
+<ul>
+<li>Result: <code>[True, True, False, True, True, False, True, True]</code></li>
+<li>Each True indicates a score of 80 or higher.</li>
+</ul></li>
+</ul>
+<p><strong>Testing for any True value</strong></p>
+<ul>
+<li><code>passed.any()</code> returns True if at least one element is True.
+<ul>
+<li>Answers the question: “Is there any True value in this array?”</li>
+<li>Useful for checking if a condition is met at least once.</li>
+<li>Returns True in this case because at least one student passed.</li>
+</ul></li>
+</ul>
+<p><strong>Testing if all values are True</strong></p>
+<ul>
+<li><code>passed.all()</code> returns True only if every element is True.
+<ul>
+<li>Answers the question: “Are all values True?”</li>
+<li>Returns False in this case because not all scores are ≥ 80.</li>
+<li>Useful for validation checks where all conditions must be satisfied.</li>
+</ul></li>
+</ul>
+<p><strong>Counting True values</strong></p>
+<ul>
+<li><code>passed.sum()</code> counts how many True values exist in the array.
+<ul>
+<li>In numerical operations, True is treated as 1 and False as 0.</li>
+<li>Summing a boolean array effectively counts the True values.</li>
+<li>Result: 6 (six students passed).</li>
+</ul></li>
+</ul>
+<p><strong>Calculating percentages</strong></p>
+<ul>
+<li><code>passed.sum() / len(scores) * 100</code> calculates the percentage of True values.
+<ul>
+<li>Divides the count of True values by the total number of elements.</li>
+<li>Multiplies by 100 to convert to a percentage.</li>
+<li>Shows what fraction of students passed the threshold.</li>
+</ul></li>
+</ul>
+</section>
+<section id="sorting" class="level2">
+<h2 class="anchored" data-anchor-id="sorting">Sorting</h2>
+<p>NumPy provides efficient sorting capabilities for arrays, with options to either create a sorted copy or sort an array in place. Understanding the different sorting methods is important for organizing data and implementing algorithms that require sorted inputs. NumPy also provides the ability to obtain the indices that would sort an array, which is useful when you need to sort multiple related arrays in the same order or when you need to track the original positions of elements after sorting.</p>
+<div id="ef1e014f" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">4</span>])</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Original:"</span>, data)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort (returns new array)</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>sorted_data <span class="op">=</span> np.sort(data)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sorted (np.sort):"</span>, sorted_data)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Original unchanged:"</span>, data)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort in place (modifies original)</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>data.sort()</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"After data.sort():"</span>, data)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Find sorted indices</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> np.array([<span class="dv">30</span>, <span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">40</span>])</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> data2.argsort()</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Original:"</span>, data2)</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sorted indices:"</span>, indices)</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Values in sorted order:"</span>, data2[indices])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Original: [3 7 1 9 2 8 4]
+Sorted (np.sort): [1 2 3 4 7 8 9]
+Original unchanged: [3 7 1 9 2 8 4]
+After data.sort(): [1 2 3 4 7 8 9]
+
+Original: [30 10 50 20 40]
+Sorted indices: [1 3 0 4 2]
+Values in sorted order: [10 20 30 40 50]</code></pre>
+</div>
+</div>
+<p><strong>Two approaches to sorting</strong></p>
+<ul>
+<li><code>np.sort(data)</code> returns a new sorted array.
+<ul>
+<li>Creates a copy of the data in sorted order.</li>
+<li>The original array remains unchanged.</li>
+<li>Use this approach when you need to preserve the original order for later use.</li>
+</ul></li>
+<li><code>data.sort()</code> sorts the array in place.
+<ul>
+<li>Modifies the original array directly.</li>
+<li>Does not return a value (returns <code>None</code>).</li>
+<li>Faster and more memory-efficient than <code>np.sort()</code> because no copy is created.</li>
+<li>Use this approach when you no longer need the original order.</li>
+</ul></li>
+</ul>
+<p><strong>Finding the sort order with argsort</strong></p>
+<ul>
+<li><code>data2.argsort()</code> returns the indices that would sort the array.
+<ul>
+<li>Does not sort the array itself.</li>
+<li>Returns an array of indices: <code>[1, 3, 0, 4, 2]</code></li>
+<li>This means: to sort the array, take element at index 1 first (value 10), then index 3 (value 20), then index 0 (value 30), and so on.</li>
+<li>Useful when you need to sort multiple related arrays in the same order, or when you need to track original positions.</li>
+</ul></li>
+</ul>
+<p><strong>Using sorted indices for fancy indexing</strong></p>
+<ul>
+<li><code>data2[indices]</code> uses the sorted indices to reorder the array.
+<ul>
+<li>This is an example of fancy indexing (using an array of indices to select elements).</li>
+<li>Result: <code>[10, 20, 30, 40, 50]</code> (values in sorted order)</li>
+<li>The original <code>data2</code> array remains unchanged.</li>
+</ul></li>
+</ul>
+</section>
+<section id="unique-values-and-set-operations" class="level2">
+<h2 class="anchored" data-anchor-id="unique-values-and-set-operations">Unique Values and Set Operations</h2>
+<p>NumPy provides functions for identifying unique values in arrays and performing mathematical set operations like union, intersection, and difference. These operations are essential for data cleaning (removing duplicates), frequency analysis (counting occurrences), and comparing datasets. Set operations treat arrays as collections of distinct elements, similar to mathematical sets, allowing you to identify commonalities and differences between datasets. All set operation functions automatically sort their results.</p>
+<div id="f278da54" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array with duplicates</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> np.array([<span class="st">'Alice'</span>, <span class="st">'Bob'</span>, <span class="st">'Alice'</span>, <span class="st">'Charlie'</span>, <span class="st">'Bob'</span>, <span class="st">'Alice'</span>])</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Names:"</span>, names)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Unique names:"</span>, np.unique(names))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Unique with counts</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>])</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>unique_vals, counts <span class="op">=</span> np.unique(values, return_counts<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Values:"</span>, values)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Unique values:"</span>, unique_vals)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Counts:"</span>, counts)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Set operations</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>])</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Array 1:"</span>, arr1)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array 2:"</span>, arr2)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Intersection (both):"</span>, np.intersect1d(arr1, arr2))</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Union (either):"</span>, np.union1d(arr1, arr2))</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Set difference (in arr1, not arr2):"</span>, np.setdiff1d(arr1, arr2))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Names: ['Alice' 'Bob' 'Alice' 'Charlie' 'Bob' 'Alice']
+Unique names: ['Alice' 'Bob' 'Charlie']
+
+Values: [1 2 2 3 3 3 4 4 4 4]
+Unique values: [1 2 3 4]
+Counts: [1 2 3 4]
+
+Array 1: [1 2 3 4 5]
+Array 2: [3 4 5 6 7]
+Intersection (both): [3 4 5]
+Union (either): [1 2 3 4 5 6 7]
+Set difference (in arr1, not arr2): [1 2]</code></pre>
+</div>
+</div>
+<p><strong>Finding unique values</strong></p>
+<ul>
+<li><code>np.unique(names)</code> returns the distinct values in sorted order.
+<ul>
+<li>Removes all duplicate entries.</li>
+<li>Automatically sorts the results alphabetically (or numerically for numbers).</li>
+<li>Result: <code>['Alice', 'Bob', 'Charlie']</code></li>
+</ul></li>
+</ul>
+<p><strong>Finding unique values with frequency counts</strong></p>
+<ul>
+<li><code>np.unique(values, return_counts=True)</code> returns both unique values and their frequencies.
+<ul>
+<li>Returns two arrays: unique values and their counts.</li>
+<li>Tuple unpacking is used to assign both arrays: <code>unique_vals, counts = ...</code></li>
+<li><code>unique_vals</code> contains <code>[1, 2, 3, 4]</code> (the distinct values)</li>
+<li><code>counts</code> contains <code>[1, 2, 3, 4]</code> (how many times each value appears)</li>
+<li>This creates a frequency distribution, useful for understanding data composition.</li>
+</ul></li>
+</ul>
+<p><strong>Set intersection</strong></p>
+<ul>
+<li><code>np.intersect1d(arr1, arr2)</code> finds values present in both arrays.
+<ul>
+<li>“1d” indicates it treats arrays as flat (1-dimensional) sets regardless of original shape.</li>
+<li>Result: <code>[3, 4, 5]</code> (values that appear in both arrays)</li>
+<li>Equivalent to the mathematical intersection operation (∩).</li>
+</ul></li>
+</ul>
+<p><strong>Set union</strong></p>
+<ul>
+<li><code>np.union1d(arr1, arr2)</code> combines all unique values from both arrays.
+<ul>
+<li>Like the mathematical union of two sets (∪).</li>
+<li>Result: <code>[1, 2, 3, 4, 5, 6, 7]</code> (all distinct values from both arrays)</li>
+<li>Duplicates between arrays are included only once.</li>
+</ul></li>
+</ul>
+<p><strong>Set difference</strong></p>
+<ul>
+<li><code>np.setdiff1d(arr1, arr2)</code> finds values in the first array but not the second.
+<ul>
+<li>Performs the set difference operation (A - B).</li>
+<li>Result: <code>[1, 2]</code> (values in arr1 that are not in arr2)</li>
+<li>Order matters: <code>np.setdiff1d(arr2, arr1)</code> would give <code>[6, 7]</code>.</li>
+</ul></li>
+</ul>
+<p>Here’s the revised section with a textbook-style introduction:</p>
+<hr>
+</section>
+<section id="conditional-logic-np.where" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-logic-np.where">Conditional Logic: np.where</h2>
+<p>The <code>np.where</code> function provides vectorized conditional logic, functioning as an element-wise if-else statement for arrays. This function eliminates the need for explicit loops when applying conditional transformations to data. <code>np.where</code> can be used in two ways: to find the indices where a condition is true, or to select values based on a condition. The function supports nested conditions for complex multi-case logic. Understanding <code>np.where</code> is essential for data transformation tasks like categorization, conditional replacement, and implementing business rules across datasets.</p>
+<div id="f118e945" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> np.array([<span class="dv">85</span>, <span class="dv">92</span>, <span class="dv">78</span>, <span class="dv">95</span>, <span class="dv">88</span>, <span class="dv">73</span>, <span class="dv">90</span>, <span class="dv">67</span>])</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple use: where is condition True?</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Scores:"</span>, scores)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>high_score_indices <span class="op">=</span> np.where(scores <span class="op">&gt;=</span> <span class="dv">90</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Indices where score &gt;= 90:"</span>, high_score_indices)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Most common use: conditional selection</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> np.where(scores <span class="op">&gt;=</span> <span class="dv">80</span>, <span class="st">'Pass'</span>, <span class="st">'Fail'</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Grades:"</span>, grades)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Nested conditions</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>letter_grades <span class="op">=</span> np.where(scores <span class="op">&gt;=</span> <span class="dv">90</span>, <span class="st">'A'</span>,</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>                np.where(scores <span class="op">&gt;=</span> <span class="dv">80</span>, <span class="st">'B'</span>,</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>                np.where(scores <span class="op">&gt;=</span> <span class="dv">70</span>, <span class="st">'C'</span>, <span class="st">'F'</span>)))</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Letter grades:"</span>, letter_grades)</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Using arrays for true/false values</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>bonuses <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">25</span>, <span class="dv">18</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">8</span>])</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>final_scores <span class="op">=</span> np.where(scores <span class="op">&gt;=</span> <span class="dv">90</span>, scores <span class="op">+</span> bonuses, scores)</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Original scores:"</span>, scores)</span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"With bonuses (for scores &gt;= 90):"</span>, final_scores)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Scores: [85 92 78 95 88 73 90 67]
+Indices where score &gt;= 90: (array([1, 3, 6]),)
+
+Grades: ['Pass' 'Pass' 'Fail' 'Pass' 'Pass' 'Fail' 'Pass' 'Fail']
+Letter grades: ['B' 'A' 'C' 'A' 'B' 'C' 'A' 'F']
+
+Original scores: [85 92 78 95 88 73 90 67]
+With bonuses (for scores &gt;= 90): [ 85 112  78 120  88  73 112  67]</code></pre>
+</div>
+</div>
+<p><strong>Finding indices where a condition is true</strong></p>
+<ul>
+<li><code>np.where(scores &gt;= 90)</code> with only a condition argument returns indices.
+<ul>
+<li>Returns a tuple containing an array of indices where the condition is True.</li>
+<li>Shows the positions where the condition is satisfied.</li>
+<li>Useful for locating elements that meet criteria rather than extracting their values.</li>
+</ul></li>
+</ul>
+<p><strong>Conditional value selection</strong></p>
+<ul>
+<li><code>np.where(condition, value_if_true, value_if_false)</code> implements vectorized if-else logic.
+<ul>
+<li>First argument: boolean condition to evaluate element-wise</li>
+<li>Second argument: value to use where condition is True</li>
+<li>Third argument: value to use where condition is False</li>
+<li>Result: array with ‘Pass’ where score &gt;= 80, ‘Fail’ otherwise</li>
+<li>This is the most common use case for <code>np.where</code>.</li>
+</ul></li>
+</ul>
+<p><strong>Nested conditions for multiple cases</strong></p>
+<ul>
+<li>Multiple <code>np.where</code> calls can be nested to handle more than two cases.
+<ul>
+<li>Outer condition: if score &gt;= 90, assign ‘A’</li>
+<li>First nested condition: else if score &gt;= 80, assign ‘B’</li>
+<li>Second nested condition: else if score &gt;= 70, assign ‘C’</li>
+<li>Final else: assign ‘F’</li>
+<li>This creates a complete grading scale with four categories.</li>
+<li>Each condition is evaluated only for elements that failed previous conditions.</li>
+</ul></li>
+</ul>
+<p><strong>Using arrays as conditional values</strong></p>
+<ul>
+<li><code>np.where(scores &gt;= 90, scores + bonuses, scores)</code> uses arrays for both true and false values.
+<ul>
+<li>If score &gt;= 90: return the score plus the corresponding bonus from the <code>bonuses</code> array</li>
+<li>Otherwise: return the original score</li>
+<li>Both <code>scores + bonuses</code> and <code>scores</code> are arrays of the same shape.</li>
+<li>NumPy selects from the appropriate array element-wise based on the condition.</li>
+<li>This allows for complex conditional transformations where the replacement values vary.</li>
+</ul></li>
+</ul>
+</section>
+<section id="random-number-generation" class="level2">
+<h2 class="anchored" data-anchor-id="random-number-generation">Random Number Generation</h2>
+<p>NumPy provides comprehensive tools for generating random numbers from various probability distributions. Random number generation is fundamental to simulations, statistical sampling, hypothesis testing, and creating synthetic datasets for algorithm development and testing. NumPy’s random module includes functions for generating uniform random numbers, normally distributed values, random integers, and random samples from existing arrays. Understanding how to control randomness through seeds and how to select appropriate distributions is essential for reproducible scientific computing.</p>
+<div id="5000ff99" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Random floats between 0 and 1</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>random_floats <span class="op">=</span> np.random.rand(<span class="dv">5</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Random floats [0, 1):"</span>, random_floats)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Random integers</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>random_ints <span class="op">=</span> np.random.randint(<span class="dv">1</span>, <span class="dv">100</span>, size<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Random integers [1, 100):"</span>, random_ints)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Normal distribution (mean=0, std=1)</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>normal_data <span class="op">=</span> np.random.randn(<span class="dv">8</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Normal distribution:"</span>, normal_data)</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Normal with custom mean and std</span></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>custom_normal <span class="op">=</span> np.random.normal(<span class="dv">100</span>, <span class="dv">15</span>, size<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Normal (mean=100, std=15):"</span>, custom_normal)</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Random choice from an array</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>choices <span class="op">=</span> np.array([<span class="st">'red'</span>, <span class="st">'blue'</span>, <span class="st">'green'</span>, <span class="st">'yellow'</span>])</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>picked <span class="op">=</span> np.random.choice(choices, size<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Random choices:"</span>, picked)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Random floats [0, 1): [0.37454012 0.95071431 0.73199394 0.59865848 0.15601864]
+
+Random integers [1, 100): [83 87 75 75 88 24  3 22 53  2]
+
+Normal distribution: [ 0.23309524  0.11799461  1.46237812  1.53871497 -2.43910582  0.60344123
+ -0.25104397 -0.16386712]
+
+Normal (mean=100, std=15): [ 77.8550546  122.30471437  99.63317234 105.33326976 106.25516664]
+
+Random choices: ['red' 'green' 'blue' 'yellow' 'red' 'yellow' 'blue' 'blue' 'blue' 'red']</code></pre>
+</div>
+</div>
+<p><strong>Setting the random seed for reproducibility</strong></p>
+<ul>
+<li><code>np.random.seed(42)</code> sets the starting point for the random number generator.
+<ul>
+<li>Using the same seed produces the same sequence of “random” numbers.</li>
+<li>This makes code reproducible (same results every time the code runs).</li>
+<li>The number 42 is arbitrary and can be any integer.</li>
+<li>Without setting a seed, different results are produced on each run.</li>
+<li>Essential for debugging, testing, and sharing reproducible analyses.</li>
+</ul></li>
+</ul>
+<p><strong>Generating uniform random numbers</strong></p>
+<ul>
+<li><code>np.random.rand(5)</code> generates random floats from a uniform distribution between 0 and 1.
+<ul>
+<li>Each value has equal probability (uniform distribution).</li>
+<li>Values are in the range [0, 1), which includes 0 but excludes 1.</li>
+<li>The argument specifies how many values to generate.</li>
+<li>Useful for general-purpose randomness and probability simulations.</li>
+</ul></li>
+</ul>
+<p><strong>Generating random integers</strong></p>
+<ul>
+<li><code>np.random.randint(1, 100, size=10)</code> generates random integers within a specified range.
+<ul>
+<li>First argument: lower bound (inclusive)</li>
+<li>Second argument: upper bound (exclusive)</li>
+<li><code>size=10</code> specifies to generate 10 values</li>
+<li>Result: integers from 1 to 99</li>
+<li>Useful for creating discrete random selections and indices.</li>
+</ul></li>
+</ul>
+<p><strong>Generating from the standard normal distribution</strong></p>
+<ul>
+<li><code>np.random.randn(8)</code> generates values from the standard normal distribution.
+<ul>
+<li>Mean = 0, standard deviation = 1</li>
+<li>“randn” stands for “random normal”</li>
+<li>Most values cluster around 0, with fewer values farther away.</li>
+<li>The distribution has the characteristic bell curve shape.</li>
+</ul></li>
+</ul>
+<p><strong>Generating from a custom normal distribution</strong></p>
+<ul>
+<li><code>np.random.normal(100, 15, size=5)</code> generates values from a normal distribution with specified parameters.
+<ul>
+<li>First argument: mean (center of the distribution)</li>
+<li>Second argument: standard deviation (spread or width of the distribution)</li>
+<li><code>size=5</code> specifies how many values to generate</li>
+<li>Useful for simulating real-world measurements like heights, test scores, or measurement errors.</li>
+</ul></li>
+</ul>
+<p><strong>Random sampling from an array</strong></p>
+<ul>
+<li><code>np.random.choice(choices, size=10)</code> randomly selects elements from an existing array.
+<ul>
+<li>Selects elements from the provided array.</li>
+<li><code>size=10</code> means make 10 selections.</li>
+<li>By default, sampling is with replacement (values can repeat).</li>
+<li>Use <code>replace=False</code> parameter for sampling without replacement (each element selected at most once).</li>
+<li>Useful for bootstrap sampling and creating random datasets from existing categories.</li>
+</ul></li>
+</ul>
+</section>
+<section id="file-input-and-output-with-numpy" class="level2">
+<h2 class="anchored" data-anchor-id="file-input-and-output-with-numpy">File Input and Output with NumPy</h2>
+<p>NumPy provides functions for saving arrays to disk and loading them back into memory, enabling persistent storage of numerical data between program executions. NumPy supports two primary file formats: a binary format (<code>.npy</code>) optimized for NumPy arrays, and text-based formats for interoperability with other tools. Binary format preserves data types exactly and offers faster read/write speeds, while text formats provide human readability and compatibility with spreadsheet applications and other programming languages. Choosing the appropriate format depends on your use case and whether interoperability or performance is the priority.</p>
+<div id="b80aec2e" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">"data"</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sample data</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]])</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to binary format (.npy)</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>np.save(<span class="st">'data/my_array.npy'</span>, data)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Saved to my_array.npy"</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Load from binary format</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>loaded <span class="op">=</span> np.load(<span class="st">'data/my_array.npy'</span>)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loaded from .npy file:"</span>)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(loaded)</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to text file</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>np.savetxt(<span class="st">'data/my_array.txt'</span>, data, fmt<span class="op">=</span><span class="st">'</span><span class="sc">%d</span><span class="st">'</span>, delimiter<span class="op">=</span><span class="st">','</span>)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Saved to my_array.txt (CSV format)"</span>)</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Load from text file</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>loaded_txt <span class="op">=</span> np.loadtxt(<span class="st">'data/my_array.txt'</span>, delimiter<span class="op">=</span><span class="st">','</span>)</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loaded from .txt file:"</span>)</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(loaded_txt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Saved to my_array.npy
+Loaded from .npy file:
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+
+Saved to my_array.txt (CSV format)
+Loaded from .txt file:
+[[1. 2. 3.]
+ [4. 5. 6.]
+ [7. 8. 9.]]</code></pre>
+</div>
+</div>
+<p><strong>Setting up the file system</strong></p>
+<ul>
+<li><code>import os</code> imports Python’s operating system module.</li>
+<li><code>os.makedirs("data", exist_ok=True)</code> creates a directory named “data”.
+<ul>
+<li><code>exist_ok=True</code> prevents an error if the directory already exists.</li>
+<li>Ensures the destination directory exists before saving files.</li>
+</ul></li>
+</ul>
+<p><strong>Binary format (.npy files)</strong></p>
+<ul>
+<li><code>np.save('data/my_array.npy', data)</code> saves the array in NumPy’s binary format.
+<ul>
+<li>The <code>.npy</code> extension is conventional for NumPy binary files.</li>
+<li>Binary format is fast and preserves all data types exactly.</li>
+<li>Requires less disk space than text format due to compact binary representation.</li>
+<li>Files are not human-readable and can only be read by NumPy.</li>
+</ul></li>
+<li><code>np.load('data/my_array.npy')</code> loads a binary file back into an array.
+<ul>
+<li>Returns an array identical to the original (same shape, dtype, and values).</li>
+<li>Fast loading operation suitable for large datasets.</li>
+</ul></li>
+</ul>
+<p><strong>Text format (CSV and other delimited formats)</strong></p>
+<ul>
+<li><code>np.savetxt('data/my_array.txt', data, fmt='%d', delimiter=',')</code> saves the array as text.
+<ul>
+<li><code>fmt='%d'</code> specifies integer formatting using C-style format specifiers (use <code>'%.2f'</code> for floating-point values with 2 decimal places, <code>'%.6e'</code> for scientific notation).</li>
+<li><code>delimiter=','</code> creates comma-separated values (CSV format).</li>
+<li>Results in a human-readable text file that can be opened in text editors or spreadsheet applications.</li>
+<li>Slower and uses more disk space than binary format.</li>
+</ul></li>
+<li><code>np.loadtxt('data/my_array.txt', delimiter=',')</code> loads a text file into an array.
+<ul>
+<li><code>delimiter=','</code> specifies that values are comma-separated.</li>
+<li>Can also read space-separated (default) or tab-separated files by changing the delimiter.</li>
+<li>Returns an array with inferred dtype (typically float64 even if the original data was integer).</li>
+</ul></li>
+</ul>
+<p><strong>Choosing the appropriate format</strong></p>
+<p>Use binary format (<code>.npy</code>) for: - Intermediate data storage within your own analysis workflows - Large datasets where performance and disk space matter - Preserving exact data types and precision</p>
+<p>Use text format for: - Sharing data with non-Python tools (Excel, R, MATLAB, etc.) - Creating human-readable output for inspection - Interoperability when the receiving system cannot read NumPy binary files</p>
+<p><strong>Key Takeaways:</strong> 1. NumPy is 10-100x faster than pure Python for numerical operations 2. Vectorization (avoiding loops) is the key to writing fast NumPy code 3. NumPy is the foundation for pandas, matplotlib, scikit-learn, and most scientific Python</p>
+<p><strong>Relationship to Pandas:</strong> - Chapter 5 introduces pandas, which builds on NumPy arrays - Pandas adds labeled rows/columns (like a spreadsheet) and higher-level data manipulation - The concepts learned here transfer directly to pandas DataFrames</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/SCTCC-Computer-Programming\.github\.io\/cmsc-1217\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
