@@ -4,104 +4,124 @@
     "href": "weekly-overview/week-03/index.html",
     "title": "Week 3 Guide",
     "section": "",
-    "text": "This week marks a shift from working with standard Python structures (lists, dictionaries, loops) to working with NumPy arrays—specialized structures designed for numerical computation. In Week 2, you processed data row-by-row using loops and built-in Python operations. That workflow is powerful for learning fundamentals, but it becomes slow and verbose when working with large numerical datasets.\nNumPy changes how you think about data work. Instead of looping over individual values, you write operations that apply to entire collections at once. This approach, called vectorization, produces faster code that often reads more like mathematical notation than traditional programming.\nThe Week 3 demo walks through the core NumPy patterns: creating arrays, understanding their structure, performing operations without loops, selecting subsets using conditions, and computing statistics. These patterns become the foundation for everything that follows. Pandas (which you will learn next) is built on top of NumPy arrays, and understanding how arrays work makes pandas much easier to learn.\n📓 Week 3 Demo:",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 3(Current)"
-    ]
+    "text": "This week marks a shift from working with standard Python structures (lists, dictionaries, loops) to working with NumPy arrays—specialized structures designed for numerical computation. In Week 2, you processed data row-by-row using loops and built-in Python operations. That workflow is powerful for learning fundamentals, but it becomes slow and verbose when working with large numerical datasets.\nNumPy changes how you think about data work. Instead of looping over individual values, you write operations that apply to entire collections at once. This approach, called vectorization, produces faster code that often reads more like mathematical notation than traditional programming.\nThe Week 3 demo walks through the core NumPy patterns: creating arrays, understanding their structure, performing operations without loops, selecting subsets using conditions, and computing statistics. These patterns become the foundation for everything that follows. Pandas (which you will learn next) is built on top of NumPy arrays, and understanding how arrays work makes pandas much easier to learn.\n📓 Week 3 Demo:"
   },
   {
     "objectID": "weekly-overview/week-03/index.html#chapter-4-concepts-used-this-week",
     "href": "weekly-overview/week-03/index.html#chapter-4-concepts-used-this-week",
     "title": "Week 3 Guide",
     "section": "Chapter 4 concepts used this week",
-    "text": "Chapter 4 concepts used this week\n\nArrays and vectorization\nThe ndarray (n-dimensional array) is NumPy’s core data structure. Unlike Python lists, arrays store homogeneous data (all the same type) in contiguous memory, which enables fast operations. The key conceptual shift is vectorization—writing operations that apply to entire arrays at once instead of looping over elements. This makes code faster, more readable, and often more concise.\n\n\nData types and array creation\nEvery array has a dtype (data type) that determines how elements are stored. NumPy provides multiple ways to create arrays: converting from lists, generating arrays filled with specific values (zeros, ones), creating ranges, or generating random data. Understanding when to use each method is part of building an effective workflow.\n\n\nIndexing, slicing, and views\nNumPy extends Python’s indexing syntax to work with multidimensional arrays. One critical difference: slices are views, not copies. Modifying a slice modifies the original array. This improves performance but requires attention when you need independent copies.\n\n\nBoolean indexing\nBoolean indexing replaces loops-with-conditions. You create a boolean array by applying a comparison (data &gt; threshold), then use it to select matching elements (data[data &gt; threshold]). This pattern is fundamental to filtering data in NumPy and pandas.\n\n\nStatistical operations and the axis parameter\nNumPy provides methods for computing statistics (mean, sum, standard deviation, etc.) on entire arrays or along specific dimensions using the axis parameter. Understanding how axis works is essential: axis=0 collapses rows (operates down columns), axis=1 collapses columns (operates across rows).\n\n\nSorting, unique values, and file I/O\nChapter 4 covers sorting arrays (in-place vs. returning sorted copies), finding unique elements, and saving/loading arrays in binary (.npy) or text format. These operations are common in data-cleaning and analysis workflows.\n\n\nRandom number generation\nGenerating random data is fundamental for testing code and simulations. NumPy provides functions for various distributions and for sampling from arrays. Setting random seeds ensures reproducibility—the same seed produces the same sequence of random values every time.",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 3(Current)"
-    ]
+    "text": "Chapter 4 concepts used this week\n\nArrays and vectorization\nThe ndarray (n-dimensional array) is NumPy’s core data structure. Unlike Python lists, arrays store homogeneous data (all the same type) in contiguous memory, which enables fast operations. The key conceptual shift is vectorization—writing operations that apply to entire arrays at once instead of looping over elements. This makes code faster, more readable, and often more concise.\n\n\nData types and array creation\nEvery array has a dtype (data type) that determines how elements are stored. NumPy provides multiple ways to create arrays: converting from lists, generating arrays filled with specific values (zeros, ones), creating ranges, or generating random data. Understanding when to use each method is part of building an effective workflow.\n\n\nIndexing, slicing, and views\nNumPy extends Python’s indexing syntax to work with multidimensional arrays. One critical difference: slices are views, not copies. Modifying a slice modifies the original array. This improves performance but requires attention when you need independent copies.\n\n\nBoolean indexing\nBoolean indexing replaces loops-with-conditions. You create a boolean array by applying a comparison (data &gt; threshold), then use it to select matching elements (data[data &gt; threshold]). This pattern is fundamental to filtering data in NumPy and pandas.\n\n\nStatistical operations and the axis parameter\nNumPy provides methods for computing statistics (mean, sum, standard deviation, etc.) on entire arrays or along specific dimensions using the axis parameter. Understanding how axis works is essential: axis=0 collapses rows (operates down columns), axis=1 collapses columns (operates across rows).\n\n\nSorting, unique values, and file I/O\nChapter 4 covers sorting arrays (in-place vs. returning sorted copies), finding unique elements, and saving/loading arrays in binary (.npy) or text format. These operations are common in data-cleaning and analysis workflows.\n\n\nRandom number generation\nGenerating random data is fundamental for testing code and simulations. NumPy provides functions for various distributions and for sampling from arrays. Setting random seeds ensures reproducibility—the same seed produces the same sequence of random values every time."
   },
   {
     "objectID": "weekly-overview/week-03/index.html#reading-expectations-for-week-3",
     "href": "weekly-overview/week-03/index.html#reading-expectations-for-week-3",
     "title": "Week 3 Guide",
     "section": "Reading expectations for Week 3",
-    "text": "Reading expectations for Week 3\nAs you read Chapter 4 and work through the demo, check whether you can explain the following in your own words:\n\nWhat is the difference between a Python list and a NumPy array?\nWhat does vectorization mean, and why does it make code faster?\nWhat is a dtype, and why does it matter?\nWhat is the difference between a view and a copy of an array?\nHow does boolean indexing work, and what does it replace?\nWhat does the axis parameter control in aggregation functions like sum() or mean()?\nWhen would you use .sort() versus np.sort()?\nWhat is the difference between saving arrays in .npy format versus text format?\nWhat does setting a random seed accomplish?",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 3(Current)"
-    ]
+    "text": "Reading expectations for Week 3\nAs you read Chapter 4 and work through the demo, check whether you can explain the following in your own words:\n\nWhat is the difference between a Python list and a NumPy array?\nWhat does vectorization mean, and why does it make code faster?\nWhat is a dtype, and why does it matter?\nWhat is the difference between a view and a copy of an array?\nHow does boolean indexing work, and what does it replace?\nWhat does the axis parameter control in aggregation functions like sum() or mean()?\nWhen would you use .sort() versus np.sort()?\nWhat is the difference between saving arrays in .npy format versus text format?\nWhat does setting a random seed accomplish?"
   },
   {
     "objectID": "weekly-overview/week-03/index.html#week-3-tasks",
     "href": "weekly-overview/week-03/index.html#week-3-tasks",
     "title": "Week 3 Guide",
     "section": "Week 3 tasks",
-    "text": "Week 3 tasks\n\nRead Chapter 4 (complete).\nWork through the Week 3 demo in your Jupyter environment.\nComplete the Week 3 D2L quiz (Chapter 4 concepts).",
-    "crumbs": [
-      "Home",
-      "Weekly Overview",
-      "Week 3(Current)"
-    ]
+    "text": "Week 3 tasks\n\nRead Chapter 4 (complete).\nWork through the Week 3 demo in your Jupyter environment.\nComplete the Week 3 D2L quiz (Chapter 4 concepts)."
   },
   {
     "objectID": "weekly-overview/week-01/index.html",
     "href": "weekly-overview/week-01/index.html",
     "title": "Week 1 Guide",
     "section": "",
-    "text": "You are coming into this course with Python experience from Structured Programming Logic. That course focused on writing and running Python programs in a more traditional editor-and-console workflow.\nIn this course, you will still write Python, but the workspace will look different. We will use Jupyter notebooks as the main place to practice and show your work. A notebook combines explanation text, code, and output in one document, which makes it easier to follow examples, retry steps, and keep your work organized.\nWeek 1 is where you learn that workflow and get your course setup working. You will also be introduced to the tool ecosystem used throughout the textbook: pandas and NumPy for working with data, and matplotlib for basic plotting. Chapter 1 introduces this ecosystem and why it exists. Chapter 2 introduces notebooks and the interactive workflow.\nThis week is also a chance to get comfortable navigating the textbook and looking up unfamiliar terms. Do not be a passive learner. In an AI-driven environment, it is easy to copy an answer without understanding it, and it is also easy to get a confident answer that is wrong. Your job is to read, test, and confirm.\nSection 1.6 in the textbook is especially useful this week. It explains how to navigate the book, how to read the code examples, and the import conventions used throughout (for example, numpy as np and pandas as pd). Treat 1.6 as your guide for how to read and use the book effectively.\nOne note before you start comparing your output to the book: the book often shows examples in an interactive In/Out style. Your notebook output may look similar but not identical, and that is fine. Focus on whether your code produces the correct result, not whether the formatting matches perfectly."
+    "text": "You are coming into this course with Python experience from Structured Programming Logic. That course focused on writing and running Python programs in a more traditional editor-and-console workflow.\nIn this course, you will still write Python, but the workspace will look different. We will use Jupyter notebooks as the main place to practice and show your work. A notebook combines explanation text, code, and output in one document, which makes it easier to follow examples, retry steps, and keep your work organized.\nWeek 1 is where you learn that workflow and get your course setup working. You will also be introduced to the tool ecosystem used throughout the textbook: pandas and NumPy for working with data, and matplotlib for basic plotting. Chapter 1 introduces this ecosystem and why it exists. Chapter 2 introduces notebooks and the interactive workflow.\nThis week is also a chance to get comfortable navigating the textbook and looking up unfamiliar terms. Do not be a passive learner. In an AI-driven environment, it is easy to copy an answer without understanding it, and it is also easy to get a confident answer that is wrong. Your job is to read, test, and confirm.\nSection 1.6 in the textbook is especially useful this week. It explains how to navigate the book, how to read the code examples, and the import conventions used throughout (for example, numpy as np and pandas as pd). Treat 1.6 as your guide for how to read and use the book effectively.\nOne note before you start comparing your output to the book: the book often shows examples in an interactive In/Out style. Your notebook output may look similar but not identical, and that is fine. Focus on whether your code produces the correct result, not whether the formatting matches perfectly.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weekly-overview/week-01/index.html#week-1-focus",
     "href": "weekly-overview/week-01/index.html#week-1-focus",
     "title": "Week 1 Guide",
     "section": "",
-    "text": "You are coming into this course with Python experience from Structured Programming Logic. That course focused on writing and running Python programs in a more traditional editor-and-console workflow.\nIn this course, you will still write Python, but the workspace will look different. We will use Jupyter notebooks as the main place to practice and show your work. A notebook combines explanation text, code, and output in one document, which makes it easier to follow examples, retry steps, and keep your work organized.\nWeek 1 is where you learn that workflow and get your course setup working. You will also be introduced to the tool ecosystem used throughout the textbook: pandas and NumPy for working with data, and matplotlib for basic plotting. Chapter 1 introduces this ecosystem and why it exists. Chapter 2 introduces notebooks and the interactive workflow.\nThis week is also a chance to get comfortable navigating the textbook and looking up unfamiliar terms. Do not be a passive learner. In an AI-driven environment, it is easy to copy an answer without understanding it, and it is also easy to get a confident answer that is wrong. Your job is to read, test, and confirm.\nSection 1.6 in the textbook is especially useful this week. It explains how to navigate the book, how to read the code examples, and the import conventions used throughout (for example, numpy as np and pandas as pd). Treat 1.6 as your guide for how to read and use the book effectively.\nOne note before you start comparing your output to the book: the book often shows examples in an interactive In/Out style. Your notebook output may look similar but not identical, and that is fine. Focus on whether your code produces the correct result, not whether the formatting matches perfectly."
+    "text": "You are coming into this course with Python experience from Structured Programming Logic. That course focused on writing and running Python programs in a more traditional editor-and-console workflow.\nIn this course, you will still write Python, but the workspace will look different. We will use Jupyter notebooks as the main place to practice and show your work. A notebook combines explanation text, code, and output in one document, which makes it easier to follow examples, retry steps, and keep your work organized.\nWeek 1 is where you learn that workflow and get your course setup working. You will also be introduced to the tool ecosystem used throughout the textbook: pandas and NumPy for working with data, and matplotlib for basic plotting. Chapter 1 introduces this ecosystem and why it exists. Chapter 2 introduces notebooks and the interactive workflow.\nThis week is also a chance to get comfortable navigating the textbook and looking up unfamiliar terms. Do not be a passive learner. In an AI-driven environment, it is easy to copy an answer without understanding it, and it is also easy to get a confident answer that is wrong. Your job is to read, test, and confirm.\nSection 1.6 in the textbook is especially useful this week. It explains how to navigate the book, how to read the code examples, and the import conventions used throughout (for example, numpy as np and pandas as pd). Treat 1.6 as your guide for how to read and use the book effectively.\nOne note before you start comparing your output to the book: the book often shows examples in an interactive In/Out style. Your notebook output may look similar but not identical, and that is fine. Focus on whether your code produces the correct result, not whether the formatting matches perfectly.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weekly-overview/week-01/index.html#course-focus-and-expectations",
     "href": "weekly-overview/week-01/index.html#course-focus-and-expectations",
     "title": "Week 1 Guide",
     "section": "Course focus and expectations",
-    "text": "Course focus and expectations\nThis course is focused on the Python tools used to work with data. You will learn how to load data, inspect it, clean it, reshape it, summarize it, and visualize it. The emphasis is on building practical skill with the core libraries and the day-to-day workflow used in data work.\nThis course is not a statistics class. We are not spending the semester on statistical theory, inference, or formal methodology. When we use analytical ideas, it will be to support a tool we are learning and to help you interpret what your code produced. Think of this course as learning how to do the work in Python; your statistics elective covers more of the theory behind the methods."
+    "text": "Course focus and expectations\nThis course is focused on the Python tools used to work with data. You will learn how to load data, inspect it, clean it, reshape it, summarize it, and visualize it. The emphasis is on building practical skill with the core libraries and the day-to-day workflow used in data work.\nThis course is not a statistics class. We are not spending the semester on statistical theory, inference, or formal methodology. When we use analytical ideas, it will be to support a tool we are learning and to help you interpret what your code produced. Think of this course as learning how to do the work in Python; your statistics elective covers more of the theory behind the methods.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weekly-overview/week-01/index.html#core-tools-we-will-be-using",
     "href": "weekly-overview/week-01/index.html#core-tools-we-will-be-using",
     "title": "Week 1 Guide",
     "section": "Core tools we will be using",
-    "text": "Core tools we will be using\nThe course uses a small set of tools repeatedly. You do not need to master them in Week 1. You do need to recognize the names and understand what each tool is used for.\n\n\n\n\n\n\n\n\nTool\nWhat it is used for in this course\nWhen you will notice it\n\n\n\n\nNumPy\nWorking with numbers and arrays efficiently. It also supports many operations that pandas relies on.\nWhen you see import numpy as np, or when we work with numeric operations and arrays.\n\n\npandas\nWorking with tables (DataFrames): loading data, cleaning it, reshaping it, combining it, and summarizing it.\nMost weeks, because it is the main tool for manipulating data in this course.\n\n\nmatplotlib\nCreating plots so you can see patterns and communicate results.\nWhen we move into visualization, and whenever we need a chart to understand data.\n\n\nJupyter notebooks\nA workspace that keeps explanations, code, and output together. This is how you will practice and show your work.\nEvery week, since most work will be done and submitted in notebooks."
+    "text": "Core tools we will be using\nThe course uses a small set of tools repeatedly. You do not need to master them in Week 1. You do need to recognize the names and understand what each tool is used for.\n\n\n\n\n\n\n\n\nTool\nWhat it is used for in this course\nWhen you will notice it\n\n\n\n\nNumPy\nWorking with numbers and arrays efficiently. It also supports many operations that pandas relies on.\nWhen you see import numpy as np, or when we work with numeric operations and arrays.\n\n\npandas\nWorking with tables (DataFrames): loading data, cleaning it, reshaping it, combining it, and summarizing it.\nMost weeks, because it is the main tool for manipulating data in this course.\n\n\nmatplotlib\nCreating plots so you can see patterns and communicate results.\nWhen we move into visualization, and whenever we need a chart to understand data.\n\n\nJupyter notebooks\nA workspace that keeps explanations, code, and output together. This is how you will practice and show your work.\nEvery week, since most work will be done and submitted in notebooks.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weekly-overview/week-01/index.html#jupyter-notebooks",
     "href": "weekly-overview/week-01/index.html#jupyter-notebooks",
     "title": "Week 1 Guide",
     "section": "Jupyter notebooks",
-    "text": "Jupyter notebooks\nIn Structured Programming Logic, you typically wrote Python in a file and ran the whole program from start to finish. Each run started fresh.\nA Jupyter notebook is different. A notebook is a single document that mixes:\n\ntext (explanations and notes)\ncode (Python)\noutput (tables, printed results, charts)\n\nInstead of running one program from top to bottom every time, a notebook is built from cells. You run the notebook one cell at a time, in the order you choose.\nThis is powerful for learning and working with data because you can try something, see the result immediately, adjust it, and continue. The textbook discusses this interactive workflow and how notebooks fit into it.\nThe most important new idea is that the notebook runs in a live Python session. That session keeps everything you have already created (variables, imported libraries, data you loaded). If you run cells out of order, you can end up in a confusing state where your notebook depends on something you ran earlier but forgot to rerun.\nBecause of that, this course uses one consistent habit:\nRestart Kernel and Run All\nThat is how you confirm your notebook works from a clean start and in the correct order.\nNotebooks are a great learning tool, but they can also make it easy to skip real understanding. If you only change a few lines and press run, you can end up with working output without knowing why it works. Your goal in this class is not just to produce output, but to understand what your code is doing. When you use examples from the book, from a class notebook, or from AI, your job is to test small changes and confirm you still understand the result.\nUsing notebooks does not mean you are not writing code. You will still write Python in this course, but you will write it in smaller pieces and run it as you go. Many examples in the book are meant to be typed, run, and modified so you can see how changes affect the result. Chapter 2 discusses this interactive workflow and how to work effectively in notebooks."
+    "text": "Jupyter notebooks\nIn Structured Programming Logic, you typically wrote Python in a file and ran the whole program from start to finish. Each run started fresh.\nA Jupyter notebook is different. A notebook is a single document that mixes:\n\ntext (explanations and notes)\ncode (Python)\noutput (tables, printed results, charts)\n\nInstead of running one program from top to bottom every time, a notebook is built from cells. You run the notebook one cell at a time, in the order you choose.\nThis is powerful for learning and working with data because you can try something, see the result immediately, adjust it, and continue. The textbook discusses this interactive workflow and how notebooks fit into it.\nThe most important new idea is that the notebook runs in a live Python session. That session keeps everything you have already created (variables, imported libraries, data you loaded). If you run cells out of order, you can end up in a confusing state where your notebook depends on something you ran earlier but forgot to rerun.\nBecause of that, this course uses one consistent habit:\nRestart Kernel and Run All\nThat is how you confirm your notebook works from a clean start and in the correct order.\nNotebooks are a great learning tool, but they can also make it easy to skip real understanding. If you only change a few lines and press run, you can end up with working output without knowing why it works. Your goal in this class is not just to produce output, but to understand what your code is doing. When you use examples from the book, from a class notebook, or from AI, your job is to test small changes and confirm you still understand the result.\nUsing notebooks does not mean you are not writing code. You will still write Python in this course, but you will write it in smaller pieces and run it as you go. Many examples in the book are meant to be typed, run, and modified so you can see how changes affect the result. Chapter 2 discusses this interactive workflow and how to work effectively in notebooks.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weekly-overview/week-01/index.html#week-1-tasks",
     "href": "weekly-overview/week-01/index.html#week-1-tasks",
     "title": "Week 1 Guide",
     "section": "Week 1 tasks",
-    "text": "Week 1 tasks\nComplete the following this week:\n\nRead Chapters 1 and 2 in the textbook in full. Work through the examples and exercises as you read.\nFollow the guided setup videos to get your course environment setup.\nFollow the Week 1 assignment instructions.\nComplete the D2L quiz on Chapters 1 and 2."
+    "text": "Week 1 tasks\nComplete the following this week:\n\nRead Chapters 1 and 2 in the textbook in full. Work through the examples and exercises as you read.\nFollow the guided setup videos to get your course environment setup.\nFollow the Week 1 assignment instructions.\nComplete the D2L quiz on Chapters 1 and 2.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weekly-overview/week-01/index.html#chapter-overview-for-week-1",
     "href": "weekly-overview/week-01/index.html#chapter-overview-for-week-1",
     "title": "Week 1 Guide",
     "section": "Chapter overview for Week 1",
-    "text": "Chapter overview for Week 1\n\nChapter 1: Preliminaries\nChapter 1 sets the direction for the book and the course. It explains what the book is focused on, the kinds of structured data you will work with, and the core Python libraries used throughout. It also explains the conventions used in the book (especially import conventions) and how to read the code examples.\n\n\nChapter 2: Python Language Basics, IPython, and Jupyter Notebooks\nChapter 2 introduces the interactive workflow used in the book. It explains what notebooks are, how running code interactively differs from running a script, and how tools like tab completion and built-in help make it easier to explore unfamiliar code and data as you work."
+    "text": "Chapter overview for Week 1\n\nChapter 1: Preliminaries\nChapter 1 sets the direction for the book and the course. It explains what the book is focused on, the kinds of structured data you will work with, and the core Python libraries used throughout. It also explains the conventions used in the book (especially import conventions) and how to read the code examples.\n\n\nChapter 2: Python Language Basics, IPython, and Jupyter Notebooks\nChapter 2 introduces the interactive workflow used in the book. It explains what notebooks are, how running code interactively differs from running a script, and how tools like tab completion and built-in help make it easier to explore unfamiliar code and data as you work.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
   },
   {
     "objectID": "weekly-overview/week-01/index.html#knowledge-goals-for-week-1",
     "href": "weekly-overview/week-01/index.html#knowledge-goals-for-week-1",
     "title": "Week 1 Guide",
     "section": "Knowledge goals for Week 1",
-    "text": "Knowledge goals for Week 1\nBy the end of Week 1, you should be able to explain:\n\nWhat the book means by working with data in Python (the focus of the course)\nThe difference between NumPy and pandas at a high level\nWhat a Jupyter notebook is, and how it differs from running a Python script\nWhat a kernel is in the context of notebooks\nWhat an environment is and why we use one for this course\nWhat the book’s import conventions mean (for example, np and pd)"
+    "text": "Knowledge goals for Week 1\nBy the end of Week 1, you should be able to explain:\n\nWhat the book means by working with data in Python (the focus of the course)\nThe difference between NumPy and pandas at a high level\nWhat a Jupyter notebook is, and how it differs from running a Python script\nWhat a kernel is in the context of notebooks\nWhat an environment is and why we use one for this course\nWhat the book’s import conventions mean (for example, np and pd)",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 1"
+    ]
   },
   {
     "objectID": "shared/policies/homework-coursework.html",
@@ -707,56 +727,96 @@
     "href": "assignments/week-01/index.html",
     "title": "Week 1 Assignments",
     "section": "",
-    "text": "Submission location: All items are submitted in D2L (Week 1 dropboxes). Reading: Chapter 1 and Chapter 2 (complete)."
+    "text": "Submission location: All items are submitted in D2L (Week 1 dropboxes). Reading: Chapter 1 and Chapter 2 (complete).",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 1"
+    ]
   },
   {
     "objectID": "assignments/week-01/index.html#part-1-reading",
     "href": "assignments/week-01/index.html#part-1-reading",
     "title": "Week 1 Assignments",
     "section": "Part 1: Reading",
-    "text": "Part 1: Reading\nRead all of Chapter 1 and all of Chapter 2.\nPay special attention to:\n\nChapter 1.3 Essential Python Libraries\nChapter 1.4 Installation and Setup\nChapter 1.6 Navigating This Book (import conventions, how to read examples)\nChapter 2.1–2.2 Interpreter + IPython/Jupyter workflow (tab completion, ? help)"
+    "text": "Part 1: Reading\nRead all of Chapter 1 and all of Chapter 2.\nPay special attention to:\n\nChapter 1.3 Essential Python Libraries\nChapter 1.4 Installation and Setup\nChapter 1.6 Navigating This Book (import conventions, how to read examples)\nChapter 2.1–2.2 Interpreter + IPython/Jupyter workflow (tab completion, ? help)",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 1"
+    ]
   },
   {
     "objectID": "assignments/week-01/index.html#part-2-setup",
     "href": "assignments/week-01/index.html#part-2-setup",
     "title": "Week 1 Assignments",
     "section": "Part 2: Setup",
-    "text": "Part 2: Setup\nSubmit the following screenshots (each as a separate file):\n\nGit installed Screenshot name: lastname_git-version.png Show the output of:\n\n\ngit --version\n\n\nCourse folders created Screenshot name: lastname_course-folders.png Show File Explorer displaying:\n\n\nC:\\cmsc-1217\\course-work\\\nC:\\cmsc-1217\\book\\\nC:\\cmsc-1217\\data\\\n\n\nBook files cloned Screenshot name: lastname_book-clone.png Show either:\n\n\nthe successful git clone output, or\nFile Explorer showing: C:\\cmsc-1217\\book\\pydata-book\\\n\n\nConda environment exists Screenshot name: lastname_conda-env-list.png Show the output of:\n\n\nconda info --envs\n\n\nCore packages installed Screenshot name: lastname_pandas-version.png Show the output of:\n\n\npython -c \"import pandas as pd; print(pd.__version__)\"\n\n(We will keep a consistent pandas version for compatibility with course/book notebooks.)"
+    "text": "Part 2: Setup\nSubmit the following screenshots (each as a separate file):\n\nGit installed Screenshot name: lastname_git-version.png Show the output of:\n\n\ngit --version\n\n\nCourse folders created Screenshot name: lastname_course-folders.png Show File Explorer displaying:\n\n\nC:\\cmsc-1217\\course-work\\\nC:\\cmsc-1217\\book\\\nC:\\cmsc-1217\\data\\\n\n\nBook files cloned Screenshot name: lastname_book-clone.png Show either:\n\n\nthe successful git clone output, or\nFile Explorer showing: C:\\cmsc-1217\\book\\pydata-book\\\n\n\nConda environment exists Screenshot name: lastname_conda-env-list.png Show the output of:\n\n\nconda info --envs\n\n\nCore packages installed Screenshot name: lastname_pandas-version.png Show the output of:\n\n\npython -c \"import pandas as pd; print(pd.__version__)\"\n\n(We will keep a consistent pandas version for compatibility with course/book notebooks.)",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 1"
+    ]
   },
   {
     "objectID": "assignments/week-01/index.html#part-3-jupyterlab-practice",
     "href": "assignments/week-01/index.html#part-3-jupyterlab-practice",
     "title": "Week 1 Assignments",
     "section": "Part 3: JupyterLab practice",
-    "text": "Part 3: JupyterLab practice\n\nA) Launch JupyterLab in the correct folder\nFrom Anaconda Prompt:\n\nconda activate pydata-book\ncd C:\\cmsc-1217\\course-work\njupyter lab\n\n\n\nB) Create a week01 folder in cmsc-1217 and then create and run a notebook\nCreate: week01-notebook-practice.ipynb in course-work\\week01.\nRun these cells:\nimport sys\nsys.executable\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmessage = \"Notebooks run Python too\"\nmessage\nx = 10\nx + 5\nThen use JupyterLab to:\n\nRestart the kernel\nRun all cells\n\nFinally, do:\n\nTab completion: type np.random. and use completion\nHelp/introspection:\n\nnp.random.standard_normal?\nThese behaviors are part of the Chapter 2 IPython/Jupyter workflow.\n\n\nRequired screenshots\n\nJupyterLab opened in course-work Screenshot name: lastname_jupyterlab-course-work.png Show the JupyterLab file browser open in C:\\cmsc-1217\\course-work\\week01.\nsys.executable output Screenshot name: lastname_sys-executable.png\nIntrospection output (?) Screenshot name: lastname_ipython-help.png"
+    "text": "Part 3: JupyterLab practice\n\nA) Launch JupyterLab in the correct folder\nFrom Anaconda Prompt:\n\nconda activate pydata-book\ncd C:\\cmsc-1217\\course-work\njupyter lab\n\n\n\nB) Create a week01 folder in cmsc-1217 and then create and run a notebook\nCreate: week01-notebook-practice.ipynb in course-work\\week01.\nRun these cells:\nimport sys\nsys.executable\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmessage = \"Notebooks run Python too\"\nmessage\nx = 10\nx + 5\nThen use JupyterLab to:\n\nRestart the kernel\nRun all cells\n\nFinally, do:\n\nTab completion: type np.random. and use completion\nHelp/introspection:\n\nnp.random.standard_normal?\nThese behaviors are part of the Chapter 2 IPython/Jupyter workflow.\n\n\nRequired screenshots\n\nJupyterLab opened in course-work Screenshot name: lastname_jupyterlab-course-work.png Show the JupyterLab file browser open in C:\\cmsc-1217\\course-work\\week01.\nsys.executable output Screenshot name: lastname_sys-executable.png\nIntrospection output (?) Screenshot name: lastname_ipython-help.png",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 1"
+    ]
   },
   {
     "objectID": "assignments/week-01/index.html#part-4-ipython-in-a-terminal",
     "href": "assignments/week-01/index.html#part-4-ipython-in-a-terminal",
     "title": "Week 1 Assignments",
     "section": "Part 4: IPython in a terminal",
-    "text": "Part 4: IPython in a terminal\nOpen a new Anaconda Prompt tab/window:\n\nconda activate pydata-book\nipython\n\nRun at least one small example that produces an In [ ] and an Out [ ] (for example, assign a variable and then evaluate it).\n\nIPython running Screenshot name: lastname_ipython-prompt.png Show the IPython prompt and at least one In [ ] / Out [ ] interaction."
+    "text": "Part 4: IPython in a terminal\nOpen a new Anaconda Prompt tab/window:\n\nconda activate pydata-book\nipython\n\nRun at least one small example that produces an In [ ] and an Out [ ] (for example, assign a variable and then evaluate it).\n\nIPython running Screenshot name: lastname_ipython-prompt.png Show the IPython prompt and at least one In [ ] / Out [ ] interaction.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 1"
+    ]
   },
   {
     "objectID": "assignments/week-01/index.html#part-5-d2l-quiz",
     "href": "assignments/week-01/index.html#part-5-d2l-quiz",
     "title": "Week 1 Assignments",
     "section": "Part 5: D2L quiz",
-    "text": "Part 5: D2L quiz\nComplete the D2L Chapter 1 and Chapter 2 quiz."
+    "text": "Part 5: D2L quiz\nComplete the D2L Chapter 1 and Chapter 2 quiz.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 1"
+    ]
   },
   {
     "objectID": "assignments/week-01/index.html#part-6-video-reflection",
     "href": "assignments/week-01/index.html#part-6-video-reflection",
     "title": "Week 1 Assignments",
     "section": "Part 6: Video reflection",
-    "text": "Part 6: Video reflection\n\nVideo Submission Instructions\nRecord a short video of yourself explaining your understanding of the Week 1 workflow. Focus on explaining concepts clearly and using correct terminology rather than reading text from the screen.\nIn your video, address:\n\nWhat feels different from running .py scripts in an editor\nWhat the kernel is (in your own words)\nWhy “restart the kernel” and “run all” are useful habits\n\nRequirements\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week01Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week01Reflectionin the link name. This will appear if you copy the link."
+    "text": "Part 6: Video reflection\n\nVideo Submission Instructions\nRecord a short video of yourself explaining your understanding of the Week 1 workflow. Focus on explaining concepts clearly and using correct terminology rather than reading text from the screen.\nIn your video, address:\n\nWhat feels different from running .py scripts in an editor\nWhat the kernel is (in your own words)\nWhy “restart the kernel” and “run all” are useful habits\n\nRequirements\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week01Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week01Reflectionin the link name. This will appear if you copy the link.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 1"
+    ]
   },
   {
     "objectID": "assignments/week-01/index.html#d2l-submission-checklist",
     "href": "assignments/week-01/index.html#d2l-submission-checklist",
     "title": "Week 1 Assignments",
     "section": "D2L submission checklist",
-    "text": "D2L submission checklist\nSubmit the following items to the Week 1 D2L dropboxes.\n\nScreenshot files (upload as separate files, not a zip)\n\nlastname_git-version.png\nlastname_course-folders.png\nlastname_book-clone.png\nlastname_conda-env-list.png\nlastname_pandas-version.png\nlastname_jupyterlab-course-work.png\nlastname_sys-executable.png\nlastname_ipython-help.png\nlastname_ipython-prompt.png\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week01Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)."
+    "text": "D2L submission checklist\nSubmit the following items to the Week 1 D2L dropboxes.\n\nScreenshot files (upload as separate files, not a zip)\n\nlastname_git-version.png\nlastname_course-folders.png\nlastname_book-clone.png\nlastname_conda-env-list.png\nlastname_pandas-version.png\nlastname_jupyterlab-course-work.png\nlastname_sys-executable.png\nlastname_ipython-help.png\nlastname_ipython-prompt.png\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week01Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox).",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 1"
+    ]
   },
   {
     "objectID": "about.html",
@@ -842,60 +902,35 @@
     "href": "assignments/week-03/index.html",
     "title": "Week 3 Assignments",
     "section": "",
-    "text": "Here is the link to the Week 3 demo.\n Download Jupyter Notebook",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 3(Current)"
-    ]
+    "text": "Here is the link to the Week 3 demo.\n Download Jupyter Notebook"
   },
   {
     "objectID": "assignments/week-03/index.html#part-1-reading",
     "href": "assignments/week-03/index.html#part-1-reading",
     "title": "Week 3 Assignments",
     "section": "Part 1: Reading",
-    "text": "Part 1: Reading\nRead all of Chapter 4.\nChapter 4 introduces NumPy arrays and vectorized computation. The demo provides a hands-on walkthrough of the core concepts, with detailed explanations of how each operation works.",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 3(Current)"
-    ]
+    "text": "Part 1: Reading\nRead all of Chapter 4.\nChapter 4 introduces NumPy arrays and vectorized computation. The demo provides a hands-on walkthrough of the core concepts, with detailed explanations of how each operation works."
   },
   {
     "objectID": "assignments/week-03/index.html#part-2-work-through-the-week-3-demo",
     "href": "assignments/week-03/index.html#part-2-work-through-the-week-3-demo",
     "title": "Week 3 Assignments",
     "section": "Part 2: Work through the Week 3 Demo",
-    "text": "Part 2: Work through the Week 3 Demo\nThe Week 3 demo covers:\n\nCreating arrays from lists and using generation functions\nUnderstanding array attributes (shape, dtype, ndim)\nPerforming vectorized operations (no loops needed)\nIndexing and slicing 1D and 2D arrays\nUsing boolean indexing to filter data\nComputing statistics with and without the axis parameter\nSorting arrays and finding unique values\nWorking with random data\nSaving and loading arrays",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 3(Current)"
-    ]
+    "text": "Part 2: Work through the Week 3 Demo\nThe Week 3 demo covers:\n\nCreating arrays from lists and using generation functions\nUnderstanding array attributes (shape, dtype, ndim)\nPerforming vectorized operations (no loops needed)\nIndexing and slicing 1D and 2D arrays\nUsing boolean indexing to filter data\nComputing statistics with and without the axis parameter\nSorting arrays and finding unique values\nWorking with random data\nSaving and loading arrays"
   },
   {
     "objectID": "assignments/week-03/index.html#part-3-d2l-quiz",
     "href": "assignments/week-03/index.html#part-3-d2l-quiz",
     "title": "Week 3 Assignments",
     "section": "Part 3: D2L Quiz",
-    "text": "Part 3: D2L Quiz\nComplete the Week 3 D2L quiz (Chapter 4 concepts).\nThe quiz covers:\n\nCore concepts: arrays vs. lists, vectorization, dtypes, views vs. copies\nOperations: indexing, slicing, boolean indexing, statistical methods\nPractical skills: when to use different array creation methods, understanding axis parameter, file I/O choices",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 3(Current)"
-    ]
+    "text": "Part 3: D2L Quiz\nComplete the Week 3 D2L quiz (Chapter 4 concepts).\nThe quiz covers:\n\nCore concepts: arrays vs. lists, vectorization, dtypes, views vs. copies\nOperations: indexing, slicing, boolean indexing, statistical methods\nPractical skills: when to use different array creation methods, understanding axis parameter, file I/O choices"
   },
   {
     "objectID": "assignments/week-03/index.html#d2l-submission-checklist",
     "href": "assignments/week-03/index.html#d2l-submission-checklist",
     "title": "Week 3 Assignments",
     "section": "D2L submission checklist",
-    "text": "D2L submission checklist\nComplete the following in D2L:\n\nWeek 3 D2L quiz (no file uploads required this week)\n\nNote: This week focuses on reading Chapter 4, understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on building solid conceptual understanding of NumPy fundamentals that will support everything that follows.",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 3(Current)"
-    ]
+    "text": "D2L submission checklist\nComplete the following in D2L:\n\nWeek 3 D2L quiz (no file uploads required this week)\n\nNote: This week focuses on reading Chapter 4, understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on building solid conceptual understanding of NumPy fundamentals that will support everything that follows."
   },
   {
     "objectID": "course/schedule.html",
