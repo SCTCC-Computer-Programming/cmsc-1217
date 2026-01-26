@@ -1,0 +1,1220 @@
+---
+title: 'Week 3 Demo: NumPy Basics'
+jupyter: python3
+---
+
+
+<a href="week-3-demo.ipynb" download="week-3-demo.ipynb">Download Jupyter Notebook</a>
+
+This demonstration introduces the **NumPy library**, the foundation for numerical computing in Python. NumPy provides powerful tools for working with arrays of numbers efficiently—tools like fast mathematical operations, easy data manipulation, and the ability to process thousands or millions of numbers at once without writing loops.
+
+## NumPy in Context
+
+Python lists and loops are essential skills from first semester. However, working with real data—analyzing sales figures, processing sensor measurements, or training machine learning models—requires efficient handling of large collections of numbers. NumPy addresses this need through specialized array structures optimized for numerical computation.
+
+NumPy is used throughout data science, scientific computing, and machine learning. Libraries like pandas (data manipulation), matplotlib (visualizations), and scikit-learn (machine learning) are all built on top of NumPy. Understanding NumPy provides the foundation for these advanced tools.
+
+## NumPy Arrays vs. Python Lists
+
+NumPy arrays can perform mathematical operations on entire datasets in a single line of code—operations that would require loops and extensive code with regular lists. NumPy is implemented in C, making it 10-100 times faster than pure Python for numerical work with large arrays. The exact speedup depends on the operation and array size.
+
+## Topics Covered
+
+- **ndarrays**: NumPy's array object and why it's better than lists for numerical data
+- **Array creation**: Different ways to create arrays
+- **Data types (dtypes)**: How NumPy stores numbers efficiently
+- **Vectorized operations**: Doing math on entire arrays without loops
+- **Indexing and slicing**: Accessing and modifying array data
+- **Boolean indexing**: Filtering data based on conditions
+- **Universal functions (ufuncs)**: Fast mathematical operations
+- **Array-oriented programming**: Solving problems with array operations
+- **Random number generation**: Creating sample data
+- **File I/O**: Saving and loading array data
+
+## Importing NumPy
+
+```{python}
+import numpy as np
+```
+
+**Importing the library**
+
+- `import numpy as np` loads the NumPy library and gives it a shorter name `np`.
+- This is a universal convention in the Python data science community.
+- Throughout this demonstration, whenever we write `np.something`, we're using a NumPy function or class.
+
+## Why NumPy? A Quick Comparison
+
+Lists are flexible and can hold any type of data. But that flexibility comes at a cost. When you want to do mathematical operations on a list of numbers, you have to write loops or list comprehensions to process each element individually. Python also has to check the type of each element every single time it does an operation, which slows things down.
+
+**NumPy's key advantages:**
+
+NumPy arrays are specialized for numerical data. They're:
+- **Faster**: Operations run at speeds close to compiled C code (10-100x faster than pure Python)
+- **More convenient**: Write mathematical operations in a single line instead of loops
+- **Memory efficient**: Store data more compactly than Python lists
+- **Expressive**: Code that works with arrays often reads more like mathematical notation
+
+Here is an example. We'll do the same task (multiply every number by 2) using both approaches:
+
+```{python}
+# Python list approach
+my_list = [1, 2, 3, 4, 5]
+doubled_list = [x * 2 for x in my_list]
+print("List result:", doubled_list)
+
+# NumPy array approach
+my_array = np.array([1, 2, 3, 4, 5])
+doubled_array = my_array * 2
+print("Array result:", doubled_array)
+```
+
+**Comparing Python lists to NumPy arrays**
+
+- `my_list = [1, 2, 3, 4, 5]` creates a regular Python list of numbers.
+- `doubled_list = [x * 2 for x in my_list]` uses a list comprehension to multiply each element by 2.
+  - This requires writing a loop (even though it's compact).
+  - Python processes each element one at a time.
+  - Python has to check that each element can be multiplied every time through the loop.
+
+- `my_array = np.array([1, 2, 3, 4, 5])` converts the list into a NumPy array.
+- `doubled_array = my_array * 2` multiplies the entire array by 2 in one operation.
+  - No loop needed.
+  - NumPy handles all elements at once (this is called "vectorization").
+  - The operation happens in optimized C code, not Python.
+  - For large datasets, this is much faster.
+
+When working with thousands or millions of numbers (common in data analysis), NumPy's approach is 10-100x faster than pure Python loops. That difference between seconds and milliseconds becomes critical when you're exploring data interactively or need to process large datasets repeatedly.
+
+## Creating NumPy Arrays: The Basics
+
+The fundamental object in NumPy is the **ndarray** (n-dimensional array). It is a container for numbers arranged in one or more dimensions. Arrays are similar to Python lists, but with important differences: all elements must be the same data type (like all integers or all floats), and arrays support efficient mathematical operations on entire collections of data at once.
+
+```{python}
+# Create an array from a Python list
+arr1 = np.array([1, 2, 3, 4, 5])
+print("Array from list:", arr1)
+print("Type:", type(arr1))
+
+# Create a 2D array (array of arrays)
+arr2 = np.array([[1, 2, 3], [4, 5, 6]])
+print("\n2D array:")
+print(arr2)
+```
+
+**Creating a 1D array from a list**
+
+- `np.array([1, 2, 3, 4, 5])` is the most basic way to create a NumPy array.
+  - A Python list is passed to the `np.array()` function.
+  - NumPy converts it into an ndarray object.
+- `print("Array from list:", arr1)` displays the array contents.
+- `type(arr1)` returns the type of the object.
+  - This shows `numpy.ndarray`, not a regular Python list.
+
+**Creating a 2D array from nested lists**
+
+- `np.array([[1, 2, 3], [4, 5, 6]])` creates a 2D array.
+  - A list of lists (nested lists) is passed to the function.
+  - The outer list represents rows.
+  - Each inner list represents the values in that row.
+  - This creates a 2-row by 3-column array.
+- `print(arr2)` displays the 2D array.
+  - NumPy formats it to show the row and column structure.
+
+**Understanding dimensions**: In NumPy, 'dimension' refers to the number of axes (directions) in the array. A 1D array has one axis (like a single row of numbers). A 2D array has two axes (rows and columns, like a table).
+
+## Array Attributes: Understanding Your Data
+
+Every NumPy array has attributes that provide important information about its structure and contents. These attributes help you understand the shape, size, and type of data you're working with.
+
+```{python}
+arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
+
+print("Array:")
+print(arr)
+print("\nShape:", arr.shape)
+print("Number of dimensions:", arr.ndim)
+print("Data type:", arr.dtype)
+print("Total elements:", arr.size)
+```
+
+**Creating the array**
+
+- `np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])` creates a 2D array.
+  - Three inner lists create three rows.
+  - Each inner list has four elements, creating four columns.
+- `print(arr)` displays the array with its row and column structure.
+
+**The shape attribute**
+
+- `arr.shape` returns a tuple showing the dimensions of the array.
+  - `(3, 4)` means 3 rows and 4 columns.
+  - For a 1D array, shape would be something like `(5,)` (note the comma indicating a 1-element tuple).
+  - Shape is crucial for understanding your data's structure and ensuring arrays are compatible for operations.
+
+**The ndim attribute**
+
+- `arr.ndim` tells you how many dimensions the array has.
+  - This array is 2D, so `ndim` returns 2.
+  - A 1D array (like a simple list of numbers) would have `ndim` equal to 1.
+  - A 3D array (like a stack of tables) would have `ndim` equal to 3.
+
+**The dtype attribute**
+
+- `arr.dtype` shows the data type of the elements.
+  - `int64` means 64-bit integers (whole numbers).
+  - NumPy requires all elements in an array to have the same type.
+  - This uniform typing is what allows NumPy to perform fast operations.
+  - Different dtypes will be explored in detail in the next section.
+
+**The size attribute**
+
+- `arr.size` gives the total number of elements in the array.
+  - This is the product of all dimensions: 3 × 4 = 12 elements.
+  - Useful for understanding how much data you're working with.
+
+## Array Creation Functions
+
+Instead of manually typing out values, NumPy provides convenient functions to create arrays with specific patterns. This is especially useful when you need placeholder arrays or want to generate sequences of numbers.
+
+```{python}
+# Array of zeros
+zeros = np.zeros(5)
+print("Zeros:", zeros)
+
+# 2D array of zeros
+zeros_2d = np.zeros((3, 4))
+print("\nZeros 2D:")
+print(zeros_2d)
+
+# Array of ones
+ones = np.ones((2, 3))
+print("\nOnes:")
+print(ones)
+
+# Empty array (uninitialized values)
+empty = np.empty((2, 2))
+print("\nEmpty (random values):")
+print(empty)
+```
+
+**Creating a 1D array of zeros**
+
+- `np.zeros(5)` creates a 1D array with 5 zeros.
+  - A single integer is passed to specify the length.
+  - The resulting array is `[0. 0. 0. 0. 0.]` (float64 by default).
+  - This is useful when you want to initialize an array before filling it with data.
+
+**Creating a 2D array of zeros**
+
+- `np.zeros((3, 4))` creates a 2D array of zeros.
+  - A tuple `(rows, columns)` is passed to specify the shape.
+  - Note the double parentheses: one for the function call, one for the tuple.
+  - This creates a 3-row by 4-column array filled with zeros.
+
+**Creating arrays of ones**
+
+- `np.ones((2, 3))` works the same way as `zeros()` but fills the array with ones.
+  - A tuple specifies the shape.
+  - The resulting array has all elements set to 1.0.
+  - Common use case: creating a matrix of weights or coefficients that you'll modify later.
+
+**Creating empty (uninitialized) arrays**
+
+- `np.empty((2, 2))` creates an array without initializing the values.
+  - The values will be whatever was in that memory location (essentially random garbage).
+  - This is slightly faster than `zeros()` or `ones()` because it skips initialization.
+  - Use this only when you plan to immediately overwrite all values.
+  - The output will vary each time you run the code because the values are uninitialized.
+
+## Creating Sequences with arange and linspace
+
+Two of the most useful array creation functions generate sequences of numbers. These are similar to Python's `range()` but return NumPy arrays and have additional features.
+
+```{python}
+# arange: like Python's range, but returns an array
+seq1 = np.arange(10)
+print("arange(10):", seq1)
+
+seq2 = np.arange(5, 15)
+print("arange(5, 15):", seq2)
+
+seq3 = np.arange(0, 1, 0.1)
+print("arange(0, 1, 0.1):", seq3)
+
+# linspace: evenly spaced values (including endpoint)
+seq4 = np.linspace(0, 1, 11)
+print("\nlinspace(0, 1, 11):", seq4)
+```
+
+**Creating sequences with arange**
+
+- `np.arange(10)` creates an array from 0 to 9.
+  - Works like Python's `range(10)`, but returns a NumPy array instead of a range object.
+  - The endpoint (10) is excluded.
+  - Result: `[0 1 2 3 4 5 6 7 8 9]`
+
+- `np.arange(5, 15)` creates an array from 5 to 14.
+  - First argument is the start value (included).
+  - Second argument is the stop value (excluded).
+  - Result: `[5 6 7 8 9 10 11 12 13 14]`
+
+- `np.arange(0, 1, 0.1)` uses a step size of 0.1.
+  - First argument: start value (0)
+  - Second argument: stop value (1, excluded)
+  - Third argument: step size (0.1)
+  - Unlike Python's `range()`, `arange()` can handle float step sizes.
+  - Result: `[0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9]`
+
+**Creating sequences with linspace**
+
+- `np.linspace(0, 1, 11)` creates 11 evenly spaced values from 0 to 1.
+  - First argument: start value (0, included)
+  - Second argument: end value (1, included, unlike arange)
+  - Third argument: number of values you want (11)
+  - NumPy calculates the step size automatically.
+  - Result: `[0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. ]`
+  - This is useful when you care about the endpoints more than the step size.
+
+**Choosing between arange and linspace**
+
+- Use `arange()` when you know the step size you want.
+  - Example: counting by 5s, or incrementing by 0.01
+- Use `linspace()` when you know how many values you want between two endpoints.
+  - Example: dividing a range into exactly 100 points for plotting
+
+## Data Types (dtypes)
+
+In a previous section, we saw that arrays have a `dtype` attribute. Now we'll explore how to work with data types: how NumPy infers them, how to specify them explicitly, and how to convert between them. Understanding data types is important for memory management, numerical precision, and ensuring your calculations produce the correct results.
+
+```{python}
+# NumPy infers the dtype
+int_arr = np.array([1, 2, 3])
+print("Integer array dtype:", int_arr.dtype)
+
+float_arr = np.array([1.0, 2.5, 3.7])
+print("Float array dtype:", float_arr.dtype)
+
+# Explicitly specify dtype
+explicit_float = np.array([1, 2, 3], dtype=np.float64)
+print("Explicit float dtype:", explicit_float.dtype)
+print("Values:", explicit_float)
+
+# Convert between types with astype
+float_to_int = float_arr.astype(np.int32)
+print("\nFloat to int:", float_to_int)
+print("Original:", float_arr)
+```
+
+**How NumPy infers data types**
+
+- `np.array([1, 2, 3])` creates an array from integers.
+  - NumPy automatically infers the integer type.
+  - `int_arr.dtype` shows `int64` (or possibly `int32` on some systems).
+  - `int64` means each number uses 64 bits of memory.
+
+- `np.array([1.0, 2.5, 3.7])` creates an array from decimal numbers.
+  - NumPy infers a floating-point type.
+  - `float_arr.dtype` shows `float64`.
+  - `float64` is also called "double precision" (64 bits per number).
+
+**Explicitly specifying data types**
+
+- `np.array([1, 2, 3], dtype=np.float64)` explicitly sets the data type.
+  - The `dtype=` parameter overrides NumPy's automatic type inference.
+  - Even though integers are passed, NumPy converts them to floats: `[1., 2., 3.]`
+  - This is useful when you need a specific type regardless of your input data.
+
+**Converting between data types**
+
+- `float_arr.astype(np.int32)` converts the array to a different type.
+  - `.astype()` creates a new array with the specified type.
+  - It does NOT modify the original array.
+  - The original `float_arr` remains unchanged.
+  - Decimal values are truncated (not rounded): 2.5 becomes 2, not 3.
+
+**Common data types**
+
+- `int32`, `int64`: integers (different memory sizes)
+- `float32`, `float64`: floating-point numbers
+- `bool`: Boolean (True/False values)
+- `object`: Python objects (avoid if possible, operations are slow)
+
+## Array Arithmetic: Vectorized Operations
+
+One of NumPy's core features is **vectorization**, which allows mathematical operations to be applied to entire arrays without explicit loops. When you perform an operation on a NumPy array, the operation is automatically applied to every element in the array. This approach, called vectorized computing, produces cleaner code and significantly faster execution compared to iterating through arrays with Python loops. Vectorization works with both scalar values (single numbers) and operations between multiple arrays of the same shape.
+
+```{python}
+arr = np.array([1, 2, 3, 4, 5])
+
+# Arithmetic with scalars
+print("Original:", arr)
+print("Add 10:", arr + 10)
+print("Multiply by 2:", arr * 2)
+print("Square:", arr ** 2)
+
+# Arithmetic between arrays
+arr2 = np.array([10, 20, 30, 40, 50])
+print("\nArray 1:", arr)
+print("Array 2:", arr2)
+print("Add arrays:", arr + arr2)
+print("Multiply arrays:", arr * arr2)
+```
+
+**Vectorized operations with scalars**
+
+- `arr + 10` adds 10 to every element in the array.
+  - No loop is needed.
+  - NumPy applies the operation to each element automatically.
+  - Result: `[11, 12, 13, 14, 15]`
+  - This creates a new array; the original is unchanged.
+
+- `arr * 2` multiplies every element by 2.
+  - The scalar value 2 is applied to each element.
+  - Result: `[2, 4, 6, 8, 10]`
+
+- `arr ** 2` squares every element.
+  - The `**` operator means "to the power of."
+  - Each element is raised to the power of 2.
+  - Result: `[1, 4, 9, 16, 25]`
+
+**Vectorized operations between arrays**
+
+- `arr + arr2` adds corresponding elements from both arrays.
+  - Element 0 of `arr` + element 0 of `arr2`: 1 + 10 = 11
+  - Element 1 of `arr` + element 1 of `arr2`: 2 + 20 = 22, and so on.
+  - Result: `[11, 22, 33, 44, 55]`
+  - Both arrays must have the same shape.
+
+- `arr * arr2` multiplies corresponding elements.
+  - This is element-wise multiplication, NOT matrix multiplication.
+  - Element 0: 1 × 10 = 10
+  - Element 1: 2 × 20 = 40, and so on.
+  - Result: `[10, 40, 90, 160, 250]`
+
+**Performance advantages**: In pure Python, these operations would require loops or list comprehensions. NumPy handles them in optimized C code, making them significantly faster, especially with large datasets.
+
+## Basic Indexing and Slicing (1D Arrays)
+
+NumPy arrays support indexing and slicing operations similar to Python lists, allowing you to access individual elements or subsets of data. However, NumPy introduces important behavioral differences, particularly in how slices are handled. Understanding these differences is critical for working with arrays effectively. The most significant difference is that NumPy array slices create **views** rather than copies, meaning modifications to a slice affect the original array. This section covers single-element indexing, slice notation, and the distinction between views and copies.
+
+```{python}
+arr = np.array([10, 20, 30, 40, 50, 60, 70])
+
+# Single element indexing
+print("Array:", arr)
+print("First element (index 0):", arr[0])
+print("Last element (index -1):", arr[-1])
+
+# Slicing
+print("\nSlicing:")
+print("arr[1:4]:", arr[1:4])
+print("arr[:3]:", arr[:3])
+print("arr[3:]:", arr[3:])
+print("arr[::2]:", arr[::2])
+
+# Important: slices are views, not copies
+slice_view = arr[2:5]
+print("\nSlice:", slice_view)
+slice_view[0] = 999
+print("After modifying slice:", slice_view)
+print("Original array:", arr)
+```
+
+**Single element indexing**
+
+- `arr[0]` gets the first element.
+  - Array indexing starts at 0, just like Python lists.
+  - Returns the value at position 0: `10`
+
+- `arr[-1]` gets the last element.
+  - Negative indices count backward from the end.
+  - `-1` is the last element, `-2` is second-to-last, etc.
+  - Returns: `70`
+
+**Slicing arrays**
+
+- `arr[1:4]` gets elements at indices 1, 2, and 3.
+  - Format is `[start:stop]`
+  - Start index is included, stop index is excluded.
+  - Result: `[20, 30, 40]`
+
+- `arr[:3]` gets the first three elements.
+  - Omitting start means "from the beginning."
+  - Equivalent to `arr[0:3]`
+  - Result: `[10, 20, 30]`
+
+- `arr[3:]` gets from index 3 to the end.
+  - Omitting stop means "to the end."
+  - Equivalent to `arr[3:7]` for this array.
+  - Result: `[40, 50, 60, 70]`
+
+- `arr[::2]` gets every other element.
+  - Format is `[start:stop:step]`
+  - Step of 2 means skip one element each time.
+  - Omitting start and stop means use the entire array.
+  - Result: `[10, 30, 50, 70]`
+
+**Critical difference from Python lists: Views vs Copies**
+
+- `slice_view = arr[2:5]` creates a **view** of the original array, not a copy.
+  - A view is a reference to the same data in memory.
+  - No new array is created; both variables point to the same underlying data.
+
+- `slice_view[0] = 999` modifies the first element of the slice.
+  - Because `slice_view` is a view, this modification affects the original array.
+  - The original `arr` now has `999` at index 2.
+
+- This behavior is different from Python lists, where slicing creates an independent copy.
+  - With lists: `list_slice = my_list[2:5]` creates a new list.
+  - With NumPy: `array_slice = arr[2:5]` creates a view.
+
+- To create an independent copy: `arr[2:5].copy()`
+  - The `.copy()` method creates a new array with the same values.
+  - Modifications to the copy will not affect the original.
+
+**Why views matter**: Views save memory and improve performance by avoiding unnecessary data duplication. However, this behavior requires careful attention when modifying slices, as changes propagate to the original array.
+
+
+## Indexing 2D Arrays
+
+Two-dimensional arrays represent data in rows and columns, similar to spreadsheets or matrices. NumPy provides intuitive syntax for accessing elements, entire rows, entire columns, or rectangular sub-regions of 2D arrays. Indexing uses the format `[row, column]`, where both indices are specified within a single set of brackets separated by a comma. Understanding 2D indexing is essential for working with tabular data, images, and matrix operations.
+
+```{python}
+arr2d = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+print("2D Array:")
+print(arr2d)
+
+# Access single element
+print("\nElement at row 1, column 2:", arr2d[1, 2])
+
+# Access entire row
+print("Row 0:", arr2d[0])
+
+# Access entire column (using slice)
+print("Column 1:", arr2d[:, 1])
+
+# Slice rows and columns
+print("\nFirst 2 rows, first 2 columns:")
+print(arr2d[:2, :2])
+```
+
+**Accessing single elements in 2D arrays**
+
+- `arr2d[1, 2]` gets the element at row 1, column 2.
+  - Indexing starts at 0 for both dimensions.
+  - Row 1 is the second row: `[4, 5, 6]`
+  - Column 2 is the third element in that row: `6`
+  - The syntax is `[row, column]` with a comma, not two separate brackets like `arr2d[1][2]`.
+
+**Accessing entire rows**
+
+- `arr2d[0]` gets the entire first row.
+  - When only one index is provided for a 2D array, it selects that row.
+  - Result: `[1, 2, 3]`
+  - This is equivalent to `arr2d[0, :]` where `:` means "all columns."
+
+**Accessing entire columns**
+
+- `arr2d[:, 1]` gets the entire second column.
+  - `:` means "all rows"
+  - `1` means column at index 1 (the second column)
+  - Result: `[2, 5, 8]`
+  - Note that this returns a 1D array, not a 2D column vector.
+
+**Slicing 2D arrays**
+
+- `arr2d[:2, :2]` extracts a rectangular sub-array.
+  - `:2` for rows means "first 2 rows" (rows 0 and 1)
+  - `:2` for columns means "first 2 columns" (columns 0 and 1)
+  - Result is a 2×2 array:
+    ```
+    [[1, 2],
+     [4, 5]]
+    ```
+  - Like 1D slices, this creates a view of the original array, not a copy.
+
+Row index corresponds to row numbers, and column index corresponds to column positions. The notation `arr2d[1, 2]` is analogous to accessing cell C2 in a spreadsheet (second row, third column).
+
+## Boolean Indexing: Filtering with Conditions
+
+Boolean indexing is a powerful NumPy feature that allows you to filter array elements based on conditional expressions. Instead of writing explicit loops with if statements, you can create boolean arrays (arrays of True/False values) by applying conditions to your data, then use those boolean arrays as indices to select only the elements that meet your criteria. This technique is fundamental to data analysis workflows, where filtering datasets based on conditions is a common operation. Boolean indexing is both more concise and more efficient than traditional loop-based filtering.
+
+```{python}
+temperatures = np.array([72, 65, 80, 85, 68, 90, 78, 82])
+
+print("Temperatures:", temperatures)
+
+# Create a boolean array
+is_hot = temperatures > 80
+print("\nIs hot (>80)?:", is_hot)
+
+# Use boolean array to filter
+hot_days = temperatures[is_hot]
+print("Hot day temperatures:", hot_days)
+
+# Can do it in one step
+mild_days = temperatures[temperatures < 75]
+print("Mild day temperatures (<75):", mild_days)
+
+# Combine conditions
+comfortable = temperatures[(temperatures >= 70) & (temperatures <= 80)]
+print("Comfortable temps (70-80):", comfortable)
+```
+
+**Creating boolean arrays**
+
+- `temperatures > 80` creates a boolean array by comparing each element to 80.
+  - NumPy applies the comparison to every element automatically.
+  - Result: `[False, False, False, True, False, True, False, True]`
+  - Each True corresponds to a temperature greater than 80.
+
+- `is_hot` stores this boolean array.
+  - It has the same length as the original array.
+  - Each element is either True or False.
+
+**Using boolean arrays to filter**
+
+- `temperatures[is_hot]` selects only the elements where `is_hot` is True.
+  - This is called "boolean indexing."
+  - NumPy extracts only the values at positions where the boolean array has True.
+  - Result: `[85, 90, 82]` (only values greater than 80)
+
+- `temperatures[temperatures < 75]` combines both steps in one line.
+  - The expression `temperatures < 75` creates the boolean array.
+  - That boolean array is immediately used as an index: `temperatures[...]`
+  - Result: `[72, 65, 68]`
+
+**Combining multiple conditions**
+
+- `(temperatures >= 70) & (temperatures <= 80)` combines two conditions with a logical AND.
+  - `&` is the element-wise "and" operator (both conditions must be True).
+  - Use `&` not `and`. The keyword `and` does not work with NumPy arrays.
+  - Use `|` for "or" (either condition can be True).
+  - Use `~` for "not" (negates the condition).
+  - Parentheses are required around each condition to ensure correct evaluation order.
+  - Result: only temperatures between 70 and 80 (inclusive).
+
+**Comparison to pure Python**: Without NumPy, filtering would require list comprehensions like `[t for t in temperatures if t > 80]`. Boolean indexing is more readable and executes faster, especially with large datasets.
+
+## Universal Functions (ufuncs)
+
+Universal functions, or ufuncs, are a core component of NumPy's efficiency. These are functions that operate element-wise on arrays, applying a mathematical operation to each element without explicit loops. Ufuncs are implemented in compiled C code, making them significantly faster than equivalent Python loops. NumPy provides a comprehensive library of ufuncs covering mathematical operations, trigonometric functions, logarithms, exponentials, and comparison operations. Ufuncs can be unary (operating on a single array) or binary (operating on two arrays).
+
+```{python}
+arr = np.array([1, 4, 9, 16, 25])
+
+print("Array:", arr)
+print("Square root:", np.sqrt(arr))
+print("Exponential:", np.exp(arr))
+
+# Trigonometric functions
+angles = np.array([0, np.pi/2, np.pi])
+print("\nAngles (radians):", angles)
+print("Sine:", np.sin(angles))
+print("Cosine:", np.cos(angles))
+
+# Binary ufuncs (operate on two arrays)
+arr1 = np.array([1, 2, 3, 4, 5])
+arr2 = np.array([5, 4, 3, 2, 1])
+print("\nArray 1:", arr1)
+print("Array 2:", arr2)
+print("Maximum (element-wise):", np.maximum(arr1, arr2))
+print("Minimum (element-wise):", np.minimum(arr1, arr2))
+```
+
+**Unary universal functions (single input)**
+
+- `np.sqrt(arr)` calculates the square root of each element.
+  - The function is applied to the entire array at once.
+  - Result: `[1., 2., 3., 4., 5.]`
+  - Much faster than using a loop with `math.sqrt()` from the standard library.
+
+- `np.exp(arr)` computes e raised to the power of each element.
+  - e is Euler's number (approximately 2.718).
+  - The exponential function grows rapidly, so values can become very large.
+
+- `np.sin(angles)` and `np.cos(angles)` compute trigonometric functions.
+  - Input values must be in radians, not degrees.
+  - `np.pi` is NumPy's constant for π (pi, approximately 3.14159).
+  - `np.pi/2` represents 90 degrees in radians.
+  - These functions return values between -1 and 1.
+
+**Binary universal functions (two inputs)**
+
+- `np.maximum(arr1, arr2)` compares arrays element-wise and selects the larger value.
+  - Takes the larger value from each corresponding position.
+  - Result: `[5, 4, 3, 4, 5]`
+  - Index 0: max(1, 5) = 5
+  - Index 1: max(2, 4) = 4
+  - This continues for each position.
+
+- `np.minimum(arr1, arr2)` takes the smaller value from each corresponding position.
+  - Result: `[1, 2, 3, 2, 1]`
+  - Index 0: min(1, 5) = 1, and so on.
+
+**Additional common ufuncs**: NumPy provides many other mathematical ufuncs including `np.abs()` (absolute value), `np.log()` (natural logarithm), `np.log10()` (base-10 logarithm), `np.ceil()` (round up), `np.floor()` (round down), `np.round()` (round to nearest), and `np.sign()` (sign of number).
+
+## Array-Oriented Programming: Statistical Methods
+
+NumPy arrays include built-in methods for computing descriptive statistics, enabling efficient data analysis without explicit loops. These statistical methods operate on entire arrays and return summary values that describe the central tendency, spread, and other properties of the data. Because these methods are implemented in optimized C code, they execute significantly faster than equivalent Python loops. Understanding these methods is essential for exploratory data analysis and quantitative research.
+
+```{python}
+data = np.array([23, 45, 67, 12, 89, 34, 56, 78, 90, 11])
+
+print("Data:", data)
+print("\nMean:", data.mean())
+print("Median:", np.median(data))
+print("Standard deviation:", data.std())
+print("Minimum:", data.min())
+print("Maximum:", data.max())
+print("Sum:", data.sum())
+
+# Index of min/max values
+print("\nIndex of minimum:", data.argmin())
+print("Index of maximum:", data.argmax())
+
+# Cumulative sum
+print("\nCumulative sum:", data.cumsum())
+```
+
+**Basic statistical methods**
+
+- `data.mean()` calculates the arithmetic average.
+  - Adds all values and divides by the count.
+  - Equivalent to `data.sum() / len(data)`
+  - Provides a measure of central tendency.
+
+- `np.median(data)` finds the middle value when the data is sorted.
+  - For arrays with an odd number of elements, returns the middle value.
+  - For arrays with an even number of elements, returns the average of the two middle values.
+  - Note: This is a function (`np.median()`), not a method (`.median()`).
+  - The median is less sensitive to outliers than the mean.
+
+- `data.std()` computes the standard deviation.
+  - Measures how spread out the values are from the mean.
+  - A larger standard deviation indicates more variation in the data.
+  - A smaller standard deviation indicates values cluster closer to the mean.
+
+- `data.min()` and `data.max()` find the smallest and largest values.
+  - Return the minimum and maximum values in the array.
+  - Useful for understanding the range of your data.
+
+- `data.sum()` adds all elements together.
+  - Returns the total of all values in the array.
+  - The sum is used in many other calculations like mean and variance.
+
+**Finding positions of extreme values**
+
+- `data.argmin()` returns the index of the minimum value.
+  - "arg" stands for "argument" (position or index).
+  - If the minimum value is 11 at index 9, this returns 9.
+  - Useful when you need to locate where the minimum occurs, not just its value.
+
+- `data.argmax()` returns the index of the maximum value.
+  - Returns the position of the largest value in the array.
+  - Essential when the location of the maximum is as important as the value itself.
+
+**Cumulative operations**
+
+- `data.cumsum()` computes the cumulative sum.
+  - Element i contains the sum of all elements from index 0 to index i.
+  - Example: if data is `[1, 2, 3]`, cumsum is `[1, 3, 6]`
+    - First element: 1
+    - Second element: 1 + 2 = 3
+    - Third element: 1 + 2 + 3 = 6
+  - Useful for computing running totals, analyzing trends, and implementing random walks.
+
+## Operations on Multidimensional Arrays: Axis Argument
+
+Statistical operations on multidimensional arrays can be performed along specific dimensions using the `axis` parameter. This allows you to compute statistics separately for different slices of your data. For example, consider a dataset tracking daily sales for multiple stores. You might want to know the total sales for each store (summing across days), the total sales for each day (summing across stores), or the overall total (summing everything). The `axis` parameter controls which dimension is collapsed during the calculation. Understanding how axis works is fundamental to working effectively with multidimensional data.
+
+In the following example, we'll work with sales data for three stores over four days. Each row represents a store, and each column represents a day.
+
+```{python}
+# Sales data: 3 stores, 4 days
+sales = np.array([
+    [120, 150, 130, 145],  # Store A
+    [100, 110, 105, 115],  # Store B
+    [140, 135, 145, 150]   # Store C
+])
+
+print("Sales data (stores × days):")
+print(sales)
+print("Shape:", sales.shape)
+
+# Overall statistics
+print("\nTotal sales across all stores and days:", sales.sum())
+print("Average sale:", sales.mean())
+
+# Per-store totals (sum across days)
+print("\nTotal sales per store (sum across axis 1):", sales.sum(axis=1))
+
+# Per-day totals (sum across stores)
+print("Total sales per day (sum across axis 0):", sales.sum(axis=0))
+
+# Per-store averages
+print("\nAverage daily sales per store:", sales.mean(axis=1))
+```
+
+**Understanding the axis parameter**
+
+- For a 2D array with shape `(3, 4)`:
+  - Axis 0 refers to the rows (the first dimension).
+  - Axis 1 refers to the columns (the second dimension).
+
+**Computing overall statistics**
+
+- `sales.sum()` with no axis parameter sums all elements.
+  - All 12 values are added together.
+  - Returns a single number representing total sales across all stores and days.
+
+- `sales.mean()` calculates the average across all elements.
+  - Divides the total sum by the number of elements (12).
+
+**Summing along axis 1 (across columns)**
+
+- `sales.sum(axis=1)` sums across the columns for each row.
+  - For each store (row), all daily values are added together.
+  - The columns dimension is collapsed.
+  - Returns 3 values (one total per store).
+  - Think of this as "sum horizontally across each row."
+
+**Summing along axis 0 (across rows)**
+
+- `sales.sum(axis=0)` sums across the rows for each column.
+  - For each day (column), all store values are added together.
+  - The rows dimension is collapsed.
+  - Returns 4 values (one total per day).
+  - Think of this as "sum vertically down each column."
+
+**Computing averages along an axis**
+
+- `sales.mean(axis=1)` calculates the average for each row.
+  - Returns the average daily sales for each store.
+  - Result has 3 values (one per store).
+
+**Mental model for axis operations**
+
+The axis you specify is the dimension that gets collapsed or eliminated:
+- `axis=0`: Rows are collapsed, result retains the number of columns.
+- `axis=1`: Columns are collapsed, result retains the number of rows.
+
+
+## Boolean Array Methods
+
+Boolean arrays, which contain True and False values, have specialized methods for testing conditions and counting occurrences. These methods allow you to quickly answer questions like "Does any element meet this condition?" or "Do all elements meet this condition?" without writing explicit loops. Additionally, because NumPy treats True as 1 and False as 0 in numerical contexts, you can use arithmetic operations like `sum()` to count how many elements satisfy a condition. These methods are particularly useful for data validation and quality assessment.
+
+```{python}
+scores = np.array([85, 92, 78, 95, 88, 73, 90, 87])
+
+print("Scores:", scores)
+
+# Create boolean array
+passed = scores >= 80
+print("\nPassed (>=80):", passed)
+
+# Check if any student passed
+print("Did anyone pass?", passed.any())
+
+# Check if all students passed
+print("Did everyone pass?", passed.all())
+
+# Count how many passed
+print("Number who passed:", passed.sum())
+
+# Percentage who passed
+print("Percentage who passed:", passed.sum() / len(scores) * 100, "%")
+```
+
+**Creating the boolean array**
+
+- `scores >= 80` creates a boolean array by comparing each score to 80.
+  - Result: `[True, True, False, True, True, False, True, True]`
+  - Each True indicates a score of 80 or higher.
+
+**Testing for any True value**
+
+- `passed.any()` returns True if at least one element is True.
+  - Answers the question: "Is there any True value in this array?"
+  - Useful for checking if a condition is met at least once.
+  - Returns True in this case because at least one student passed.
+
+**Testing if all values are True**
+
+- `passed.all()` returns True only if every element is True.
+  - Answers the question: "Are all values True?"
+  - Returns False in this case because not all scores are ≥ 80.
+  - Useful for validation checks where all conditions must be satisfied.
+
+**Counting True values**
+
+- `passed.sum()` counts how many True values exist in the array.
+  - In numerical operations, True is treated as 1 and False as 0.
+  - Summing a boolean array effectively counts the True values.
+  - Result: 6 (six students passed).
+
+**Calculating percentages**
+
+- `passed.sum() / len(scores) * 100` calculates the percentage of True values.
+  - Divides the count of True values by the total number of elements.
+  - Multiplies by 100 to convert to a percentage.
+  - Shows what fraction of students passed the threshold.
+
+
+## Sorting
+
+NumPy provides efficient sorting capabilities for arrays, with options to either create a sorted copy or sort an array in place. Understanding the different sorting methods is important for organizing data and implementing algorithms that require sorted inputs. NumPy also provides the ability to obtain the indices that would sort an array, which is useful when you need to sort multiple related arrays in the same order or when you need to track the original positions of elements after sorting.
+
+```{python}
+data = np.array([3, 7, 1, 9, 2, 8, 4])
+
+print("Original:", data)
+
+# Sort (returns new array)
+sorted_data = np.sort(data)
+print("Sorted (np.sort):", sorted_data)
+print("Original unchanged:", data)
+
+# Sort in place (modifies original)
+data.sort()
+print("After data.sort():", data)
+
+# Find sorted indices
+data2 = np.array([30, 10, 50, 20, 40])
+indices = data2.argsort()
+print("\nOriginal:", data2)
+print("Sorted indices:", indices)
+print("Values in sorted order:", data2[indices])
+```
+
+**Two approaches to sorting**
+
+- `np.sort(data)` returns a new sorted array.
+  - Creates a copy of the data in sorted order.
+  - The original array remains unchanged.
+  - Use this approach when you need to preserve the original order for later use.
+
+- `data.sort()` sorts the array in place.
+  - Modifies the original array directly.
+  - Does not return a value (returns `None`).
+  - Faster and more memory-efficient than `np.sort()` because no copy is created.
+  - Use this approach when you no longer need the original order.
+
+**Finding the sort order with argsort**
+
+- `data2.argsort()` returns the indices that would sort the array.
+  - Does not sort the array itself.
+  - Returns an array of indices: `[1, 3, 0, 4, 2]`
+  - This means: to sort the array, take element at index 1 first (value 10), then index 3 (value 20), then index 0 (value 30), and so on.
+  - Useful when you need to sort multiple related arrays in the same order, or when you need to track original positions.
+
+**Using sorted indices for fancy indexing**
+
+- `data2[indices]` uses the sorted indices to reorder the array.
+  - This is an example of fancy indexing (using an array of indices to select elements).
+  - Result: `[10, 20, 30, 40, 50]` (values in sorted order)
+  - The original `data2` array remains unchanged.
+
+
+## Unique Values and Set Operations
+
+NumPy provides functions for identifying unique values in arrays and performing mathematical set operations like union, intersection, and difference. These operations are essential for data cleaning (removing duplicates), frequency analysis (counting occurrences), and comparing datasets. Set operations treat arrays as collections of distinct elements, similar to mathematical sets, allowing you to identify commonalities and differences between datasets. All set operation functions automatically sort their results.
+
+```{python}
+# Array with duplicates
+names = np.array(['Alice', 'Bob', 'Alice', 'Charlie', 'Bob', 'Alice'])
+
+print("Names:", names)
+print("Unique names:", np.unique(names))
+
+# Unique with counts
+values = np.array([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+unique_vals, counts = np.unique(values, return_counts=True)
+print("\nValues:", values)
+print("Unique values:", unique_vals)
+print("Counts:", counts)
+
+# Set operations
+arr1 = np.array([1, 2, 3, 4, 5])
+arr2 = np.array([3, 4, 5, 6, 7])
+print("\nArray 1:", arr1)
+print("Array 2:", arr2)
+print("Intersection (both):", np.intersect1d(arr1, arr2))
+print("Union (either):", np.union1d(arr1, arr2))
+print("Set difference (in arr1, not arr2):", np.setdiff1d(arr1, arr2))
+```
+
+**Finding unique values**
+
+- `np.unique(names)` returns the distinct values in sorted order.
+  - Removes all duplicate entries.
+  - Automatically sorts the results alphabetically (or numerically for numbers).
+  - Result: `['Alice', 'Bob', 'Charlie']`
+
+**Finding unique values with frequency counts**
+
+- `np.unique(values, return_counts=True)` returns both unique values and their frequencies.
+  - Returns two arrays: unique values and their counts.
+  - Tuple unpacking is used to assign both arrays: `unique_vals, counts = ...`
+  - `unique_vals` contains `[1, 2, 3, 4]` (the distinct values)
+  - `counts` contains `[1, 2, 3, 4]` (how many times each value appears)
+  - This creates a frequency distribution, useful for understanding data composition.
+
+**Set intersection**
+
+- `np.intersect1d(arr1, arr2)` finds values present in both arrays.
+  - "1d" indicates it treats arrays as flat (1-dimensional) sets regardless of original shape.
+  - Result: `[3, 4, 5]` (values that appear in both arrays)
+  - Equivalent to the mathematical intersection operation (∩).
+
+**Set union**
+
+- `np.union1d(arr1, arr2)` combines all unique values from both arrays.
+  - Like the mathematical union of two sets (∪).
+  - Result: `[1, 2, 3, 4, 5, 6, 7]` (all distinct values from both arrays)
+  - Duplicates between arrays are included only once.
+
+**Set difference**
+
+- `np.setdiff1d(arr1, arr2)` finds values in the first array but not the second.
+  - Performs the set difference operation (A - B).
+  - Result: `[1, 2]` (values in arr1 that are not in arr2)
+  - Order matters: `np.setdiff1d(arr2, arr1)` would give `[6, 7]`.
+
+
+Here's the revised section with a textbook-style introduction:
+
+---
+
+## Conditional Logic: np.where
+
+The `np.where` function provides vectorized conditional logic, functioning as an element-wise if-else statement for arrays. This function eliminates the need for explicit loops when applying conditional transformations to data. `np.where` can be used in two ways: to find the indices where a condition is true, or to select values based on a condition. The function supports nested conditions for complex multi-case logic. Understanding `np.where` is essential for data transformation tasks like categorization, conditional replacement, and implementing business rules across datasets.
+
+```{python}
+scores = np.array([85, 92, 78, 95, 88, 73, 90, 67])
+
+# Simple use: where is condition True?
+print("Scores:", scores)
+high_score_indices = np.where(scores >= 90)
+print("Indices where score >= 90:", high_score_indices)
+
+# Most common use: conditional selection
+grades = np.where(scores >= 80, 'Pass', 'Fail')
+print("\nGrades:", grades)
+
+# Nested conditions
+letter_grades = np.where(scores >= 90, 'A',
+                np.where(scores >= 80, 'B',
+                np.where(scores >= 70, 'C', 'F')))
+print("Letter grades:", letter_grades)
+
+# Using arrays for true/false values
+bonuses = np.array([10, 20, 15, 25, 18, 12, 22, 8])
+final_scores = np.where(scores >= 90, scores + bonuses, scores)
+print("\nOriginal scores:", scores)
+print("With bonuses (for scores >= 90):", final_scores)
+```
+
+**Finding indices where a condition is true**
+
+- `np.where(scores >= 90)` with only a condition argument returns indices.
+  - Returns a tuple containing an array of indices where the condition is True.
+  - Shows the positions where the condition is satisfied.
+  - Useful for locating elements that meet criteria rather than extracting their values.
+
+**Conditional value selection**
+
+- `np.where(condition, value_if_true, value_if_false)` implements vectorized if-else logic.
+  - First argument: boolean condition to evaluate element-wise
+  - Second argument: value to use where condition is True
+  - Third argument: value to use where condition is False
+  - Result: array with 'Pass' where score >= 80, 'Fail' otherwise
+  - This is the most common use case for `np.where`.
+
+**Nested conditions for multiple cases**
+
+- Multiple `np.where` calls can be nested to handle more than two cases.
+  - Outer condition: if score >= 90, assign 'A'
+  - First nested condition: else if score >= 80, assign 'B'
+  - Second nested condition: else if score >= 70, assign 'C'
+  - Final else: assign 'F'
+  - This creates a complete grading scale with four categories.
+  - Each condition is evaluated only for elements that failed previous conditions.
+
+**Using arrays as conditional values**
+
+- `np.where(scores >= 90, scores + bonuses, scores)` uses arrays for both true and false values.
+  - If score >= 90: return the score plus the corresponding bonus from the `bonuses` array
+  - Otherwise: return the original score
+  - Both `scores + bonuses` and `scores` are arrays of the same shape.
+  - NumPy selects from the appropriate array element-wise based on the condition.
+  - This allows for complex conditional transformations where the replacement values vary.
+
+## Random Number Generation
+
+NumPy provides comprehensive tools for generating random numbers from various probability distributions. Random number generation is fundamental to simulations, statistical sampling, hypothesis testing, and creating synthetic datasets for algorithm development and testing. NumPy's random module includes functions for generating uniform random numbers, normally distributed values, random integers, and random samples from existing arrays. Understanding how to control randomness through seeds and how to select appropriate distributions is essential for reproducible scientific computing.
+
+```{python}
+# Set seed for reproducibility
+np.random.seed(42)
+
+# Random floats between 0 and 1
+random_floats = np.random.rand(5)
+print("Random floats [0, 1):", random_floats)
+
+# Random integers
+random_ints = np.random.randint(1, 100, size=10)
+print("\nRandom integers [1, 100):", random_ints)
+
+# Normal distribution (mean=0, std=1)
+normal_data = np.random.randn(8)
+print("\nNormal distribution:", normal_data)
+
+# Normal with custom mean and std
+custom_normal = np.random.normal(100, 15, size=5)
+print("\nNormal (mean=100, std=15):", custom_normal)
+
+# Random choice from an array
+choices = np.array(['red', 'blue', 'green', 'yellow'])
+picked = np.random.choice(choices, size=10)
+print("\nRandom choices:", picked)
+```
+
+**Setting the random seed for reproducibility**
+
+- `np.random.seed(42)` sets the starting point for the random number generator.
+  - Using the same seed produces the same sequence of "random" numbers.
+  - This makes code reproducible (same results every time the code runs).
+  - The number 42 is arbitrary and can be any integer.
+  - Without setting a seed, different results are produced on each run.
+  - Essential for debugging, testing, and sharing reproducible analyses.
+
+**Generating uniform random numbers**
+
+- `np.random.rand(5)` generates random floats from a uniform distribution between 0 and 1.
+  - Each value has equal probability (uniform distribution).
+  - Values are in the range [0, 1), which includes 0 but excludes 1.
+  - The argument specifies how many values to generate.
+  - Useful for general-purpose randomness and probability simulations.
+
+**Generating random integers**
+
+- `np.random.randint(1, 100, size=10)` generates random integers within a specified range.
+  - First argument: lower bound (inclusive)
+  - Second argument: upper bound (exclusive)
+  - `size=10` specifies to generate 10 values
+  - Result: integers from 1 to 99
+  - Useful for creating discrete random selections and indices.
+
+**Generating from the standard normal distribution**
+
+- `np.random.randn(8)` generates values from the standard normal distribution.
+  - Mean = 0, standard deviation = 1
+  - "randn" stands for "random normal"
+  - Most values cluster around 0, with fewer values farther away.
+  - The distribution has the characteristic bell curve shape.
+
+**Generating from a custom normal distribution**
+
+- `np.random.normal(100, 15, size=5)` generates values from a normal distribution with specified parameters.
+  - First argument: mean (center of the distribution)
+  - Second argument: standard deviation (spread or width of the distribution)
+  - `size=5` specifies how many values to generate
+  - Useful for simulating real-world measurements like heights, test scores, or measurement errors.
+
+**Random sampling from an array**
+
+- `np.random.choice(choices, size=10)` randomly selects elements from an existing array.
+  - Selects elements from the provided array.
+  - `size=10` means make 10 selections.
+  - By default, sampling is with replacement (values can repeat).
+  - Use `replace=False` parameter for sampling without replacement (each element selected at most once).
+  - Useful for bootstrap sampling and creating random datasets from existing categories.
+
+
+## File Input and Output with NumPy
+
+NumPy provides functions for saving arrays to disk and loading them back into memory, enabling persistent storage of numerical data between program executions. NumPy supports two primary file formats: a binary format (`.npy`) optimized for NumPy arrays, and text-based formats for interoperability with other tools. Binary format preserves data types exactly and offers faster read/write speeds, while text formats provide human readability and compatibility with spreadsheet applications and other programming languages. Choosing the appropriate format depends on your use case and whether interoperability or performance is the priority.
+
+```{python}
+import os
+os.makedirs("data", exist_ok=True)
+
+# Create sample data
+data = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+# Save to binary format (.npy)
+np.save('data/my_array.npy', data)
+print("Saved to my_array.npy")
+
+# Load from binary format
+loaded = np.load('data/my_array.npy')
+print("Loaded from .npy file:")
+print(loaded)
+
+# Save to text file
+np.savetxt('data/my_array.txt', data, fmt='%d', delimiter=',')
+print("\nSaved to my_array.txt (CSV format)")
+
+# Load from text file
+loaded_txt = np.loadtxt('data/my_array.txt', delimiter=',')
+print("Loaded from .txt file:")
+print(loaded_txt)
+```
+
+**Setting up the file system**
+
+- `import os` imports Python's operating system module.
+- `os.makedirs("data", exist_ok=True)` creates a directory named "data".
+  - `exist_ok=True` prevents an error if the directory already exists.
+  - Ensures the destination directory exists before saving files.
+
+**Binary format (.npy files)**
+
+- `np.save('data/my_array.npy', data)` saves the array in NumPy's binary format.
+  - The `.npy` extension is conventional for NumPy binary files.
+  - Binary format is fast and preserves all data types exactly.
+  - Requires less disk space than text format due to compact binary representation.
+  - Files are not human-readable and can only be read by NumPy.
+
+- `np.load('data/my_array.npy')` loads a binary file back into an array.
+  - Returns an array identical to the original (same shape, dtype, and values).
+  - Fast loading operation suitable for large datasets.
+
+**Text format (CSV and other delimited formats)**
+
+- `np.savetxt('data/my_array.txt', data, fmt='%d', delimiter=',')` saves the array as text.
+  - `fmt='%d'` specifies integer formatting using C-style format specifiers (use `'%.2f'` for floating-point values with 2 decimal places, `'%.6e'` for scientific notation).
+  - `delimiter=','` creates comma-separated values (CSV format).
+  - Results in a human-readable text file that can be opened in text editors or spreadsheet applications.
+  - Slower and uses more disk space than binary format.
+
+- `np.loadtxt('data/my_array.txt', delimiter=',')` loads a text file into an array.
+  - `delimiter=','` specifies that values are comma-separated.
+  - Can also read space-separated (default) or tab-separated files by changing the delimiter.
+  - Returns an array with inferred dtype (typically float64 even if the original data was integer).
+
+**Choosing the appropriate format**
+
+Use binary format (`.npy`) for:
+- Intermediate data storage within your own analysis workflows
+- Large datasets where performance and disk space matter
+- Preserving exact data types and precision
+
+Use text format for:
+- Sharing data with non-Python tools (Excel, R, MATLAB, etc.)
+- Creating human-readable output for inspection
+- Interoperability when the receiving system cannot read NumPy binary files
+
+**Key Takeaways:**
+1. NumPy is 10-100x faster than pure Python for numerical operations
+2. Vectorization (avoiding loops) is the key to writing fast NumPy code
+3. NumPy is the foundation for pandas, matplotlib, scikit-learn, and most scientific Python
+
+**Relationship to Pandas:**
+- Chapter 5 introduces pandas, which builds on NumPy arrays
+- Pandas adds labeled rows/columns (like a spreadsheet) and higher-level data manipulation
+- The concepts learned here transfer directly to pandas DataFrames
+

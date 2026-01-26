@@ -1,0 +1,50 @@
+---
+title: "Week 3 Assignments"
+subtitle: "Chapter 4 Reading, NumPy Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+css:
+      - styles.css
+---
+
+- Here is the link to the **[Week 3 demo](../../assignments/week-03/week-3-demo.html)**. 
+- <a href="week-3-demo.ipynb" download="week-3-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Part 1: Reading
+
+Read **all of Chapter 4**.
+
+Chapter 4 introduces NumPy arrays and vectorized computation. The demo provides a hands-on walkthrough of the core concepts, with detailed explanations of how each operation works.
+
+## Part 2: Work through the Week 3 Demo
+
+The Week 3 demo covers:
+
+1. Creating arrays from lists and using generation functions
+2. Understanding array attributes (`shape`, `dtype`, `ndim`)
+3. Performing vectorized operations (no loops needed)
+4. Indexing and slicing 1D and 2D arrays
+5. Using boolean indexing to filter data
+6. Computing statistics with and without the `axis` parameter
+7. Sorting arrays and finding unique values
+8. Working with random data
+9. Saving and loading arrays
+
+## Part 3: D2L Quiz
+
+Complete the **Week 3 D2L quiz** (Chapter 4 concepts).
+
+The quiz covers:
+
+* Core concepts: arrays vs. lists, vectorization, dtypes, views vs. copies
+* Operations: indexing, slicing, boolean indexing, statistical methods
+* Practical skills: when to use different array creation methods, understanding `axis` parameter, file I/O choices
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+* **Week 3 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 4, understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on building solid conceptual understanding of NumPy fundamentals that will support everything that follows.
