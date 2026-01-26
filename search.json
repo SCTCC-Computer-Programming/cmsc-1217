@@ -4,28 +4,48 @@
     "href": "weekly-overview/week-03/index.html",
     "title": "Week 3 Guide",
     "section": "",
-    "text": "This week marks a shift from working with standard Python structures (lists, dictionaries, loops) to working with NumPy arrays—specialized structures designed for numerical computation. In Week 2, you processed data row-by-row using loops and built-in Python operations. That workflow is powerful for learning fundamentals, but it becomes slow and verbose when working with large numerical datasets.\nNumPy changes how you think about data work. Instead of looping over individual values, you write operations that apply to entire collections at once. This approach, called vectorization, produces faster code that often reads more like mathematical notation than traditional programming.\nThe Week 3 demo walks through the core NumPy patterns: creating arrays, understanding their structure, performing operations without loops, selecting subsets using conditions, and computing statistics. These patterns become the foundation for everything that follows. Pandas (which you will learn next) is built on top of NumPy arrays, and understanding how arrays work makes pandas much easier to learn.\n📓 Week 3 Demo:"
+    "text": "This week marks a shift from working with standard Python structures (lists, dictionaries, loops) to working with NumPy arrays—specialized structures designed for numerical computation. In Week 2, you processed data row-by-row using loops and built-in Python operations. That workflow is powerful for learning fundamentals, but it becomes slow and verbose when working with large numerical datasets.\nNumPy changes how you think about data work. Instead of looping over individual values, you write operations that apply to entire collections at once. This approach, called vectorization, produces faster code that often reads more like mathematical notation than traditional programming.\nThe Week 3 demo walks through the core NumPy patterns: creating arrays, understanding their structure, performing operations without loops, selecting subsets using conditions, and computing statistics. These patterns become the foundation for everything that follows. Pandas (which you will learn next) is built on top of NumPy arrays, and understanding how arrays work makes pandas much easier to learn.\nWeek 3 Demo:",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 3(Current)"
+    ]
   },
   {
     "objectID": "weekly-overview/week-03/index.html#chapter-4-concepts-used-this-week",
     "href": "weekly-overview/week-03/index.html#chapter-4-concepts-used-this-week",
     "title": "Week 3 Guide",
     "section": "Chapter 4 concepts used this week",
-    "text": "Chapter 4 concepts used this week\n\nArrays and vectorization\nThe ndarray (n-dimensional array) is NumPy’s core data structure. Unlike Python lists, arrays store homogeneous data (all the same type) in contiguous memory, which enables fast operations. The key conceptual shift is vectorization—writing operations that apply to entire arrays at once instead of looping over elements. This makes code faster, more readable, and often more concise.\n\n\nData types and array creation\nEvery array has a dtype (data type) that determines how elements are stored. NumPy provides multiple ways to create arrays: converting from lists, generating arrays filled with specific values (zeros, ones), creating ranges, or generating random data. Understanding when to use each method is part of building an effective workflow.\n\n\nIndexing, slicing, and views\nNumPy extends Python’s indexing syntax to work with multidimensional arrays. One critical difference: slices are views, not copies. Modifying a slice modifies the original array. This improves performance but requires attention when you need independent copies.\n\n\nBoolean indexing\nBoolean indexing replaces loops-with-conditions. You create a boolean array by applying a comparison (data &gt; threshold), then use it to select matching elements (data[data &gt; threshold]). This pattern is fundamental to filtering data in NumPy and pandas.\n\n\nStatistical operations and the axis parameter\nNumPy provides methods for computing statistics (mean, sum, standard deviation, etc.) on entire arrays or along specific dimensions using the axis parameter. Understanding how axis works is essential: axis=0 collapses rows (operates down columns), axis=1 collapses columns (operates across rows).\n\n\nSorting, unique values, and file I/O\nChapter 4 covers sorting arrays (in-place vs. returning sorted copies), finding unique elements, and saving/loading arrays in binary (.npy) or text format. These operations are common in data-cleaning and analysis workflows.\n\n\nRandom number generation\nGenerating random data is fundamental for testing code and simulations. NumPy provides functions for various distributions and for sampling from arrays. Setting random seeds ensures reproducibility—the same seed produces the same sequence of random values every time."
+    "text": "Chapter 4 concepts used this week\n\nArrays and vectorization\nThe ndarray (n-dimensional array) is NumPy’s core data structure. Unlike Python lists, arrays store homogeneous data (all the same type) in contiguous memory, which enables fast operations. The key conceptual shift is vectorization—writing operations that apply to entire arrays at once instead of looping over elements. This makes code faster, more readable, and often more concise.\n\n\nData types and array creation\nEvery array has a dtype (data type) that determines how elements are stored. NumPy provides multiple ways to create arrays: converting from lists, generating arrays filled with specific values (zeros, ones), creating ranges, or generating random data. Understanding when to use each method is part of building an effective workflow.\n\n\nIndexing, slicing, and views\nNumPy extends Python’s indexing syntax to work with multidimensional arrays. One critical difference: slices are views, not copies. Modifying a slice modifies the original array. This improves performance but requires attention when you need independent copies.\n\n\nBoolean indexing\nBoolean indexing replaces loops-with-conditions. You create a boolean array by applying a comparison (data &gt; threshold), then use it to select matching elements (data[data &gt; threshold]). This pattern is fundamental to filtering data in NumPy and pandas.\n\n\nStatistical operations and the axis parameter\nNumPy provides methods for computing statistics (mean, sum, standard deviation, etc.) on entire arrays or along specific dimensions using the axis parameter. Understanding how axis works is essential: axis=0 collapses rows (operates down columns), axis=1 collapses columns (operates across rows).\n\n\nSorting, unique values, and file I/O\nChapter 4 covers sorting arrays (in-place vs. returning sorted copies), finding unique elements, and saving/loading arrays in binary (.npy) or text format. These operations are common in data-cleaning and analysis workflows.\n\n\nRandom number generation\nGenerating random data is fundamental for testing code and simulations. NumPy provides functions for various distributions and for sampling from arrays. Setting random seeds ensures reproducibility—the same seed produces the same sequence of random values every time.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 3(Current)"
+    ]
   },
   {
     "objectID": "weekly-overview/week-03/index.html#reading-expectations-for-week-3",
     "href": "weekly-overview/week-03/index.html#reading-expectations-for-week-3",
     "title": "Week 3 Guide",
     "section": "Reading expectations for Week 3",
-    "text": "Reading expectations for Week 3\nAs you read Chapter 4 and work through the demo, check whether you can explain the following in your own words:\n\nWhat is the difference between a Python list and a NumPy array?\nWhat does vectorization mean, and why does it make code faster?\nWhat is a dtype, and why does it matter?\nWhat is the difference between a view and a copy of an array?\nHow does boolean indexing work, and what does it replace?\nWhat does the axis parameter control in aggregation functions like sum() or mean()?\nWhen would you use .sort() versus np.sort()?\nWhat is the difference between saving arrays in .npy format versus text format?\nWhat does setting a random seed accomplish?"
+    "text": "Reading expectations for Week 3\nAs you read Chapter 4 and work through the demo, check whether you can explain the following in your own words:\n\nWhat is the difference between a Python list and a NumPy array?\nWhat does vectorization mean, and why does it make code faster?\nWhat is a dtype, and why does it matter?\nWhat is the difference between a view and a copy of an array?\nHow does boolean indexing work, and what does it replace?\nWhat does the axis parameter control in aggregation functions like sum() or mean()?\nWhen would you use .sort() versus np.sort()?\nWhat is the difference between saving arrays in .npy format versus text format?\nWhat does setting a random seed accomplish?",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 3(Current)"
+    ]
   },
   {
     "objectID": "weekly-overview/week-03/index.html#week-3-tasks",
     "href": "weekly-overview/week-03/index.html#week-3-tasks",
     "title": "Week 3 Guide",
     "section": "Week 3 tasks",
-    "text": "Week 3 tasks\n\nRead Chapter 4 (complete).\nWork through the Week 3 demo in your Jupyter environment.\nComplete the Week 3 D2L quiz (Chapter 4 concepts)."
+    "text": "Week 3 tasks\n\nRead Chapter 4 (complete).\nWork through the Week 3 demo in your Jupyter environment.\nComplete the Week 3 D2L quiz (Chapter 4 concepts).",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 3(Current)"
+    ]
   },
   {
     "objectID": "weekly-overview/week-01/index.html",
@@ -902,35 +922,60 @@
     "href": "assignments/week-03/index.html",
     "title": "Week 3 Assignments",
     "section": "",
-    "text": "Here is the link to the Week 3 demo.\n Download Jupyter Notebook"
+    "text": "Here is the link to the Week 3 demo.\n Download Jupyter Notebook",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 3(Current)"
+    ]
   },
   {
     "objectID": "assignments/week-03/index.html#part-1-reading",
     "href": "assignments/week-03/index.html#part-1-reading",
     "title": "Week 3 Assignments",
     "section": "Part 1: Reading",
-    "text": "Part 1: Reading\nRead all of Chapter 4.\nChapter 4 introduces NumPy arrays and vectorized computation. The demo provides a hands-on walkthrough of the core concepts, with detailed explanations of how each operation works."
+    "text": "Part 1: Reading\nRead all of Chapter 4.\nChapter 4 introduces NumPy arrays and vectorized computation. The demo provides a hands-on walkthrough of the core concepts, with detailed explanations of how each operation works.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 3(Current)"
+    ]
   },
   {
     "objectID": "assignments/week-03/index.html#part-2-work-through-the-week-3-demo",
     "href": "assignments/week-03/index.html#part-2-work-through-the-week-3-demo",
     "title": "Week 3 Assignments",
     "section": "Part 2: Work through the Week 3 Demo",
-    "text": "Part 2: Work through the Week 3 Demo\nThe Week 3 demo covers:\n\nCreating arrays from lists and using generation functions\nUnderstanding array attributes (shape, dtype, ndim)\nPerforming vectorized operations (no loops needed)\nIndexing and slicing 1D and 2D arrays\nUsing boolean indexing to filter data\nComputing statistics with and without the axis parameter\nSorting arrays and finding unique values\nWorking with random data\nSaving and loading arrays"
+    "text": "Part 2: Work through the Week 3 Demo\nThe Week 3 demo covers:\n\nCreating arrays from lists and using generation functions\nUnderstanding array attributes (shape, dtype, ndim)\nPerforming vectorized operations (no loops needed)\nIndexing and slicing 1D and 2D arrays\nUsing boolean indexing to filter data\nComputing statistics with and without the axis parameter\nSorting arrays and finding unique values\nWorking with random data\nSaving and loading arrays",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 3(Current)"
+    ]
   },
   {
     "objectID": "assignments/week-03/index.html#part-3-d2l-quiz",
     "href": "assignments/week-03/index.html#part-3-d2l-quiz",
     "title": "Week 3 Assignments",
     "section": "Part 3: D2L Quiz",
-    "text": "Part 3: D2L Quiz\nComplete the Week 3 D2L quiz (Chapter 4 concepts).\nThe quiz covers:\n\nCore concepts: arrays vs. lists, vectorization, dtypes, views vs. copies\nOperations: indexing, slicing, boolean indexing, statistical methods\nPractical skills: when to use different array creation methods, understanding axis parameter, file I/O choices"
+    "text": "Part 3: D2L Quiz\nComplete the Week 3 D2L quiz (Chapter 4 concepts).\nThe quiz covers:\n\nCore concepts: arrays vs. lists, vectorization, dtypes, views vs. copies\nOperations: indexing, slicing, boolean indexing, statistical methods\nPractical skills: when to use different array creation methods, understanding axis parameter, file I/O choices",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 3(Current)"
+    ]
   },
   {
     "objectID": "assignments/week-03/index.html#d2l-submission-checklist",
     "href": "assignments/week-03/index.html#d2l-submission-checklist",
     "title": "Week 3 Assignments",
     "section": "D2L submission checklist",
-    "text": "D2L submission checklist\nComplete the following in D2L:\n\nWeek 3 D2L quiz (no file uploads required this week)\n\nNote: This week focuses on reading Chapter 4, understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on building solid conceptual understanding of NumPy fundamentals that will support everything that follows."
+    "text": "D2L submission checklist\nComplete the following in D2L:\n\nWeek 3 D2L quiz (no file uploads required this week)\n\nNote: This week focuses on reading Chapter 4, understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on building solid conceptual understanding of NumPy fundamentals that will support everything that follows.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 3(Current)"
+    ]
   },
   {
     "objectID": "course/schedule.html",
