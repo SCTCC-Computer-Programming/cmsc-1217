@@ -1,0 +1,52 @@
+---
+title: "Week 4 Guide"
+subtitle: "Cumulative Application of Chapters 1–4"
+format:
+  html:
+    toc: true
+---
+
+Week 4 is a cumulative application of everything from Chapters 1–4. You will work with industrial sensor data that contains errors, requiring you to apply both Week 2 parsing skills (file I/O, error handling, data structures) and Week 3 NumPy skills (arrays, vectorization, boolean indexing, statistics). The assignment presents a scenario-based problem where you determine the approach and build the complete workflow from raw data to analytical results.
+
+**Assignment:**
+
+- Here is the link to the **[Week 4 Assignment](../../assignments/week-04/week-04-assignments.html)**.
+- <a href="sensor_data_raw.csv" download="sensor_data_raw.csv"> Download Sensor Data </a>
+
+## Concepts applied this week
+
+### File I/O and parsing (Chapter 3)
+
+Read a CSV file and parse each row into structured records. The file contains errors (missing fields, invalid values), so you must use try/except to handle these gracefully without crashing the analysis.
+
+### Data structures (Chapter 3)
+
+Use lists to store cleaned records. Use dictionaries to represent each record with field names. Use sets to find distinct values (sensors in the dataset). Track errors so you can report on data quality.
+
+### NumPy arrays and vectorization (Chapter 4)
+
+Extract numeric measurements from clean data and convert to NumPy arrays. Use vectorized operations to compute statistics (mean, standard deviation, min, max) without writing loops.
+
+### Boolean indexing (Chapter 4)
+
+Create boolean masks by applying conditions to arrays (temperatures above a threshold, multiple conditions combined). Use masks to filter data and compute statistics on subsets.
+
+### Sorting and array methods (Chapter 4)
+
+Use sorting methods to identify extreme values. Use `np.argsort()` to find positions of sorted elements. Save processed arrays in `.npy` format for efficient storage.
+
+## Week 4 tasks
+
+1. Complete the **Week 4 Assignment** (industrial sensor analysis).
+2. Record and submit your video reflection.
+
+## Knowledge goals for Week 4
+
+By the end of Week 4, you should be able to:
+
+* parse a CSV file with error handling and report data quality metrics
+* convert cleaned data from Python structures to NumPy arrays
+* apply boolean indexing to filter arrays based on conditions
+* compute summary statistics on array data
+* use sorting methods to identify extreme values and their positions
+* explain the complete workflow from raw file to analytical results

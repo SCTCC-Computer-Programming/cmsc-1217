@@ -1,10 +1,3 @@
----
-title: "Week 3 Guide"
-subtitle: "Chapter 4 — From Loops to Arrays and Vectorized Computation"
-format:
-  html:
-    toc: true
----
 
 This week marks a shift from working with standard Python structures (lists, dictionaries, loops) to working with **NumPy arrays**—specialized structures designed for numerical computation. In Week 2, you processed data row-by-row using loops and built-in Python operations. That workflow is powerful for learning fundamentals, but it becomes slow and verbose when working with large numerical datasets.
 

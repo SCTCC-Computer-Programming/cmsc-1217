@@ -1,0 +1,138 @@
+---
+title: Week 4 Assignment
+subtitle: Industrial Sensor Data Analysis
+format:
+  html:
+    toc: true
+    
+---
+
+**Submission location:** All items are submitted in D2L (Week 4 Dropbox).
+
+**Reading:** Chapters 1–4 (cumulative).
+
+**Dataset:** <a href="sensor_data_raw.csv" download="sensor_data_raw.csv"> Download Sensor Data </a>
+
+## The Situation
+
+You have been asked to analyze recent sensor data from an industrial manufacturing process. The facility runs a heated chemical process that requires careful monitoring of temperature, humidity, and pressure conditions. Six sensors (SENS_001 through SENS_006) continuously log readings every five minutes.
+
+The operations team has reported intermittent issues with the sensor logging system over the past few days. Some records appear to be incomplete or contain invalid data. Your manager needs a clean analysis of the valid sensor readings to assess whether the process is operating within safe parameters.
+
+The raw sensor log file has been exported as a CSV. Each record should contain six fields: timestamp, sensor ID, temperature (°F), humidity (%), pressure (PSI), and status. However, the export process is known to occasionally produce malformed records.
+
+Management has specific concerns about process stability. Recent maintenance logs suggest that high-temperature events combined with low humidity may indicate a developing issue with the climate control system. They also want to understand the overall distribution of readings across the sensor network and verify that critical measurements remain within expected ranges.
+
+## What You Need to Deliver
+
+Your analysis must address the following requirements. Use the skills and methods from Weeks 1–4 to complete this work.
+
+### Data Quality Assessment
+
+Start by examining the raw data file. The operations team needs to know how reliable the sensor export has been. Your report should include:
+
+- The total number of records in the file
+- How many records were successfully parsed and validated
+- How many records contained errors and could not be processed
+- A brief look at the structure of the cleaned data (show a few sample records)
+- Identification of which sensors are represented in the dataset
+
+### Process Temperature Analysis
+
+Temperature control is critical for this process. The normal operating range is 150–220°F, but readings above 190°F warrant closer attention. Management needs:
+
+- Summary statistics for all valid temperature readings (mean, standard deviation, minimum, maximum)
+- Identification of how many readings exceeded 190°F
+- The actual temperature values that exceeded this threshold
+
+### Multi-Condition Alert Investigation
+
+The maintenance team suspects that certain combinations of conditions might indicate system stress. Specifically, they want to investigate readings where temperature exceeded 200°F AND humidity fell below 45%. For this subset of readings:
+
+- How many readings meet both conditions?
+- What was the average pressure during these events?
+
+### Comparative Analysis
+
+To better understand the data distribution, provide:
+
+- The five highest temperature readings recorded (sorted from highest to lowest)
+- The position (index) of each of these high-temperature readings in the dataset
+- Summary statistics for humidity readings (mean, standard deviation, minimum, maximum)
+- Summary statistics for pressure readings (mean, standard deviation, minimum, maximum)
+
+### Data Preservation
+
+For future reference and potential audit purposes:
+
+- Save the processed temperature data to a binary file (`temperatures.npy`)
+- Verify that the saved data can be reloaded successfully
+
+## Technical Requirements
+
+Your Jupyter notebook should demonstrate the complete workflow from raw file to final analysis. The notebook must run successfully from start to finish using "Restart Kernel and Run All."
+
+**File handling and parsing (Week 2 skills):**
+
+Use standard Python file I/O to read the CSV file. Parse each row into structured records using string methods and type conversion. Handle invalid records gracefully using try/except—the analysis should not crash if malformed rows are encountered. Track both successful parses and errors so you can report on data quality.
+
+**Data structures and extraction (Week 2 skills):**
+
+Store cleaned records in an appropriate data structure. Use sets when you need to find distinct values. When extracting numeric measurements for analysis, build lists first before converting to arrays.
+
+**NumPy analysis (Week 3 and Chapter 4 skills):**
+
+Convert extracted measurements into NumPy arrays. Use vectorized operations and built-in statistical methods rather than loops. Apply boolean indexing to filter data based on conditions. Use array methods for sorting and saving/loading data.
+
+**Notebook organization:**
+
+Structure your notebook logically. Use markdown cells to explain what each section does. Include clear print statements showing your results. Make it easy to verify that you have addressed each requirement.
+
+## Video Reflection
+
+Record a short video (4-5 minutes) demonstrating your understanding of this assignment.
+
+**Part 1: Explain your approach to the multi-condition alert investigation**
+
+Walk through how you identified readings where temperature exceeded 200°F AND humidity fell below 45%. In your explanation, address:
+
+1. What the requirement was asking you to determine
+2. How you broke this down into steps
+3. What each part of your boolean mask is checking
+4. What your results mean (how many readings matched, what the average pressure was)
+
+**Part 2: Reflect on your learning**
+
+Choose ONE of the following to discuss:
+
+- **Challenge or error:** Describe a problem you encountered while completing this assignment, how you figured out what was wrong, and how you resolved it
+- **Key takeaway:** Explain one important concept you learned or solidified through this assignment and why it matters for data work
+
+**Video submission requirements:**
+
+- Clear video and audio quality
+- Introduce yourself at the beginning (name)
+- Name your video file: `lastname_Week04Reflection`
+- Upload your video to **Kaltura**
+- **Do not** embed the video in the Dropbox submission
+- Paste the **share link** into the D2L assignment text submission box
+- Make sure the link text includes `lastname_Week04Reflection` in the link name
+
+## D2L Submission Checklist
+
+Submit the following items to the **Week 4 Dropbox** in D2L:
+
+### Notebook file
+
+- `lastname_week04_assignment.ipynb`
+
+### Video submission (link only)
+
+- Video filename: `lastname_Week04Reflection`
+- Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)
+
+**Before you submit:**
+
+- Run "Restart Kernel and Run All" to confirm your notebook executes without errors
+- Verify all required outputs are visible in the notebook
+- Check that your video link works and includes the correct filename
