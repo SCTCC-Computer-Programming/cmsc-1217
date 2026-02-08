@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>week-5-demo – CMSC 1217 : Introduction to Data Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-feb0c0ed7aac57d66ec8dce0f6a48183.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CMSC 1217 : Introduction to Data Analytics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 5 Demo: Introduction to pandas</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+        <div class="sidebar-tools-collapse">
+    <a href="https://discord.gg/az8cmeqJdc" title="" class="quarto-navigation-tool px-1" aria-label="Discord"><i class="bi bi-chat-dots"></i></a>
+    <a href="https://sctcc.learn.minnstate.edu/d2l/login" title="" class="quarto-navigation-tool px-1" aria-label="D2L"><i class="bi bi-book-half"></i></a>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Office Hours</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment Policies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Policies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI Policy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Weekly Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 (Current)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Weekly Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 (Current)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 1</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Miniconda Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter Learning Links</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 2</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 Reference Videos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 3</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/cmsc-1217/week-03/cmsc-1217-chap-04-learning-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 Reference Videos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 5 Demo: Introduction to pandas</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 2, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Over the past four weeks, you’ve built a solid foundation in data analysis workflows:</p>
+<p><strong>Week 1: Environment and Interactive Workflow</strong> - Jupyter notebooks for interactive development - The kernel concept and “Restart Kernel and Run All” - Import conventions (np, pd)</p>
+<p><strong>Week 2: File Processing and Data Structures</strong> - Reading CSV files and parsing rows - Using Python’s core structures (lists, dicts, sets) - Error handling with try/except - Building frequency counts and summaries</p>
+<p><strong>Week 3: NumPy Arrays and Vectorization</strong> - Arrays for efficient numerical computation - Vectorized operations (no loops needed) - Boolean indexing for filtering - Statistical methods and the axis parameter</p>
+<p><strong>Week 4: Integration</strong> - Complete workflow: file → parse → clean → NumPy arrays → analysis - Combining Week 2 parsing with Week 3 NumPy operations</p>
+<p><strong>This Week: pandas</strong> - <strong>Built on NumPy arrays</strong> but adds powerful features for working with <strong>labeled, tabular data</strong> - If NumPy is “efficient arrays,” pandas is “efficient spreadsheets with labels”</p>
+<section id="what-is-pandas" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-pandas">What is pandas?</h3>
+<p>pandas provides two core data structures:</p>
+<p><strong>Series</strong>: A one-dimensional labeled array - Think of it as a NumPy array with labels (an index) attached - Like a single column in a spreadsheet - Example: A list of temperatures with dates as labels</p>
+<p><strong>DataFrame</strong>: A two-dimensional labeled data structure with columns - Think of it as a table or spreadsheet - Each column is a Series - Both rows and columns have labels - Example: A table of student grades with student names as row labels and assignments as column labels</p>
+</section>
+<section id="why-pandas-exists" class="level3">
+<h3 class="anchored" data-anchor-id="why-pandas-exists">Why pandas Exists</h3>
+<p>NumPy is powerful for numerical operations, but it has limitations when working with real-world data:</p>
+<p><strong>NumPy limitations:</strong> - No built-in way to label rows and columns - Selecting data requires remembering numeric positions - All data must be the same type (all floats, all ints) - No automatic alignment when combining datasets</p>
+<p><strong>pandas solutions:</strong> - Row and column labels make data self-documenting - Select data by meaningful names instead of positions - Different columns can have different types (one column of numbers, another of text) - Automatic alignment by labels when combining data</p>
+<p>pandas is built on top of NumPy arrays, so you still get NumPy’s speed. But you also get labels, mixed types, and powerful data manipulation tools.</p>
+</section>
+<section id="what-this-demo-covers" class="level3">
+<h3 class="anchored" data-anchor-id="what-this-demo-covers">What This Demo Covers</h3>
+<p>This demo introduces the core pandas concepts: - Creating and working with Series - Creating and working with DataFrames - Selecting data by labels and positions - Understanding automatic alignment (pandas’s “superpower”) - Computing statistics on labeled data</p>
+<p>The textbook (Chapter 5) then shows you: - Reindexing and altering labels - Advanced indexing techniques - More operations and methods - Handling missing data basics - Complete reference for all pandas capabilities</p>
+</section>
+</section>
+<section id="part-1-creating-and-using-series" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-creating-and-using-series">Part 1: Creating and Using Series</h2>
+<p>A <strong>Series</strong> is a one-dimensional array with labels. It’s like a NumPy array, but each value has an associated label (index).</p>
+<section id="creating-a-series-from-a-list" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-series-from-a-list">Creating a Series from a list</h3>
+<div id="c5a1cf80" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Series from a list</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> pd.Series([<span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">68</span>, <span class="dv">70</span>, <span class="dv">73</span>])</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temperatures)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0    72
+1    75
+2    68
+3    70
+4    73
+dtype: int64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>The left column (0, 1, 2, 3, 4) is the <strong>index</strong> - the labels for each value. By default, pandas uses sequential integers starting at 0, just like list positions.</p>
+<p>The right column (72, 75, 68, 70, 73) contains the <strong>values</strong> - the actual data.</p>
+<p>At the bottom, <code>dtype: int64</code> tells us all values are 64-bit integers, just like NumPy arrays.</p>
+<p><strong>Why this matters:</strong></p>
+<p>Unlike a regular Python list or NumPy array, a Series keeps track of what each value represents. You can access values by their label, not just their position.</p>
+</section>
+<section id="creating-a-series-with-custom-labels" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-series-with-custom-labels">Creating a Series with custom labels</h3>
+<div id="2f2aad80" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Series with custom index labels</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> pd.Series(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">68</span>, <span class="dv">70</span>, <span class="dv">73</span>],</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'Monday'</span>, <span class="st">'Tuesday'</span>, <span class="st">'Wednesday'</span>, <span class="st">'Thursday'</span>, <span class="st">'Friday'</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temperatures)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Monday       72
+Tuesday      75
+Wednesday    68
+Thursday     70
+Friday       73
+dtype: int64</code></pre>
+</div>
+</div>
+<p>Now the index has meaningful labels instead of just positions. This makes the data self-documenting - you can see that 72 is Monday’s temperature without having to remember that position 0 means Monday.</p>
+</section>
+<section id="creating-a-series-from-a-dictionary" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-series-from-a-dictionary">Creating a Series from a dictionary</h3>
+<div id="330636e6" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Series from a dictionary</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Keys become the index, values become the data</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> pd.Series({</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Monday'</span>: <span class="dv">72</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Tuesday'</span>: <span class="dv">75</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Wednesday'</span>: <span class="dv">68</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Thursday'</span>: <span class="dv">70</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Friday'</span>: <span class="dv">73</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temperatures)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Monday       72
+Tuesday      75
+Wednesday    68
+Thursday     70
+Friday       73
+dtype: int64</code></pre>
+</div>
+</div>
+<p>When you create a Series from a dictionary: - Dictionary keys become the index labels - Dictionary values become the Series values - This is often the most natural way to create a Series with labeled data</p>
+</section>
+<section id="accessing-values-in-a-series" class="level3">
+<h3 class="anchored" data-anchor-id="accessing-values-in-a-series">Accessing values in a Series</h3>
+<div id="97e9dcd5" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access by label</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Wednesday's temperature:"</span>, temperatures[<span class="st">'Wednesday'</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Access by position using .iloc</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Third day's temperature:"</span>, temperatures.iloc[<span class="dv">2</span>])</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Access multiple values by label</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Weekday temperatures:"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temperatures[[<span class="st">'Monday'</span>, <span class="st">'Wednesday'</span>, <span class="st">'Friday'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Wednesday's temperature: 68
+Third day's temperature: 68
+
+Weekday temperatures:
+Monday       72
+Wednesday    68
+Friday       73
+dtype: int64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the access methods:</strong></p>
+<p><strong>Label-based access</strong>: <code>temperatures['Wednesday']</code> uses the index label. This is like accessing a dictionary by key - you use the meaningful name.</p>
+<p><strong>Position-based access</strong>: <code>temperatures.iloc[2]</code> uses the numeric position. <code>.iloc</code> (integer location) explicitly indicates position-based indexing. Position 2 is the third element (Wednesday).</p>
+<p><strong>Multiple labels</strong>: <code>temperatures[['Monday', 'Wednesday', 'Friday']]</code> passes a list of labels and returns a Series containing just those labeled values. Note the double brackets - the outer brackets are for indexing, the inner brackets create the list of labels.</p>
+</section>
+<section id="vectorized-operations-on-series" class="level3">
+<h3 class="anchored" data-anchor-id="vectorized-operations-on-series">Vectorized operations on Series</h3>
+<div id="00ffa122" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Fahrenheit to Celsius (remember Week 3 vectorization?)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>celsius <span class="op">=</span> (temperatures <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span><span class="op">/</span><span class="dv">9</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temperatures in Celsius:"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(celsius.<span class="bu">round</span>(<span class="dv">1</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Boolean indexing (remember Week 3?)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>hot_days <span class="op">=</span> temperatures[temperatures <span class="op">&gt;</span> <span class="dv">72</span>]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Days warmer than 72°F:"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(hot_days)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Temperatures in Celsius:
+Monday       22.2
+Tuesday      23.9
+Wednesday    20.0
+Thursday     21.1
+Friday       22.8
+dtype: float64
+
+Days warmer than 72°F:
+Tuesday    75
+Friday     73
+dtype: int64</code></pre>
+</div>
+</div>
+<p><strong>Understanding vectorized operations:</strong></p>
+<p>Just like NumPy arrays from Week 3, you can perform operations on entire Series without writing loops:</p>
+<p><strong>Arithmetic operations</strong>: <code>(temperatures - 32) * 5/9</code> subtracts 32 from every temperature and multiplies by 5/9 to convert Fahrenheit to Celsius. The operation applies to all values at once.</p>
+<p><strong>Boolean indexing</strong>: <code>temperatures &gt; 72</code> creates a boolean Series (True/False for each day), then <code>temperatures[...]</code> selects only the True values. This is exactly like boolean indexing in NumPy from Week 3.</p>
+<p><strong>Key difference from NumPy</strong>: The index labels (day names) are preserved through all operations. When you filter or transform the data, the labels stick with their values.</p>
+</section>
+<section id="series-attributes" class="level3">
+<h3 class="anchored" data-anchor-id="series-attributes">Series attributes</h3>
+<div id="a154da79" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore Series attributes</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Values (as NumPy array):"</span>, temperatures.values)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index labels:"</span>, temperatures.index)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data type:"</span>, temperatures.dtype)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape:"</span>, temperatures.shape)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Size:"</span>, temperatures.size)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Values (as NumPy array): [72 75 68 70 73]
+Index labels: Index(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], dtype='object')
+Data type: int64
+Shape: (5,)
+Size: 5</code></pre>
+</div>
+</div>
+<p><strong>Understanding Series attributes:</strong></p>
+<p><strong><code>.values</code></strong>: Returns the underlying NumPy array. This is how you “drop down” to NumPy when you need array-specific operations. The connection between pandas and NumPy is explicit here.</p>
+<p><strong><code>.index</code></strong>: Returns an Index object containing the labels. You can see all the row labels at once.</p>
+<p><strong><code>.dtype</code></strong>: The data type of the values, just like NumPy arrays. All values in a Series must have the same type.</p>
+<p><strong><code>.shape</code></strong>: A tuple showing dimensions. For a Series, this is always a single number in parentheses: <code>(n,)</code> where n is the length.</p>
+<p><strong><code>.size</code></strong>: The total number of elements. For a Series, this is the same as the length.</p>
+</section>
+</section>
+<section id="part-2-creating-and-using-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-creating-and-using-dataframes">Part 2: Creating and Using DataFrames</h2>
+<p>A <strong>DataFrame</strong> is a two-dimensional labeled data structure with columns. Think of it as a table or spreadsheet where: - Each column is a Series - Rows have labels (the index) - Columns have names - Different columns can contain different data types</p>
+<section id="creating-a-dataframe-from-a-dictionary" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-dataframe-from-a-dictionary">Creating a DataFrame from a dictionary</h3>
+<div id="e4a9ef93" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame from a dictionary of lists</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Each key becomes a column name, each list becomes the column values</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'student'</span>: [<span class="st">'Alice'</span>, <span class="st">'Bob'</span>, <span class="st">'Charlie'</span>, <span class="st">'Diana'</span>, <span class="st">'Eve'</span>],</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'quiz1'</span>: [<span class="dv">85</span>, <span class="dv">92</span>, <span class="dv">78</span>, <span class="dv">88</span>, <span class="dv">95</span>],</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'quiz2'</span>: [<span class="dv">88</span>, <span class="dv">85</span>, <span class="dv">82</span>, <span class="dv">90</span>, <span class="dv">92</span>],</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'final'</span>: [<span class="dv">90</span>, <span class="dv">88</span>, <span class="dv">85</span>, <span class="dv">92</span>, <span class="dv">94</span>]</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   student  quiz1  quiz2  final
+0    Alice     85     88     90
+1      Bob     92     85     88
+2  Charlie     78     82     85
+3    Diana     88     90     92
+4      Eve     95     92     94</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>The leftmost column (0, 1, 2, 3, 4) is the <strong>row index</strong> - labels for rows, just like a Series. By default, pandas uses sequential integers.</p>
+<p>The top row (student, quiz1, quiz2, final) contains <strong>column names</strong> - labels for columns.</p>
+<p>Each cell contains a value. This looks like a spreadsheet or database table.</p>
+<p><strong>How dictionaries become DataFrames:</strong></p>
+<p>When you pass a dictionary to <code>pd.DataFrame()</code>: - Each dictionary key becomes a column name - Each dictionary value (a list) becomes the data for that column - All lists must be the same length - pandas automatically creates a row index (0, 1, 2, …)</p>
+</section>
+<section id="setting-a-meaningful-index" class="level3">
+<h3 class="anchored" data-anchor-id="setting-a-meaningful-index">Setting a meaningful index</h3>
+<div id="4c0b3c37" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the 'student' column as the index</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> grades.set_index(<span class="st">'student'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         quiz1  quiz2  final
+student                     
+Alice       85     88     90
+Bob         92     85     88
+Charlie     78     82     85
+Diana       88     90     92
+Eve         95     92     94</code></pre>
+</div>
+</div>
+<p><strong>What changed:</strong></p>
+<p><strong>Before</strong>: Student names were in a column, rows were labeled with numbers (0, 1, 2, …)</p>
+<p><strong>After</strong>: Student names became the row labels (index), and the ‘student’ column disappeared from the data.</p>
+<p><strong>Why this matters:</strong></p>
+<p>Setting a meaningful index makes data selection more intuitive. Instead of remembering “Alice is row 0,” you can directly access “the row labeled ‘Alice’.”</p>
+</section>
+<section id="creating-a-dataframe-from-a-list-of-dictionaries" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-dataframe-from-a-list-of-dictionaries">Creating a DataFrame from a list of dictionaries</h3>
+<div id="1bf11ea3" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame from a list of dictionaries</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Each dictionary becomes a row</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> pd.DataFrame([</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'item'</span>: <span class="st">'Laptop'</span>, <span class="st">'quantity'</span>: <span class="dv">15</span>, <span class="st">'price'</span>: <span class="fl">899.99</span>},</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'item'</span>: <span class="st">'Mouse'</span>, <span class="st">'quantity'</span>: <span class="dv">50</span>, <span class="st">'price'</span>: <span class="fl">24.99</span>},</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'item'</span>: <span class="st">'Keyboard'</span>, <span class="st">'quantity'</span>: <span class="dv">30</span>, <span class="st">'price'</span>: <span class="fl">79.99</span>},</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'item'</span>: <span class="st">'Monitor'</span>, <span class="st">'quantity'</span>: <span class="dv">20</span>, <span class="st">'price'</span>: <span class="fl">249.99</span>}</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(inventory)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       item  quantity   price
+0    Laptop        15  899.99
+1     Mouse        50   24.99
+2  Keyboard        30   79.99
+3   Monitor        20  249.99</code></pre>
+</div>
+</div>
+<p><strong>Understanding list-of-dictionaries format:</strong></p>
+<p>This format is common when processing data row-by-row (like Week 2’s parsing workflow): - Each dictionary represents one complete record (row) - Dictionary keys become column names - pandas automatically aligns everything into a table</p>
+<p>Compare this to Week 2, where you built a list of dictionaries manually by parsing CSV rows. If you had that list, you could convert it directly to a DataFrame with <code>pd.DataFrame(list_of_dicts)</code>.</p>
+</section>
+<section id="dataframe-attributes-and-methods" class="level3">
+<h3 class="anchored" data-anchor-id="dataframe-attributes-and-methods">DataFrame attributes and methods</h3>
+<div id="eb8c3d6d" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore DataFrame structure</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape (rows, columns):"</span>, grades.shape)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Column names:"</span>, grades.columns.tolist())</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Row index:"</span>, grades.index.tolist())</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Data types:"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Shape (rows, columns): (5, 3)
+
+Column names: ['quiz1', 'quiz2', 'final']
+
+Row index: ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve']
+
+Data types:
+quiz1    int64
+quiz2    int64
+final    int64
+dtype: object</code></pre>
+</div>
+</div>
+<p><strong>Understanding DataFrame attributes:</strong></p>
+<p><strong><code>.shape</code></strong>: Returns a tuple <code>(rows, columns)</code>. Our DataFrame has 5 rows (students) and 3 columns (quiz1, quiz2, final).</p>
+<p><strong><code>.columns</code></strong>: Returns the column labels as an Index object. We convert it to a list with <code>.tolist()</code> for readability.</p>
+<p><strong><code>.index</code></strong>: Returns the row labels as an Index object. These are the student names we set earlier.</p>
+<p><strong><code>.dtypes</code></strong>: Shows the data type of each column. Unlike NumPy arrays (which must be one type), DataFrames can have different types per column. Here all three columns are int64, but we could have a column of strings and a column of numbers in the same DataFrame.</p>
+</section>
+<section id="viewing-dataframe-data" class="level3">
+<h3 class="anchored" data-anchor-id="viewing-dataframe-data">Viewing DataFrame data</h3>
+<div id="bb7bc0c6" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View first and last rows</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First 3 rows:"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades.head(<span class="dv">3</span>))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Last 2 rows:"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades.tail(<span class="dv">2</span>))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a summary of the DataFrame</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DataFrame info:"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades.info())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First 3 rows:
+         quiz1  quiz2  final
+student                     
+Alice       85     88     90
+Bob         92     85     88
+Charlie     78     82     85
+
+Last 2 rows:
+         quiz1  quiz2  final
+student                     
+Diana       88     90     92
+Eve         95     92     94
+
+DataFrame info:
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+Index: 5 entries, Alice to Eve
+Data columns (total 3 columns):
+ #   Column  Non-Null Count  Dtype
+---  ------  --------------  -----
+ 0   quiz1   5 non-null      int64
+ 1   quiz2   5 non-null      int64
+ 2   final   5 non-null      int64
+dtypes: int64(3)
+memory usage: 160.0+ bytes
+None</code></pre>
+</div>
+</div>
+<p><strong>Understanding viewing methods:</strong></p>
+<p><strong><code>.head(n)</code></strong>: Shows the first n rows. Default is 5 if you don’t specify. Useful for quickly checking data structure without printing everything.</p>
+<p><strong><code>.tail(n)</code></strong>: Shows the last n rows. Default is 5. Useful for checking the end of the dataset.</p>
+<p><strong><code>.info()</code></strong>: Provides a summary: - The data type (DataFrame) - Index information (5 entries from Alice to Eve) - Column information (3 columns, all have 5 non-null values) - Data types per column - Memory usage</p>
+<p>The “Non-Null Count” column in <code>.info()</code> becomes important later when you have missing data. Here it shows 5 non-null for each column, meaning no missing values.</p>
+</section>
+</section>
+<section id="part-3-selecting-data-from-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-selecting-data-from-dataframes">Part 3: Selecting Data from DataFrames</h2>
+<p>DataFrames support multiple ways to select data. Understanding these selection methods is fundamental to working with pandas.</p>
+<section id="selecting-columns" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-columns">Selecting columns</h3>
+<div id="f702d7c7" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a single column (returns a Series)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>quiz1_scores <span class="op">=</span> grades[<span class="st">'quiz1'</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Quiz 1 scores:"</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(quiz1_scores)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Type: </span><span class="sc">{</span><span class="bu">type</span>(quiz1_scores)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Select multiple columns (returns a DataFrame)</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>quiz_scores <span class="op">=</span> grades[[<span class="st">'quiz1'</span>, <span class="st">'quiz2'</span>]]</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Quiz scores:"</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(quiz_scores)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Type: </span><span class="sc">{</span><span class="bu">type</span>(quiz_scores)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Quiz 1 scores:
+student
+Alice      85
+Bob        92
+Charlie    78
+Diana      88
+Eve        95
+Name: quiz1, dtype: int64
+
+Type: &lt;class 'pandas.core.series.Series'&gt;
+
+Quiz scores:
+         quiz1  quiz2
+student              
+Alice       85     88
+Bob         92     85
+Charlie     78     82
+Diana       88     90
+Eve         95     92
+
+Type: &lt;class 'pandas.core.frame.DataFrame'&gt;</code></pre>
+</div>
+</div>
+<p><strong>Understanding column selection:</strong></p>
+<p><strong>Single column with single brackets</strong>: <code>grades['quiz1']</code> returns a <strong>Series</strong>. This is one column extracted from the DataFrame. The Series has the same index as the DataFrame (student names).</p>
+<p><strong>Multiple columns with double brackets</strong>: <code>grades[['quiz1', 'quiz2']]</code> returns a <strong>DataFrame</strong>. The outer brackets are for indexing, the inner brackets create a list of column names. The result is a subset of the original DataFrame with just those columns.</p>
+<p><strong>Why the type matters:</strong></p>
+<p>When you select a single column, you get a Series - you can use all Series methods and operations. When you select multiple columns, you get a DataFrame - you can use DataFrame methods. Knowing which you’re working with helps you understand what operations are available.</p>
+</section>
+<section id="selecting-rows-with-loc-label-based" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-rows-with-loc-label-based">Selecting rows with loc (label-based)</h3>
+<div id="2b61527c" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a single row by label (returns a Series)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>alice_scores <span class="op">=</span> grades.loc[<span class="st">'Alice'</span>]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Alice's scores:"</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alice_scores)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Select multiple rows by label (returns a DataFrame)</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>some_students <span class="op">=</span> grades.loc[[<span class="st">'Alice'</span>, <span class="st">'Charlie'</span>, <span class="st">'Eve'</span>]]</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Selected students:"</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(some_students)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Select rows and columns together</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>alice_quizzes <span class="op">=</span> grades.loc[<span class="st">'Alice'</span>, [<span class="st">'quiz1'</span>, <span class="st">'quiz2'</span>]]</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Alice's quiz scores:"</span>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(alice_quizzes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Alice's scores:
+quiz1    85
+quiz2    88
+final    90
+Name: Alice, dtype: int64
+
+Selected students:
+         quiz1  quiz2  final
+student                     
+Alice       85     88     90
+Charlie     78     82     85
+Eve         95     92     94
+
+Alice's quiz scores:
+quiz1    85
+quiz2    88
+Name: Alice, dtype: int64</code></pre>
+</div>
+</div>
+<p><strong>Understanding .loc:</strong></p>
+<p><code>.loc</code> selects data by <strong>labels</strong> (index names):</p>
+<p><strong>Single row</strong>: <code>grades.loc['Alice']</code> returns a Series containing Alice’s data. The Series index becomes the column names (quiz1, quiz2, final).</p>
+<p><strong>Multiple rows</strong>: <code>grades.loc[['Alice', 'Charlie', 'Eve']]</code> returns a DataFrame with just those rows. Notice the double brackets again - we’re passing a list of labels.</p>
+<p><strong>Rows and columns</strong>: <code>grades.loc['Alice', ['quiz1', 'quiz2']]</code> selects Alice’s row but only the quiz1 and quiz2 columns. First argument is row labels, second argument is column labels.</p>
+<p><strong>The key idea</strong>: <code>.loc</code> uses the labels you can see in the printed DataFrame. If you can see “Alice” in the index, you can use <code>'Alice'</code> with <code>.loc</code>.</p>
+</section>
+<section id="selecting-rows-with-iloc-position-based" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-rows-with-iloc-position-based">Selecting rows with iloc (position-based)</h3>
+<div id="f43ac4da" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select by position (like NumPy indexing)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First student's scores</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>first_student <span class="op">=</span> grades.iloc[<span class="dv">0</span>]</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First student:"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_student)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># First three students</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>first_three <span class="op">=</span> grades.iloc[<span class="dv">0</span>:<span class="dv">3</span>]</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First three students:"</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_three)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># First student, first two columns</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>first_student_quizzes <span class="op">=</span> grades.iloc[<span class="dv">0</span>, <span class="dv">0</span>:<span class="dv">2</span>]</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">First student's quiz scores:"</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_student_quizzes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First student:
+quiz1    85
+quiz2    88
+final    90
+Name: Alice, dtype: int64
+
+First three students:
+         quiz1  quiz2  final
+student                     
+Alice       85     88     90
+Bob         92     85     88
+Charlie     78     82     85
+
+First student's quiz scores:
+quiz1    85
+quiz2    88
+Name: Alice, dtype: int64</code></pre>
+</div>
+</div>
+<p><strong>Understanding .iloc:</strong></p>
+<p><code>.iloc</code> selects data by <strong>integer position</strong> (like NumPy arrays or lists):</p>
+<p><strong>Position 0</strong>: <code>grades.iloc[0]</code> returns the first row (Alice), regardless of index label.</p>
+<p><strong>Position slice</strong>: <code>grades.iloc[0:3]</code> returns rows at positions 0, 1, and 2 (first three rows).</p>
+<p><strong>Position for rows and columns</strong>: <code>grades.iloc[0, 0:2]</code> selects the first row and the first two columns.</p>
+<p><strong>The key difference from .loc</strong>:</p>
+<ul>
+<li><code>.loc</code> uses the names/labels: <code>grades.loc['Alice']</code></li>
+<li><code>.iloc</code> uses numeric positions: <code>grades.iloc[0]</code></li>
+</ul>
+<p>Both happen to return the same row here (Alice is at position 0), but they’re fundamentally different. If you later sort the DataFrame, <code>.loc['Alice']</code> still gets Alice, but <code>.iloc[0]</code> gets whoever is now in the first position.</p>
+</section>
+<section id="boolean-indexing" class="level3">
+<h3 class="anchored" data-anchor-id="boolean-indexing">Boolean indexing</h3>
+<div id="46a34cee" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter rows based on a condition (like Week 3 NumPy)</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>high_scorers <span class="op">=</span> grades[grades[<span class="st">'final'</span>] <span class="op">&gt;=</span> <span class="dv">90</span>]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Students with final scores &gt;= 90:"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(high_scorers)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple conditions</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>strong_performers <span class="op">=</span> grades[(grades[<span class="st">'quiz1'</span>] <span class="op">&gt;=</span> <span class="dv">85</span>) <span class="op">&amp;</span> (grades[<span class="st">'quiz2'</span>] <span class="op">&gt;=</span> <span class="dv">85</span>)]</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Students with both quizzes &gt;= 85:"</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(strong_performers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Students with final scores &gt;= 90:
+         quiz1  quiz2  final
+student                     
+Alice       85     88     90
+Diana       88     90     92
+Eve         95     92     94
+
+Students with both quizzes &gt;= 85:
+         quiz1  quiz2  final
+student                     
+Alice       85     88     90
+Bob         92     85     88
+Diana       88     90     92
+Eve         95     92     94</code></pre>
+</div>
+</div>
+<p><strong>Understanding boolean indexing:</strong></p>
+<p>This works exactly like NumPy boolean indexing from Week 3:</p>
+<p><strong>Single condition</strong>: <code>grades['final'] &gt;= 90</code> creates a boolean Series (True/False for each student), then <code>grades[...]</code> selects only the True rows.</p>
+<p><strong>Multiple conditions</strong>: Use <code>&amp;</code> for “and”, <code>|</code> for “or”, <code>~</code> for “not”. Each condition must be in parentheses: <code>(condition1) &amp; (condition2)</code>.</p>
+<p><strong>The boolean Series</strong>:</p>
+<div id="9deffc81" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades[<span class="st">'final'</span>] <span class="op">&gt;=</span> <span class="dv">90</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Output:</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># student</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Alice       True</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Bob        False</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Charlie    False</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Diana       True</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Eve         True</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: final, dtype: bool</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>student
+Alice       True
+Bob        False
+Charlie    False
+Diana       True
+Eve         True
+Name: final, dtype: bool</code></pre>
+</div>
+</div>
+<p>The comparison creates a boolean Series aligned with the DataFrame’s index. pandas then uses this as a filter.</p>
+</section>
+</section>
+<section id="part-4-operations-and-automatic-alignment" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-operations-and-automatic-alignment">Part 4: Operations and Automatic Alignment</h2>
+<p>One of pandas’s most powerful features is <strong>automatic alignment by index</strong>. When you perform operations between Series or DataFrames, pandas automatically aligns data by their labels.</p>
+<p>This is what makes pandas different from NumPy.</p>
+<section id="arithmetic-with-series" class="level3">
+<h3 class="anchored" data-anchor-id="arithmetic-with-series">Arithmetic with Series</h3>
+<div id="4e10b0a8" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create two Series with the same index</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>monday_sales <span class="op">=</span> pd.Series([<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>], index<span class="op">=</span>[<span class="st">'Product A'</span>, <span class="st">'Product B'</span>, <span class="st">'Product C'</span>])</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>tuesday_sales <span class="op">=</span> pd.Series([<span class="dv">120</span>, <span class="dv">140</span>, <span class="dv">210</span>], index<span class="op">=</span>[<span class="st">'Product A'</span>, <span class="st">'Product B'</span>, <span class="st">'Product C'</span>])</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Monday sales:"</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(monday_sales)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Tuesday sales:"</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tuesday_sales)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the Series (element-wise, like NumPy)</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>total_sales <span class="op">=</span> monday_sales <span class="op">+</span> tuesday_sales</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Total sales (Monday + Tuesday):"</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_sales)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Monday sales:
+Product A    100
+Product B    150
+Product C    200
+dtype: int64
+
+Tuesday sales:
+Product A    120
+Product B    140
+Product C    210
+dtype: int64
+
+Total sales (Monday + Tuesday):
+Product A    220
+Product B    290
+Product C    410
+dtype: int64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the addition:</strong></p>
+<p>When the indices match perfectly, addition works like NumPy: - Product A: 100 + 120 = 220 - Product B: 150 + 140 = 290<br>
+- Product C: 200 + 210 = 410</p>
+<p>Each value is added to the corresponding value with the same label.</p>
+</section>
+<section id="automatic-alignment-with-mismatched-indices" class="level3">
+<h3 class="anchored" data-anchor-id="automatic-alignment-with-mismatched-indices">Automatic alignment with mismatched indices</h3>
+<div id="ef49d259" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create two Series with different (but overlapping) indices</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>monday_sales <span class="op">=</span> pd.Series([<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>], </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                         index<span class="op">=</span>[<span class="st">'Product A'</span>, <span class="st">'Product B'</span>, <span class="st">'Product C'</span>])</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tuesday has Products B, C, D (Product A is missing, Product D is new)</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>tuesday_sales <span class="op">=</span> pd.Series([<span class="dv">140</span>, <span class="dv">210</span>, <span class="dv">180</span>], </span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>                          index<span class="op">=</span>[<span class="st">'Product B'</span>, <span class="st">'Product C'</span>, <span class="st">'Product D'</span>])</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Monday sales:"</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(monday_sales)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Tuesday sales:"</span>)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tuesday_sales)</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the Series - pandas aligns by label automatically</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>total_sales <span class="op">=</span> monday_sales <span class="op">+</span> tuesday_sales</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Total sales (Monday + Tuesday):"</span>)</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_sales)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Monday sales:
+Product A    100
+Product B    150
+Product C    200
+dtype: int64
+
+Tuesday sales:
+Product B    140
+Product C    210
+Product D    180
+dtype: int64
+
+Total sales (Monday + Tuesday):
+Product A      NaN
+Product B    290.0
+Product C    410.0
+Product D      NaN
+dtype: float64</code></pre>
+</div>
+</div>
+<p><strong>Understanding automatic alignment:</strong></p>
+<p><strong>This is pandas’s superpower.</strong> Watch what happens:</p>
+<p><strong>Product A</strong>: Exists Monday but not Tuesday → Result is <code>NaN</code> (Not a Number, representing missing data)</p>
+<p><strong>Product B</strong>: Exists both days (150 + 140) → Result is 290</p>
+<p><strong>Product C</strong>: Exists both days (200 + 210) → Result is 410</p>
+<p><strong>Product D</strong>: Exists Tuesday but not Monday → Result is <code>NaN</code></p>
+<p>pandas didn’t crash or give you wrong answers. It: 1. Found which labels exist in both Series (B and C) 2. Added those matching values 3. Marked everything else as missing (NaN)</p>
+<p><strong>Why this matters:</strong></p>
+<p>In real data analysis, datasets rarely align perfectly: - Different time periods might have different products sold - Different stores might track different metrics - Data sources might use different identifiers</p>
+<p>NumPy would crash or give you wrong results if array lengths don’t match. pandas automatically handles misalignment by tracking labels.</p>
+<p><strong>Compare to NumPy:</strong></p>
+<p>This would fail with NumPy because array lengths don’t match</p>
+<p><code>np.array([100, 150, 200]) + np.array([140, 210, 180, 220])  # ERROR!</code></p>
+<p>pandas handles it gracefully by aligning labels</p>
+</section>
+<section id="column-operations-in-dataframes" class="level3">
+<h3 class="anchored" data-anchor-id="column-operations-in-dataframes">Column operations in DataFrames</h3>
+<div id="0ed0843c" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate total quiz score for each student</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>grades[<span class="st">'total_quiz'</span>] <span class="op">=</span> grades[<span class="st">'quiz1'</span>] <span class="op">+</span> grades[<span class="st">'quiz2'</span>]</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grades with total quiz score:"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate average quiz score</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>grades[<span class="st">'quiz_avg'</span>] <span class="op">=</span> (grades[<span class="st">'quiz1'</span>] <span class="op">+</span> grades[<span class="st">'quiz2'</span>]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Grades with average quiz score:"</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate final weighted score: quizzes 40%, final exam 60%</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>grades[<span class="st">'weighted_score'</span>] <span class="op">=</span> (grades[<span class="st">'quiz_avg'</span>] <span class="op">*</span> <span class="fl">0.4</span> <span class="op">+</span> grades[<span class="st">'final'</span>] <span class="op">*</span> <span class="fl">0.6</span>)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Grades with weighted final score:"</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Grades with total quiz score:
+         quiz1  quiz2  final  total_quiz
+student                                 
+Alice       85     88     90         173
+Bob         92     85     88         177
+Charlie     78     82     85         160
+Diana       88     90     92         178
+Eve         95     92     94         187
+
+Grades with average quiz score:
+         quiz1  quiz2  final  total_quiz  quiz_avg
+student                                           
+Alice       85     88     90         173      86.5
+Bob         92     85     88         177      88.5
+Charlie     78     82     85         160      80.0
+Diana       88     90     92         178      89.0
+Eve         95     92     94         187      93.5
+
+Grades with weighted final score:
+         quiz1  quiz2  final  total_quiz  quiz_avg  weighted_score
+student                                                           
+Alice       85     88     90         173      86.5            88.6
+Bob         92     85     88         177      88.5            88.2
+Charlie     78     82     85         160      80.0            83.0
+Diana       88     90     92         178      89.0            90.8
+Eve         95     92     94         187      93.5            93.8</code></pre>
+</div>
+</div>
+<p><strong>Understanding column operations:</strong></p>
+<p><strong>Creating new columns</strong>: <code>grades['total_quiz'] = grades['quiz1'] + grades['quiz2']</code> creates a new column by adding two existing columns. The addition happens element-wise (row by row).</p>
+<p><strong>Operations on Series</strong>: When you write <code>grades['quiz1'] + grades['quiz2']</code>, you’re adding two Series. Both Series have the same index (student names), so pandas aligns them automatically and adds corresponding values.</p>
+<p><strong>Combining operations</strong>: <code>(grades['quiz_avg'] * 0.4 + grades['final'] * 0.6)</code> multiplies each column by a scalar, then adds the results. All operations preserve the index alignment.</p>
+<p><strong>The result</strong>: Each new column has the same index as the original DataFrame, and all calculations align by student name automatically.</p>
+<p>Compare to Week 4, where you manually tracked positions and had to be careful that your calculations lined up correctly. pandas handles alignment automatically through the index.</p>
+</section>
+</section>
+<section id="part-5-descriptive-statistics-and-sorting" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-descriptive-statistics-and-sorting">Part 5: Descriptive Statistics and Sorting</h2>
+<p>pandas provides built-in methods for computing statistics on Series and DataFrames, similar to NumPy but with label preservation.</p>
+<section id="computing-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="computing-statistics">Computing statistics</h3>
+<div id="a7ae0352" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics on a single column (returns a number)</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Quiz 1 average:"</span>, grades[<span class="st">'quiz1'</span>].mean())</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Quiz 1 std dev:"</span>, grades[<span class="st">'quiz1'</span>].std())</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Quiz 1 min:"</span>, grades[<span class="st">'quiz1'</span>].<span class="bu">min</span>())</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Quiz 1 max:"</span>, grades[<span class="st">'quiz1'</span>].<span class="bu">max</span>())</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics on entire DataFrame (returns a Series with one value per column)</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Statistics for all columns:"</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades.mean())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Quiz 1 average: 87.6
+Quiz 1 std dev: 6.580273550544841
+Quiz 1 min: 78
+Quiz 1 max: 95
+
+Statistics for all columns:
+quiz1              87.60
+quiz2              87.40
+final              89.80
+total_quiz        175.00
+quiz_avg           87.50
+weighted_score     88.88
+dtype: float64</code></pre>
+</div>
+</div>
+<p><strong>Understanding statistics methods:</strong></p>
+<p><strong>On a Series</strong>: Methods like <code>.mean()</code>, <code>.std()</code>, <code>.min()</code>, <code>.max()</code> return a single number - the statistic computed across all values.</p>
+<p><strong>On a DataFrame</strong>: The same methods return a Series with one value per column. <code>grades.mean()</code> computes the mean of each column separately and returns those means as a Series.</p>
+<p><strong>Comparison to NumPy</strong>: - NumPy: <code>np.mean(array)</code> or <code>array.mean()</code> - pandas: <code>series.mean()</code> or <code>df.mean()</code> - Same concept, but pandas preserves labels</p>
+</section>
+<section id="the-describe-method" class="level3">
+<h3 class="anchored" data-anchor-id="the-describe-method">The describe method</h3>
+<div id="00074159" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a comprehensive statistical summary</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades[[<span class="st">'quiz1'</span>, <span class="st">'quiz2'</span>, <span class="st">'final'</span>]].describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           quiz1      quiz2     final
+count   5.000000   5.000000   5.00000
+mean   87.600000  87.400000  89.80000
+std     6.580274   3.974921   3.49285
+min    78.000000  82.000000  85.00000
+25%    85.000000  85.000000  88.00000
+50%    88.000000  88.000000  90.00000
+75%    92.000000  90.000000  92.00000
+max    95.000000  92.000000  94.00000</code></pre>
+</div>
+</div>
+<p><strong>Understanding .describe():</strong></p>
+<p><code>.describe()</code> computes multiple statistics at once: - <strong>count</strong>: How many non-missing values - <strong>mean</strong>: Average - <strong>std</strong>: Standard deviation - <strong>min</strong>: Minimum value - <strong>25%</strong>: First quartile (25th percentile) - <strong>50%</strong>: Median (middle value) - <strong>75%</strong>: Third quartile (75th percentile) - <strong>max</strong>: Maximum value</p>
+<p>This gives you a quick overview of the distribution of values in each column.</p>
+</section>
+<section id="computing-along-an-axis" class="level3">
+<h3 class="anchored" data-anchor-id="computing-along-an-axis">Computing along an axis</h3>
+<div id="1824eb9e" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute statistics along different axes</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># axis=0 means "down the rows" (aggregate each column)</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Column means (one value per column):"</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades[[<span class="st">'quiz1'</span>, <span class="st">'quiz2'</span>, <span class="st">'final'</span>]].mean(axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co"># axis=1 means "across the columns" (aggregate each row)</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Row means (one value per row/student):"</span>)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades[[<span class="st">'quiz1'</span>, <span class="st">'quiz2'</span>, <span class="st">'final'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Column means (one value per column):
+quiz1    87.6
+quiz2    87.4
+final    89.8
+dtype: float64
+
+Row means (one value per row/student):
+student
+Alice      87.666667
+Bob        88.333333
+Charlie    81.666667
+Diana      90.000000
+Eve        93.666667
+dtype: float64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the axis parameter:</strong></p>
+<p>This is the same concept as NumPy’s axis parameter from Week 3:</p>
+<p><strong>axis=0</strong>: “Collapse the rows” → You get one result per column - Compute down each column separately - Result has the same columns, but only one row</p>
+<p><strong>axis=1</strong>: “Collapse the columns” → You get one result per row - Compute across each row separately - Result has the same rows (index), but only one column</p>
+<p><strong>Memory aid:</strong> - axis=0 → vertical operations (compute within columns) - axis=1 → horizontal operations (compute within rows)</p>
+</section>
+<section id="sorting" class="level3">
+<h3 class="anchored" data-anchor-id="sorting">Sorting</h3>
+<div id="70d65d83" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by a column (ascending)</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>sorted_by_final <span class="op">=</span> grades.sort_values(<span class="st">'final'</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Students sorted by final exam score:"</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorted_by_final[[<span class="st">'quiz1'</span>, <span class="st">'quiz2'</span>, <span class="st">'final'</span>]])</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by multiple columns</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>sorted_multi <span class="op">=</span> grades.sort_values([<span class="st">'quiz1'</span>, <span class="st">'quiz2'</span>], ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Students sorted by quiz1 (desc), then quiz2 (desc):"</span>)</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorted_multi[[<span class="st">'quiz1'</span>, <span class="st">'quiz2'</span>, <span class="st">'final'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Students sorted by final exam score:
+         quiz1  quiz2  final
+student                     
+Charlie     78     82     85
+Bob         92     85     88
+Alice       85     88     90
+Diana       88     90     92
+Eve         95     92     94
+
+Students sorted by quiz1 (desc), then quiz2 (desc):
+         quiz1  quiz2  final
+student                     
+Eve         95     92     94
+Bob         92     85     88
+Diana       88     90     92
+Alice       85     88     90
+Charlie     78     82     85</code></pre>
+</div>
+</div>
+<p><strong>Understanding .sort_values():</strong></p>
+<p><strong>Sort by one column</strong>: <code>.sort_values('final')</code> sorts the entire DataFrame based on the ‘final’ column. All rows stay together - Charlie’s row moves as a complete unit.</p>
+<p><strong>Sort direction</strong>: By default, sorting is ascending (lowest to highest). Use <code>ascending=False</code> for descending (highest to lowest).</p>
+<p><strong>Sort by multiple columns</strong>: <code>.sort_values(['quiz1', 'quiz2'])</code> sorts by quiz1 first, then uses quiz2 to break ties. If two students have the same quiz1 score, they’re ordered by quiz2.</p>
+<p><strong>Key point</strong>: The entire row moves together. When sorting by final exam score, each student’s quiz scores stay with that student.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="what-youve-learned" class="level3">
+<h3 class="anchored" data-anchor-id="what-youve-learned">What You’ve Learned</h3>
+<p>This demo introduced pandas’s core concepts:</p>
+<p><strong>Series:</strong> - One-dimensional labeled arrays - Index provides meaningful labels for values - Supports vectorized operations like NumPy - Can be created from lists, dicts, or NumPy arrays</p>
+<p><strong>DataFrames:</strong> - Two-dimensional labeled data structures - Each column is a Series - Rows and columns both have labels (indices) - Can be created from dicts, lists of dicts, or other sources</p>
+<p><strong>Selection:</strong> - Use <code>.loc[label]</code> for label-based selection - Use <code>.iloc[position]</code> for position-based selection - Use boolean indexing to filter rows based on conditions</p>
+<p><strong>Automatic Alignment:</strong> - pandas aligns data by labels during operations - Mismatched indices result in NaN where labels don’t match - This prevents accidental misalignment errors</p>
+<p><strong>Statistics:</strong> - Built-in methods like <code>.mean()</code>, <code>.std()</code>, <code>.describe()</code> - Can operate on entire DataFrames or individual columns - Understand axis=0 (column-wise) vs axis=1 (row-wise)</p>
+</section>
+<section id="the-numpy-connection" class="level3">
+<h3 class="anchored" data-anchor-id="the-numpy-connection">The NumPy Connection</h3>
+<p>pandas is built on top of NumPy: - Series and DataFrames store data in NumPy arrays internally - Vectorized operations work the same way - You can access the underlying array with <code>.values</code> - The axis parameter works the same way</p>
+<p>But pandas adds: - Labels (indices) for rows and columns - Automatic alignment by labels - Mixed data types in different columns - More convenient methods for data manipulation</p>
+</section>
+<section id="what-the-textbook-covers-next" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-textbook-covers-next">What the Textbook Covers Next</h3>
+<p>Chapter 5 continues with topics not covered in this demo:</p>
+<p><strong>Reindexing:</strong> - Changing the index of a Series or DataFrame - <code>.reindex()</code> method - Forward-filling and back-filling missing values</p>
+<p><strong>Dropping entries:</strong> - <code>.drop()</code> to remove rows or columns - Axis parameter for specifying dimension</p>
+<p><strong>Advanced indexing:</strong> - Selecting with boolean Series - Setting values with indexing - The difference between views and copies (like NumPy)</p>
+<p><strong>Function application:</strong> - <code>.apply()</code> to use custom functions on data - Row-wise and column-wise applications</p>
+<p><strong>Sorting and ranking:</strong> - More sorting options - <code>.rank()</code> to assign rankings to values</p>
+<p><strong>Descriptive statistics:</strong> - Correlation and covariance - <code>.unique()</code>, <code>.value_counts()</code> for categorical data - More aggregation methods</p>
+</section>
+<section id="applying-pandas-in-week-6" class="level3">
+<h3 class="anchored" data-anchor-id="applying-pandas-in-week-6">Applying pandas in Week 6</h3>
+<p>Week 6 is a cumulative application week, similar to Week 4. You’ll apply these pandas basics to solve a complete data analysis problem: - Using Series and DataFrames to organize and analyze data - Applying selection methods to extract subsets - Computing statistics and summaries - Combining pandas concepts from Week 5 with prior weeks’ knowledge</p>
+<p>pandas is the foundation for almost all data analysis work in Python. Understanding Series, DataFrames, selection, and alignment gives you the tools to work with any tabular data efficiently.</p>
+<p>The key difference from Week 4: Instead of manually parsing CSVs and building lists of dictionaries, then converting to NumPy arrays, pandas provides a more powerful and convenient workflow for the same tasks.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/SCTCC-Computer-Programming\.github\.io\/cmsc-1217\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
