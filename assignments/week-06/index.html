@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1 — VSCode Setup and First Notebook (Windows) – CMSC 1217 : Introduction to Data Analytics</title>
+<title>Week 6 Assignment – CMSC 1217 : Introduction to Data Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,66 +20,31 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-feb0c0ed7aac57d66ec8dce0f6a48183.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-feb0c0ed7aac57d66ec8dce0f6a48183.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -280,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">CMSC 1217 : Introduction to Data Analytics</span>
     </a>
   </div>
@@ -291,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -306,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 1 — VSCode Setup and First Notebook (Windows)</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/week-05/index.html">Weekly Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/week-06/index.html">Week 6 (Starts 16 FEB)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -341,37 +306,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../course/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../course/schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../../course/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Office Hours</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment Policies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">General Policies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AI Policy</span></a>
   </div>
 </li>
@@ -388,13 +353,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../weekly-overview/week-05/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-05/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 5 (Starts 9 FEB)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../weekly-overview/week-06/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-06/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 6 (Starts 16 FEB)</span></a>
   </div>
 </li>
@@ -411,13 +376,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../assignments/week-05/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../assignments/week-05/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 5 (Starts 9 FEB)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../assignments/week-06/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../assignments/week-06/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 6 (Starts 16 FEB)</span></a>
   </div>
 </li>
@@ -443,13 +408,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Miniconda Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Jupyter Learning Links</span></a>
   </div>
 </li>
@@ -466,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 3 Reference Videos</span></a>
   </div>
 </li>
@@ -483,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../shared/guides/cmsc-1217/week-03/cmsc-1217-chap-04-learning-resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../shared/guides/cmsc-1217/week-03/cmsc-1217-chap-04-learning-resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chapter 4 Reference Videos</span></a>
   </div>
 </li>
@@ -501,15 +466,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-youre-doing" id="toc-what-youre-doing" class="nav-link active" data-scroll-target="#what-youre-doing">What you’re doing</a></li>
-  <li><a href="#open-the-course-folder-in-vs-code" id="toc-open-the-course-folder-in-vs-code" class="nav-link" data-scroll-target="#open-the-course-folder-in-vs-code">1) Open the course folder in VS Code</a></li>
-  <li><a href="#install-the-extensions-if-you-dont-already-have-them" id="toc-install-the-extensions-if-you-dont-already-have-them" class="nav-link" data-scroll-target="#install-the-extensions-if-you-dont-already-have-them">2) Install the extensions (if you don’t already have them)</a></li>
-  <li><a href="#create-the-course-python-environment-and-select-it-in-vs-code-one-time" id="toc-create-the-course-python-environment-and-select-it-in-vs-code-one-time" class="nav-link" data-scroll-target="#create-the-course-python-environment-and-select-it-in-vs-code-one-time">3) Create the course Python environment and select it in VS Code (one-time)</a></li>
-  <li><a href="#open-the-notebook" id="toc-open-the-notebook" class="nav-link" data-scroll-target="#open-the-notebook">4) Open the notebook</a></li>
-  <li><a href="#select-the-notebook-kernel-first-time-only" id="toc-select-the-notebook-kernel-first-time-only" class="nav-link" data-scroll-target="#select-the-notebook-kernel-first-time-only">5) Select the notebook kernel (first time only)</a></li>
-  <li><a href="#select-the-kernel-then-run-a-quick-test" id="toc-select-the-kernel-then-run-a-quick-test" class="nav-link" data-scroll-target="#select-the-kernel-then-run-a-quick-test">6) Select the kernel, then run a quick test</a></li>
-  <li><a href="#quick-confirmation-your-instructor-may-ask-for-this" id="toc-quick-confirmation-your-instructor-may-ask-for-this" class="nav-link" data-scroll-target="#quick-confirmation-your-instructor-may-ask-for-this">7) Quick confirmation (your instructor may ask for this)</a></li>
-  <li><a href="#if-something-goes-wrong" id="toc-if-something-goes-wrong" class="nav-link" data-scroll-target="#if-something-goes-wrong">If something goes wrong</a></li>
+  <li><a href="#the-situation" id="toc-the-situation" class="nav-link active" data-scroll-target="#the-situation">The Situation</a></li>
+  <li><a href="#what-you-need-to-deliver" id="toc-what-you-need-to-deliver" class="nav-link" data-scroll-target="#what-you-need-to-deliver">What You Need to Deliver</a>
+  <ul class="collapse">
+  <li><a href="#data-quality-assessment" id="toc-data-quality-assessment" class="nav-link" data-scroll-target="#data-quality-assessment">Data Quality Assessment</a></li>
+  <li><a href="#brewing-performance-overview" id="toc-brewing-performance-overview" class="nav-link" data-scroll-target="#brewing-performance-overview">Brewing Performance Overview</a></li>
+  <li><a href="#failure-investigation" id="toc-failure-investigation" class="nav-link" data-scroll-target="#failure-investigation">Failure Investigation</a></li>
+  <li><a href="#high-efficiency-brewing" id="toc-high-efficiency-brewing" class="nav-link" data-scroll-target="#high-efficiency-brewing">High-Efficiency Brewing</a></li>
+  <li><a href="#apprentice-comparison" id="toc-apprentice-comparison" class="nav-link" data-scroll-target="#apprentice-comparison">Apprentice Comparison</a></li>
+  </ul></li>
+  <li><a href="#technical-requirements" id="toc-technical-requirements" class="nav-link" data-scroll-target="#technical-requirements">Technical Requirements</a></li>
+  <li><a href="#video-reflection" id="toc-video-reflection" class="nav-link" data-scroll-target="#video-reflection">Video Reflection</a></li>
+  <li><a href="#d2l-submission-checklist" id="toc-d2l-submission-checklist" class="nav-link" data-scroll-target="#d2l-submission-checklist">D2L Submission Checklist</a>
+  <ul class="collapse">
+  <li><a href="#notebook-file" id="toc-notebook-file" class="nav-link" data-scroll-target="#notebook-file">Notebook file</a></li>
+  <li><a href="#video-submission-link-only" id="toc-video-submission-link-only" class="nav-link" data-scroll-target="#video-submission-link-only">Video submission (link only)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -517,10 +489,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/week-05/index.html">Weekly Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/week-06/index.html">Week 6 (Starts 16 FEB)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 1 — VSCode Setup and First Notebook (Windows)</h1>
-<p class="subtitle lead">Core tools and notebook workflow</p>
+<h1 class="title">Week 6 Assignment</h1>
+<p class="subtitle lead">Potion Master’s Workshop Analysis</p>
 </div>
 
 
@@ -532,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 31, 2025</p>
+      <p class="date-modified">February 12, 2026</p>
     </div>
   </div>
     
@@ -543,125 +515,143 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-youre-doing" class="level3">
-<h3 class="anchored" data-anchor-id="what-youre-doing">What you’re doing</h3>
-<p>You are going to open a Jupyter notebook in VS Code and run it successfully using the course Python environment.</p>
+<p><strong>Submission location:</strong> All items are submitted in D2L (Week 6 Dropbox).</p>
+<p><strong>Reading:</strong> Chapters 1-5 (cumulative).</p>
+<p><strong>Dataset:</strong> <a href="brewing_log.csv" download="brewing_log.csv"> Download Brewing Log </a></p>
+<section id="the-situation" class="level2">
+<h2 class="anchored" data-anchor-id="the-situation">The Situation</h2>
+<p>You are one of three apprentices at Morvaine’s Potion Workshop, a small but well-regarded establishment that supplies potions to adventurers, healers, and the occasional noble. The Potion Master, Morvaine, keeps a detailed brewing log that tracks every batch produced in the workshop.</p>
+<p>The quarterly guild review is approaching, and Morvaine needs a full analysis of the workshop’s recent output. The brewing log covers the past two weeks of production across all three apprentices: Elara, Bramwell, and Thistle. Each record should contain eight fields: date, apprentice name, potion name, potion type, number of ingredients used, brew time in hours, potency rating (1-100), and result (success, fizzle, or explosion).</p>
+<p>Morvaine has mentioned that the logging crystal has been unreliable lately and some entries may be corrupted or incomplete. The guild will expect accurate numbers, so any unusable records need to be identified and excluded before the analysis.</p>
+<p>The guild review focuses on several areas. They want to know how productive the workshop has been, whether the failure rate is acceptable, and whether any apprentices show strengths worth developing further. Morvaine is particularly interested in understanding which apprentices excel at which potions, since she is considering assigning brewing specialties for the next quarter.</p>
 </section>
-<section id="open-the-course-folder-in-vs-code" class="level3">
-<h3 class="anchored" data-anchor-id="open-the-course-folder-in-vs-code">1) Open the course folder in VS Code</h3>
-<ol type="1">
-<li>Open <strong>VS Code</strong></li>
-<li>Go to <strong>File → Open Folder…</strong></li>
-<li>Open your course work folder (example: <code>C:\cmsc-1217\</code>)</li>
-</ol>
-</section>
-<section id="install-the-extensions-if-you-dont-already-have-them" class="level3">
-<h3 class="anchored" data-anchor-id="install-the-extensions-if-you-dont-already-have-them">2) Install the extensions (if you don’t already have them)</h3>
-<p>In VS Code, install:</p>
+<section id="what-you-need-to-deliver" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-need-to-deliver">What You Need to Deliver</h2>
+<p>Your analysis must address the following requirements. Use the skills and methods from Weeks 1-5 to complete this work. Your cleaned data should be stored in a pandas DataFrame, and your analysis should use DataFrame operations throughout.</p>
+<section id="data-quality-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="data-quality-assessment">Data Quality Assessment</h3>
+<p>Start by examining the raw brewing log. Morvaine needs to know how reliable the logging crystal has been before she presents anything to the guild. Your report should include:</p>
 <ul>
-<li><strong>Python</strong> (Microsoft)</li>
-<li><strong>Jupyter</strong> (Microsoft)</li>
+<li>The total number of records in the file</li>
+<li>How many records were successfully parsed and validated</li>
+<li>How many records contained errors and could not be processed</li>
+<li>A brief look at the structure of the cleaned data (show the first few rows of your DataFrame)</li>
+<li>Identification of which apprentices and potion types appear in the dataset</li>
 </ul>
 </section>
-<section id="create-the-course-python-environment-and-select-it-in-vs-code-one-time" class="level3">
-<h3 class="anchored" data-anchor-id="create-the-course-python-environment-and-select-it-in-vs-code-one-time">3) Create the course Python environment and select it in VS Code (one-time)</h3>
-<section id="a-create-the-course-environment-folder" class="level4">
-<h4 class="anchored" data-anchor-id="a-create-the-course-environment-folder">3A) Create the course environment folder</h4>
-<ol type="1">
-<li><p>Create a folder on your C: drive named:</p>
+<section id="brewing-performance-overview" class="level3">
+<h3 class="anchored" data-anchor-id="brewing-performance-overview">Brewing Performance Overview</h3>
+<p>The guild wants to understand the workshop’s overall output and quality. For the valid brewing records, provide:</p>
 <ul>
-<li><code>C:\cmsc-1217-env\</code></li>
-</ul></li>
-</ol>
-</section>
-<section id="b-create-the-virtual-environment-.venv" class="level4">
-<h4 class="anchored" data-anchor-id="b-create-the-virtual-environment-.venv">3B) Create the virtual environment (.venv)</h4>
-<ol type="1">
-<li>Open <strong>Command Prompt</strong> (Windows search → type “Command Prompt”)</li>
-<li>Run:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bat code-with-copy"><code class="sourceCode dosbat"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> C:\cmsc-1217-env</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>python <span class="at">-m</span> venv .venv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="c-activate-the-environment" class="level4">
-<h4 class="anchored" data-anchor-id="c-activate-the-environment">3C) Activate the environment</h4>
-<p>In the same Command Prompt window, run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bat code-with-copy"><code class="sourceCode dosbat"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>C:\cmsc-1217-env\.venv\Scripts\activate.bat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see <code>(.venv)</code> appear at the start of the line.</p>
-</section>
-<section id="d-install-the-notebook-packages-first-time-setup" class="level4">
-<h4 class="anchored" data-anchor-id="d-install-the-notebook-packages-first-time-setup">3D) Install the notebook packages (first-time setup)</h4>
-<p>Still in the activated environment, run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bat code-with-copy"><code class="sourceCode dosbat"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>python <span class="at">-m</span> pip install -<span class="at">-upgrade</span> pip</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>python <span class="at">-m</span> pip install numpy pandas matplotlib jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="e-select-the-environment-in-vs-code-interpreter" class="level4">
-<h4 class="anchored" data-anchor-id="e-select-the-environment-in-vs-code-interpreter">3E) Select the environment in VS Code (Interpreter)</h4>
-<ol type="1">
-<li>In VS Code, press <strong>Ctrl + Shift + P</strong></li>
-<li>Type <strong>Python: Select Interpreter</strong></li>
-<li>Choose the interpreter that looks like:</li>
-</ol>
-<ul>
-<li><code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></li>
-</ul>
-<p>If you don’t see it:</p>
-<ul>
-<li>choose <strong>Enter interpreter path…</strong></li>
-<li>paste: <code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></li>
-</ul>
-<p>This is the environment we will use all semester.</p>
-</section>
-</section>
-<section id="open-the-notebook" class="level3">
-<h3 class="anchored" data-anchor-id="open-the-notebook">4) Open the notebook</h3>
-<ul>
-<li>In the Explorer panel, click the notebook file (<code>.ipynb</code>) your instructor provided.</li>
+<li>Summary statistics for potency ratings and brew time using <code>.describe()</code></li>
+<li>A count of batches by result (how many successes, fizzles, and explosions)</li>
+<li>A new column calculating brewing efficiency: potency rating divided by brew time in hours</li>
+<li>The five highest-potency batches from your DataFrame, sorted from highest to lowest</li>
+<li>The five most efficient batches from your DataFrame based on your new efficiency column</li>
 </ul>
 </section>
-<section id="select-the-notebook-kernel-first-time-only" class="level3">
-<h3 class="anchored" data-anchor-id="select-the-notebook-kernel-first-time-only">5) Select the notebook kernel (first time only)</h3>
-<p>The first time you run a notebook, VS Code may ask you to pick a <strong>kernel</strong>.</p>
-<p>Choose the kernel that matches the course environment path:</p>
+<section id="failure-investigation" class="level3">
+<h3 class="anchored" data-anchor-id="failure-investigation">Failure Investigation</h3>
+<p>The guild tracks failure rates closely. A workshop with too many fizzles or explosions risks losing its license. Morvaine needs to understand the pattern behind failed batches. Using boolean indexing, filter your DataFrame to the batches that did not succeed and provide:</p>
 <ul>
-<li><code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></li>
+<li>The filtered DataFrame showing all failed batches (so the guild can review the full records)</li>
+<li>How many batches failed (fizzle or explosion combined)</li>
+<li>Which apprentice had the most failures</li>
+<li>The average potency rating for successful batches compared to failed batches</li>
+<li>Which potion types appear most often in the failed batches</li>
 </ul>
-<p>This can feel repetitive the first time. That’s normal. Once selected, it usually stays set for that folder.</p>
 </section>
-<section id="select-the-kernel-then-run-a-quick-test" class="level3">
-<h3 class="anchored" data-anchor-id="select-the-kernel-then-run-a-quick-test">6) Select the kernel, then run a quick test</h3>
+<section id="high-efficiency-brewing" class="level3">
+<h3 class="anchored" data-anchor-id="high-efficiency-brewing">High-Efficiency Brewing</h3>
+<p>Morvaine has noticed that some batches achieve high potency in very little time, which suggests natural talent or a refined technique. She wants to identify batches where the potency rating was 85 or above AND the brew time was 2.0 hours or less. Filter your DataFrame to this subset and provide:</p>
+<ul>
+<li>The filtered DataFrame showing these high-efficiency batches</li>
+<li>How many batches meet both conditions</li>
+<li>Which apprentices and potions appear in this group</li>
+<li>What is the average potency of these high-efficiency batches</li>
+</ul>
+</section>
+<section id="apprentice-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="apprentice-comparison">Apprentice Comparison</h3>
+<p>Morvaine is considering assigning brewing specialties based on each apprentice’s strengths. To support this decision, compare two apprentices of your choice by computing each one’s average potency per potion name. Use the potion name as the index for each Series, then subtract one from the other.</p>
+<p>In your analysis:</p>
+<ul>
+<li>Show each apprentice’s average-potency-by-potion Series</li>
+<li>Show the result of the subtraction</li>
+<li>Identify which potions produced NaN in the comparison and explain why those values are missing</li>
+<li>Based on the potions they both brewed, note which apprentice had higher average potency</li>
+</ul>
+</section>
+</section>
+<section id="technical-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="technical-requirements">Technical Requirements</h2>
+<p>Your Jupyter notebook should demonstrate the complete workflow from raw file to final analysis. The notebook must run successfully from start to finish using “Restart Kernel and Run All.”</p>
+<p><strong>File handling and parsing (Chapter 3 skills):</strong></p>
+<p>Use standard Python file I/O to read the CSV file. Parse each row into a dictionary with field names and type-converted values. Handle invalid records gracefully using try/except. Track both successful parses and errors so you can report on data quality. The file has a small number of malformed rows; your parser should handle them without crashing.</p>
+<p><strong>DataFrame creation (Chapter 5 skills):</strong></p>
+<p>Convert your list of parsed dictionaries into a pandas DataFrame .</p>
+<p><strong>Selection and filtering (Chapter 5 skills):</strong></p>
+<p>Use boolean indexing to filter rows based on conditions.</p>
+<p><strong>Column operations and statistics (Chapter 5 skills):</strong></p>
+<p>Create new columns from calculations on existing columns.</p>
+<p><strong>Automatic alignment (Chapter 5 skills):</strong></p>
+<p>Build Series with meaningful indices and observe how pandas aligns by label when performing arithmetic between Series with different indices. Interpret NaN values that result from non-overlapping labels.</p>
+<p><strong>Notebook organization:</strong></p>
+<p>Structure your notebook logically. Use markdown cells to explain what each section does. Include clear print statements showing your results. Make it easy to verify that you have addressed each requirement.</p>
+</section>
+<section id="video-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="video-reflection">Video Reflection</h2>
+<p>Record a short video (4-5 minutes) demonstrating your understanding of this assignment.</p>
+<p><strong>Part 1: Explain the apprentice comparison</strong></p>
+<p>Walk through how you compared two apprentices’ average potency by potion name. In your explanation, address:</p>
 <ol type="1">
-<li><p>In the top-right of the notebook, click <strong>Select Kernel</strong>.</p></li>
-<li><p>Choose the kernel that points to the course environment:</p>
-<p><code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></p>
-<p>(It may also show up as “Python 3.x (.venv)”—the key is that it points to <code>cmsc-1217-env\.venv</code>.)</p></li>
-<li><p>Click <strong>+ Code</strong>.</p></li>
-<li><p>In the code block that appears, paste:</p></li>
+<li>What you were trying to determine</li>
+<li>How you built each apprentice’s average-potency-by-potion Series</li>
+<li>What happened when you subtracted one Series from the other</li>
+<li>What the NaN values mean and why they appeared</li>
+<li>What the non-NaN results tell you about the two apprentices</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Notebook is running"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="5" type="1">
-<li>Run it by clicking the <strong>Run (▶)</strong> icon on the code block, or press <strong>Shift + Enter</strong>.</li>
-<li>You should see <code>Notebook is running</code> appear underneath.</li>
-</ol>
-</section>
-<section id="quick-confirmation-your-instructor-may-ask-for-this" class="level3">
-<h3 class="anchored" data-anchor-id="quick-confirmation-your-instructor-may-ask-for-this">7) Quick confirmation (your instructor may ask for this)</h3>
-<p>Run this in a cell:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sys.executable</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>It should show something like:</p>
-<p><code>C:\cmsc-1217-env\.venv\Scripts\python.exe</code></p>
-</section>
-<section id="if-something-goes-wrong" class="level3">
-<h3 class="anchored" data-anchor-id="if-something-goes-wrong">If something goes wrong</h3>
+<p><strong>Part 2: Reflect on your learning</strong></p>
+<p>Choose ONE of the following to discuss:</p>
 <ul>
-<li><p>If you see <code>ModuleNotFoundError</code> (missing package), you are almost always using the wrong interpreter/kernel.</p>
+<li><strong>Challenge or error:</strong> Describe a problem you encountered while completing this assignment, how you figured out what was wrong, and how you resolved it</li>
+<li><strong>Key takeaway:</strong> Explain one important concept you learned or solidified through this assignment and why it matters for data work</li>
+</ul>
+<p><strong>Video submission requirements:</strong></p>
 <ul>
-<li>Re-do <strong>Step 3</strong> and <strong>Step 5</strong> and pick the one that points to <code>cmsc-1217-env\.venv</code>.</li>
-</ul></li>
+<li>Clear video and audio quality</li>
+<li>Introduce yourself at the beginning (name)</li>
+<li>Name your video file: <code>lastname_Week06Reflection</code></li>
+<li>Upload your video to <strong>Kaltura</strong></li>
+<li><strong>Do not</strong> embed the video in the Dropbox submission</li>
+<li>Paste the <strong>share link</strong> into the D2L assignment text submission box</li>
+<li>Make sure the link text includes <code>lastname_Week06Reflection</code> in the link name</li>
+</ul>
+</section>
+<section id="d2l-submission-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="d2l-submission-checklist">D2L Submission Checklist</h2>
+<p>Submit the following items to the <strong>Week 6 Dropbox</strong> in D2L:</p>
+<section id="notebook-file" class="level3">
+<h3 class="anchored" data-anchor-id="notebook-file">Notebook file</h3>
+<ul>
+<li><code>lastname_week06_assignment.ipynb</code></li>
+</ul>
+</section>
+<section id="video-submission-link-only" class="level3">
+<h3 class="anchored" data-anchor-id="video-submission-link-only">Video submission (link only)</h3>
+<ul>
+<li>Video filename: <code>lastname_Week06Reflection</code></li>
+<li>Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)</li>
+</ul>
+<p><strong>Before you submit:</strong></p>
+<ul>
+<li>Run “Restart Kernel and Run All” to confirm your notebook executes without errors</li>
+<li>Verify all required outputs are visible in the notebook</li>
+<li>Check that your video link works and includes the correct filename</li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
