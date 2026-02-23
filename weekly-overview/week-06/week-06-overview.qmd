@@ -1,0 +1,52 @@
+---
+title: "Week 6 Guide"
+subtitle: "Cumulative Application of Chapters 1–5"
+format:
+  html:
+    toc: true
+---
+
+Week 6 is a cumulative application of everything from Chapters 1–5. You will work with a brewing log that contains corrupted records, requiring you to apply Week 2 parsing skills (file I/O, error handling, data structures) and Week 5 pandas skills (DataFrames, boolean indexing, column operations, statistics, and automatic alignment). The assignment presents a scenario-based problem where you determine the approach and build the complete workflow from raw data to analytical results. The key difference from Week 4 is where you end up after parsing: instead of converting measurements to NumPy arrays, you will convert your cleaned records into a pandas DataFrame and use DataFrame operations for the entire analysis.
+
+**Assignment:**
+
+- Here is the link to the **[Week 6 Assignment](../../assignments/week-06/index.qmd)**.
+
+## Concepts applied this week
+
+### File I/O and parsing (Chapter 3)
+
+Read the CSV file and parse each row into a dictionary with field names and type-converted values. This is the same parsing workflow you built in Week 2 and applied in Week 4: split each line into fields, strip whitespace, convert numeric fields to the correct type, and validate that the row has the expected structure. The file contains corrupted records from an unreliable logging system, so you must use `try/except` to handle errors gracefully. Track both successful parses and errors so you can report on data quality—how many records were usable and how many were not.
+
+### DataFrame creation (Chapter 5)
+
+Once you have a list of parsed dictionaries, convert it to a pandas DataFrame using `pd.DataFrame()`. This is the bridge between the Week 2 parsing workflow and pandas analysis—the same bridge you would have used in Week 4 if pandas had been available. Each dictionary becomes a row, and the dictionary keys become column names. After creating the DataFrame, verify the result with `.shape` and `.head()` to confirm the data looks correct before proceeding to analysis. From this point forward, all your analysis uses DataFrame operations rather than raw loops or NumPy arrays.
+
+### Selection and boolean indexing (Chapters 4–5)
+
+Boolean indexing transfers directly from NumPy (Week 3) to pandas, with the added benefit that filtered results preserve row labels. You apply conditions to DataFrame columns by name, and each condition produces a boolean Series. Combining conditions with `&` creates a multi-condition mask, just as you did with NumPy arrays in Week 4. The filtered DataFrame contains only the matching rows, with all columns and labels intact. Use `.loc` or `.iloc` when you need to select specific rows or columns by label or position rather than by condition.
+
+### Column operations and statistics (Chapter 5)
+
+Create new columns from calculations on existing columns. For example, computing an efficiency measure by dividing one column by another produces a new Series aligned by index, which you assign as a new DataFrame column. Use `.describe()` for comprehensive summary statistics, individual methods like `.mean()` for targeted computations, and `.sort_values()` to rank results. All operations preserve the label structure—when you sort by a column, each row moves as a complete unit with all its values and its index label intact. This makes it straightforward to identify which specific records rank highest or lowest.
+
+### Automatic alignment (Chapter 5)
+
+Build Series with meaningful indices and perform arithmetic between them. When you compute each apprentice's average potency per potion name, the potion names become the index of each Series. Subtracting one Series from the other triggers pandas's automatic alignment: labels that exist in both Series produce numeric results, while labels that appear in only one Series produce NaN. Understanding what NaN means in this context—that a particular potion was brewed by one apprentice but not the other—is essential for interpreting the comparison correctly. This is the core Week 5 concept applied to a real analytical question.
+
+## Week 6 tasks
+
+1. Complete the **Week 6 Assignment** (brewing log analysis).
+2. Record and submit your video reflection.
+
+## Knowledge goals for Week 6
+
+By the end of Week 6, you should be able to:
+
+* parse a CSV file with error handling and convert cleaned records to a pandas DataFrame
+* use `pd.DataFrame()` to create a DataFrame from a list of dictionaries
+* apply boolean indexing to filter DataFrame rows based on single and multiple conditions
+* create new DataFrame columns from calculations on existing columns
+* compute summary statistics using `.describe()` and individual statistical methods
+* use `.sort_values()` to rank DataFrame rows by column values
+* build Series with meaningful indices, perform arithmetic between them, and interpret NaN values from automatic alignment

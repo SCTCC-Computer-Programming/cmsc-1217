@@ -10,7 +10,7 @@ Week 4 is a cumulative application of everything from Chapters 1–4. You will w
 
 **Assignment:**
 
-- Here is the link to the **[Week 4 Assignment](../../assignments/week-04/week-04-assignments.html)**.
+- Here is the link to the **[Week 4 Assignment](../../assignments/week-04/index.qmd)**.
 - <a href="sensor_data_raw.csv" download="sensor_data_raw.csv"> Download Sensor Data </a>
 
 ## Concepts applied this week

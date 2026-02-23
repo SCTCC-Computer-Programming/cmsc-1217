@@ -1,0 +1,107 @@
+---
+title: "Week 7 Guide"
+subtitle: "Chapter 6 — Data Loading and Storage"
+format:
+  html:
+    toc: true
+---
+
+Since Week 2, every data pipeline you've built has started the same way: open a file, loop through lines, split on commas, strip whitespace, convert types, and handle errors with `try/except`. That manual parsing pipeline taught you what data loading actually involves, and by Week 6 you were applying it fluently to messy, real-world files. This week, you'll see that `pd.read_csv()` automates that entire process in a single function call. The manual experience you've built makes the automation meaningful rather than magical: when `pd.read_csv()` detects a header row or infers column types, you understand what it's doing because you've done each of those steps by hand.
+
+Chapter 6 covers how pandas reads and writes data in multiple formats. This week's demo focuses on the three most common scenarios: CSV files with `pd.read_csv()`, JSON data with Python's `json` module and `pd.read_json()`, and live data from web APIs using the `requests` library. The textbook continues with HTML tables, Excel files, binary formats (HDF5, Parquet), and database interaction, all of which follow the same `pd.read_*()` pattern once you understand how `pd.read_csv()` works.
+
+There is no walkthrough video for this week's demo. The data loading workflow follows the same structure across formats: call a loading function, get a DataFrame, inspect the result. A section-by-section video would repeat that pattern without adding new insight. The demo is written to be self-contained. Work through it cell by cell, reading the setup text before each code block and the explanation that follows.
+
+**Week 7 Demo:**
+
+- Here is the link to the **[Week 7 Assignment](../../assignments/week-07/index.qmd)**.
+
+## Chapter 6 concepts used this week
+
+### Data loading as automation of manual parsing
+
+`pd.read_csv()` is not a different approach to reading CSV files. It automates the same steps you've been writing by hand: opening the file, detecting whether the first row is a header, splitting each line into fields, stripping whitespace, converting values to appropriate types, and assembling the result into a structured format. The difference is that `pd.read_csv()` returns a DataFrame instead of a list of dictionaries, and it handles these steps internally rather than requiring you to write each one.
+
+This connection matters because it means your manual parsing knowledge transfers directly. When `pd.read_csv()` produces unexpected results, whether columns are the wrong type, values you expected are missing, or the header row was misidentified, you can reason about what went wrong because you understand each step it performs. The function is doing the same work your manual code did; it just does it in compiled, optimized code rather than in a Python `for` loop.
+
+### Type inference
+
+When `pd.read_csv()` loads a file, it examines the values in each column and chooses an appropriate data type. Columns of whole numbers become `int64`, columns of decimal numbers become `float64`, and columns of text become `object` (or `str` depending on your pandas version). The textbook calls this **type inference**: pandas decides what type each column should be based on the actual values it finds.
+
+Type inference usually works well, but it has a limitation that connects directly to your Week 2 experience. If a numeric column contains even one non-numeric value, like a placeholder string or a corrupted record, pandas treats the entire column as text. In your manual parsing code, you handled this with `try/except` and explicit type conversion. With `pd.read_csv()`, the solution is the `na_values` parameter, which tells pandas to treat specific strings as missing data during loading rather than treating them as text that forces the column to a string type.
+
+### Customizing loading behavior with parameters
+
+The basic `pd.read_csv('filename.csv')` call works for well-formatted files with a header row and comma delimiters. Real-world files are not always that clean, and `pd.read_csv()` provides parameters to handle the variations. The textbook notes that the function has roughly 50 parameters; you don't need to memorize them, but the ones covered this week address the most common situations.
+
+`header=None` tells pandas that the file has no header row, so pandas assigns integer column names (0, 1, 2...) instead of misinterpreting the first data row as column names. `names` provides your own column names when the file lacks a header. `index_col` promotes a column to the row index during loading, and `usecols` loads only specific columns, which is useful when a file contains more data than you need. `nrows` limits how many rows are loaded, letting you inspect a large file without reading the whole thing.
+
+These parameters solve problems you encountered in manual parsing. When you wrote code to skip a header row, to name your dictionary keys, or to select specific fields, you were doing manually what these parameters handle automatically.
+
+### Missing data and sentinel values
+
+Real datasets use various placeholders for missing information: blank fields, "N/A", "UNKNOWN", "---", or domain-specific codes. `pd.read_csv()` recognizes some of these by default, but custom placeholders require the `na_values` parameter. When you specify `na_values=['UNKNOWN', '---']`, pandas treats those strings as missing data and replaces them with `NaN` (Not a Number) during loading.
+
+This has a consequence for data types. Because `NaN` is a floating-point value, any integer column that contains missing data becomes `float64` to accommodate it. A column of crew sizes (150, 45, 12) that has one missing value becomes 150.0, 45.0, 12.0, NaN. This is a pandas design constraint, not an error: the integer type has no representation for "missing," so the column must widen to a type that does.
+
+Understanding this behavior helps you interpret your data correctly. When you see unexpected float values in what should be an integer column, it usually means missing data is present. The `.info()` method (from Week 5) shows non-null counts per column, making it easy to identify where missing values exist.
+
+### Writing data back out
+
+After loading, transforming, or analyzing data, you often need to save the results. The `to_csv()` method writes a DataFrame to a CSV file, and its default behavior includes writing the row index as the first column. If your index is just the default integers (0, 1, 2...), that column adds no useful information to the output file. Setting `index=False` omits it, producing a cleaner file that matches the format most tools expect.
+
+This pattern, loading data, processing it, and writing the result, is the standard workflow for data analysis scripts. Each `pd.read_*()` function has a corresponding `to_*()` method for writing, so the approach generalizes beyond CSV.
+
+### JSON: a flexible data format
+
+**JSON (JavaScript Object Notation)** is a text-based format built from two structures: objects (key-value pairs, equivalent to Python dictionaries) and arrays (ordered sequences, equivalent to Python lists). These structures can nest inside each other, giving JSON more flexibility than CSV's flat tabular format. A JSON dataset can represent a planet with a list of moons, each moon having its own properties. CSV would require flattening that structure into a single table.
+
+JSON connects directly to data structures you already know. A JSON array of objects is exactly the "list of dictionaries" pattern from Week 2, written as text. Python's built-in `json` module converts between JSON strings and Python objects: `json.loads()` parses a JSON string into dictionaries and lists, and `json.dumps()` converts Python objects back to a JSON string.
+
+For tabular JSON data (a list of objects with consistent keys), `pd.read_json()` can convert directly to a DataFrame. For nested or complex JSON, the `json` module gives you more control: you parse the JSON into Python objects, extract the parts you need, and then pass them to `pd.DataFrame()`. Knowing when to use each approach is a practical skill: simple flat data works with `pd.read_json()`, while anything nested or partially structured benefits from the manual `json.loads()` approach.
+
+### Web APIs: data from the internet
+
+A **web API** (Application Programming Interface) is a URL that returns structured data instead of a web page. When your browser visits a URL, it receives HTML for display. When your Python code requests data from an API endpoint, it typically receives JSON. This is how applications share data programmatically: weather services, financial platforms, social media sites, and code repositories all provide APIs.
+
+The `requests` library handles the HTTP communication. `requests.get(url)` sends a request and returns a response object. `resp.raise_for_status()` checks whether the request succeeded (raising an exception if it failed), and `resp.json()` parses the JSON response body into Python objects. From there, the workflow is familiar: you have a list of dictionaries, and `pd.DataFrame()` converts it to a DataFrame. The result is a clean, labeled table created from live data on the internet.
+
+Practical considerations include rate limits (most APIs restrict how many requests you can make per hour), authentication (many APIs require an API key), and response structure (not all APIs return simple lists of dictionaries). The demo covers a public API that requires no authentication, but the general pattern, send a request, check the response, parse the JSON, convert to a DataFrame, applies to any API.
+
+### The pd.read_*() pattern
+
+Chapter 6's most important takeaway is that all pandas loading functions follow the same structure: call `pd.read_*()` with a data source, get back a DataFrame. `pd.read_csv()` reads comma-separated files, `pd.read_json()` reads JSON, `pd.read_excel()` reads spreadsheets, `pd.read_html()` extracts tables from web pages, and `pd.read_sql()` runs database queries. Each function has parameters specific to its format, but the result is always a DataFrame ready for the selection, filtering, and statistical operations you learned in Week 5.
+
+The textbook also covers binary formats: Pickle (Python's built-in serialization), HDF5 (hierarchical format for large scientific datasets), and Parquet (columnar format common in industry analytics). These are more efficient than text formats for large datasets, but the loading pattern is the same. Understanding `pd.read_csv()` thoroughly, as this week's demo covers, prepares you for any of them.
+
+## Reading expectations for Week 7
+
+As you read Chapter 6 and work through the demo, check whether you can explain the following in your own words:
+
+1. What does `pd.read_csv()` automate, and how does it relate to the manual parsing pipeline you've been writing?
+2. What is **type inference**, and what happens when a numeric column contains a non-numeric value?
+3. What do the `header`, `names`, `index_col`, `usecols`, and `nrows` parameters control in `pd.read_csv()`?
+4. What does the `na_values` parameter do, and why does an integer column become `float64` when it contains missing values?
+5. How does JSON structure relate to Python dictionaries and lists?
+6. When would you use `json.loads()` + `pd.DataFrame()` instead of `pd.read_json()` directly?
+7. What are the steps for fetching data from a web API and converting it to a DataFrame?
+8. What do all the `pd.read_*()` functions have in common?
+
+## Week 7 tasks
+
+1. Read **Chapter 6** (focus on CSV, JSON, and API sections; skim binary formats and SQL for awareness).
+2. Work through the **[Week 7 demo](../../assignments/week-07/index.qmd)** in your Jupyter environment. There is no walkthrough video; the demo is self-contained.
+3. Complete the **Week 7 D2L quiz** (data loading concepts).
+
+## Knowledge goals for Week 7
+
+By the end of Week 7, you should be able to:
+
+* use `pd.read_csv()` to load CSV files into DataFrames with automatic header detection and type inference
+* customize `pd.read_csv()` behavior using parameters like `header`, `names`, `index_col`, `usecols`, `nrows`, and `na_values`
+* explain how `pd.read_csv()` automates the manual parsing pipeline from earlier weeks
+* handle missing data during loading by specifying sentinel values with `na_values`
+* write DataFrames to CSV files using `to_csv()` with appropriate settings
+* parse JSON data using Python's `json` module and convert it to DataFrames
+* fetch data from a web API using `requests.get()` and convert the JSON response to a DataFrame
+* recognize that all `pd.read_*()` functions follow the same pattern of loading data into a DataFrame

@@ -1,0 +1,155 @@
+---
+title: Week 6 Assignment
+subtitle: Potion Master's Workshop Analysis
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** All items are submitted in D2L (Week 6 Dropbox).
+
+**Reading:** Chapters 1-5 (cumulative).
+
+**Dataset:** <a href="brewing_log.csv" download="brewing_log.csv"> Download Brewing Log </a>
+
+## The Situation
+
+You are one of three apprentices at Morvaine's Potion Workshop, a small but well-regarded establishment that supplies potions to adventurers, healers, and the occasional noble. The Potion Master, Morvaine, keeps a detailed brewing log that tracks every batch produced in the workshop.
+
+The quarterly guild review is approaching, and Morvaine needs a full analysis of the workshop's recent output. The brewing log covers the past two weeks of production across all three apprentices: Elara, Bramwell, and Thistle. Each record should contain eight fields: date, apprentice name, potion name, potion type, number of ingredients used, brew time in hours, potency rating (1-100), and result (success, fizzle, or explosion).
+
+Morvaine has mentioned that the logging crystal has been unreliable lately and some entries may be corrupted or incomplete. The guild will expect accurate numbers, so any unusable records need to be identified and excluded before the analysis.
+
+The guild review focuses on several areas. They want to know how productive the workshop has been, whether the failure rate is acceptable, and whether any apprentices show strengths worth developing further. Morvaine is particularly interested in understanding which apprentices excel at which potions, since she is considering assigning brewing specialties for the next quarter.
+
+## What You Need to Deliver
+
+Your analysis must address the following requirements. Use the skills and methods from Weeks 1-5 to complete this work. Your cleaned data should be stored in a pandas DataFrame, and your analysis should use DataFrame operations throughout.
+
+### Data Quality Assessment
+
+Start by examining the raw brewing log. Morvaine needs to know how reliable the logging crystal has been before she presents anything to the guild. Your report should include:
+
+- The total number of records in the file
+- How many records were successfully parsed and validated
+- How many records contained errors and could not be processed
+- A brief look at the structure of the cleaned data (show the first few rows of your DataFrame)
+- Identification of which apprentices and potion types appear in the dataset
+
+### Brewing Performance Overview
+
+The guild wants to understand the workshop's overall output and quality. For the valid brewing records, provide:
+
+- Summary statistics for potency ratings and brew time using `.describe()`
+- A count of batches by result (how many successes, fizzles, and explosions)
+- A new column calculating brewing efficiency: potency rating divided by brew time in hours
+- The five highest-potency batches from your DataFrame, sorted from highest to lowest
+- The five most efficient batches from your DataFrame based on your new efficiency column
+
+### Failure Investigation
+
+The guild tracks failure rates closely. A workshop with too many fizzles or explosions risks losing its license. Morvaine needs to understand the pattern behind failed batches. Using boolean indexing, filter your DataFrame to the batches that did not succeed and provide:
+
+- The filtered DataFrame showing all failed batches (so the guild can review the full records)
+- How many batches failed (fizzle or explosion combined)
+- Which apprentice had the most failures
+- The average potency rating for successful batches compared to failed batches
+- Which potion types appear most often in the failed batches
+
+### High-Efficiency Brewing
+
+Morvaine has noticed that some batches achieve high potency in very little time, which suggests natural talent or a refined technique. She wants to identify batches where the potency rating was 85 or above AND the brew time was 2.0 hours or less. Filter your DataFrame to this subset and provide:
+
+- The filtered DataFrame showing these high-efficiency batches
+- How many batches meet both conditions
+- Which apprentices and potions appear in this group
+- What is the average potency of these high-efficiency batches
+
+### Apprentice Comparison
+
+Morvaine is considering assigning brewing specialties based on each apprentice's strengths. To support this decision, compare two apprentices of your choice by computing each one's average potency per potion name. Use the potion name as the index for each Series, then subtract one from the other.
+
+In your analysis:
+
+- Show each apprentice's average-potency-by-potion Series
+- Show the result of the subtraction
+- Identify which potions produced NaN in the comparison and explain why those values are missing
+- Based on the potions they both brewed, note which apprentice had higher average potency
+
+## Technical Requirements
+
+Your Jupyter notebook should demonstrate the complete workflow from raw file to final analysis. The notebook must run successfully from start to finish using "Restart Kernel and Run All."
+
+**File handling and parsing (Chapter 3 skills):**
+
+Use standard Python file I/O to read the CSV file. Parse each row into a dictionary with field names and type-converted values. Handle invalid records gracefully using try/except. Track both successful parses and errors so you can report on data quality. The file has a small number of malformed rows; your parser should handle them without crashing.
+
+**DataFrame creation (Chapter 5 skills):**
+
+Convert your list of parsed dictionaries into a pandas DataFrame using `pd.DataFrame()`. This is the bridge between the Week 2 parsing workflow and pandas analysis.
+
+**Selection and filtering (Chapter 5 skills):**
+
+Use boolean indexing to filter rows based on conditions. Combine conditions with `&` for multi-condition filtering. Use `.loc` or `.iloc` when selecting specific rows or columns by label or position.
+
+**Column operations and statistics (Chapter 5 skills):**
+
+Create new columns from calculations on existing columns. Use `.describe()` and individual statistical methods like `.mean()` and `.std()`. Apply `.sort_values()` to rank results.
+
+**Automatic alignment (Chapter 5 skills):**
+
+Build Series with meaningful indices and observe how pandas aligns by label when performing arithmetic between Series with different indices. Interpret NaN values that result from non-overlapping labels.
+
+**Notebook organization:**
+
+Structure your notebook logically. Use markdown cells to explain what each section does. Include clear print statements showing your results. Make it easy to verify that you have addressed each requirement.
+
+## Video Reflection
+
+Record a short video (4-5 minutes) demonstrating your understanding of this assignment.
+
+**Part 1: Explain the apprentice comparison**
+
+Walk through how you compared two apprentices' average potency by potion name. In your explanation, address:
+
+1. What you were trying to determine
+2. How you built each apprentice's average-potency-by-potion Series
+3. What happened when you subtracted one Series from the other
+4. What the NaN values mean and why they appeared
+5. What the non-NaN results tell you about the two apprentices
+
+**Part 2: Reflect on your learning**
+
+Choose ONE of the following to discuss:
+
+- **Challenge or error:** Describe a problem you encountered while completing this assignment, how you figured out what was wrong, and how you resolved it
+- **Key takeaway:** Explain one important concept you learned or solidified through this assignment and why it matters for data work
+
+**Video submission requirements:**
+
+- Clear video and audio quality
+- Introduce yourself at the beginning (name)
+- Name your video file: `lastname_Week06Reflection`
+- Upload your video to **Kaltura**
+- **Do not** embed the video in the Dropbox submission
+- Paste the **share link** into the D2L assignment text submission box
+- Make sure the link text includes `lastname_Week06Reflection` in the link name
+
+## D2L Submission Checklist
+
+Submit the following items to the **Week 6 Dropbox** in D2L:
+
+### Notebook file
+
+- `lastname_week06_assignment.ipynb`
+
+### Video submission (link only)
+
+- Video filename: `lastname_Week06Reflection`
+- Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)
+
+**Before you submit:**
+
+- Run "Restart Kernel and Run All" to confirm your notebook executes without errors
+- Verify all required outputs are visible in the notebook
+- Check that your video link works and includes the correct filename

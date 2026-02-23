@@ -1,0 +1,50 @@
+---
+title: "Week 5 Assignments"
+subtitle: "Chapter 5 Reading, pandas Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+---
+
+- Here is the link to the **[Week 5 demo](../../assignments/week-05/week-5-demo.html)**.
+- <a href="week-5-demo.ipynb" download="week-5-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Part 1: Reading
+
+Read **all of Chapter 5**.
+
+Chapter 5 introduces pandas, the primary library for working with tabular data in Python. You'll learn about Series (1D labeled arrays) and DataFrames (2D labeled tables), how to select data by labels and positions, and how pandas automatically aligns data during operations. The demo provides hands-on practice with these concepts using concrete examples.
+
+## Part 2: Work through the Week 5 Demo
+
+The Week 5 demo covers:
+
+1. Creating and working with Series (1D labeled arrays with index)
+2. Series attributes and operations (`.iloc`, `.values`, vectorization, boolean indexing)
+3. Creating DataFrames from dictionaries, lists of dictionaries, and understanding structure
+4. DataFrame attributes (`.shape`, `.dtypes`, `.columns`, `.head()`, `.info()`)
+5. Selection methods: `.loc` for labels, `.iloc` for positions, single vs double brackets
+6. Boolean indexing for filtering data with conditions, using `&` and `|` operators
+7. Automatic alignment: how pandas matches data by labels and handles mismatched indices with NaN
+8. Statistical methods: `.mean()`, `.describe()`, understanding the `axis` parameter, `.sort_values()`
+
+## Part 3: D2L Quiz
+
+Complete the **Week 5 D2L quiz** (pandas concepts).
+
+The quiz covers:
+
+- **Series fundamentals:** creation, default index, custom labels, dictionary to Series, display format
+- **Series operations:** `.iloc` accessor, label-based access, vectorized operations, boolean indexing
+- **DataFrame fundamentals:** creation from dictionaries and lists, `.set_index()`, mixed data types, columns as Series
+- **DataFrame structure:** `.shape`, `.dtypes`, `.columns`, `.head()`, `.tail()`, `.info()`
+- **Selection methods:** `.loc` vs `.iloc`, single vs double brackets, boolean indexing, multiple conditions with `&` and `|`
+- **Automatic alignment:** behavior with mismatched indices, NaN handling, importance for data integrity
+- **Operations and statistics:** creating new columns, `axis` parameter, `.describe()`, `.sort_values()`
+- **Tool progression:** understanding how pandas builds on NumPy (connection to Week 3)
+
+## D2L submission checklist
+
+* **Week 5 D2L quiz** (no file uploads required this week)
+
+**Note:** This week emphasizes reading Chapter 5, understanding the demo, and demonstrating comprehension through the quiz. Focus on understanding pandas fundamentals—Series, DataFrames, selection methods, and automatic alignment—rather than just completing steps. The pandas patterns you learn this week are the foundation for all data manipulation tasks that follow.

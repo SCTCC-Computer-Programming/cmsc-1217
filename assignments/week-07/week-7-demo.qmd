@@ -1,0 +1,529 @@
+# Week 7 Demo: Data Loading with pandas
+
+## Introduction
+
+Before you can filter rows, compute statistics, or build visualizations, you need to get data into a DataFrame. Data loading (reading information from files, web services, and other sources into a format Python can work with) is the necessary first step in every analysis pipeline.
+
+Since Week 2, every data pipeline you've built has started the same way: open a file, loop through lines, split on commas, strip whitespace, convert types, and catch errors with `try/except`. That manual parsing pipeline taught you what data loading actually involves: splitting fields, handling headers, converting types, dealing with bad rows.
+
+This week, you'll see that pandas can handle that entire process in a single function call: `pd.read_csv()`. Chapter 6 covers how pandas reads and writes data in multiple formats. The manual parsing experience you've built over the past several weeks is directly relevant here. When you see `pd.read_csv()` automatically detect headers or infer column types, you'll understand what it's doing because you've done each of those steps by hand.
+
+This demo covers the three most common data loading scenarios:
+
+- CSV files with `pd.read_csv()`. The format you've been working with, now loaded with a single function call and customized with parameters for headers, column selection, missing values, and more.
+- JSON data with Python's `json` module and `pd.read_json()`. JSON is a flexible format built from dictionaries and lists, widely used on the web.
+- Web APIs with the `requests` library. APIs let you fetch structured data directly from the internet, typically in JSON format.
+
+Chapter 6 in the textbook goes further, covering HTML table parsing (`pd.read_html()`), Excel files (`pd.read_excel()`), binary storage formats (Pickle, HDF5, Parquet), and database interaction (`pd.read_sql()`). This demo focuses on CSV, JSON, and web APIs because they represent the core patterns. Once you understand how `pd.read_csv()` works, the other `pd.read_*()` functions follow the same structure.
+
+### How to Work Through This Demo
+
+This demo is designed to be self-contained. Work through it cell by cell, from top to bottom. **Run every code cell in order** because earlier cells create data files that later cells read. Skipping ahead will cause errors.
+
+For each section, the pattern is:
+1. Read the setup text to understand what you're about to do
+2. Run the code cell
+3. Read the explanation that follows to understand what happened and why
+
+If something is not clear after reading the explanation, try modifying the code and re-running it. For example, change a parameter value and see how the output changes.
+
+## Part 1: Reading CSV Files with pandas
+
+The manual parsing pipeline you've been writing (`open()`, `split()`, `strip()`, type conversion, `try/except`) is exactly what `pd.read_csv()` automates. This section introduces the function, shows what it handles automatically, and then walks through the parameters you'll use most often to customize its behavior.
+
+### Creating a sample CSV file
+
+First, we'll create a CSV file using `open()`. This lets you see exactly what the raw file contains before pandas reads it.
+
+```{python}
+# Create a CSV file with fleet registry data
+with open('fleet_registry.csv', 'w') as f:
+    f.write('ship_name,ship_class,crew_size,max_speed,launch_year\n')
+    f.write('Aurora,Explorer,150,9.2,2371\n')
+    f.write('Nebula Runner,Cargo,45,6.8,2368\n')
+    f.write('Dark Comet,Fighter,12,9.8,2374\n')
+    f.write('Star Whisper,Science,80,7.5,2370\n')
+    f.write('Iron Horizon,Cargo,50,6.5,2365\n')
+    f.write('Void Dancer,Explorer,120,9.0,2373\n')
+    f.write('Solar Wind,Patrol,30,8.4,2369\n')
+    f.write('Crimson Falcon,Fighter,15,9.6,2372\n')
+
+# Verify: display the raw file contents
+with open('fleet_registry.csv', 'r') as f:
+    print(f.read())
+```
+
+**Understanding the file:**
+
+This is a standard CSV file. The first line is the header row with field names. Each subsequent line is one record with values separated by commas. In previous weeks, your next step would have been a parsing loop to split, strip, convert, and error-check each row.
+
+With pandas, all of that is one line.
+
+### Your first pd.read_csv() call
+
+```{python}
+import numpy as np
+import pandas as pd
+
+# Read the CSV file into a DataFrame
+fleet = pd.read_csv('fleet_registry.csv')
+print(fleet)
+```
+
+**Understanding the output:**
+
+`pd.read_csv()` returns a DataFrame. Look at what it did automatically:
+- Detected the header row and used it for column names
+- Split each line on commas
+- Stripped whitespace
+- Inferred data types for each column
+
+That's the entire manual pipeline in a single function call.
+
+### Type inference
+
+One important thing `pd.read_csv()` does automatically is figure out what type of data each column contains. Let's check what it decided:
+
+```{python}
+# Check what types pandas inferred
+print(fleet.dtypes)
+```
+
+**Understanding type inference:**
+
+pandas examined the values in each column and chose appropriate types:
+- `ship_name` and `ship_class` contain text → text type (displayed as `object` or `str` depending on your pandas version)
+- `crew_size` and `launch_year` contain whole numbers → `int64`
+- `max_speed` contains decimal numbers → `float64`
+
+Compare this to your manual approach, where you explicitly called `int()` or `float()` on each field. `pd.read_csv()` handles type conversion automatically. The textbook calls this **type inference**: pandas looks at the actual values and decides what type each column should be.
+
+Type inference usually works well, but it's not perfect. If a numeric column contains even one non-numeric value (like "N/A"), pandas will treat the entire column as text. We'll see how to handle that later in this demo.
+
+### Customizing read_csv with parameters
+
+The basic `pd.read_csv('filename.csv')` call works when the file is well-formatted with a header row and comma delimiters. But real-world files are not always that clean. `pd.read_csv()` has many parameters to handle different file formats. The textbook notes that it has around 50 parameters, and you don't need to memorize them. Here are the ones you'll use most often.
+
+#### Reading a file without a header row
+
+Not every CSV file has a header row. What happens if we read one without telling pandas?
+
+```{python}
+# Create a CSV file with no header row
+with open('fleet_no_header.csv', 'w') as f:
+    f.write('Aurora,Explorer,150,9.2,2371\n')
+    f.write('Nebula Runner,Cargo,45,6.8,2368\n')
+    f.write('Dark Comet,Fighter,12,9.8,2374\n')
+    f.write('Star Whisper,Science,80,7.5,2370\n')
+
+# Read without specifying that there's no header
+fleet_bad = pd.read_csv('fleet_no_header.csv')
+print("Without header=None (wrong):")
+print(fleet_bad)
+```
+
+**Understanding the problem:**
+
+By default, `pd.read_csv()` assumes the first row is the header. Since this file has no header, pandas used the first data row ("Aurora,Explorer,150,9.2,2371") as column names. That first record is now lost from the data, and the column names are meaningless.
+
+```{python}
+# Fix: tell pandas there's no header row
+fleet_no_header = pd.read_csv('fleet_no_header.csv', header=None)
+print("With header=None:")
+print(fleet_no_header)
+```
+
+**Understanding `header=None`:**
+
+Setting `header=None` tells pandas that no row in the file contains column names. pandas assigns default integer column names (0, 1, 2, 3, 4) instead. The data is correct now, and all four records are present.
+
+```{python}
+# Better: provide your own column names
+fleet_named = pd.read_csv('fleet_no_header.csv', header=None,
+                           names=['ship_name', 'ship_class', 'crew_size', 
+                                  'max_speed', 'launch_year'])
+print("With custom column names:")
+print(fleet_named)
+```
+
+**Understanding the `names` parameter:**
+
+The `names` parameter lets you supply column names when the file doesn't have them. You pass a list of strings with one name per column, in order. This produces the same clean result as reading a file that already has a header.
+
+#### Setting the index during loading
+
+In Week 5, you learned to use `.set_index()` to make a column the row index after loading. You can also do this during loading with the `index_col` parameter.
+
+```{python}
+# Use a column as the row index during loading
+fleet_indexed = pd.read_csv('fleet_registry.csv', index_col='ship_name')
+print(fleet_indexed)
+```
+
+**Understanding `index_col`:**
+
+The `index_col` parameter tells `pd.read_csv()` which column should become the row labels. The `ship_name` column is no longer a regular column; it's now the index. You can use `.loc['Aurora']` to select Aurora's row by label, just like you did with student names in the Week 5 demo.
+
+#### Selecting specific columns
+
+Sometimes a file has more columns than you need. Rather than loading everything and then dropping columns, you can tell pandas to load only the columns you want.
+
+```{python}
+# Load only certain columns
+fleet_subset = pd.read_csv('fleet_registry.csv', 
+                            usecols=['ship_name', 'ship_class', 'crew_size'])
+print(fleet_subset)
+```
+
+**Understanding `usecols`:**
+
+`usecols` loads just the columns you specify. This saves memory and keeps your DataFrame focused on the data you actually need. You pass a list of column names (matching the header row) to select.
+
+#### Reading a limited number of rows
+
+When working with a large file, you may want to peek at the first few rows before loading the entire dataset. The `nrows` parameter handles this.
+
+```{python}
+# Read only the first 3 rows
+fleet_preview = pd.read_csv('fleet_registry.csv', nrows=3)
+print(fleet_preview)
+```
+
+**Understanding `nrows`:**
+
+The `nrows` parameter tells `pd.read_csv()` to read only that many data rows (the header is always read). This is useful for checking that your parameters are correct before committing to a full load.
+
+### Handling missing data during loading
+
+Real-world data often has missing values. They might appear as empty fields, placeholder text like "UNKNOWN", or sentinel values like "-999". pandas can detect and handle these during loading.
+
+```{python}
+# Create a CSV file with missing and problematic values
+with open('fleet_missing.csv', 'w') as f:
+    f.write('ship_name,ship_class,crew_size,max_speed,launch_year\n')
+    f.write('Aurora,Explorer,150,9.2,2371\n')
+    f.write('Nebula Runner,Cargo,,6.8,2368\n')
+    f.write('Dark Comet,Fighter,12,UNKNOWN,2374\n')
+    f.write('Star Whisper,Science,80,7.5,\n')
+    f.write('Iron Horizon,Cargo,50,6.5,2365\n')
+    f.write('Void Dancer,Explorer,MISSING,9.0,2373\n')
+
+# Read with default settings
+fleet_messy = pd.read_csv('fleet_missing.csv')
+print("Default reading:")
+print(fleet_messy)
+print("\nData types:")
+print(fleet_messy.dtypes)
+```
+
+**Understanding the problem:**
+
+Look at the data types. `crew_size` and `max_speed` should be numeric, but some rows contain text placeholders ("UNKNOWN", "MISSING") or empty fields. pandas handles empty fields automatically by inserting `NaN` and adjusting the column type. But it does not recognize custom placeholders like "UNKNOWN" or "MISSING" as missing values. When even one value in a column is text, pandas treats the entire column as a text type, which means you cannot compute statistics on it.
+
+In your manual parsing pipeline, this is where `try/except` would catch the `ValueError` when you tried to convert "UNKNOWN" to a number. `pd.read_csv()` has its own way to handle this.
+
+```{python}
+# Tell pandas what values represent missing data
+fleet_clean = pd.read_csv('fleet_missing.csv', 
+                           na_values=['UNKNOWN', 'MISSING'])
+print("With na_values:")
+print(fleet_clean)
+print("\nData types:")
+print(fleet_clean.dtypes)
+```
+
+**Understanding `na_values`:**
+
+The `na_values` parameter tells pandas which additional strings should be treated as missing data. pandas already recognizes some common missing-value markers by default (like empty fields and a few standard placeholders). But domain-specific placeholders like "UNKNOWN" or "MISSING" need to be specified explicitly.
+
+When pandas encounters these values during loading, it replaces them with `NaN` (Not a Number). This is the same `NaN` you saw during automatic alignment in Week 5.
+
+Now look at the data types. With the text placeholders converted to `NaN`, pandas can correctly infer numeric types for `crew_size` and `max_speed` (both `float64`). They are `float64` rather than `int64` because `NaN` is a floating-point value. Any integer column with missing values automatically becomes float to accommodate `NaN`.
+
+`na_values` is doing something similar to your `try/except` blocks. It identifies values that cannot be used as data and marks them as missing rather than crashing the process. The difference is that `pd.read_csv()` handles this at the column level during loading, while your manual approach handled it row by row.
+
+### Writing DataFrames to CSV
+
+So far, we've focused on reading data into pandas. But the workflow often goes both directions: you load data, process it, and then save the results. Just as `pd.read_csv()` reads data in, `to_csv()` writes data out.
+
+```{python}
+# Read the clean fleet data
+fleet = pd.read_csv('fleet_registry.csv')
+
+# Write to a new CSV file
+fleet.to_csv('fleet_output.csv')
+
+# Verify: check what was written
+with open('fleet_output.csv', 'r') as f:
+    print(f.read())
+```
+
+**Understanding the output:**
+
+Notice the extra column at the beginning. That's the row index (0, 1, 2, ...). By default, `to_csv()` writes the index as the first column. This is often not what you want.
+
+```{python}
+# Write without the index
+fleet.to_csv('fleet_output_clean.csv', index=False)
+
+# Verify: check the cleaner output
+with open('fleet_output_clean.csv', 'r') as f:
+    print(f.read())
+```
+
+**Understanding `index=False`:**
+
+Setting `index=False` tells pandas to skip writing the row index. The output is now a clean CSV file that matches the format of the original input. This round-trip (read, process, write) is a common workflow: load data, analyze or transform it, and save the results.
+
+## Part 2: Working with JSON Data
+
+Part 1 covered CSV files. But CSV is not the only data format you'll encounter. **JSON (JavaScript Object Notation)** is the standard format for data on the web. When you request data from a web API (which we'll do in Part 3), the response almost always comes back as JSON. Understanding JSON now prepares you for that workflow.
+
+### What JSON looks like
+
+JSON is built from structures you already know from Python:
+- JSON objects are like Python dictionaries: `{"key": "value"}`
+- JSON arrays are like Python lists: `[1, 2, 3]`
+- Objects and arrays can be nested inside each other
+
+```{python}
+# A JSON string representing planetary survey data
+json_string = '''[
+    {"planet": "Verdantis", "sector": "Alpha-7", "atmosphere": "nitrogen-oxygen", "avg_temp_c": 22, "moons": 2},
+    {"planet": "Glacius Prime", "sector": "Beta-3", "atmosphere": "thin nitrogen", "avg_temp_c": -45, "moons": 0},
+    {"planet": "Pyraxis", "sector": "Alpha-7", "atmosphere": "carbon dioxide", "avg_temp_c": 310, "moons": 1},
+    {"planet": "Aquillon", "sector": "Gamma-1", "atmosphere": "nitrogen-oxygen", "avg_temp_c": 15, "moons": 3},
+    {"planet": "Dusthaven", "sector": "Beta-3", "atmosphere": "thin carbon dioxide", "avg_temp_c": -10, "moons": 0}
+]'''
+
+print(json_string)
+```
+
+**Understanding the structure:**
+
+This JSON string contains an array (list) of objects (dictionaries). Each object represents one planet with the same set of keys. If this looks familiar, it should: this is exactly the "list of dictionaries" pattern from Week 2, written as text.
+
+The difference between JSON and CSV is flexibility. CSV requires a flat table with consistent columns, while JSON can represent nested structures. For example, a planet could have a list of moons, each with its own properties. That flexibility is why JSON is the standard for web data.
+
+### Python's json module
+
+Python has a built-in `json` module for converting between JSON strings and Python objects.
+
+```{python}
+import json
+
+# Parse JSON string into Python objects
+planets = json.loads(json_string)
+
+# It's now a regular Python list of dictionaries
+print(f"Type: {type(planets)}")
+print(f"Number of records: {len(planets)}")
+print(f"\nFirst planet:")
+print(planets[0])
+```
+
+**Understanding `json.loads()`:**
+
+`json.loads()` (the "s" stands for "string") takes a JSON string and converts it to Python objects:
+- JSON objects become Python dictionaries
+- JSON arrays become Python lists
+- JSON strings become Python strings
+- JSON numbers become Python ints or floats
+
+After parsing, `planets` is a regular Python list of dictionaries. You can loop through it, access dictionary keys, and work with it using all the Python skills you already have.
+
+```{python}
+# Access individual records and fields
+print("Planet names:")
+for planet in planets:
+    print(f"  {planet['planet']} - {planet['atmosphere']}")
+
+# Convert back to a formatted JSON string
+formatted = json.dumps(planets, indent=2)
+print(f"\nFormatted JSON (first 200 characters):")
+print(formatted[:200])
+```
+
+**Understanding `json.dumps()`:**
+
+`json.dumps()` converts Python objects back to a JSON string. The `indent` parameter adds formatting with line breaks and indentation, making the output human-readable. Without `indent`, the entire JSON would be on one line.
+
+### pandas JSON support
+
+Since a list of dictionaries with consistent keys is essentially tabular data, pandas can convert it directly to a DataFrame.
+
+```{python}
+# Convert the parsed JSON (list of dicts) to a DataFrame
+planets_df = pd.DataFrame(planets)
+print(planets_df)
+```
+
+**Understanding the conversion:**
+
+This is the same `pd.DataFrame()` call from Week 5. You pass a list of dictionaries where each dictionary becomes a row and the keys become column names. The JSON parsing step (`json.loads()`) gave you a list of dictionaries, and pandas knows how to handle that directly.
+
+pandas also has `pd.read_json()` which can read JSON files directly into a DataFrame. Let's write our data to a JSON file first, then read it:
+
+```{python}
+# Write the JSON string to a file
+with open('planets.json', 'w') as f:
+    f.write(json_string)
+
+# Read the JSON file directly into a DataFrame
+planets_direct = pd.read_json('planets.json')
+print(planets_direct)
+```
+
+**Understanding `pd.read_json()`:**
+
+`pd.read_json()` combines the parsing and DataFrame creation into one step, similar to how `pd.read_csv()` handles CSV files. For simple, tabular JSON (a list of objects with consistent keys), this works well. For more complex or nested JSON structures, you may need to use `json.loads()` first to extract the parts you need, then pass those to `pd.DataFrame()`.
+
+### Writing JSON
+
+```{python}
+# Write a DataFrame to a JSON file
+planets_df.to_json('planets_output.json', orient='records', indent=2)
+
+# Verify: check what was written
+with open('planets_output.json', 'r') as f:
+    print(f.read())
+```
+
+**Understanding `to_json()`:**
+
+`to_json()` writes a DataFrame to JSON format. The `orient` parameter controls the structure of the output:
+- `orient='records'` produces a list of dictionaries, one per row. This is the most common format and matches the structure we started with.
+- `indent=2` adds formatting for readability.
+
+Other `orient` options exist (like `'columns'` or `'index'`), but `'records'` is the most widely used because it matches the format that web APIs typically produce and consume.
+
+### When to use json module vs pd.read_json()
+
+Use `pd.read_json()` when:
+- The JSON is a simple list of objects (flat, tabular structure)
+- You want a DataFrame immediately
+
+Use `json.loads()` + `pd.DataFrame()` when:
+- The JSON has nested structures you need to navigate
+- You only want part of the JSON data
+- You need to inspect the data before converting
+
+In practice, web API responses often have extra metadata wrapped around the actual data. You'll use `json.loads()` (or the `.json()` method on a response object) to get to the data you want, then convert that portion to a DataFrame.
+
+## Part 3: Interacting with Web APIs
+
+Parts 1 and 2 covered loading data from local files, both CSV and JSON. But a large amount of data is available through **web APIs (Application Programming Interfaces)**. A web API lets you request specific data from a server over the internet and receive a structured response, usually in JSON format. This is where the JSON skills from Part 2 become directly practical.
+
+### What a web API is
+
+When you visit a website, your browser sends a request to a server and gets back an HTML page for humans to read. A web API works the same way, but the response is structured data (usually JSON) designed for programs to process.
+
+The pattern is straightforward:
+1. Send an HTTP request to a URL (the API endpoint)
+2. Receive a response containing structured data
+3. Parse the response (usually JSON)
+4. Work with the data in Python
+
+### Making an API request
+
+Python's `requests` library makes HTTP requests simple. We'll use the GitHub API as an example. It provides public data about GitHub repositories without requiring an account or API key.
+
+The following code cells require internet access to reach the GitHub API. If you are working offline or the request fails, read through the code and explanations to understand the pattern. The concepts (make a request, check the response, parse JSON, convert to DataFrame) are what matter. You can re-run these cells later when you have internet access.
+
+```{python}
+import requests
+
+# Request recent issues from the pandas GitHub repository
+# (This is the same API endpoint used in the textbook's Chapter 6 example)
+url = 'https://api.github.com/repos/pandas-dev/pandas/issues'
+resp = requests.get(url)
+resp.raise_for_status()
+
+print(f"Status code: {resp.status_code}")
+print(f"Response type: {type(resp.json())}")
+print(f"Number of items: {len(resp.json())}")
+```
+
+If `import requests` gives a `ModuleNotFoundError`, you need to install the library. Run `pip install requests` in your terminal, then restart your kernel and try again.
+
+**Understanding the request:**
+
+`requests.get(url)` sends an HTTP GET request to the GitHub API. This is the same kind of request your browser makes when you visit a web page, but instead of HTML, the server returns JSON data.
+
+`resp.raise_for_status()` checks whether the request succeeded. If something went wrong (server error, invalid URL, rate limit exceeded), this raises an exception. This is similar to how you use `try/except` to catch errors in file processing. A status code of 200 means success.
+
+`resp.json()` parses the JSON response into Python objects (a list of dictionaries in this case). This is equivalent to calling `json.loads()` on the response text, which you used in Part 2.
+
+### From API response to DataFrame
+
+Now that we have a successful response, let's see what the API returned and convert it to a DataFrame. The GitHub API returns a list of dictionaries, one per issue. Each dictionary contains many fields.
+
+```{python}
+# Parse the JSON response
+data = resp.json()
+
+# Look at the keys available in one issue
+print("Available fields in each issue:")
+print(sorted(data[0].keys()))
+```
+
+**Understanding the response:**
+
+Each issue is a dictionary with many fields: title, body, user information, labels, timestamps, and more. Most API responses contain more data than you need. The next step is to convert to a DataFrame and select the relevant columns.
+
+```{python}
+# Convert to DataFrame
+issues = pd.DataFrame(data)
+
+# Select useful columns
+issues_subset = issues[['number', 'title', 'state', 'created_at']]
+print(issues_subset.head(10))
+```
+
+**Understanding the workflow:**
+
+This is the same `pd.DataFrame()` call you've been using. A list of dictionaries becomes a DataFrame where each dictionary is a row. Then we use column selection (double brackets from Week 5) to keep just the columns we need.
+
+The result is a clean, labeled DataFrame created from live data on the internet. You went from a URL to an analyzable DataFrame in a few lines of code.
+
+The specific issues shown depend on when you run this code. GitHub issues are created and updated constantly, so your output will differ from someone who runs this at a different time.
+
+### A note about APIs
+
+The GitHub API we used here is public and doesn't require authentication for basic requests. But there are important practical considerations.
+
+Most APIs limit how many requests you can make per hour. The GitHub API allows 60 requests per hour without authentication. If you exceed the limit, requests will fail temporarily.
+
+Many APIs also require an API key or account credentials. This is how services control access and track usage. The textbook covers this briefly, and you'll encounter it when working with data from services like Twitter, weather providers, or financial data platforms.
+
+Not all APIs return simple lists of dictionaries, either. Some wrap data in metadata, use pagination for large results, or nest data in complex structures. The `json.loads()` + `pd.DataFrame()` approach gives you more control for these cases than `pd.read_json()` alone.
+
+## Conclusion
+
+### What You've Learned
+
+This demo introduced the core data loading tools from Chapter 6.
+
+For CSV files, you learned to use `pd.read_csv()` to read files into DataFrames with automatic header detection and type inference. You saw how to customize loading with parameters (`header`, `names`, `index_col`, `usecols`, `nrows`, `na_values`), how to handle missing data and sentinel values during loading, and how to write DataFrames back to CSV with `to_csv()`.
+
+For JSON data, you learned how JSON structures map to Python dictionaries and lists, how to use Python's `json` module (`json.loads()` to parse, `json.dumps()` to write), and how `pd.read_json()` can convert JSON files directly into DataFrames.
+
+For web APIs, you learned how to use `requests.get()` to fetch data from a URL, parse the JSON response, and convert it to a DataFrame. You also saw practical considerations like rate limits and authentication.
+
+### The Manual Parsing Connection
+
+Every step in the manual parsing pipeline you've been writing (opening files, splitting fields, stripping whitespace, converting types, detecting headers, handling bad values, building the result) has a corresponding behavior inside `pd.read_csv()`. Understanding what happens under the hood makes you a better analyst. When `pd.read_csv()` doesn't behave as expected, whether it's wrong types, missing values not detected, or columns misaligned, you'll know where to look because you've done each of those steps manually.
+
+### What the Textbook Covers Next
+
+Chapter 6 continues with data formats and tools not covered in this demo. These are worth knowing about, even if you don't use them immediately.
+
+`pd.read_html()` extracts tables from web pages into DataFrames. It's useful for scraping tabular data from websites, though it requires additional libraries (lxml, beautifulsoup4).
+
+`pd.read_excel()` reads `.xlsx` and `.xls` files and works similarly to `pd.read_csv()` with comparable parameters. `to_excel()` handles writing.
+
+The chapter also covers binary storage formats: Pickle (Python's built-in serialization, fast but Python-only), HDF5 (hierarchical data format for large scientific datasets), and Parquet (columnar format optimized for analytics, increasingly common in industry). These formats are more efficient than CSV for large datasets.
+
+Finally, `pd.read_sql()` lets you run SQL queries and return the results as DataFrames, connecting pandas to relational databases like SQLite, PostgreSQL, and MySQL through the SQLAlchemy library.
+
+Each of these follows the same pattern: `pd.read_*()` to load data into a DataFrame, and a corresponding `to_*()` method to write data back out. Once you understand the `read_csv()` workflow, the other loading functions feel familiar.

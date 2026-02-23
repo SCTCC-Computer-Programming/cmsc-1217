@@ -1,0 +1,56 @@
+---
+title: "Week 7 Assignments"
+subtitle: "Chapter 6 Reading, Data Loading Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+    
+---
+
+- Here is the link to the **[Week 7 demo](week-7-demo.html)**.
+- <a href="week-7-demo.ipynb" download="week-7-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Part 1: Reading
+
+Read **all of Chapter 6**.
+
+Chapter 6 covers how pandas loads and stores data across multiple formats. The demo focuses on CSV files, JSON data, and web APIs. The chapter also covers HTML tables, Excel files, binary formats (Pickle, HDF5, Parquet), and database interaction with SQL. Read the full chapter for awareness of all formats; the quiz primarily assesses the three formats covered in the demo.
+
+## Part 2: Work through the Week 7 Demo
+
+There is no walkthrough video this week. The demo is self-contained: read the setup text before each code block, run the cell, then read the explanation that follows. Work through it cell by cell in order, since earlier cells create files that later cells read.
+
+The Week 7 demo covers:
+
+1. Loading CSV files with `pd.read_csv()` and understanding what it automates
+2. How pandas infers column data types during loading (type inference)
+3. Customizing `pd.read_csv()` with parameters: `header`, `names`, `index_col`, `usecols`, and `nrows`
+4. Handling missing data during loading with the `na_values` parameter
+5. Writing DataFrames to CSV with `to_csv()` and controlling index output
+6. Understanding JSON structure and its relationship to Python dictionaries and lists
+7. Parsing JSON with Python's `json` module (`json.loads()` and `json.dumps()`)
+8. Loading JSON data into DataFrames with `pd.read_json()` and `pd.DataFrame()`
+9. Fetching data from a web API using the `requests` library
+10. Converting API responses to DataFrames
+
+## Part 3: D2L Quiz
+
+Complete the **Week 7 D2L quiz** (data loading concepts).
+
+The quiz covers:
+
+* CSV loading: what `pd.read_csv()` automates, type inference, and the connection to manual parsing
+* `pd.read_csv()` parameters: `header`, `names`, `index_col`, `usecols`, `nrows`, and `na_values`
+* Missing data: sentinel values, NaN behavior, and the float64 consequence for integer columns
+* Writing CSV files: `to_csv()` default behavior and the `index` parameter
+* JSON: structure (objects and arrays), `json.loads()`, `json.dumps()`, `pd.read_json()`, and when to use each approach
+* Web APIs: what an API is, `requests.get()`, checking responses, parsing JSON, and converting to DataFrames
+* Textbook awareness: `pd.read_html()`, `pd.read_excel()`, binary formats, and the `pd.read_*()` pattern
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+* **Week 7 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 6, understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on understanding how pandas automates data loading across formats and how the parameters and tools covered in the demo connect to the manual parsing skills you have built in earlier weeks.

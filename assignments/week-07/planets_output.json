@@ -1,0 +1,37 @@
+[
+  {
+    "planet":"Verdantis",
+    "sector":"Alpha-7",
+    "atmosphere":"nitrogen-oxygen",
+    "avg_temp_c":22,
+    "moons":2
+  },
+  {
+    "planet":"Glacius Prime",
+    "sector":"Beta-3",
+    "atmosphere":"thin nitrogen",
+    "avg_temp_c":-45,
+    "moons":0
+  },
+  {
+    "planet":"Pyraxis",
+    "sector":"Alpha-7",
+    "atmosphere":"carbon dioxide",
+    "avg_temp_c":310,
+    "moons":1
+  },
+  {
+    "planet":"Aquillon",
+    "sector":"Gamma-1",
+    "atmosphere":"nitrogen-oxygen",
+    "avg_temp_c":15,
+    "moons":3
+  },
+  {
+    "planet":"Dusthaven",
+    "sector":"Beta-3",
+    "atmosphere":"thin carbon dioxide",
+    "avg_temp_c":-10,
+    "moons":0
+  }
+]

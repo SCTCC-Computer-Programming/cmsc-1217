@@ -1,0 +1,791 @@
+# Week 5 Demo: Introduction to pandas
+
+## Introduction
+
+Over the past four weeks, you've built a solid foundation in data analysis workflows:
+
+**Week 1: Environment and Interactive Workflow**
+- Jupyter notebooks for interactive development
+- The kernel concept and "Restart Kernel and Run All"
+- Import conventions (np, pd)
+
+**Week 2: File Processing and Data Structures**
+- Reading CSV files and parsing rows
+- Using Python's core structures (lists, dicts, sets)
+- Error handling with try/except
+- Building frequency counts and summaries
+
+**Week 3: NumPy Arrays and Vectorization**
+- Arrays for efficient numerical computation
+- Vectorized operations (no loops needed)
+- Boolean indexing for filtering
+- Statistical methods and the axis parameter
+
+**Week 4: Integration**
+- Complete workflow: file → parse → clean → NumPy arrays → analysis
+- Combining Week 2 parsing with Week 3 NumPy operations
+
+**This Week: pandas**
+- **Built on NumPy arrays** but adds powerful features for working with **labeled, tabular data**
+- If NumPy is "efficient arrays," pandas is "efficient spreadsheets with labels"
+
+### What is pandas?
+
+pandas provides two core data structures:
+
+**Series**: A one-dimensional labeled array
+- Think of it as a NumPy array with labels (an index) attached
+- Like a single column in a spreadsheet
+- Example: A list of temperatures with dates as labels
+
+**DataFrame**: A two-dimensional labeled data structure with columns
+- Think of it as a table or spreadsheet
+- Each column is a Series
+- Both rows and columns have labels
+- Example: A table of student grades with student names as row labels and assignments as column labels
+
+### Why pandas Exists
+
+NumPy is powerful for numerical operations, but it has limitations when working with real-world data:
+
+**NumPy limitations:**
+- No built-in way to label rows and columns
+- Selecting data requires remembering numeric positions
+- All data must be the same type (all floats, all ints)
+- No automatic alignment when combining datasets
+
+**pandas solutions:**
+- Row and column labels make data self-documenting
+- Select data by meaningful names instead of positions
+- Different columns can have different types (one column of numbers, another of text)
+- Automatic alignment by labels when combining data
+
+pandas is built on top of NumPy arrays, so you still get NumPy's speed. But you also get labels, mixed types, and powerful data manipulation tools.
+
+### What This Demo Covers
+
+This demo introduces the core pandas concepts:
+- Creating and working with Series
+- Creating and working with DataFrames
+- Selecting data by labels and positions
+- Understanding automatic alignment (pandas's "superpower")
+- Computing statistics on labeled data
+
+The textbook (Chapter 5) then shows you:
+- Reindexing and altering labels
+- Advanced indexing techniques
+- More operations and methods
+- Handling missing data basics
+- Complete reference for all pandas capabilities
+
+## Part 1: Creating and Using Series
+
+A **Series** is a one-dimensional array with labels. It's like a NumPy array, but each value has an associated label (index).
+
+### Creating a Series from a list
+
+```{python}
+import numpy as np
+import pandas as pd
+
+# Create a Series from a list
+temperatures = pd.Series([72, 75, 68, 70, 73])
+print(temperatures)
+```
+
+**Understanding the output:**
+
+The left column (0, 1, 2, 3, 4) is the **index** - the labels for each value. By default, pandas uses sequential integers starting at 0, just like list positions.
+
+The right column (72, 75, 68, 70, 73) contains the **values** - the actual data.
+
+At the bottom, `dtype: int64` tells us all values are 64-bit integers, just like NumPy arrays.
+
+**Why this matters:**
+
+Unlike a regular Python list or NumPy array, a Series keeps track of what each value represents. You can access values by their label, not just their position.
+
+### Creating a Series with custom labels
+
+```{python}
+# Create a Series with custom index labels
+temperatures = pd.Series(
+    [72, 75, 68, 70, 73],
+    index=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+)
+print(temperatures)
+```
+
+Now the index has meaningful labels instead of just positions. This makes the data self-documenting - you can see that 72 is Monday's temperature without having to remember that position 0 means Monday.
+
+### Creating a Series from a dictionary
+
+```{python}
+# Create a Series from a dictionary
+# Keys become the index, values become the data
+temperatures = pd.Series({
+    'Monday': 72,
+    'Tuesday': 75,
+    'Wednesday': 68,
+    'Thursday': 70,
+    'Friday': 73
+})
+print(temperatures)
+```
+
+When you create a Series from a dictionary:
+- Dictionary keys become the index labels
+- Dictionary values become the Series values
+- This is often the most natural way to create a Series with labeled data
+
+### Accessing values in a Series
+
+```{python}
+# Access by label
+print("Wednesday's temperature:", temperatures['Wednesday'])
+
+# Access by position using .iloc
+print("Third day's temperature:", temperatures.iloc[2])
+
+# Access multiple values by label
+print("\nWeekday temperatures:")
+print(temperatures[['Monday', 'Wednesday', 'Friday']])
+```
+
+**Understanding the access methods:**
+
+**Label-based access**: `temperatures['Wednesday']` uses the index label. This is like accessing a dictionary by key - you use the meaningful name.
+
+**Position-based access**: `temperatures.iloc[2]` uses the numeric position. `.iloc` (integer location) explicitly indicates position-based indexing. Position 2 is the third element (Wednesday).
+
+**Multiple labels**: `temperatures[['Monday', 'Wednesday', 'Friday']]` passes a list of labels and returns a Series containing just those labeled values. Note the double brackets - the outer brackets are for indexing, the inner brackets create the list of labels.
+
+### Vectorized operations on Series
+
+```{python}
+# Convert Fahrenheit to Celsius (remember Week 3 vectorization?)
+celsius = (temperatures - 32) * 5/9
+print("Temperatures in Celsius:")
+print(celsius.round(1))
+
+# Boolean indexing (remember Week 3?)
+hot_days = temperatures[temperatures > 72]
+print("\nDays warmer than 72°F:")
+print(hot_days)
+```
+
+**Understanding vectorized operations:**
+
+Just like NumPy arrays from Week 3, you can perform operations on entire Series without writing loops:
+
+**Arithmetic operations**: `(temperatures - 32) * 5/9` subtracts 32 from every temperature and multiplies by 5/9 to convert Fahrenheit to Celsius. The operation applies to all values at once.
+
+**Boolean indexing**: `temperatures > 72` creates a boolean Series (True/False for each day), then `temperatures[...]` selects only the True values. This is exactly like boolean indexing in NumPy from Week 3.
+
+**Key difference from NumPy**: The index labels (day names) are preserved through all operations. When you filter or transform the data, the labels stick with their values.
+
+### Series attributes
+
+```{python}
+# Explore Series attributes
+print("Values (as NumPy array):", temperatures.values)
+print("Index labels:", temperatures.index)
+print("Data type:", temperatures.dtype)
+print("Shape:", temperatures.shape)
+print("Size:", temperatures.size)
+```
+
+**Understanding Series attributes:**
+
+**`.values`**: Returns the underlying NumPy array. This is how you "drop down" to NumPy when you need array-specific operations. The connection between pandas and NumPy is explicit here.
+
+**`.index`**: Returns an Index object containing the labels. You can see all the row labels at once.
+
+**`.dtype`**: The data type of the values, just like NumPy arrays. All values in a Series must have the same type.
+
+**`.shape`**: A tuple showing dimensions. For a Series, this is always a single number in parentheses: `(n,)` where n is the length.
+
+**`.size`**: The total number of elements. For a Series, this is the same as the length.
+
+## Part 2: Creating and Using DataFrames
+
+A **DataFrame** is a two-dimensional labeled data structure with columns. Think of it as a table or spreadsheet where:
+- Each column is a Series
+- Rows have labels (the index)
+- Columns have names
+- Different columns can contain different data types
+
+### Creating a DataFrame from a dictionary
+
+```{python}
+# Create a DataFrame from a dictionary of lists
+# Each key becomes a column name, each list becomes the column values
+grades = pd.DataFrame({
+    'student': ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'],
+    'quiz1': [85, 92, 78, 88, 95],
+    'quiz2': [88, 85, 82, 90, 92],
+    'final': [90, 88, 85, 92, 94]
+})
+
+print(grades)
+```
+
+**Understanding the output:**
+
+The leftmost column (0, 1, 2, 3, 4) is the **row index** - labels for rows, just like a Series. By default, pandas uses sequential integers.
+
+The top row (student, quiz1, quiz2, final) contains **column names** - labels for columns.
+
+Each cell contains a value. This looks like a spreadsheet or database table.
+
+**How dictionaries become DataFrames:**
+
+When you pass a dictionary to `pd.DataFrame()`:
+- Each dictionary key becomes a column name
+- Each dictionary value (a list) becomes the data for that column
+- All lists must be the same length
+- pandas automatically creates a row index (0, 1, 2, ...)
+
+### Setting a meaningful index
+
+```{python}
+# Set the 'student' column as the index
+grades = grades.set_index('student')
+print(grades)
+```
+
+**What changed:**
+
+**Before**: Student names were in a column, rows were labeled with numbers (0, 1, 2, ...)
+
+**After**: Student names became the row labels (index), and the 'student' column disappeared from the data.
+
+**Why this matters:**
+
+Setting a meaningful index makes data selection more intuitive. Instead of remembering "Alice is row 0," you can directly access "the row labeled 'Alice'."
+
+### Creating a DataFrame from a list of dictionaries
+
+```{python}
+# Create a DataFrame from a list of dictionaries
+# Each dictionary becomes a row
+inventory = pd.DataFrame([
+    {'item': 'Laptop', 'quantity': 15, 'price': 899.99},
+    {'item': 'Mouse', 'quantity': 50, 'price': 24.99},
+    {'item': 'Keyboard', 'quantity': 30, 'price': 79.99},
+    {'item': 'Monitor', 'quantity': 20, 'price': 249.99}
+])
+
+print(inventory)
+```
+
+**Understanding list-of-dictionaries format:**
+
+This format is common when processing data row-by-row (like Week 2's parsing workflow):
+- Each dictionary represents one complete record (row)
+- Dictionary keys become column names
+- pandas automatically aligns everything into a table
+
+Compare this to Week 2, where you built a list of dictionaries manually by parsing CSV rows. If you had that list, you could convert it directly to a DataFrame with `pd.DataFrame(list_of_dicts)`.
+
+### DataFrame attributes and methods
+
+```{python}
+# Explore DataFrame structure
+print("Shape (rows, columns):", grades.shape)
+print("\nColumn names:", grades.columns.tolist())
+print("\nRow index:", grades.index.tolist())
+print("\nData types:")
+print(grades.dtypes)
+```
+
+**Understanding DataFrame attributes:**
+
+**`.shape`**: Returns a tuple `(rows, columns)`. Our DataFrame has 5 rows (students) and 3 columns (quiz1, quiz2, final).
+
+**`.columns`**: Returns the column labels as an Index object. We convert it to a list with `.tolist()` for readability.
+
+**`.index`**: Returns the row labels as an Index object. These are the student names we set earlier.
+
+**`.dtypes`**: Shows the data type of each column. Unlike NumPy arrays (which must be one type), DataFrames can have different types per column. Here all three columns are int64, but we could have a column of strings and a column of numbers in the same DataFrame.
+
+### Viewing DataFrame data
+
+```{python}
+# View first and last rows
+print("First 3 rows:")
+print(grades.head(3))
+
+print("\nLast 2 rows:")
+print(grades.tail(2))
+
+# Get a summary of the DataFrame
+print("\nDataFrame info:")
+print(grades.info())
+```
+
+**Understanding viewing methods:**
+
+**`.head(n)`**: Shows the first n rows. Default is 5 if you don't specify. Useful for quickly checking data structure without printing everything.
+
+**`.tail(n)`**: Shows the last n rows. Default is 5. Useful for checking the end of the dataset.
+
+**`.info()`**: Provides a summary:
+- The data type (DataFrame)
+- Index information (5 entries from Alice to Eve)
+- Column information (3 columns, all have 5 non-null values)
+- Data types per column
+- Memory usage
+
+The "Non-Null Count" column in `.info()` becomes important later when you have missing data. Here it shows 5 non-null for each column, meaning no missing values.
+
+## Part 3: Selecting Data from DataFrames
+
+DataFrames support multiple ways to select data. Understanding these selection methods is fundamental to working with pandas.
+
+### Selecting columns
+
+```{python}
+# Select a single column (returns a Series)
+quiz1_scores = grades['quiz1']
+print("Quiz 1 scores:")
+print(quiz1_scores)
+print(f"\nType: {type(quiz1_scores)}")
+
+# Select multiple columns (returns a DataFrame)
+quiz_scores = grades[['quiz1', 'quiz2']]
+print("\nQuiz scores:")
+print(quiz_scores)
+print(f"\nType: {type(quiz_scores)}")
+```
+
+**Understanding column selection:**
+
+**Single column with single brackets**: `grades['quiz1']` returns a **Series**. This is one column extracted from the DataFrame. The Series has the same index as the DataFrame (student names).
+
+**Multiple columns with double brackets**: `grades[['quiz1', 'quiz2']]` returns a **DataFrame**. The outer brackets are for indexing, the inner brackets create a list of column names. The result is a subset of the original DataFrame with just those columns.
+
+**Why the type matters:**
+
+When you select a single column, you get a Series - you can use all Series methods and operations. When you select multiple columns, you get a DataFrame - you can use DataFrame methods. Knowing which you're working with helps you understand what operations are available.
+
+### Selecting rows with loc (label-based)
+
+```{python}
+# Select a single row by label (returns a Series)
+alice_scores = grades.loc['Alice']
+print("Alice's scores:")
+print(alice_scores)
+
+# Select multiple rows by label (returns a DataFrame)
+some_students = grades.loc[['Alice', 'Charlie', 'Eve']]
+print("\nSelected students:")
+print(some_students)
+
+# Select rows and columns together
+alice_quizzes = grades.loc['Alice', ['quiz1', 'quiz2']]
+print("\nAlice's quiz scores:")
+print(alice_quizzes)
+```
+
+**Understanding .loc:**
+
+`.loc` selects data by **labels** (index names):
+
+**Single row**: `grades.loc['Alice']` returns a Series containing Alice's data. The Series index becomes the column names (quiz1, quiz2, final).
+
+**Multiple rows**: `grades.loc[['Alice', 'Charlie', 'Eve']]` returns a DataFrame with just those rows. Notice the double brackets again - we're passing a list of labels.
+
+**Rows and columns**: `grades.loc['Alice', ['quiz1', 'quiz2']]` selects Alice's row but only the quiz1 and quiz2 columns. First argument is row labels, second argument is column labels.
+
+**The key idea**: `.loc` uses the labels you can see in the printed DataFrame. If you can see "Alice" in the index, you can use `'Alice'` with `.loc`.
+
+### Selecting rows with iloc (position-based)
+
+```{python}
+# Select by position (like NumPy indexing)
+# First student's scores
+first_student = grades.iloc[0]
+print("First student:")
+print(first_student)
+
+# First three students
+first_three = grades.iloc[0:3]
+print("\nFirst three students:")
+print(first_three)
+
+# First student, first two columns
+first_student_quizzes = grades.iloc[0, 0:2]
+print("\nFirst student's quiz scores:")
+print(first_student_quizzes)
+```
+
+**Understanding .iloc:**
+
+`.iloc` selects data by **integer position** (like NumPy arrays or lists):
+
+**Position 0**: `grades.iloc[0]` returns the first row (Alice), regardless of index label.
+
+**Position slice**: `grades.iloc[0:3]` returns rows at positions 0, 1, and 2 (first three rows).
+
+**Position for rows and columns**: `grades.iloc[0, 0:2]` selects the first row and the first two columns.
+
+**The key difference from .loc**:
+
+- `.loc` uses the names/labels: `grades.loc['Alice']`
+- `.iloc` uses numeric positions: `grades.iloc[0]`
+
+Both happen to return the same row here (Alice is at position 0), but they're fundamentally different. If you later sort the DataFrame, `.loc['Alice']` still gets Alice, but `.iloc[0]` gets whoever is now in the first position.
+
+### Boolean indexing
+
+```{python}
+# Filter rows based on a condition (like Week 3 NumPy)
+high_scorers = grades[grades['final'] >= 90]
+print("Students with final scores >= 90:")
+print(high_scorers)
+
+# Multiple conditions
+strong_performers = grades[(grades['quiz1'] >= 85) & (grades['quiz2'] >= 85)]
+print("\nStudents with both quizzes >= 85:")
+print(strong_performers)
+```
+
+**Understanding boolean indexing:**
+
+This works exactly like NumPy boolean indexing from Week 3:
+
+**Single condition**: `grades['final'] >= 90` creates a boolean Series (True/False for each student), then `grades[...]` selects only the True rows.
+
+**Multiple conditions**: Use `&` for "and", `|` for "or", `~` for "not". Each condition must be in parentheses: `(condition1) & (condition2)`.
+
+**The boolean Series**:
+
+```{python}
+print(grades['final'] >= 90)
+# Output:
+# student
+# Alice       True
+# Bob        False
+# Charlie    False
+# Diana       True
+# Eve         True
+# Name: final, dtype: bool
+```
+
+The comparison creates a boolean Series aligned with the DataFrame's index. pandas then uses this as a filter.
+
+## Part 4: Operations and Automatic Alignment
+
+One of pandas's most powerful features is **automatic alignment by index**. When you perform operations between Series or DataFrames, pandas automatically aligns data by their labels.
+
+This is what makes pandas different from NumPy.
+
+### Arithmetic with Series
+
+```{python}
+# Create two Series with the same index
+monday_sales = pd.Series([100, 150, 200], index=['Product A', 'Product B', 'Product C'])
+tuesday_sales = pd.Series([120, 140, 210], index=['Product A', 'Product B', 'Product C'])
+
+print("Monday sales:")
+print(monday_sales)
+print("\nTuesday sales:")
+print(tuesday_sales)
+
+# Add the Series (element-wise, like NumPy)
+total_sales = monday_sales + tuesday_sales
+print("\nTotal sales (Monday + Tuesday):")
+print(total_sales)
+```
+
+**Understanding the addition:**
+
+When the indices match perfectly, addition works like NumPy:
+- Product A: 100 + 120 = 220
+- Product B: 150 + 140 = 290  
+- Product C: 200 + 210 = 410
+
+Each value is added to the corresponding value with the same label.
+
+### Automatic alignment with mismatched indices
+
+```{python}
+# Create two Series with different (but overlapping) indices
+monday_sales = pd.Series([100, 150, 200], 
+                         index=['Product A', 'Product B', 'Product C'])
+
+# Tuesday has Products B, C, D (Product A is missing, Product D is new)
+tuesday_sales = pd.Series([140, 210, 180], 
+                          index=['Product B', 'Product C', 'Product D'])
+
+print("Monday sales:")
+print(monday_sales)
+print("\nTuesday sales:")
+print(tuesday_sales)
+
+# Add the Series - pandas aligns by label automatically
+total_sales = monday_sales + tuesday_sales
+print("\nTotal sales (Monday + Tuesday):")
+print(total_sales)
+```
+
+**Understanding automatic alignment:**
+
+**This is pandas's superpower.** Watch what happens:
+
+**Product A**: Exists Monday but not Tuesday → Result is `NaN` (Not a Number, representing missing data)
+
+**Product B**: Exists both days (150 + 140) → Result is 290
+
+**Product C**: Exists both days (200 + 210) → Result is 410
+
+**Product D**: Exists Tuesday but not Monday → Result is `NaN`
+
+pandas didn't crash or give you wrong answers. It:
+1. Found which labels exist in both Series (B and C)
+2. Added those matching values
+3. Marked everything else as missing (NaN)
+
+**Why this matters:**
+
+In real data analysis, datasets rarely align perfectly:
+- Different time periods might have different products sold
+- Different stores might track different metrics
+- Data sources might use different identifiers
+
+NumPy would crash or give you wrong results if array lengths don't match. pandas automatically handles misalignment by tracking labels.
+
+**Compare to NumPy:**
+
+
+This would fail with NumPy because array lengths don't match
+
+`np.array([100, 150, 200]) + np.array([140, 210, 180, 220])  # ERROR!`
+
+pandas handles it gracefully by aligning labels
+
+
+### Column operations in DataFrames
+
+```{python}
+# Calculate total quiz score for each student
+grades['total_quiz'] = grades['quiz1'] + grades['quiz2']
+print("Grades with total quiz score:")
+print(grades)
+
+# Calculate average quiz score
+grades['quiz_avg'] = (grades['quiz1'] + grades['quiz2']) / 2
+print("\nGrades with average quiz score:")
+print(grades)
+
+# Calculate final weighted score: quizzes 40%, final exam 60%
+grades['weighted_score'] = (grades['quiz_avg'] * 0.4 + grades['final'] * 0.6)
+print("\nGrades with weighted final score:")
+print(grades)
+```
+
+**Understanding column operations:**
+
+**Creating new columns**: `grades['total_quiz'] = grades['quiz1'] + grades['quiz2']` creates a new column by adding two existing columns. The addition happens element-wise (row by row).
+
+**Operations on Series**: When you write `grades['quiz1'] + grades['quiz2']`, you're adding two Series. Both Series have the same index (student names), so pandas aligns them automatically and adds corresponding values.
+
+**Combining operations**: `(grades['quiz_avg'] * 0.4 + grades['final'] * 0.6)` multiplies each column by a scalar, then adds the results. All operations preserve the index alignment.
+
+**The result**: Each new column has the same index as the original DataFrame, and all calculations align by student name automatically.
+
+Compare to Week 4, where you manually tracked positions and had to be careful that your calculations lined up correctly. pandas handles alignment automatically through the index.
+
+## Part 5: Descriptive Statistics and Sorting
+
+pandas provides built-in methods for computing statistics on Series and DataFrames, similar to NumPy but with label preservation.
+
+### Computing statistics
+
+```{python}
+# Statistics on a single column (returns a number)
+print("Quiz 1 average:", grades['quiz1'].mean())
+print("Quiz 1 std dev:", grades['quiz1'].std())
+print("Quiz 1 min:", grades['quiz1'].min())
+print("Quiz 1 max:", grades['quiz1'].max())
+
+# Statistics on entire DataFrame (returns a Series with one value per column)
+print("\nStatistics for all columns:")
+print(grades.mean())
+```
+
+**Understanding statistics methods:**
+
+**On a Series**: Methods like `.mean()`, `.std()`, `.min()`, `.max()` return a single number - the statistic computed across all values.
+
+**On a DataFrame**: The same methods return a Series with one value per column. `grades.mean()` computes the mean of each column separately and returns those means as a Series.
+
+**Comparison to NumPy**:
+- NumPy: `np.mean(array)` or `array.mean()`
+- pandas: `series.mean()` or `df.mean()`
+- Same concept, but pandas preserves labels
+
+### The describe method
+
+```{python}
+# Get a comprehensive statistical summary
+print(grades[['quiz1', 'quiz2', 'final']].describe())
+```
+
+**Understanding .describe():**
+
+`.describe()` computes multiple statistics at once:
+- **count**: How many non-missing values
+- **mean**: Average
+- **std**: Standard deviation
+- **min**: Minimum value
+- **25%**: First quartile (25th percentile)
+- **50%**: Median (middle value)
+- **75%**: Third quartile (75th percentile)
+- **max**: Maximum value
+
+This gives you a quick overview of the distribution of values in each column.
+
+### Computing along an axis
+
+```{python}
+# Compute statistics along different axes
+# axis=0 means "down the rows" (aggregate each column)
+print("Column means (one value per column):")
+print(grades[['quiz1', 'quiz2', 'final']].mean(axis=0))
+
+# axis=1 means "across the columns" (aggregate each row)
+print("\nRow means (one value per row/student):")
+print(grades[['quiz1', 'quiz2', 'final']].mean(axis=1))
+```
+
+**Understanding the axis parameter:**
+
+This is the same concept as NumPy's axis parameter from Week 3:
+
+**axis=0**: "Collapse the rows" → You get one result per column
+- Compute down each column separately
+- Result has the same columns, but only one row
+
+**axis=1**: "Collapse the columns" → You get one result per row
+- Compute across each row separately
+- Result has the same rows (index), but only one column
+
+**Memory aid:**
+- axis=0 → vertical operations (compute within columns)
+- axis=1 → horizontal operations (compute within rows)
+
+### Sorting
+
+```{python}
+# Sort by a column (ascending)
+sorted_by_final = grades.sort_values('final')
+print("Students sorted by final exam score:")
+print(sorted_by_final[['quiz1', 'quiz2', 'final']])
+
+# Sort by multiple columns
+sorted_multi = grades.sort_values(['quiz1', 'quiz2'], ascending=False)
+print("\nStudents sorted by quiz1 (desc), then quiz2 (desc):")
+print(sorted_multi[['quiz1', 'quiz2', 'final']])
+```
+
+**Understanding .sort_values():**
+
+**Sort by one column**: `.sort_values('final')` sorts the entire DataFrame based on the 'final' column. All rows stay together - Charlie's row moves as a complete unit.
+
+**Sort direction**: By default, sorting is ascending (lowest to highest). Use `ascending=False` for descending (highest to lowest).
+
+**Sort by multiple columns**: `.sort_values(['quiz1', 'quiz2'])` sorts by quiz1 first, then uses quiz2 to break ties. If two students have the same quiz1 score, they're ordered by quiz2.
+
+**Key point**: The entire row moves together. When sorting by final exam score, each student's quiz scores stay with that student.
+
+## Conclusion
+
+### What You've Learned
+
+This demo introduced pandas's core concepts:
+
+**Series:**
+- One-dimensional labeled arrays
+- Index provides meaningful labels for values
+- Supports vectorized operations like NumPy
+- Can be created from lists, dicts, or NumPy arrays
+
+**DataFrames:**
+- Two-dimensional labeled data structures
+- Each column is a Series
+- Rows and columns both have labels (indices)
+- Can be created from dicts, lists of dicts, or other sources
+
+**Selection:**
+- Use `.loc[label]` for label-based selection
+- Use `.iloc[position]` for position-based selection
+- Use boolean indexing to filter rows based on conditions
+
+**Automatic Alignment:**
+- pandas aligns data by labels during operations
+- Mismatched indices result in NaN where labels don't match
+- This prevents accidental misalignment errors
+
+**Statistics:**
+- Built-in methods like `.mean()`, `.std()`, `.describe()`
+- Can operate on entire DataFrames or individual columns
+- Understand axis=0 (column-wise) vs axis=1 (row-wise)
+
+### The NumPy Connection
+
+pandas is built on top of NumPy:
+- Series and DataFrames store data in NumPy arrays internally
+- Vectorized operations work the same way
+- You can access the underlying array with `.values`
+- The axis parameter works the same way
+
+But pandas adds:
+- Labels (indices) for rows and columns
+- Automatic alignment by labels
+- Mixed data types in different columns
+- More convenient methods for data manipulation
+
+### What the Textbook Covers Next
+
+Chapter 5 continues with topics not covered in this demo:
+
+**Reindexing:**
+- Changing the index of a Series or DataFrame
+- `.reindex()` method
+- Forward-filling and back-filling missing values
+
+**Dropping entries:**
+- `.drop()` to remove rows or columns
+- Axis parameter for specifying dimension
+
+**Advanced indexing:**
+- Selecting with boolean Series
+- Setting values with indexing
+- The difference between views and copies (like NumPy)
+
+**Function application:**
+- `.apply()` to use custom functions on data
+- Row-wise and column-wise applications
+
+**Sorting and ranking:**
+- More sorting options
+- `.rank()` to assign rankings to values
+
+**Descriptive statistics:**
+- Correlation and covariance
+- `.unique()`, `.value_counts()` for categorical data
+- More aggregation methods
+
+### Applying pandas in Week 6
+
+Week 6 is a cumulative application week, similar to Week 4. You'll apply these pandas basics to solve a complete data analysis problem:
+- Using Series and DataFrames to organize and analyze data
+- Applying selection methods to extract subsets
+- Computing statistics and summaries
+- Combining pandas concepts from Week 5 with prior weeks' knowledge
+
+pandas is the foundation for almost all data analysis work in Python. Understanding Series, DataFrames, selection, and alignment gives you the tools to work with any tabular data efficiently.
+
+The key difference from Week 4: Instead of manually parsing CSVs and building lists of dictionaries, then converting to NumPy arrays, pandas provides a more powerful and convenient workflow for the same tasks.

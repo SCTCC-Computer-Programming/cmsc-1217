@@ -1,0 +1,122 @@
+---
+title: "Week 5 Guide"
+subtitle: "Chapter 5 — Introduction to pandas"
+format:
+  html:
+    toc: true
+---
+
+Week 4 brought together the parsing skills from Week 2 and the NumPy operations from Week 3, building complete analysis pipelines from raw data to results. You worked with NumPy arrays for efficient computation, but managing data by position alone—remembering that "column 0 is temperature" or "row 3 is sensor SENS_004"—becomes fragile as datasets grow more complex. This week introduces **pandas**, Python's primary library for working with labeled, tabular data.
+
+pandas builds on top of NumPy arrays—it uses them internally for storage—but adds powerful features specifically designed for real-world tabular data. Instead of tracking data by position, pandas lets you label rows and columns with meaningful names. Instead of requiring all data to be the same type, pandas allows different columns to hold different types. And instead of relying on you to keep arrays aligned manually, pandas automatically aligns data by labels when combining datasets. These features make data self-documenting and prevent the alignment errors that occur with position-based indexing.
+
+This week focuses on pandas's two core data structures: **Series** (one-dimensional labeled arrays) and **DataFrames** (two-dimensional labeled tables). You will learn how labels enable selection by meaningful names instead of positions, how pandas automatically aligns data during operations, and how the concepts you learned in Week 3—vectorization, boolean indexing, and the axis parameter—transfer directly to pandas. Understanding these fundamentals gives you the foundation for all data manipulation work in Python.
+
+**Week 5 Demo:**
+
+- Here is the link to the **[Week 5 Assignment](../../assignments/week-05/index.qmd)**.
+- <a href="week-5-demo.ipynb" download="week-5-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Chapter 5 concepts used this week
+
+### What pandas adds to NumPy
+
+NumPy arrays (Week 3) are powerful for numerical computation, but they have limitations when working with real-world tabular data. Arrays have no built-in way to label rows and columns, forcing you to track what each position represents mentally or in separate documentation. All elements must be the same type, which doesn't match how real datasets mix numbers, text, and dates. And when combining arrays, you must manually ensure they align correctly—a single misalignment produces wrong results without warning.
+
+pandas solves these problems by adding **labels** to data structures. Every row and column can have a meaningful name, making data self-documenting. Different columns can hold different types—one column of numbers, another of text, another of dates. And when combining datasets, pandas automatically aligns by labels, preventing the misalignment errors common with position-based indexing. These features transform data work from fragile position-tracking to robust label-based operations.
+
+pandas is built on top of NumPy arrays—it uses them internally for storage—so you still get NumPy's computational speed. But you also get the usability features needed for real-world data analysis: meaningful names, mixed types, and automatic alignment. This combination makes pandas the standard tool for data manipulation in Python.
+
+### Series: labeled one-dimensional data
+
+A **Series** is pandas's one-dimensional data structure—conceptually, it's a NumPy array with an index attached. The index provides a label for each value, transforming data from position-based (where you must remember "element 0 is Monday") to label-based (where the data tells you "this is Monday's value"). This seemingly simple addition enables powerful features: you can select data by meaningful names instead of positions, combine Series and have pandas automatically match by label, and create self-documenting code where operations read like natural descriptions of what they do.
+
+The index can be integers (the default, starting at 0 like list positions) or any immutable type—strings, dates, categorical values. Regardless of type, the index's purpose is the same: attach meaningful labels to data so operations align correctly and code remains readable as datasets evolve.
+
+You can create Series from various sources—lists, dictionaries, arrays—but the key concept is that every value has an associated label. When you create a Series from a dictionary, the dictionary keys automatically become the index, making this a natural way to build labeled data. The `.values` attribute gives you the underlying NumPy array when you need it, showing the direct connection between pandas and NumPy.
+
+### DataFrames: labeled two-dimensional data
+
+A **DataFrame** is pandas's two-dimensional data structure—a table where both rows and columns have labels. You can think of it as a spreadsheet or database table, but with the computational power of NumPy underneath. Each column is a Series, meaning columns can have different data types—one column of integers, another of floats, another of text. This matches how real-world data actually looks: a dataset of people might have numeric ages, text names, and boolean flags all in the same table.
+
+Both dimensions have labels: the **index** labels rows, and **column names** label columns. This makes DataFrames self-documenting—instead of remembering "column 0 is temperature," you reference the temperature column by name. The structure also connects to Week 2's lists of dictionaries: if you had built a list where each dictionary represents one record, you can convert that directly to a DataFrame with `pd.DataFrame()`, with dictionary keys becoming column names.
+
+Understanding that each column is a Series helps explain many DataFrame operations. When you select a single column, you get a Series. When you select multiple columns, you get a DataFrame. Statistical operations can work on entire DataFrames or on individual columns (Series). This consistent structure—DataFrames contain Series—makes the library easier to learn once you understand the relationship.
+
+### The index: pandas's label system
+
+The **index** is fundamental to how pandas works. It's not just row numbers—it's a label system that identifies what each row represents. A default integer index (0, 1, 2...) works like list positions, but the index's real power appears when labels are meaningful: student names, dates, sensor IDs, product codes. These labels make data self-documenting and enable pandas's most powerful feature: automatic alignment.
+
+When you combine DataFrames or Series, pandas matches by index labels, not positions. If you add sales data for Monday through Friday to costs data for Wednesday through Sunday, pandas automatically aligns the overlapping days and marks mismatches as missing data. This prevents the silent errors that occur with position-based alignment—where adding misaligned arrays produces wrong answers without warning.
+
+You can set the index when creating a DataFrame or change it later using `.set_index()`. This method takes a column name and promotes that column to become the index, removing it from the regular columns. For example, if you have a DataFrame with a "student" column, calling `.set_index('student')` makes student names the row labels, turning position-based row access into name-based row access.
+
+### Selection: labels versus positions
+
+pandas provides two selection methods because you sometimes select by what you know (labels) and sometimes by where things are (positions). **Label-based selection** with `.loc` uses the names you can see: `df.loc['Alice', 'quiz1']` selects Alice's quiz1 score using meaningful identifiers. **Position-based selection** with `.iloc` uses numeric positions: `df.iloc[0, 2]` selects the first row, third column, regardless of labels. This works like NumPy indexing from Week 3.
+
+Why both? Sometimes you know what you want ("get Alice's data") but don't know what position that is. Other times you know the position ("get the last 10 rows") but don't care about labels. Having both methods lets you choose the most natural approach for each situation.
+
+For columns, single brackets return a Series: `df['temperature']` gives you the temperature column. Double brackets return a DataFrame: `df[['temperature', 'humidity']]` gives you a DataFrame with those two columns. This distinction matters because Series and DataFrames have different methods and behaviors. Understanding when you get each type helps you predict what operations are available.
+
+Boolean indexing—filtering rows based on conditions—works with both label-based and position-based thinking. You create a boolean mask with a comparison (`df['temperature'] > 80`), then use it to filter rows. The mask itself uses position (every row gets True or False), but the result preserves labels, making filtered data self-documenting.
+
+### Automatic alignment by labels
+
+**Automatic alignment** is pandas's superpower and what makes it robust for real-world data work. When you combine DataFrames or Series with different indices, pandas matches by labels and marks non-matching positions as NaN (Not a Number). If you add Monday-Friday sales to Wednesday-Sunday costs, pandas aligns the three overlapping days, marks Monday-Tuesday as missing in costs, and marks Saturday-Sunday as missing in sales.
+
+This prevents the silent errors common with position-based operations. In NumPy (Week 3), adding mismatched arrays either errors (different lengths) or produces wrong results (same length, wrong alignment). pandas instead makes misalignment explicit through NaN, forcing you to decide how to handle it.
+
+This matters because real datasets rarely align perfectly—different time periods, different sensors active, different products in stock. Automatic alignment handles this complexity gracefully instead of silently producing incorrect results. When you see NaN in results, it's telling you "these labels didn't match"—information you need to handle the mismatch appropriately rather than unknowingly computing with misaligned data.
+
+The alignment happens automatically in arithmetic operations, statistical computations, and data combination operations. You don't need to manually check that indices match or write code to align them. pandas does this for you, using the index labels to ensure operations combine the correct values.
+
+### Boolean indexing and filtering
+
+**Boolean indexing** from Week 3 transfers directly to pandas with one important enhancement: labels are preserved. You create a boolean mask by comparing values (`df['temperature'] > 80`), producing True or False for each row, then use that mask to filter (`df[df['temperature'] > 80]`). The syntax is identical to NumPy, and combining conditions works the same way: `&` for "and", `|` for "or", `~` for "not", with parentheses around each condition.
+
+The key difference from NumPy: when you filter a DataFrame, the row labels travel with the filtered data. If you filter for temperatures above 80 and the result includes sensors SENS_001 and SENS_004, the index tells you which sensors those are. With NumPy arrays, you'd need to track this separately. This makes pandas filtering more robust—filtered data remains self-documenting.
+
+Multiple conditions combine using the same operators from Week 3. To find readings where temperature exceeds 200 AND humidity is below 45, you write `(df['temperature'] > 200) & (df['humidity'] < 45)`. Each condition must be in parentheses because of operator precedence. This creates a boolean mask where only rows meeting both conditions are True, then using that mask as a filter selects those rows with their labels intact.
+
+### Operations and statistics on labeled data
+
+The vectorized operations and statistical methods from Week 3 transfer directly to pandas with an important enhancement: results preserve labels. Computing `df['temperature'] + 10` works just like NumPy array operations—no loops needed—but the result is a labeled Series that tells you which values correspond to which rows. The `axis` parameter works identically: `df.mean(axis=0)` computes down columns (one mean per column), while `axis=1` computes across rows (one mean per row).
+
+This label preservation makes results self-documenting. When you compute statistics, you don't just get numbers—you get labeled results that tell you what each number represents. The `.describe()` method computes multiple statistics at once (count, mean, standard deviation, quartiles, min, max) and returns them as a labeled DataFrame, making it easy to understand summary statistics for each column.
+
+Creating new columns is as simple as assigning to a new column name: `df['total'] = df['quiz1'] + df['quiz2']`. The right side is evaluated (adding two Series, which aligns by index), and the result is stored as a new column in the DataFrame. The automatic alignment ensures each row's total corresponds to that row's quiz scores, even if you later reorder or filter the DataFrame.
+
+Sorting works on labeled data with `.sort_values()`, which sorts the entire DataFrame by one or more columns while keeping rows intact. When you sort by a column, each row moves as a complete unit—all its column values stay together. The sorted result maintains the relationship between all columns, with the index labels moving with their rows.
+
+## Reading expectations for Week 5
+
+As you read Chapter 5 and work through the demo, check whether you can explain the following in your own words:
+
+1. What is a pandas **Series**, and how does it differ from a NumPy array?
+2. What is an **index** in pandas, and why does it matter?
+3. What is a **DataFrame**, and how does it organize data?
+4. What is the difference between `.loc` and `.iloc` in pandas?
+5. How does pandas handle combining DataFrames with different indices, and why does this prevent errors?
+6. How does **boolean indexing** work in pandas, and what advantage does it have over NumPy boolean indexing?
+7. Why can DataFrames have different data types in different columns while NumPy 2D arrays cannot?
+8. What does the `axis` parameter control in DataFrame operations like `.mean()`, and how is this the same as NumPy?
+9. When you filter a DataFrame using boolean indexing or compute statistics, what happens to the row and column labels?
+
+## Week 5 tasks
+
+1. Read **Chapter 5** (complete).
+2. Work through the **[Week 5 demo](../../assignments/week-05/week-5-demo.html)** in your Jupyter environment.
+3. Complete the **Week 5 D2L quiz** (pandas concepts).
+
+## Knowledge goals for Week 5
+
+By the end of Week 5, you should be able to:
+
+* create Series and DataFrames from various sources (lists, dictionaries, arrays)
+* select data using `.loc` for label-based selection and `.iloc` for position-based selection
+* filter DataFrames using boolean indexing with single and multiple conditions
+* explain how automatic alignment works and why it prevents common data errors
+* perform vectorized operations and compute statistics on labeled data
+* use the `axis` parameter to compute statistics along rows or columns
+* explain how pandas builds on NumPy concepts from Week 3 while adding labeled data features

@@ -1,0 +1,7 @@
+ship_name,ship_class,crew_size,max_speed,launch_year
+Aurora,Explorer,150,9.2,2371
+Nebula Runner,Cargo,,6.8,2368
+Dark Comet,Fighter,12,UNKNOWN,2374
+Star Whisper,Science,80,7.5,
+Iron Horizon,Cargo,50,6.5,2365
+Void Dancer,Explorer,MISSING,9.0,2373
