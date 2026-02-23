@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Office Hours – CMSC 1217 : Introduction to Data Analytics</title>
+<title>Week 7 Guide – CMSC 1217 : Introduction to Data Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -271,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/office-hours.html">Office Hours</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 7 Guide</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -318,7 +318,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Office Hours</span></a>
   </div>
 </li>
@@ -473,14 +473,36 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chapter-6-concepts-used-this-week" id="toc-chapter-6-concepts-used-this-week" class="nav-link active" data-scroll-target="#chapter-6-concepts-used-this-week">Chapter 6 concepts used this week</a>
+  <ul class="collapse">
+  <li><a href="#data-loading-as-automation-of-manual-parsing" id="toc-data-loading-as-automation-of-manual-parsing" class="nav-link" data-scroll-target="#data-loading-as-automation-of-manual-parsing">Data loading as automation of manual parsing</a></li>
+  <li><a href="#type-inference" id="toc-type-inference" class="nav-link" data-scroll-target="#type-inference">Type inference</a></li>
+  <li><a href="#customizing-loading-behavior-with-parameters" id="toc-customizing-loading-behavior-with-parameters" class="nav-link" data-scroll-target="#customizing-loading-behavior-with-parameters">Customizing loading behavior with parameters</a></li>
+  <li><a href="#missing-data-and-sentinel-values" id="toc-missing-data-and-sentinel-values" class="nav-link" data-scroll-target="#missing-data-and-sentinel-values">Missing data and sentinel values</a></li>
+  <li><a href="#writing-data-back-out" id="toc-writing-data-back-out" class="nav-link" data-scroll-target="#writing-data-back-out">Writing data back out</a></li>
+  <li><a href="#json-a-flexible-data-format" id="toc-json-a-flexible-data-format" class="nav-link" data-scroll-target="#json-a-flexible-data-format">JSON: a flexible data format</a></li>
+  <li><a href="#web-apis-data-from-the-internet" id="toc-web-apis-data-from-the-internet" class="nav-link" data-scroll-target="#web-apis-data-from-the-internet">Web APIs: data from the internet</a></li>
+  <li><a href="#the-pd.read_-pattern" id="toc-the-pd.read_-pattern" class="nav-link" data-scroll-target="#the-pd.read_-pattern">The pd.read_*() pattern</a></li>
+  </ul></li>
+  <li><a href="#reading-expectations-for-week-7" id="toc-reading-expectations-for-week-7" class="nav-link" data-scroll-target="#reading-expectations-for-week-7">Reading expectations for Week 7</a></li>
+  <li><a href="#week-7-tasks" id="toc-week-7-tasks" class="nav-link" data-scroll-target="#week-7-tasks">Week 7 tasks</a></li>
+  <li><a href="#knowledge-goals-for-week-7" id="toc-knowledge-goals-for-week-7" class="nav-link" data-scroll-target="#knowledge-goals-for-week-7">Knowledge goals for Week 7</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/office-hours.html">Office Hours</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Office Hours</h1>
+<h1 class="title">Week 7 Guide</h1>
+<p class="subtitle lead">Chapter 6 — Data Loading and Storage</p>
 </div>
 
 
@@ -492,7 +514,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 29, 2025</p>
+      <p class="date-modified">February 18, 2026</p>
     </div>
   </div>
     
@@ -503,15 +525,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Mondays</strong> - <strong>3:00–4:00 PM</strong> and <strong>6:00–7:00 PM</strong></p>
-<p><strong>Persistent Zoom link:</strong> <a href="https://minnstate.zoom.us/j/9906791485">Join Zoom meeting</a></p>
-<section id="no-office-hours" class="level2">
-<h2 class="anchored" data-anchor-id="no-office-hours">No office hours</h2>
-<p>Office hours are <strong>not held</strong> on:</p>
-<p><strong>Jan 19</strong> — Martin Luther King — No Classes — College Closed<br>
-<strong>Feb 16</strong> — President’s Day — No Classes — College Closed<br>
-<strong>Mar 9–13</strong> — Spring Break — No Classes<br>
-<strong>May 11–15</strong> — Final Exams</p>
+<p>Since Week 2, every data pipeline you’ve built has started the same way: open a file, loop through lines, split on commas, strip whitespace, convert types, and handle errors with <code>try/except</code>. That manual parsing pipeline taught you what data loading actually involves, and by Week 6 you were applying it fluently to messy, real-world files. This week, you’ll see that <code>pd.read_csv()</code> automates that entire process in a single function call. The manual experience you’ve built makes the automation meaningful rather than magical: when <code>pd.read_csv()</code> detects a header row or infers column types, you understand what it’s doing because you’ve done each of those steps by hand.</p>
+<p>Chapter 6 covers how pandas reads and writes data in multiple formats. This week’s demo focuses on the three most common scenarios: CSV files with <code>pd.read_csv()</code>, JSON data with Python’s <code>json</code> module and <code>pd.read_json()</code>, and live data from web APIs using the <code>requests</code> library. The textbook continues with HTML tables, Excel files, binary formats (HDF5, Parquet), and database interaction, all of which follow the same <code>pd.read_*()</code> pattern once you understand how <code>pd.read_csv()</code> works.</p>
+<p>There is no walkthrough video for this week’s demo. The data loading workflow follows the same structure across formats: call a loading function, get a DataFrame, inspect the result. A section-by-section video would repeat that pattern without adding new insight. The demo is written to be self-contained. Work through it cell by cell, reading the setup text before each code block and the explanation that follows.</p>
+<p><strong>Week 7 Demo:</strong></p>
+<ul>
+<li>Here is the link to the <strong><a href="../../assignments/week-07/index.html">Week 7 Assignment</a></strong>.</li>
+</ul>
+<section id="chapter-6-concepts-used-this-week" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-6-concepts-used-this-week">Chapter 6 concepts used this week</h2>
+<section id="data-loading-as-automation-of-manual-parsing" class="level3">
+<h3 class="anchored" data-anchor-id="data-loading-as-automation-of-manual-parsing">Data loading as automation of manual parsing</h3>
+<p><code>pd.read_csv()</code> is not a different approach to reading CSV files. It automates the same steps you’ve been writing by hand: opening the file, detecting whether the first row is a header, splitting each line into fields, stripping whitespace, converting values to appropriate types, and assembling the result into a structured format. The difference is that <code>pd.read_csv()</code> returns a DataFrame instead of a list of dictionaries, and it handles these steps internally rather than requiring you to write each one.</p>
+<p>This connection matters because it means your manual parsing knowledge transfers directly. When <code>pd.read_csv()</code> produces unexpected results, whether columns are the wrong type, values you expected are missing, or the header row was misidentified, you can reason about what went wrong because you understand each step it performs. The function is doing the same work your manual code did; it just does it in compiled, optimized code rather than in a Python <code>for</code> loop.</p>
+</section>
+<section id="type-inference" class="level3">
+<h3 class="anchored" data-anchor-id="type-inference">Type inference</h3>
+<p>When <code>pd.read_csv()</code> loads a file, it examines the values in each column and chooses an appropriate data type. Columns of whole numbers become <code>int64</code>, columns of decimal numbers become <code>float64</code>, and columns of text become <code>object</code> (or <code>str</code> depending on your pandas version). The textbook calls this <strong>type inference</strong>: pandas decides what type each column should be based on the actual values it finds.</p>
+<p>Type inference usually works well, but it has a limitation that connects directly to your Week 2 experience. If a numeric column contains even one non-numeric value, like a placeholder string or a corrupted record, pandas treats the entire column as text. In your manual parsing code, you handled this with <code>try/except</code> and explicit type conversion. With <code>pd.read_csv()</code>, the solution is the <code>na_values</code> parameter, which tells pandas to treat specific strings as missing data during loading rather than treating them as text that forces the column to a string type.</p>
+</section>
+<section id="customizing-loading-behavior-with-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="customizing-loading-behavior-with-parameters">Customizing loading behavior with parameters</h3>
+<p>The basic <code>pd.read_csv('filename.csv')</code> call works for well-formatted files with a header row and comma delimiters. Real-world files are not always that clean, and <code>pd.read_csv()</code> provides parameters to handle the variations. The textbook notes that the function has roughly 50 parameters; you don’t need to memorize them, but the ones covered this week address the most common situations.</p>
+<p><code>header=None</code> tells pandas that the file has no header row, so pandas assigns integer column names (0, 1, 2…) instead of misinterpreting the first data row as column names. <code>names</code> provides your own column names when the file lacks a header. <code>index_col</code> promotes a column to the row index during loading, and <code>usecols</code> loads only specific columns, which is useful when a file contains more data than you need. <code>nrows</code> limits how many rows are loaded, letting you inspect a large file without reading the whole thing.</p>
+<p>These parameters solve problems you encountered in manual parsing. When you wrote code to skip a header row, to name your dictionary keys, or to select specific fields, you were doing manually what these parameters handle automatically.</p>
+</section>
+<section id="missing-data-and-sentinel-values" class="level3">
+<h3 class="anchored" data-anchor-id="missing-data-and-sentinel-values">Missing data and sentinel values</h3>
+<p>Real datasets use various placeholders for missing information: blank fields, “N/A”, “UNKNOWN”, “—”, or domain-specific codes. <code>pd.read_csv()</code> recognizes some of these by default, but custom placeholders require the <code>na_values</code> parameter. When you specify <code>na_values=['UNKNOWN', '---']</code>, pandas treats those strings as missing data and replaces them with <code>NaN</code> (Not a Number) during loading.</p>
+<p>This has a consequence for data types. Because <code>NaN</code> is a floating-point value, any integer column that contains missing data becomes <code>float64</code> to accommodate it. A column of crew sizes (150, 45, 12) that has one missing value becomes 150.0, 45.0, 12.0, NaN. This is a pandas design constraint, not an error: the integer type has no representation for “missing,” so the column must widen to a type that does.</p>
+<p>Understanding this behavior helps you interpret your data correctly. When you see unexpected float values in what should be an integer column, it usually means missing data is present. The <code>.info()</code> method (from Week 5) shows non-null counts per column, making it easy to identify where missing values exist.</p>
+</section>
+<section id="writing-data-back-out" class="level3">
+<h3 class="anchored" data-anchor-id="writing-data-back-out">Writing data back out</h3>
+<p>After loading, transforming, or analyzing data, you often need to save the results. The <code>to_csv()</code> method writes a DataFrame to a CSV file, and its default behavior includes writing the row index as the first column. If your index is just the default integers (0, 1, 2…), that column adds no useful information to the output file. Setting <code>index=False</code> omits it, producing a cleaner file that matches the format most tools expect.</p>
+<p>This pattern, loading data, processing it, and writing the result, is the standard workflow for data analysis scripts. Each <code>pd.read_*()</code> function has a corresponding <code>to_*()</code> method for writing, so the approach generalizes beyond CSV.</p>
+</section>
+<section id="json-a-flexible-data-format" class="level3">
+<h3 class="anchored" data-anchor-id="json-a-flexible-data-format">JSON: a flexible data format</h3>
+<p><strong>JSON (JavaScript Object Notation)</strong> is a text-based format built from two structures: objects (key-value pairs, equivalent to Python dictionaries) and arrays (ordered sequences, equivalent to Python lists). These structures can nest inside each other, giving JSON more flexibility than CSV’s flat tabular format. A JSON dataset can represent a planet with a list of moons, each moon having its own properties. CSV would require flattening that structure into a single table.</p>
+<p>JSON connects directly to data structures you already know. A JSON array of objects is exactly the “list of dictionaries” pattern from Week 2, written as text. Python’s built-in <code>json</code> module converts between JSON strings and Python objects: <code>json.loads()</code> parses a JSON string into dictionaries and lists, and <code>json.dumps()</code> converts Python objects back to a JSON string.</p>
+<p>For tabular JSON data (a list of objects with consistent keys), <code>pd.read_json()</code> can convert directly to a DataFrame. For nested or complex JSON, the <code>json</code> module gives you more control: you parse the JSON into Python objects, extract the parts you need, and then pass them to <code>pd.DataFrame()</code>. Knowing when to use each approach is a practical skill: simple flat data works with <code>pd.read_json()</code>, while anything nested or partially structured benefits from the manual <code>json.loads()</code> approach.</p>
+</section>
+<section id="web-apis-data-from-the-internet" class="level3">
+<h3 class="anchored" data-anchor-id="web-apis-data-from-the-internet">Web APIs: data from the internet</h3>
+<p>A <strong>web API</strong> (Application Programming Interface) is a URL that returns structured data instead of a web page. When your browser visits a URL, it receives HTML for display. When your Python code requests data from an API endpoint, it typically receives JSON. This is how applications share data programmatically: weather services, financial platforms, social media sites, and code repositories all provide APIs.</p>
+<p>The <code>requests</code> library handles the HTTP communication. <code>requests.get(url)</code> sends a request and returns a response object. <code>resp.raise_for_status()</code> checks whether the request succeeded (raising an exception if it failed), and <code>resp.json()</code> parses the JSON response body into Python objects. From there, the workflow is familiar: you have a list of dictionaries, and <code>pd.DataFrame()</code> converts it to a DataFrame. The result is a clean, labeled table created from live data on the internet.</p>
+<p>Practical considerations include rate limits (most APIs restrict how many requests you can make per hour), authentication (many APIs require an API key), and response structure (not all APIs return simple lists of dictionaries). The demo covers a public API that requires no authentication, but the general pattern, send a request, check the response, parse the JSON, convert to a DataFrame, applies to any API.</p>
+</section>
+<section id="the-pd.read_-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="the-pd.read_-pattern">The pd.read_*() pattern</h3>
+<p>Chapter 6’s most important takeaway is that all pandas loading functions follow the same structure: call <code>pd.read_*()</code> with a data source, get back a DataFrame. <code>pd.read_csv()</code> reads comma-separated files, <code>pd.read_json()</code> reads JSON, <code>pd.read_excel()</code> reads spreadsheets, <code>pd.read_html()</code> extracts tables from web pages, and <code>pd.read_sql()</code> runs database queries. Each function has parameters specific to its format, but the result is always a DataFrame ready for the selection, filtering, and statistical operations you learned in Week 5.</p>
+<p>The textbook also covers binary formats: Pickle (Python’s built-in serialization), HDF5 (hierarchical format for large scientific datasets), and Parquet (columnar format common in industry analytics). These are more efficient than text formats for large datasets, but the loading pattern is the same. Understanding <code>pd.read_csv()</code> thoroughly, as this week’s demo covers, prepares you for any of them.</p>
+</section>
+</section>
+<section id="reading-expectations-for-week-7" class="level2">
+<h2 class="anchored" data-anchor-id="reading-expectations-for-week-7">Reading expectations for Week 7</h2>
+<p>As you read Chapter 6 and work through the demo, check whether you can explain the following in your own words:</p>
+<ol type="1">
+<li>What does <code>pd.read_csv()</code> automate, and how does it relate to the manual parsing pipeline you’ve been writing?</li>
+<li>What is <strong>type inference</strong>, and what happens when a numeric column contains a non-numeric value?</li>
+<li>What do the <code>header</code>, <code>names</code>, <code>index_col</code>, <code>usecols</code>, and <code>nrows</code> parameters control in <code>pd.read_csv()</code>?</li>
+<li>What does the <code>na_values</code> parameter do, and why does an integer column become <code>float64</code> when it contains missing values?</li>
+<li>How does JSON structure relate to Python dictionaries and lists?</li>
+<li>When would you use <code>json.loads()</code> + <code>pd.DataFrame()</code> instead of <code>pd.read_json()</code> directly?</li>
+<li>What are the steps for fetching data from a web API and converting it to a DataFrame?</li>
+<li>What do all the <code>pd.read_*()</code> functions have in common?</li>
+</ol>
+</section>
+<section id="week-7-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="week-7-tasks">Week 7 tasks</h2>
+<ol type="1">
+<li>Read <strong>Chapter 6</strong> (focus on CSV, JSON, and API sections; skim binary formats and SQL for awareness).</li>
+<li>Work through the <strong><a href="../../assignments/week-07/index.html">Week 7 demo</a></strong> in your Jupyter environment. There is no walkthrough video; the demo is self-contained.</li>
+<li>Complete the <strong>Week 7 D2L quiz</strong> (data loading concepts).</li>
+</ol>
+</section>
+<section id="knowledge-goals-for-week-7" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-goals-for-week-7">Knowledge goals for Week 7</h2>
+<p>By the end of Week 7, you should be able to:</p>
+<ul>
+<li>use <code>pd.read_csv()</code> to load CSV files into DataFrames with automatic header detection and type inference</li>
+<li>customize <code>pd.read_csv()</code> behavior using parameters like <code>header</code>, <code>names</code>, <code>index_col</code>, <code>usecols</code>, <code>nrows</code>, and <code>na_values</code></li>
+<li>explain how <code>pd.read_csv()</code> automates the manual parsing pipeline from earlier weeks</li>
+<li>handle missing data during loading by specifying sentinel values with <code>na_values</code></li>
+<li>write DataFrames to CSV files using <code>to_csv()</code> with appropriate settings</li>
+<li>parse JSON data using Python’s <code>json</code> module and convert it to DataFrames</li>
+<li>fetch data from a web API using <code>requests.get()</code> and convert the JSON response to a DataFrame</li>
+<li>recognize that all <code>pd.read_*()</code> functions follow the same pattern of loading data into a DataFrame</li>
+</ul>
 
 
 </section>

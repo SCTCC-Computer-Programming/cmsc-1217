@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>week-7-demo – CMSC 1217 : Introduction to Data Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-feb0c0ed7aac57d66ec8dce0f6a48183.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CMSC 1217 : Introduction to Data Analytics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 7 Demo: Data Loading with pandas</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+        <div class="sidebar-tools-collapse">
+    <a href="https://discord.gg/az8cmeqJdc" title="" class="quarto-navigation-tool px-1" aria-label="Discord"><i class="bi bi-chat-dots"></i></a>
+    <a href="https://sctcc.learn.minnstate.edu/d2l/login" title="" class="quarto-navigation-tool px-1" aria-label="D2L"><i class="bi bi-book-half"></i></a>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Office Hours</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment Policies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Policies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI Policy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Weekly Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 (Starts 9 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 (Starts 16 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 (Starts 23 FEB)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Weekly Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 (Starts 9 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 (Starts 16 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 (Starts 23 FEB)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 1</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Miniconda Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter Learning Links</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 2</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 Reference Videos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 3</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/cmsc-1217/week-03/cmsc-1217-chap-04-learning-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 Reference Videos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 7 Demo: Data Loading with pandas</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">February 21, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Before you can filter rows, compute statistics, or build visualizations, you need to get data into a DataFrame. Data loading (reading information from files, web services, and other sources into a format Python can work with) is the necessary first step in every analysis pipeline.</p>
+<p>Since Week 2, every data pipeline you’ve built has started the same way: open a file, loop through lines, split on commas, strip whitespace, convert types, and catch errors with <code>try/except</code>. That manual parsing pipeline taught you what data loading actually involves: splitting fields, handling headers, converting types, dealing with bad rows.</p>
+<p>This week, you’ll see that pandas can handle that entire process in a single function call: <code>pd.read_csv()</code>. Chapter 6 covers how pandas reads and writes data in multiple formats. The manual parsing experience you’ve built over the past several weeks is directly relevant here. When you see <code>pd.read_csv()</code> automatically detect headers or infer column types, you’ll understand what it’s doing because you’ve done each of those steps by hand.</p>
+<p>This demo covers the three most common data loading scenarios:</p>
+<ul>
+<li>CSV files with <code>pd.read_csv()</code>. The format you’ve been working with, now loaded with a single function call and customized with parameters for headers, column selection, missing values, and more.</li>
+<li>JSON data with Python’s <code>json</code> module and <code>pd.read_json()</code>. JSON is a flexible format built from dictionaries and lists, widely used on the web.</li>
+<li>Web APIs with the <code>requests</code> library. APIs let you fetch structured data directly from the internet, typically in JSON format.</li>
+</ul>
+<p>Chapter 6 in the textbook goes further, covering HTML table parsing (<code>pd.read_html()</code>), Excel files (<code>pd.read_excel()</code>), binary storage formats (Pickle, HDF5, Parquet), and database interaction (<code>pd.read_sql()</code>). This demo focuses on CSV, JSON, and web APIs because they represent the core patterns. Once you understand how <code>pd.read_csv()</code> works, the other <code>pd.read_*()</code> functions follow the same structure.</p>
+<section id="how-to-work-through-this-demo" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-work-through-this-demo">How to Work Through This Demo</h3>
+<p>This demo is designed to be self-contained. Work through it cell by cell, from top to bottom. <strong>Run every code cell in order</strong> because earlier cells create data files that later cells read. Skipping ahead will cause errors.</p>
+<p>For each section, the pattern is: 1. Read the setup text to understand what you’re about to do 2. Run the code cell 3. Read the explanation that follows to understand what happened and why</p>
+<p>If something is not clear after reading the explanation, try modifying the code and re-running it. For example, change a parameter value and see how the output changes.</p>
+</section>
+</section>
+<section id="part-1-reading-csv-files-with-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-reading-csv-files-with-pandas">Part 1: Reading CSV Files with pandas</h2>
+<p>The manual parsing pipeline you’ve been writing (<code>open()</code>, <code>split()</code>, <code>strip()</code>, type conversion, <code>try/except</code>) is exactly what <code>pd.read_csv()</code> automates. This section introduces the function, shows what it handles automatically, and then walks through the parameters you’ll use most often to customize its behavior.</p>
+<section id="creating-a-sample-csv-file" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-sample-csv-file">Creating a sample CSV file</h3>
+<p>First, we’ll create a CSV file using <code>open()</code>. This lets you see exactly what the raw file contains before pandas reads it.</p>
+<div id="f060d8b5" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CSV file with fleet registry data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_registry.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'ship_name,ship_class,crew_size,max_speed,launch_year</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Aurora,Explorer,150,9.2,2371</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Nebula Runner,Cargo,45,6.8,2368</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Dark Comet,Fighter,12,9.8,2374</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Star Whisper,Science,80,7.5,2370</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Iron Horizon,Cargo,50,6.5,2365</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Void Dancer,Explorer,120,9.0,2373</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Solar Wind,Patrol,30,8.4,2369</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Crimson Falcon,Fighter,15,9.6,2372</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify: display the raw file contents</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_registry.csv'</span>, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f.read())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ship_name,ship_class,crew_size,max_speed,launch_year
+Aurora,Explorer,150,9.2,2371
+Nebula Runner,Cargo,45,6.8,2368
+Dark Comet,Fighter,12,9.8,2374
+Star Whisper,Science,80,7.5,2370
+Iron Horizon,Cargo,50,6.5,2365
+Void Dancer,Explorer,120,9.0,2373
+Solar Wind,Patrol,30,8.4,2369
+Crimson Falcon,Fighter,15,9.6,2372
+</code></pre>
+</div>
+</div>
+<p><strong>Understanding the file:</strong></p>
+<p>This is a standard CSV file. The first line is the header row with field names. Each subsequent line is one record with values separated by commas. In previous weeks, your next step would have been a parsing loop to split, strip, convert, and error-check each row.</p>
+<p>With pandas, all of that is one line.</p>
+</section>
+<section id="your-first-pd.read_csv-call" class="level3">
+<h3 class="anchored" data-anchor-id="your-first-pd.read_csv-call">Your first pd.read_csv() call</h3>
+<div id="5e8233b6" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file into a DataFrame</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry.csv'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        ship_name ship_class  crew_size  max_speed  launch_year
+0          Aurora   Explorer        150        9.2         2371
+1   Nebula Runner      Cargo         45        6.8         2368
+2      Dark Comet    Fighter         12        9.8         2374
+3    Star Whisper    Science         80        7.5         2370
+4    Iron Horizon      Cargo         50        6.5         2365
+5     Void Dancer   Explorer        120        9.0         2373
+6      Solar Wind     Patrol         30        8.4         2369
+7  Crimson Falcon    Fighter         15        9.6         2372</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p><code>pd.read_csv()</code> returns a DataFrame. Look at what it did automatically: - Detected the header row and used it for column names - Split each line on commas - Stripped whitespace - Inferred data types for each column</p>
+<p>That’s the entire manual pipeline in a single function call.</p>
+</section>
+<section id="type-inference" class="level3">
+<h3 class="anchored" data-anchor-id="type-inference">Type inference</h3>
+<p>One important thing <code>pd.read_csv()</code> does automatically is figure out what type of data each column contains. Let’s check what it decided:</p>
+<div id="98de4a2c" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check what types pandas inferred</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ship_name       object
+ship_class      object
+crew_size        int64
+max_speed      float64
+launch_year      int64
+dtype: object</code></pre>
+</div>
+</div>
+<p><strong>Understanding type inference:</strong></p>
+<p>pandas examined the values in each column and chose appropriate types: - <code>ship_name</code> and <code>ship_class</code> contain text → text type (displayed as <code>object</code> or <code>str</code> depending on your pandas version) - <code>crew_size</code> and <code>launch_year</code> contain whole numbers → <code>int64</code> - <code>max_speed</code> contains decimal numbers → <code>float64</code></p>
+<p>Compare this to your manual approach, where you explicitly called <code>int()</code> or <code>float()</code> on each field. <code>pd.read_csv()</code> handles type conversion automatically. The textbook calls this <strong>type inference</strong>: pandas looks at the actual values and decides what type each column should be.</p>
+<p>Type inference usually works well, but it’s not perfect. If a numeric column contains even one non-numeric value (like “N/A”), pandas will treat the entire column as text. We’ll see how to handle that later in this demo.</p>
+</section>
+<section id="customizing-read_csv-with-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="customizing-read_csv-with-parameters">Customizing read_csv with parameters</h3>
+<p>The basic <code>pd.read_csv('filename.csv')</code> call works when the file is well-formatted with a header row and comma delimiters. But real-world files are not always that clean. <code>pd.read_csv()</code> has many parameters to handle different file formats. The textbook notes that it has around 50 parameters, and you don’t need to memorize them. Here are the ones you’ll use most often.</p>
+<section id="reading-a-file-without-a-header-row" class="level4">
+<h4 class="anchored" data-anchor-id="reading-a-file-without-a-header-row">Reading a file without a header row</h4>
+<p>Not every CSV file has a header row. What happens if we read one without telling pandas?</p>
+<div id="81ac2427" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CSV file with no header row</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_no_header.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Aurora,Explorer,150,9.2,2371</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Nebula Runner,Cargo,45,6.8,2368</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Dark Comet,Fighter,12,9.8,2374</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Star Whisper,Science,80,7.5,2370</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read without specifying that there's no header</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>fleet_bad <span class="op">=</span> pd.read_csv(<span class="st">'fleet_no_header.csv'</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Without header=None (wrong):"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_bad)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Without header=None (wrong):
+          Aurora Explorer  150  9.2  2371
+0  Nebula Runner    Cargo   45  6.8  2368
+1     Dark Comet  Fighter   12  9.8  2374
+2   Star Whisper  Science   80  7.5  2370</code></pre>
+</div>
+</div>
+<p><strong>Understanding the problem:</strong></p>
+<p>By default, <code>pd.read_csv()</code> assumes the first row is the header. Since this file has no header, pandas used the first data row (“Aurora,Explorer,150,9.2,2371”) as column names. That first record is now lost from the data, and the column names are meaningless.</p>
+<div id="0012424a" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: tell pandas there's no header row</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fleet_no_header <span class="op">=</span> pd.read_csv(<span class="st">'fleet_no_header.csv'</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"With header=None:"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_no_header)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>With header=None:
+               0         1    2    3     4
+0         Aurora  Explorer  150  9.2  2371
+1  Nebula Runner     Cargo   45  6.8  2368
+2     Dark Comet   Fighter   12  9.8  2374
+3   Star Whisper   Science   80  7.5  2370</code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>header=None</code>:</strong></p>
+<p>Setting <code>header=None</code> tells pandas that no row in the file contains column names. pandas assigns default integer column names (0, 1, 2, 3, 4) instead. The data is correct now, and all four records are present.</p>
+<div id="8890f175" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Better: provide your own column names</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fleet_named <span class="op">=</span> pd.read_csv(<span class="st">'fleet_no_header.csv'</span>, header<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                           names<span class="op">=</span>[<span class="st">'ship_name'</span>, <span class="st">'ship_class'</span>, <span class="st">'crew_size'</span>, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">'max_speed'</span>, <span class="st">'launch_year'</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"With custom column names:"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_named)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>With custom column names:
+       ship_name ship_class  crew_size  max_speed  launch_year
+0         Aurora   Explorer        150        9.2         2371
+1  Nebula Runner      Cargo         45        6.8         2368
+2     Dark Comet    Fighter         12        9.8         2374
+3   Star Whisper    Science         80        7.5         2370</code></pre>
+</div>
+</div>
+<p><strong>Understanding the <code>names</code> parameter:</strong></p>
+<p>The <code>names</code> parameter lets you supply column names when the file doesn’t have them. You pass a list of strings with one name per column, in order. This produces the same clean result as reading a file that already has a header.</p>
+</section>
+<section id="setting-the-index-during-loading" class="level4">
+<h4 class="anchored" data-anchor-id="setting-the-index-during-loading">Setting the index during loading</h4>
+<p>In Week 5, you learned to use <code>.set_index()</code> to make a column the row index after loading. You can also do this during loading with the <code>index_col</code> parameter.</p>
+<div id="ea21f7d9" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a column as the row index during loading</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fleet_indexed <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry.csv'</span>, index_col<span class="op">=</span><span class="st">'ship_name'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_indexed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               ship_class  crew_size  max_speed  launch_year
+ship_name                                                   
+Aurora           Explorer        150        9.2         2371
+Nebula Runner       Cargo         45        6.8         2368
+Dark Comet        Fighter         12        9.8         2374
+Star Whisper      Science         80        7.5         2370
+Iron Horizon        Cargo         50        6.5         2365
+Void Dancer      Explorer        120        9.0         2373
+Solar Wind         Patrol         30        8.4         2369
+Crimson Falcon    Fighter         15        9.6         2372</code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>index_col</code>:</strong></p>
+<p>The <code>index_col</code> parameter tells <code>pd.read_csv()</code> which column should become the row labels. The <code>ship_name</code> column is no longer a regular column; it’s now the index. You can use <code>.loc['Aurora']</code> to select Aurora’s row by label, just like you did with student names in the Week 5 demo.</p>
+</section>
+<section id="selecting-specific-columns" class="level4">
+<h4 class="anchored" data-anchor-id="selecting-specific-columns">Selecting specific columns</h4>
+<p>Sometimes a file has more columns than you need. Rather than loading everything and then dropping columns, you can tell pandas to load only the columns you want.</p>
+<div id="b26b68be" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load only certain columns</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fleet_subset <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry.csv'</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                            usecols<span class="op">=</span>[<span class="st">'ship_name'</span>, <span class="st">'ship_class'</span>, <span class="st">'crew_size'</span>])</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_subset)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        ship_name ship_class  crew_size
+0          Aurora   Explorer        150
+1   Nebula Runner      Cargo         45
+2      Dark Comet    Fighter         12
+3    Star Whisper    Science         80
+4    Iron Horizon      Cargo         50
+5     Void Dancer   Explorer        120
+6      Solar Wind     Patrol         30
+7  Crimson Falcon    Fighter         15</code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>usecols</code>:</strong></p>
+<p><code>usecols</code> loads just the columns you specify. This saves memory and keeps your DataFrame focused on the data you actually need. You pass a list of column names (matching the header row) to select.</p>
+</section>
+<section id="reading-a-limited-number-of-rows" class="level4">
+<h4 class="anchored" data-anchor-id="reading-a-limited-number-of-rows">Reading a limited number of rows</h4>
+<p>When working with a large file, you may want to peek at the first few rows before loading the entire dataset. The <code>nrows</code> parameter handles this.</p>
+<div id="654b900f" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read only the first 3 rows</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fleet_preview <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry.csv'</span>, nrows<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_preview)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       ship_name ship_class  crew_size  max_speed  launch_year
+0         Aurora   Explorer        150        9.2         2371
+1  Nebula Runner      Cargo         45        6.8         2368
+2     Dark Comet    Fighter         12        9.8         2374</code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>nrows</code>:</strong></p>
+<p>The <code>nrows</code> parameter tells <code>pd.read_csv()</code> to read only that many data rows (the header is always read). This is useful for checking that your parameters are correct before committing to a full load.</p>
+</section>
+</section>
+<section id="handling-missing-data-during-loading" class="level3">
+<h3 class="anchored" data-anchor-id="handling-missing-data-during-loading">Handling missing data during loading</h3>
+<p>Real-world data often has missing values. They might appear as empty fields, placeholder text like “UNKNOWN”, or sentinel values like “-999”. pandas can detect and handle these during loading.</p>
+<div id="8497590e" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CSV file with missing and problematic values</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_missing.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'ship_name,ship_class,crew_size,max_speed,launch_year</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Aurora,Explorer,150,9.2,2371</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Nebula Runner,Cargo,,6.8,2368</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Dark Comet,Fighter,12,UNKNOWN,2374</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Star Whisper,Science,80,7.5,</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Iron Horizon,Cargo,50,6.5,2365</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Void Dancer,Explorer,MISSING,9.0,2373</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Read with default settings</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>fleet_messy <span class="op">=</span> pd.read_csv(<span class="st">'fleet_missing.csv'</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Default reading:"</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_messy)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Data types:"</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_messy.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Default reading:
+       ship_name ship_class crew_size max_speed  launch_year
+0         Aurora   Explorer       150       9.2       2371.0
+1  Nebula Runner      Cargo       NaN       6.8       2368.0
+2     Dark Comet    Fighter        12   UNKNOWN       2374.0
+3   Star Whisper    Science        80       7.5          NaN
+4   Iron Horizon      Cargo        50       6.5       2365.0
+5    Void Dancer   Explorer   MISSING       9.0       2373.0
+
+Data types:
+ship_name       object
+ship_class      object
+crew_size       object
+max_speed       object
+launch_year    float64
+dtype: object</code></pre>
+</div>
+</div>
+<p><strong>Understanding the problem:</strong></p>
+<p>Look at the data types. <code>crew_size</code> and <code>max_speed</code> should be numeric, but some rows contain text placeholders (“UNKNOWN”, “MISSING”) or empty fields. pandas handles empty fields automatically by inserting <code>NaN</code> and adjusting the column type. But it does not recognize custom placeholders like “UNKNOWN” or “MISSING” as missing values. When even one value in a column is text, pandas treats the entire column as a text type, which means you cannot compute statistics on it.</p>
+<p>In your manual parsing pipeline, this is where <code>try/except</code> would catch the <code>ValueError</code> when you tried to convert “UNKNOWN” to a number. <code>pd.read_csv()</code> has its own way to handle this.</p>
+<div id="a707987a" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tell pandas what values represent missing data</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fleet_clean <span class="op">=</span> pd.read_csv(<span class="st">'fleet_missing.csv'</span>, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                           na_values<span class="op">=</span>[<span class="st">'UNKNOWN'</span>, <span class="st">'MISSING'</span>])</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"With na_values:"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_clean)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Data types:"</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_clean.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>With na_values:
+       ship_name ship_class  crew_size  max_speed  launch_year
+0         Aurora   Explorer      150.0        9.2       2371.0
+1  Nebula Runner      Cargo        NaN        6.8       2368.0
+2     Dark Comet    Fighter       12.0        NaN       2374.0
+3   Star Whisper    Science       80.0        7.5          NaN
+4   Iron Horizon      Cargo       50.0        6.5       2365.0
+5    Void Dancer   Explorer        NaN        9.0       2373.0
+
+Data types:
+ship_name       object
+ship_class      object
+crew_size      float64
+max_speed      float64
+launch_year    float64
+dtype: object</code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>na_values</code>:</strong></p>
+<p>The <code>na_values</code> parameter tells pandas which additional strings should be treated as missing data. pandas already recognizes some common missing-value markers by default (like empty fields and a few standard placeholders). But domain-specific placeholders like “UNKNOWN” or “MISSING” need to be specified explicitly.</p>
+<p>When pandas encounters these values during loading, it replaces them with <code>NaN</code> (Not a Number). This is the same <code>NaN</code> you saw during automatic alignment in Week 5.</p>
+<p>Now look at the data types. With the text placeholders converted to <code>NaN</code>, pandas can correctly infer numeric types for <code>crew_size</code> and <code>max_speed</code> (both <code>float64</code>). They are <code>float64</code> rather than <code>int64</code> because <code>NaN</code> is a floating-point value. Any integer column with missing values automatically becomes float to accommodate <code>NaN</code>.</p>
+<p><code>na_values</code> is doing something similar to your <code>try/except</code> blocks. It identifies values that cannot be used as data and marks them as missing rather than crashing the process. The difference is that <code>pd.read_csv()</code> handles this at the column level during loading, while your manual approach handled it row by row.</p>
+</section>
+<section id="writing-dataframes-to-csv" class="level3">
+<h3 class="anchored" data-anchor-id="writing-dataframes-to-csv">Writing DataFrames to CSV</h3>
+<p>So far, we’ve focused on reading data into pandas. But the workflow often goes both directions: you load data, process it, and then save the results. Just as <code>pd.read_csv()</code> reads data in, <code>to_csv()</code> writes data out.</p>
+<div id="239aa341" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the clean fleet data</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry.csv'</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Write to a new CSV file</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>fleet.to_csv(<span class="st">'fleet_output.csv'</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify: check what was written</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_output.csv'</span>, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f.read())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>,ship_name,ship_class,crew_size,max_speed,launch_year
+0,Aurora,Explorer,150,9.2,2371
+1,Nebula Runner,Cargo,45,6.8,2368
+2,Dark Comet,Fighter,12,9.8,2374
+3,Star Whisper,Science,80,7.5,2370
+4,Iron Horizon,Cargo,50,6.5,2365
+5,Void Dancer,Explorer,120,9.0,2373
+6,Solar Wind,Patrol,30,8.4,2369
+7,Crimson Falcon,Fighter,15,9.6,2372
+</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>Notice the extra column at the beginning. That’s the row index (0, 1, 2, …). By default, <code>to_csv()</code> writes the index as the first column. This is often not what you want.</p>
+<div id="665c1153" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write without the index</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>fleet.to_csv(<span class="st">'fleet_output_clean.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify: check the cleaner output</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_output_clean.csv'</span>, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f.read())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ship_name,ship_class,crew_size,max_speed,launch_year
+Aurora,Explorer,150,9.2,2371
+Nebula Runner,Cargo,45,6.8,2368
+Dark Comet,Fighter,12,9.8,2374
+Star Whisper,Science,80,7.5,2370
+Iron Horizon,Cargo,50,6.5,2365
+Void Dancer,Explorer,120,9.0,2373
+Solar Wind,Patrol,30,8.4,2369
+Crimson Falcon,Fighter,15,9.6,2372
+</code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>index=False</code>:</strong></p>
+<p>Setting <code>index=False</code> tells pandas to skip writing the row index. The output is now a clean CSV file that matches the format of the original input. This round-trip (read, process, write) is a common workflow: load data, analyze or transform it, and save the results.</p>
+</section>
+</section>
+<section id="part-2-working-with-json-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-working-with-json-data">Part 2: Working with JSON Data</h2>
+<p>Part 1 covered CSV files. But CSV is not the only data format you’ll encounter. <strong>JSON (JavaScript Object Notation)</strong> is the standard format for data on the web. When you request data from a web API (which we’ll do in Part 3), the response almost always comes back as JSON. Understanding JSON now prepares you for that workflow.</p>
+<section id="what-json-looks-like" class="level3">
+<h3 class="anchored" data-anchor-id="what-json-looks-like">What JSON looks like</h3>
+<p>JSON is built from structures you already know from Python: - JSON objects are like Python dictionaries: <code>{"key": "value"}</code> - JSON arrays are like Python lists: <code>[1, 2, 3]</code> - Objects and arrays can be nested inside each other</p>
+<div id="336dffa4" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A JSON string representing planetary survey data</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>json_string <span class="op">=</span> <span class="st">'''[</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="st">    {"planet": "Verdantis", "sector": "Alpha-7", "atmosphere": "nitrogen-oxygen", "avg_temp_c": 22, "moons": 2},</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="st">    {"planet": "Glacius Prime", "sector": "Beta-3", "atmosphere": "thin nitrogen", "avg_temp_c": -45, "moons": 0},</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="st">    {"planet": "Pyraxis", "sector": "Alpha-7", "atmosphere": "carbon dioxide", "avg_temp_c": 310, "moons": 1},</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="st">    {"planet": "Aquillon", "sector": "Gamma-1", "atmosphere": "nitrogen-oxygen", "avg_temp_c": 15, "moons": 3},</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="st">    {"planet": "Dusthaven", "sector": "Beta-3", "atmosphere": "thin carbon dioxide", "avg_temp_c": -10, "moons": 0}</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="st">]'''</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(json_string)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[
+    {"planet": "Verdantis", "sector": "Alpha-7", "atmosphere": "nitrogen-oxygen", "avg_temp_c": 22, "moons": 2},
+    {"planet": "Glacius Prime", "sector": "Beta-3", "atmosphere": "thin nitrogen", "avg_temp_c": -45, "moons": 0},
+    {"planet": "Pyraxis", "sector": "Alpha-7", "atmosphere": "carbon dioxide", "avg_temp_c": 310, "moons": 1},
+    {"planet": "Aquillon", "sector": "Gamma-1", "atmosphere": "nitrogen-oxygen", "avg_temp_c": 15, "moons": 3},
+    {"planet": "Dusthaven", "sector": "Beta-3", "atmosphere": "thin carbon dioxide", "avg_temp_c": -10, "moons": 0}
+]</code></pre>
+</div>
+</div>
+<p><strong>Understanding the structure:</strong></p>
+<p>This JSON string contains an array (list) of objects (dictionaries). Each object represents one planet with the same set of keys. If this looks familiar, it should: this is exactly the “list of dictionaries” pattern from Week 2, written as text.</p>
+<p>The difference between JSON and CSV is flexibility. CSV requires a flat table with consistent columns, while JSON can represent nested structures. For example, a planet could have a list of moons, each with its own properties. That flexibility is why JSON is the standard for web data.</p>
+</section>
+<section id="pythons-json-module" class="level3">
+<h3 class="anchored" data-anchor-id="pythons-json-module">Python’s json module</h3>
+<p>Python has a built-in <code>json</code> module for converting between JSON strings and Python objects.</p>
+<div id="abc6c0de" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse JSON string into Python objects</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>planets <span class="op">=</span> json.loads(json_string)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># It's now a regular Python list of dictionaries</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Type: </span><span class="sc">{</span><span class="bu">type</span>(planets)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of records: </span><span class="sc">{</span><span class="bu">len</span>(planets)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">First planet:"</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(planets[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Type: &lt;class 'list'&gt;
+Number of records: 5
+
+First planet:
+{'planet': 'Verdantis', 'sector': 'Alpha-7', 'atmosphere': 'nitrogen-oxygen', 'avg_temp_c': 22, 'moons': 2}</code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>json.loads()</code>:</strong></p>
+<p><code>json.loads()</code> (the “s” stands for “string”) takes a JSON string and converts it to Python objects: - JSON objects become Python dictionaries - JSON arrays become Python lists - JSON strings become Python strings - JSON numbers become Python ints or floats</p>
+<p>After parsing, <code>planets</code> is a regular Python list of dictionaries. You can loop through it, access dictionary keys, and work with it using all the Python skills you already have.</p>
+<div id="db82d0aa" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access individual records and fields</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Planet names:"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> planet <span class="kw">in</span> planets:</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>planet[<span class="st">'planet'</span>]<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span>planet[<span class="st">'atmosphere'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert back to a formatted JSON string</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>formatted <span class="op">=</span> json.dumps(planets, indent<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Formatted JSON (first 200 characters):"</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(formatted[:<span class="dv">200</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Planet names:
+  Verdantis - nitrogen-oxygen
+  Glacius Prime - thin nitrogen
+  Pyraxis - carbon dioxide
+  Aquillon - nitrogen-oxygen
+  Dusthaven - thin carbon dioxide
+
+Formatted JSON (first 200 characters):
+[
+  {
+    "planet": "Verdantis",
+    "sector": "Alpha-7",
+    "atmosphere": "nitrogen-oxygen",
+    "avg_temp_c": 22,
+    "moons": 2
+  },
+  {
+    "planet": "Glacius Prime",
+    "sector": "Beta-3",
+    </code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>json.dumps()</code>:</strong></p>
+<p><code>json.dumps()</code> converts Python objects back to a JSON string. The <code>indent</code> parameter adds formatting with line breaks and indentation, making the output human-readable. Without <code>indent</code>, the entire JSON would be on one line.</p>
+</section>
+<section id="pandas-json-support" class="level3">
+<h3 class="anchored" data-anchor-id="pandas-json-support">pandas JSON support</h3>
+<p>Since a list of dictionaries with consistent keys is essentially tabular data, pandas can convert it directly to a DataFrame.</p>
+<div id="922cf6b5" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the parsed JSON (list of dicts) to a DataFrame</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>planets_df <span class="op">=</span> pd.DataFrame(planets)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(planets_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          planet   sector           atmosphere  avg_temp_c  moons
+0      Verdantis  Alpha-7      nitrogen-oxygen          22      2
+1  Glacius Prime   Beta-3        thin nitrogen         -45      0
+2        Pyraxis  Alpha-7       carbon dioxide         310      1
+3       Aquillon  Gamma-1      nitrogen-oxygen          15      3
+4      Dusthaven   Beta-3  thin carbon dioxide         -10      0</code></pre>
+</div>
+</div>
+<p><strong>Understanding the conversion:</strong></p>
+<p>This is the same <code>pd.DataFrame()</code> call from Week 5. You pass a list of dictionaries where each dictionary becomes a row and the keys become column names. The JSON parsing step (<code>json.loads()</code>) gave you a list of dictionaries, and pandas knows how to handle that directly.</p>
+<p>pandas also has <code>pd.read_json()</code> which can read JSON files directly into a DataFrame. Let’s write our data to a JSON file first, then read it:</p>
+<div id="dc44cc82" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the JSON string to a file</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'planets.json'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    f.write(json_string)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the JSON file directly into a DataFrame</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>planets_direct <span class="op">=</span> pd.read_json(<span class="st">'planets.json'</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(planets_direct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          planet   sector           atmosphere  avg_temp_c  moons
+0      Verdantis  Alpha-7      nitrogen-oxygen          22      2
+1  Glacius Prime   Beta-3        thin nitrogen         -45      0
+2        Pyraxis  Alpha-7       carbon dioxide         310      1
+3       Aquillon  Gamma-1      nitrogen-oxygen          15      3
+4      Dusthaven   Beta-3  thin carbon dioxide         -10      0</code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>pd.read_json()</code>:</strong></p>
+<p><code>pd.read_json()</code> combines the parsing and DataFrame creation into one step, similar to how <code>pd.read_csv()</code> handles CSV files. For simple, tabular JSON (a list of objects with consistent keys), this works well. For more complex or nested JSON structures, you may need to use <code>json.loads()</code> first to extract the parts you need, then pass those to <code>pd.DataFrame()</code>.</p>
+</section>
+<section id="writing-json" class="level3">
+<h3 class="anchored" data-anchor-id="writing-json">Writing JSON</h3>
+<div id="1143afc0" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write a DataFrame to a JSON file</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>planets_df.to_json(<span class="st">'planets_output.json'</span>, orient<span class="op">=</span><span class="st">'records'</span>, indent<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify: check what was written</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'planets_output.json'</span>, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f.read())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[
+  {
+    "planet":"Verdantis",
+    "sector":"Alpha-7",
+    "atmosphere":"nitrogen-oxygen",
+    "avg_temp_c":22,
+    "moons":2
+  },
+  {
+    "planet":"Glacius Prime",
+    "sector":"Beta-3",
+    "atmosphere":"thin nitrogen",
+    "avg_temp_c":-45,
+    "moons":0
+  },
+  {
+    "planet":"Pyraxis",
+    "sector":"Alpha-7",
+    "atmosphere":"carbon dioxide",
+    "avg_temp_c":310,
+    "moons":1
+  },
+  {
+    "planet":"Aquillon",
+    "sector":"Gamma-1",
+    "atmosphere":"nitrogen-oxygen",
+    "avg_temp_c":15,
+    "moons":3
+  },
+  {
+    "planet":"Dusthaven",
+    "sector":"Beta-3",
+    "atmosphere":"thin carbon dioxide",
+    "avg_temp_c":-10,
+    "moons":0
+  }
+]</code></pre>
+</div>
+</div>
+<p><strong>Understanding <code>to_json()</code>:</strong></p>
+<p><code>to_json()</code> writes a DataFrame to JSON format. The <code>orient</code> parameter controls the structure of the output: - <code>orient='records'</code> produces a list of dictionaries, one per row. This is the most common format and matches the structure we started with. - <code>indent=2</code> adds formatting for readability.</p>
+<p>Other <code>orient</code> options exist (like <code>'columns'</code> or <code>'index'</code>), but <code>'records'</code> is the most widely used because it matches the format that web APIs typically produce and consume.</p>
+</section>
+<section id="when-to-use-json-module-vs-pd.read_json" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-use-json-module-vs-pd.read_json">When to use json module vs pd.read_json()</h3>
+<p>Use <code>pd.read_json()</code> when: - The JSON is a simple list of objects (flat, tabular structure) - You want a DataFrame immediately</p>
+<p>Use <code>json.loads()</code> + <code>pd.DataFrame()</code> when: - The JSON has nested structures you need to navigate - You only want part of the JSON data - You need to inspect the data before converting</p>
+<p>In practice, web API responses often have extra metadata wrapped around the actual data. You’ll use <code>json.loads()</code> (or the <code>.json()</code> method on a response object) to get to the data you want, then convert that portion to a DataFrame.</p>
+</section>
+</section>
+<section id="part-3-interacting-with-web-apis" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-interacting-with-web-apis">Part 3: Interacting with Web APIs</h2>
+<p>Parts 1 and 2 covered loading data from local files, both CSV and JSON. But a large amount of data is available through <strong>web APIs (Application Programming Interfaces)</strong>. A web API lets you request specific data from a server over the internet and receive a structured response, usually in JSON format. This is where the JSON skills from Part 2 become directly practical.</p>
+<section id="what-a-web-api-is" class="level3">
+<h3 class="anchored" data-anchor-id="what-a-web-api-is">What a web API is</h3>
+<p>When you visit a website, your browser sends a request to a server and gets back an HTML page for humans to read. A web API works the same way, but the response is structured data (usually JSON) designed for programs to process.</p>
+<p>The pattern is straightforward: 1. Send an HTTP request to a URL (the API endpoint) 2. Receive a response containing structured data 3. Parse the response (usually JSON) 4. Work with the data in Python</p>
+</section>
+<section id="making-an-api-request" class="level3">
+<h3 class="anchored" data-anchor-id="making-an-api-request">Making an API request</h3>
+<p>Python’s <code>requests</code> library makes HTTP requests simple. We’ll use the GitHub API as an example. It provides public data about GitHub repositories without requiring an account or API key.</p>
+<p>The following code cells require internet access to reach the GitHub API. If you are working offline or the request fails, read through the code and explanations to understand the pattern. The concepts (make a request, check the response, parse JSON, convert to DataFrame) are what matter. You can re-run these cells later when you have internet access.</p>
+<div id="a276bee2" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Request recent issues from the pandas GitHub repository</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (This is the same API endpoint used in the textbook's Chapter 6 example)</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://api.github.com/repos/pandas-dev/pandas/issues'</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>resp <span class="op">=</span> requests.get(url)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>resp.raise_for_status()</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Status code: </span><span class="sc">{</span>resp<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Response type: </span><span class="sc">{</span><span class="bu">type</span>(resp.json())<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of items: </span><span class="sc">{</span><span class="bu">len</span>(resp.json())<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Status code: 200
+Response type: &lt;class 'list'&gt;
+Number of items: 30</code></pre>
+</div>
+</div>
+<p>If <code>import requests</code> gives a <code>ModuleNotFoundError</code>, you need to install the library. Run <code>pip install requests</code> in your terminal, then restart your kernel and try again.</p>
+<p><strong>Understanding the request:</strong></p>
+<p><code>requests.get(url)</code> sends an HTTP GET request to the GitHub API. This is the same kind of request your browser makes when you visit a web page, but instead of HTML, the server returns JSON data.</p>
+<p><code>resp.raise_for_status()</code> checks whether the request succeeded. If something went wrong (server error, invalid URL, rate limit exceeded), this raises an exception. This is similar to how you use <code>try/except</code> to catch errors in file processing. A status code of 200 means success.</p>
+<p><code>resp.json()</code> parses the JSON response into Python objects (a list of dictionaries in this case). This is equivalent to calling <code>json.loads()</code> on the response text, which you used in Part 2.</p>
+</section>
+<section id="from-api-response-to-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="from-api-response-to-dataframe">From API response to DataFrame</h3>
+<p>Now that we have a successful response, let’s see what the API returned and convert it to a DataFrame. The GitHub API returns a list of dictionaries, one per issue. Each dictionary contains many fields.</p>
+<div id="2af0dcfa" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse the JSON response</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> resp.json()</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the keys available in one issue</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Available fields in each issue:"</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(data[<span class="dv">0</span>].keys()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Available fields in each issue:
+['active_lock_reason', 'assignee', 'assignees', 'author_association', 'body', 'closed_at', 'closed_by', 'comments', 'comments_url', 'created_at', 'draft', 'events_url', 'html_url', 'id', 'labels', 'labels_url', 'locked', 'milestone', 'node_id', 'number', 'performed_via_github_app', 'pull_request', 'reactions', 'repository_url', 'state', 'state_reason', 'timeline_url', 'title', 'type', 'updated_at', 'url', 'user']</code></pre>
+</div>
+</div>
+<p><strong>Understanding the response:</strong></p>
+<p>Each issue is a dictionary with many fields: title, body, user information, labels, timestamps, and more. Most API responses contain more data than you need. The next step is to convert to a DataFrame and select the relevant columns.</p>
+<div id="c5a12821" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>issues <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select useful columns</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>issues_subset <span class="op">=</span> issues[[<span class="st">'number'</span>, <span class="st">'title'</span>, <span class="st">'state'</span>, <span class="st">'created_at'</span>]]</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(issues_subset.head(<span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   number                                              title state  \
+0   64279                        CI: Simplify wheel workflow  open   
+1   64278  TST: add test for GH#55423 loc setitem preserv...  open   
+2   64277             TST: add regression test for GH #42437  open   
+3   64276  BUG: Suppress unnecessary RuntimeWarning in to...  open   
+4   64275  BUILD: generate_version.py line ending breaks ...  open   
+5   64274  DOC: clarify Series reindexing on column assig...  open   
+6   64273  BUG: The order of items in pd.concat matters f...  open   
+7   64272  BUILD: generate_version.py line ending breaks ...  open   
+8   64270          BUG: Support for Expressions with dunders  open   
+9   64269  TST: Add regression test for DatetimeIndex.equ...  open   
+
+             created_at  
+0  2026-02-22T23:30:44Z  
+1  2026-02-22T19:00:13Z  
+2  2026-02-22T18:21:15Z  
+3  2026-02-22T17:56:13Z  
+4  2026-02-22T16:19:50Z  
+5  2026-02-22T11:18:11Z  
+6  2026-02-22T09:09:04Z  
+7  2026-02-22T00:58:39Z  
+8  2026-02-21T22:00:25Z  
+9  2026-02-21T19:40:19Z  </code></pre>
+</div>
+</div>
+<p><strong>Understanding the workflow:</strong></p>
+<p>This is the same <code>pd.DataFrame()</code> call you’ve been using. A list of dictionaries becomes a DataFrame where each dictionary is a row. Then we use column selection (double brackets from Week 5) to keep just the columns we need.</p>
+<p>The result is a clean, labeled DataFrame created from live data on the internet. You went from a URL to an analyzable DataFrame in a few lines of code.</p>
+<p>The specific issues shown depend on when you run this code. GitHub issues are created and updated constantly, so your output will differ from someone who runs this at a different time.</p>
+</section>
+<section id="a-note-about-apis" class="level3">
+<h3 class="anchored" data-anchor-id="a-note-about-apis">A note about APIs</h3>
+<p>The GitHub API we used here is public and doesn’t require authentication for basic requests. But there are important practical considerations.</p>
+<p>Most APIs limit how many requests you can make per hour. The GitHub API allows 60 requests per hour without authentication. If you exceed the limit, requests will fail temporarily.</p>
+<p>Many APIs also require an API key or account credentials. This is how services control access and track usage. The textbook covers this briefly, and you’ll encounter it when working with data from services like Twitter, weather providers, or financial data platforms.</p>
+<p>Not all APIs return simple lists of dictionaries, either. Some wrap data in metadata, use pagination for large results, or nest data in complex structures. The <code>json.loads()</code> + <code>pd.DataFrame()</code> approach gives you more control for these cases than <code>pd.read_json()</code> alone.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="what-youve-learned" class="level3">
+<h3 class="anchored" data-anchor-id="what-youve-learned">What You’ve Learned</h3>
+<p>This demo introduced the core data loading tools from Chapter 6.</p>
+<p>For CSV files, you learned to use <code>pd.read_csv()</code> to read files into DataFrames with automatic header detection and type inference. You saw how to customize loading with parameters (<code>header</code>, <code>names</code>, <code>index_col</code>, <code>usecols</code>, <code>nrows</code>, <code>na_values</code>), how to handle missing data and sentinel values during loading, and how to write DataFrames back to CSV with <code>to_csv()</code>.</p>
+<p>For JSON data, you learned how JSON structures map to Python dictionaries and lists, how to use Python’s <code>json</code> module (<code>json.loads()</code> to parse, <code>json.dumps()</code> to write), and how <code>pd.read_json()</code> can convert JSON files directly into DataFrames.</p>
+<p>For web APIs, you learned how to use <code>requests.get()</code> to fetch data from a URL, parse the JSON response, and convert it to a DataFrame. You also saw practical considerations like rate limits and authentication.</p>
+</section>
+<section id="the-manual-parsing-connection" class="level3">
+<h3 class="anchored" data-anchor-id="the-manual-parsing-connection">The Manual Parsing Connection</h3>
+<p>Every step in the manual parsing pipeline you’ve been writing (opening files, splitting fields, stripping whitespace, converting types, detecting headers, handling bad values, building the result) has a corresponding behavior inside <code>pd.read_csv()</code>. Understanding what happens under the hood makes you a better analyst. When <code>pd.read_csv()</code> doesn’t behave as expected, whether it’s wrong types, missing values not detected, or columns misaligned, you’ll know where to look because you’ve done each of those steps manually.</p>
+</section>
+<section id="what-the-textbook-covers-next" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-textbook-covers-next">What the Textbook Covers Next</h3>
+<p>Chapter 6 continues with data formats and tools not covered in this demo. These are worth knowing about, even if you don’t use them immediately.</p>
+<p><code>pd.read_html()</code> extracts tables from web pages into DataFrames. It’s useful for scraping tabular data from websites, though it requires additional libraries (lxml, beautifulsoup4).</p>
+<p><code>pd.read_excel()</code> reads <code>.xlsx</code> and <code>.xls</code> files and works similarly to <code>pd.read_csv()</code> with comparable parameters. <code>to_excel()</code> handles writing.</p>
+<p>The chapter also covers binary storage formats: Pickle (Python’s built-in serialization, fast but Python-only), HDF5 (hierarchical data format for large scientific datasets), and Parquet (columnar format optimized for analytics, increasingly common in industry). These formats are more efficient than CSV for large datasets.</p>
+<p>Finally, <code>pd.read_sql()</code> lets you run SQL queries and return the results as DataFrames, connecting pandas to relational databases like SQLite, PostgreSQL, and MySQL through the SQLAlchemy library.</p>
+<p>Each of these follows the same pattern: <code>pd.read_*()</code> to load data into a DataFrame, and a corresponding <code>to_*()</code> method to write data back out. Once you understand the <code>read_csv()</code> workflow, the other loading functions feel familiar.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/SCTCC-Computer-Programming\.github\.io\/cmsc-1217\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
