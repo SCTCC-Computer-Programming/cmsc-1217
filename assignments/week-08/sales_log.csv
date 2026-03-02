@@ -1,0 +1,51 @@
+date,game_name,quantity,unit_price,customer_type,payment_method,staff
+2025-03-01,Catan,1,39.99,member,credit,Marcus
+2025-03-01,Ticket to Ride,2,44.99,walk-in,debit,Priya
+2025-03-01,Wingspan,1,54.99,member,credit,Marcus
+2025-03-01,Codenames,3,19.99,walk-in,cash,Priya
+2025-03-02,Azul,1,29.99,member,credit,Marcus
+2025-03-02,Pandemic,1,39.99,UNKNOWN,---,Priya
+2025-03-02,Catan,2,39.99,member,debit,Marcus
+2025-03-02,Splendor,1,34.99,walk-in,credit,Lena
+2025-03-03,7 Wonders,1,44.99,member,credit,Priya
+2025-03-03,Carcassonne,2,29.99,walk-in,cash,Lena
+2025-03-03,Terraforming Mars,1,---,member,credit,Marcus
+2025-03-04,Root,1,59.99,member,debit,Priya
+2025-03-04,Everdell,1,49.99,walk-in,credit,Lena
+2025-03-04,King of Tokyo,3,29.99,walk-in,cash,Marcus
+2025-03-04,Catan,1,39.99,member,credit,Priya
+2025-03-05,Dixit,2,34.99,UNKNOWN,credit,Lena
+2025-03-05,Wingspan,1,54.99,walk-in,---,Marcus
+2025-03-05,Dominion,1,39.99,member,debit,Priya
+2025-03-06,Scythe,1,69.99,member,credit,Lena
+2025-03-06,Ticket to Ride,3,44.99,walk-in,debit,Marcus
+2025-03-06,Azul,1,29.99,member,cash,Priya
+2025-03-07,Spirit Island,1,---,walk-in,credit,MISSING
+2025-03-07,Codenames,4,19.99,walk-in,cash,Priya
+2025-03-07,Gloomhaven,1,99.99,member,credit,Marcus
+2025-03-08,Betrayal at House on the Hill,1,44.99,walk-in,debit,Lena
+2025-03-08,Catan,2,39.99,UNKNOWN,---,Marcus
+2025-03-08,Ark Nova,1,59.99,member,credit,Priya
+2025-03-08,Pandemic,1,39.99,walk-in,cash,Lena
+2025-03-09,Wingspan,2,54.99,member,credit,Marcus
+2025-03-09,Carcassonne,1,29.99,walk-in,debit,Priya
+2025-03-09,Everdell,1,49.99,UNKNOWN,credit,MISSING
+2025-03-10,Root,1,59.99,walk-in,---,Lena
+2025-03-10,Ticket to Ride,1,44.99,member,credit,Marcus
+2025-03-10,King of Tokyo,2,29.99,walk-in,cash,Priya
+2025-03-10,Splendor,1,34.99,member,debit,Lena
+2025-03-11,Terraforming Mars,1,59.99,member,credit,Marcus
+2025-03-11,Catan,3,39.99,walk-in,cash,Priya
+2025-03-11,Dixit,1,34.99,walk-in,credit,Lena
+2025-03-11,Scythe,1,---,UNKNOWN,debit,MISSING
+2025-03-12,Dominion,2,39.99,member,credit,Marcus
+2025-03-12,7 Wonders,1,44.99,walk-in,cash,Priya
+2025-03-12,Codenames,5,19.99,walk-in,debit,Lena
+2025-03-13,Azul,2,29.99,member,credit,Marcus
+2025-03-13,Gloomhaven,1,99.99,walk-in,credit,Priya
+2025-03-13,Betrayal at House on the Hill,1,44.99,member,---,Lena
+2025-03-13,Spirit Island,1,54.99,member,cash,Marcus
+2025-03-14,Ark Nova,1,59.99,walk-in,credit,Priya
+2025-03-14,Wingspan,1,54.99,member,debit,Lena
+2025-03-14,Catan,1,39.99,walk-in,cash,Marcus
+2025-03-14,Ticket to Ride,4,44.99,walk-in,credit,Priya

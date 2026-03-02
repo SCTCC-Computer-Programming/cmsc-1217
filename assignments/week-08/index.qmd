@@ -1,0 +1,151 @@
+---
+title: Week 8 Assignment
+subtitle: Game Store Sales and Catalog Analysis
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** All items are submitted in D2L (Week 8 Dropbox).
+
+**Reading:** Chapters 1–6 (cumulative).
+
+**Datasets:**
+
+- <a href="sales_log.csv" download="sales_log.csv"> Download Sales Log (CSV) </a>
+- <a href="game_catalog.json" download="game_catalog.json"> Download Game Catalog (JSON) </a>
+
+## The Situation
+
+You work part-time at Hexagon Games, a small board game store that also hosts weekly game nights. The owner, Dana, is preparing for a quarterly business review with the store's co-investor. She needs a clear picture of recent sales performance and wants the store's game catalog organized into a usable format for inventory decisions.
+
+The store's point-of-sale system exports transaction data as a CSV file. Each record should contain seven fields: date, game name, quantity sold, unit price, customer type (member or walk-in), payment method, and the staff member who handled the sale. Dana has mentioned that the POS system sometimes logs incomplete transactions — missing payment methods, placeholder values where the staff member forgot to scan a membership card, and a few records that just didn't export correctly.
+
+The store also has a game catalog file from their distributor. This file is in JSON format and contains detailed information about each game in stock: name, category, player count range, estimated play time, complexity rating, and a list of game mechanics. The catalog has more structure than a simple spreadsheet — some fields contain nested information rather than single values.
+
+Dana needs two things from you. First, a sales analysis from the CSV data that she can present at the review. Second, the catalog data pulled into a clean table so she can use it to evaluate which categories and complexity levels are represented in the store's inventory.
+
+## What You Need to Deliver
+
+Your analysis must address the following requirements. Use the skills and methods from Weeks 1–7 to complete this work.
+
+### Part 1: Sales Data (CSV)
+
+#### Data Loading and Quality Assessment
+
+Load the sales log using `pd.read_csv()`. The file contains some placeholder values for missing data. After loading, inspect the result to assess data quality. If columns have unexpected data types or values that should be missing aren't being treated as missing, determine which `pd.read_csv()` parameter can address this and reload the file. Your report should include:
+
+- The shape of the loaded DataFrame (rows and columns)
+- The output of `.info()` showing column types and non-null counts
+- Which columns contain missing values and how many are missing in each
+- Which columns changed data type because of missing values (and what type they became)
+- A look at the first few rows to verify the data loaded correctly
+
+#### Sales Analysis
+
+Dana needs to understand the store's recent performance. Using the loaded DataFrame:
+
+- Compute summary statistics for unit price and quantity using `.describe()`
+- Create a new column calculating revenue for each transaction (quantity multiplied by unit price)
+- Show the ten highest-revenue transactions, sorted from highest to lowest
+- Count how many transactions came from each customer type
+- Calculate the average revenue for member transactions versus walk-in transactions
+
+#### Multi-Condition Investigation
+
+Dana has noticed that large walk-in purchases might represent event organizers buying for game nights at other venues. She wants to investigate transactions where the customer type was walk-in AND the quantity sold was 3 or more. For this subset:
+
+- How many transactions meet both conditions?
+- What is the average revenue for these transactions?
+- What games appear in this group?
+
+#### Save Cleaned Results
+
+Save the DataFrame with the new revenue column to a CSV file called `sales_cleaned.csv`. Make sure the default row index is not written to the file.
+
+### Part 2: Game Catalog (JSON)
+
+#### Load and Inspect the Catalog
+
+Load the game catalog JSON file using Python's `json` module. The catalog has a nested structure — not every field is a simple value. After loading:
+
+- Show the raw Python structure for one game entry so you can see how the data is organized
+- Identify which fields are simple values and which are nested (lists or dictionaries)
+- Explain briefly (in a markdown cell) what the nested fields contain
+
+#### Build a Catalog DataFrame
+
+Extract the catalog data into a pandas DataFrame. Because of the nested structure, `pd.read_json()` will not handle this cleanly — you will need to work through the data manually. The catalog contains fields that are nested — lists or dictionaries inside each game entry. Your DataFrame must include information from these nested fields, not just the simple ones. For each nested field, decide how to represent it: extract a specific value (like minimum player count from a player count range) or convert a list into a comma-separated string. After creating the DataFrame:
+
+- Show the shape and column names
+- Display the first few rows
+- Show `.dtypes` to confirm the columns have appropriate types
+
+#### Catalog Analysis
+
+With the catalog in a DataFrame, answer the following for Dana's inventory review:
+
+- How many games are in each category?
+- What are the summary statistics for complexity rating using `.describe()`?
+- Which games have a complexity rating of 4 or higher? Show these rows sorted by complexity from highest to lowest.
+- What is the average play time across all games in the catalog?
+
+## Technical Requirements
+
+Your Jupyter notebook should demonstrate the complete workflow from raw files to final analysis. The notebook must run successfully from start to finish using "Restart Kernel and Run All."
+
+Use `pd.read_csv()` to load the CSV — do not manually parse it. Use `json.loads()` to parse the JSON into Python objects, then extract what you need and build a DataFrame with `pd.DataFrame()`. All analysis should use DataFrame operations — not raw loops for filtering or statistics. Use `to_csv()` to save your cleaned results — not manual file writing.
+
+- **Data loading and output (Chapter 6):** `pd.read_csv()` with parameters, `to_csv()` with `index=False`
+- **JSON parsing (Chapter 6):** `json.loads()`, navigating nested structures, `pd.DataFrame()` from a list of dicts
+- **DataFrame operations (Chapter 5):** `.info()`, `.dtypes`, `.shape`, `.head()`, boolean indexing with `&`, `.describe()`, `.sort_values()`, new columns from existing columns
+- **Notebook organization:** markdown cells explaining each section, clear print statements, Restart Kernel and Run All
+
+## Video Reflection
+
+Record a short video demonstrating your understanding of this assignment.
+
+**Part 1: Explain how you loaded and structured the game catalog**
+
+Walk through how you went from the JSON file to a usable DataFrame. In your explanation, address:
+
+1. What the JSON structure looked like when you first loaded it
+2. Which fields were nested and how you navigated to the data you needed
+3. How you built the list of dictionaries to pass to `pd.DataFrame()`
+4. What decisions you made about handling nested fields (what you included, what you left out, and why)
+
+**Part 2: Reflect on your learning**
+
+Choose ONE of the following to discuss:
+
+- **Challenge or error:** Describe a problem you encountered while completing this assignment, how you figured out what was wrong, and how you resolved it
+- **Key takeaway:** Explain one important concept you learned or solidified through this assignment and why it matters for data work
+
+**Video submission requirements:**
+
+- Clear video and audio quality
+- Introduce yourself at the beginning (name)
+- Name your video file: `lastname_Week08Reflection`
+- Upload your video to **Kaltura**
+- **Do not** embed the video in the Dropbox submission
+- Paste the **share link** into the D2L assignment text submission box
+- Make sure the link text includes `lastname_Week08Reflection` in the link name
+
+## D2L Submission Checklist
+
+Submit the following items to the **Week 8 Dropbox** in D2L:
+
+### Notebook file
+
+- `lastname_week08_assignment.ipynb`
+
+### Video submission (link only)
+
+- Video filename: `lastname_Week08Reflection`
+- Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)
+
+**Before you submit:**
+
+- Run "Restart Kernel and Run All" to confirm your notebook executes without errors
+- Verify all required outputs are visible in the notebook
+- Check that your video link works and includes the correct filename

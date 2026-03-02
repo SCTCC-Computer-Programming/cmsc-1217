@@ -1,0 +1,47 @@
+---
+title: "Week 8 Guide"
+subtitle: "Cumulative Application of Chapters 1–6"
+format:
+  html:
+    toc: true
+---
+
+Week 8 is a cumulative application of everything from Chapters 1–6. You will work with sales and catalog data from a board game store, requiring you to apply Week 7 data loading skills (`pd.read_csv()` with parameters, JSON parsing with `json.loads()`) and Week 5 pandas skills (DataFrames, boolean indexing, column operations, statistics). The assignment presents a scenario-based problem where you determine the approach and build the complete workflow from raw files to analytical results. The key difference from Weeks 4 and 6 is how you get data into your notebook: instead of manually parsing CSV files with open/split/strip/convert/try-except, you use `pd.read_csv()` to load directly into a DataFrame. The manual parsing experience from earlier weeks is what makes this meaningful — you understand what the function is doing because you have done each of those steps by hand.
+
+**Assignment:**
+
+- Here is the link to the **[Week 8 Assignment](../../assignments/week-08/index.qmd)**.
+
+## Concepts applied this week
+
+### Data loading and output (Chapter 6)
+
+`pd.read_csv()` automates the entire parsing pipeline you built by hand in Weeks 2, 4, and 6: opening the file, detecting the header row, splitting each line into fields, stripping whitespace, converting values to appropriate types, and assembling the result into a DataFrame. The function provides parameters to customize this behavior when files are not perfectly clean. In this assignment, the CSV file contains placeholder values that pandas does not recognize as missing by default, so you will need to determine which parameter addresses this and apply it during loading. After loading, you verify the result with `.info()` and `.dtypes` to confirm that columns have the expected types and to identify where missing values exist. When your analysis is complete, `to_csv()` writes a DataFrame back to a CSV file. Setting `index=False` omits the default row index from the output, producing a cleaner file.
+
+### Missing data and type inference (Chapter 6)
+
+When `pd.read_csv()` loads a file, it infers the data type of each column based on the values it finds. If a numeric column contains even one non-numeric placeholder (like a string the system used instead of leaving the field blank), pandas treats the entire column as text. Telling `pd.read_csv()` which placeholder values to treat as missing causes pandas to replace them with `NaN` during loading, which allows the column to load as a numeric type. Because `NaN` is a floating-point value, integer columns that contain missing data become `float64` — this is a pandas design constraint, not an error. Recognizing this pattern (unexpected float types, non-null counts that don't match the row count) is how you identify and verify missing data in a loaded DataFrame.
+
+### JSON parsing (Chapter 6)
+
+JSON stores data in nested structures — objects (dictionaries) and arrays (lists) that can contain other objects and arrays. This is more flexible than CSV's flat tabular format, but it means `pd.read_json()` does not always produce a clean DataFrame. When JSON data contains nested fields, the approach is to parse the file with `json.loads()` (or `json.load()` with a file object), navigate the Python dictionaries and lists to understand the structure, extract the fields you need into a flat list of dictionaries, and pass that list to `pd.DataFrame()`. This is the same list-of-dictionaries-to-DataFrame conversion you used in Week 6, but the source is a JSON file rather than a manually parsed CSV. Deciding how to represent nested fields — extracting specific values from a dictionary, joining a list into a string — is a design decision that depends on what analysis you need to perform.
+
+### DataFrame operations (Chapter 5)
+
+Once your data is in a DataFrame, the analysis uses the same operations you applied in Week 6: `.describe()` for summary statistics, `.sort_values()` for rankings, boolean indexing with `&` for multi-condition filtering, `.value_counts()` for category counts, and new columns created from calculations on existing columns. The difference is how you got there. In Week 6, you spent significant effort parsing the file before you could begin analysis. In Week 8, `pd.read_csv()` handles the loading, and you spend more time on the analysis itself.
+
+## Week 8 tasks
+
+1. Complete the **Week 8 Assignment** (game store sales and catalog analysis).
+2. Record and submit your video reflection.
+
+## Knowledge goals for Week 8
+
+By the end of Week 8, you should be able to:
+
+* use `pd.read_csv()` with parameters to load a CSV file into a DataFrame, handling missing data during loading
+* identify missing data and type inference issues by inspecting a loaded DataFrame with `.info()` and `.dtypes`
+* parse a JSON file with nested structure using `json.loads()`, extract data into a list of dictionaries, and convert it to a DataFrame with `pd.DataFrame()`
+* save a DataFrame to a CSV file using `to_csv()` with `index=False`
+* apply boolean indexing, `.describe()`, `.sort_values()`, `.value_counts()`, and column operations to analyze DataFrame data
+* explain how `pd.read_csv()` relates to the manual parsing pipeline from earlier weeks
