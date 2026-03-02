@@ -1,5 +1,33 @@
 [
   {
+    "objectID": "weekly-overview/week-08/week-08-overview.html",
+    "href": "weekly-overview/week-08/week-08-overview.html",
+    "title": "Week 8 Guide",
+    "section": "",
+    "text": "Week 8 is a cumulative application of everything from Chapters 1–6. You will work with sales and catalog data from a board game store, requiring you to apply Week 7 data loading skills (pd.read_csv() with parameters, JSON parsing with json.loads()) and Week 5 pandas skills (DataFrames, boolean indexing, column operations, statistics). The assignment presents a scenario-based problem where you determine the approach and build the complete workflow from raw files to analytical results. The key difference from Weeks 4 and 6 is how you get data into your notebook: instead of manually parsing CSV files with open/split/strip/convert/try-except, you use pd.read_csv() to load directly into a DataFrame. The manual parsing experience from earlier weeks is what makes this meaningful — you understand what the function is doing because you have done each of those steps by hand.\nAssignment:"
+  },
+  {
+    "objectID": "weekly-overview/week-08/week-08-overview.html#concepts-applied-this-week",
+    "href": "weekly-overview/week-08/week-08-overview.html#concepts-applied-this-week",
+    "title": "Week 8 Guide",
+    "section": "Concepts applied this week",
+    "text": "Concepts applied this week\n\nData loading and output (Chapter 6)\npd.read_csv() automates the entire parsing pipeline you built by hand in Weeks 2, 4, and 6: opening the file, detecting the header row, splitting each line into fields, stripping whitespace, converting values to appropriate types, and assembling the result into a DataFrame. The function provides parameters to customize this behavior when files are not perfectly clean. In this assignment, the CSV file contains placeholder values that pandas does not recognize as missing by default, so you will need to determine which parameter addresses this and apply it during loading. After loading, you verify the result with .info() and .dtypes to confirm that columns have the expected types and to identify where missing values exist. When your analysis is complete, to_csv() writes a DataFrame back to a CSV file. Setting index=False omits the default row index from the output, producing a cleaner file.\n\n\nMissing data and type inference (Chapter 6)\nWhen pd.read_csv() loads a file, it infers the data type of each column based on the values it finds. If a numeric column contains even one non-numeric placeholder (like a string the system used instead of leaving the field blank), pandas treats the entire column as text. Telling pd.read_csv() which placeholder values to treat as missing causes pandas to replace them with NaN during loading, which allows the column to load as a numeric type. Because NaN is a floating-point value, integer columns that contain missing data become float64 — this is a pandas design constraint, not an error. Recognizing this pattern (unexpected float types, non-null counts that don’t match the row count) is how you identify and verify missing data in a loaded DataFrame.\n\n\nJSON parsing (Chapter 6)\nJSON stores data in nested structures — objects (dictionaries) and arrays (lists) that can contain other objects and arrays. This is more flexible than CSV’s flat tabular format, but it means pd.read_json() does not always produce a clean DataFrame. When JSON data contains nested fields, the approach is to parse the file with json.loads() (or json.load() with a file object), navigate the Python dictionaries and lists to understand the structure, extract the fields you need into a flat list of dictionaries, and pass that list to pd.DataFrame(). This is the same list-of-dictionaries-to-DataFrame conversion you used in Week 6, but the source is a JSON file rather than a manually parsed CSV. Deciding how to represent nested fields — extracting specific values from a dictionary, joining a list into a string — is a design decision that depends on what analysis you need to perform.\n\n\nDataFrame operations (Chapter 5)\nOnce your data is in a DataFrame, the analysis uses the same operations you applied in Week 6: .describe() for summary statistics, .sort_values() for rankings, boolean indexing with & for multi-condition filtering, .value_counts() for category counts, and new columns created from calculations on existing columns. The difference is how you got there. In Week 6, you spent significant effort parsing the file before you could begin analysis. In Week 8, pd.read_csv() handles the loading, and you spend more time on the analysis itself."
+  },
+  {
+    "objectID": "weekly-overview/week-08/week-08-overview.html#week-8-tasks",
+    "href": "weekly-overview/week-08/week-08-overview.html#week-8-tasks",
+    "title": "Week 8 Guide",
+    "section": "Week 8 tasks",
+    "text": "Week 8 tasks\n\nComplete the Week 8 Assignment (game store sales and catalog analysis).\nRecord and submit your video reflection."
+  },
+  {
+    "objectID": "weekly-overview/week-08/week-08-overview.html#knowledge-goals-for-week-8",
+    "href": "weekly-overview/week-08/week-08-overview.html#knowledge-goals-for-week-8",
+    "title": "Week 8 Guide",
+    "section": "Knowledge goals for Week 8",
+    "text": "Knowledge goals for Week 8\nBy the end of Week 8, you should be able to:\n\nuse pd.read_csv() with parameters to load a CSV file into a DataFrame, handling missing data during loading\nidentify missing data and type inference issues by inspecting a loaded DataFrame with .info() and .dtypes\nparse a JSON file with nested structure using json.loads(), extract data into a list of dictionaries, and convert it to a DataFrame with pd.DataFrame()\nsave a DataFrame to a CSV file using to_csv() with index=False\napply boolean indexing, .describe(), .sort_values(), .value_counts(), and column operations to analyze DataFrame data\nexplain how pd.read_csv() relates to the manual parsing pipeline from earlier weeks"
+  },
+  {
     "objectID": "weekly-overview/week-07/week-07-overview.html",
     "href": "weekly-overview/week-07/week-07-overview.html",
     "title": "Week 7 Guide",
@@ -577,6 +605,78 @@
     ]
   },
   {
+    "objectID": "assignments/week-08/index.html",
+    "href": "assignments/week-08/index.html",
+    "title": "Week 8 Assignment",
+    "section": "",
+    "text": "Submission location: All items are submitted in D2L (Week 8 Dropbox).\nReading: Chapters 1–6 (cumulative).\nDatasets:",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 8 (Starts 2 MAR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-08/index.html#the-situation",
+    "href": "assignments/week-08/index.html#the-situation",
+    "title": "Week 8 Assignment",
+    "section": "The Situation",
+    "text": "The Situation\nYou work part-time at Hexagon Games, a small board game store that also hosts weekly game nights. The owner, Dana, is preparing for a quarterly business review with the store’s co-investor. She needs a clear picture of recent sales performance and wants the store’s game catalog organized into a usable format for inventory decisions.\nThe store’s point-of-sale system exports transaction data as a CSV file. Each record should contain seven fields: date, game name, quantity sold, unit price, customer type (member or walk-in), payment method, and the staff member who handled the sale. Dana has mentioned that the POS system sometimes logs incomplete transactions — missing payment methods, placeholder values where the staff member forgot to scan a membership card, and a few records that just didn’t export correctly.\nThe store also has a game catalog file from their distributor. This file is in JSON format and contains detailed information about each game in stock: name, category, player count range, estimated play time, complexity rating, and a list of game mechanics. The catalog has more structure than a simple spreadsheet — some fields contain nested information rather than single values.\nDana needs two things from you. First, a sales analysis from the CSV data that she can present at the review. Second, the catalog data pulled into a clean table so she can use it to evaluate which categories and complexity levels are represented in the store’s inventory.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 8 (Starts 2 MAR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-08/index.html#what-you-need-to-deliver",
+    "href": "assignments/week-08/index.html#what-you-need-to-deliver",
+    "title": "Week 8 Assignment",
+    "section": "What You Need to Deliver",
+    "text": "What You Need to Deliver\nYour analysis must address the following requirements. Use the skills and methods from Weeks 1–7 to complete this work.\n\nPart 1: Sales Data (CSV)\n\nData Loading and Quality Assessment\nLoad the sales log using pd.read_csv(). The file contains some placeholder values for missing data. After loading, inspect the result to assess data quality. If columns have unexpected data types or values that should be missing aren’t being treated as missing, determine which pd.read_csv() parameter can address this and reload the file. Your report should include:\n\nThe shape of the loaded DataFrame (rows and columns)\nThe output of .info() showing column types and non-null counts\nWhich columns contain missing values and how many are missing in each\nWhich columns changed data type because of missing values (and what type they became)\nA look at the first few rows to verify the data loaded correctly\n\n\n\nSales Analysis\nDana needs to understand the store’s recent performance. Using the loaded DataFrame:\n\nCompute summary statistics for unit price and quantity using .describe()\nCreate a new column calculating revenue for each transaction (quantity multiplied by unit price)\nShow the ten highest-revenue transactions, sorted from highest to lowest\nCount how many transactions came from each customer type\nCalculate the average revenue for member transactions versus walk-in transactions\n\n\n\nMulti-Condition Investigation\nDana has noticed that large walk-in purchases might represent event organizers buying for game nights at other venues. She wants to investigate transactions where the customer type was walk-in AND the quantity sold was 3 or more. For this subset:\n\nHow many transactions meet both conditions?\nWhat is the average revenue for these transactions?\nWhat games appear in this group?\n\n\n\nSave Cleaned Results\nSave the DataFrame with the new revenue column to a CSV file called sales_cleaned.csv. Make sure the default row index is not written to the file.\n\n\n\nPart 2: Game Catalog (JSON)\n\nLoad and Inspect the Catalog\nLoad the game catalog JSON file using Python’s json module. The catalog has a nested structure — not every field is a simple value. After loading:\n\nShow the raw Python structure for one game entry so you can see how the data is organized\nIdentify which fields are simple values and which are nested (lists or dictionaries)\nExplain briefly (in a markdown cell) what the nested fields contain\n\n\n\nBuild a Catalog DataFrame\nExtract the catalog data into a pandas DataFrame. Because of the nested structure, pd.read_json() will not handle this cleanly — you will need to work through the data manually. The catalog contains fields that are nested — lists or dictionaries inside each game entry. Your DataFrame must include information from these nested fields, not just the simple ones. For each nested field, decide how to represent it: extract a specific value (like minimum player count from a player count range) or convert a list into a comma-separated string. After creating the DataFrame:\n\nShow the shape and column names\nDisplay the first few rows\nShow .dtypes to confirm the columns have appropriate types\n\n\n\nCatalog Analysis\nWith the catalog in a DataFrame, answer the following for Dana’s inventory review:\n\nHow many games are in each category?\nWhat are the summary statistics for complexity rating using .describe()?\nWhich games have a complexity rating of 4 or higher? Show these rows sorted by complexity from highest to lowest.\nWhat is the average play time across all games in the catalog?",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 8 (Starts 2 MAR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-08/index.html#technical-requirements",
+    "href": "assignments/week-08/index.html#technical-requirements",
+    "title": "Week 8 Assignment",
+    "section": "Technical Requirements",
+    "text": "Technical Requirements\nYour Jupyter notebook should demonstrate the complete workflow from raw files to final analysis. The notebook must run successfully from start to finish using “Restart Kernel and Run All.”\nUse pd.read_csv() to load the CSV — do not manually parse it. Use json.loads() to parse the JSON into Python objects, then extract what you need and build a DataFrame with pd.DataFrame(). All analysis should use DataFrame operations — not raw loops for filtering or statistics. Use to_csv() to save your cleaned results — not manual file writing.\n\nData loading and output (Chapter 6): pd.read_csv() with parameters, to_csv() with index=False\nJSON parsing (Chapter 6): json.loads(), navigating nested structures, pd.DataFrame() from a list of dicts\nDataFrame operations (Chapter 5): .info(), .dtypes, .shape, .head(), boolean indexing with &, .describe(), .sort_values(), new columns from existing columns\nNotebook organization: markdown cells explaining each section, clear print statements, Restart Kernel and Run All",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 8 (Starts 2 MAR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-08/index.html#video-reflection",
+    "href": "assignments/week-08/index.html#video-reflection",
+    "title": "Week 8 Assignment",
+    "section": "Video Reflection",
+    "text": "Video Reflection\nRecord a short video demonstrating your understanding of this assignment.\nPart 1: Explain how you loaded and structured the game catalog\nWalk through how you went from the JSON file to a usable DataFrame. In your explanation, address:\n\nWhat the JSON structure looked like when you first loaded it\nWhich fields were nested and how you navigated to the data you needed\nHow you built the list of dictionaries to pass to pd.DataFrame()\nWhat decisions you made about handling nested fields (what you included, what you left out, and why)\n\nPart 2: Reflect on your learning\nChoose ONE of the following to discuss:\n\nChallenge or error: Describe a problem you encountered while completing this assignment, how you figured out what was wrong, and how you resolved it\nKey takeaway: Explain one important concept you learned or solidified through this assignment and why it matters for data work\n\nVideo submission requirements:\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week08Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week08Reflection in the link name",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 8 (Starts 2 MAR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-08/index.html#d2l-submission-checklist",
+    "href": "assignments/week-08/index.html#d2l-submission-checklist",
+    "title": "Week 8 Assignment",
+    "section": "D2L Submission Checklist",
+    "text": "D2L Submission Checklist\nSubmit the following items to the Week 8 Dropbox in D2L:\n\nNotebook file\n\nlastname_week08_assignment.ipynb\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week08Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)\n\nBefore you submit:\n\nRun “Restart Kernel and Run All” to confirm your notebook executes without errors\nVerify all required outputs are visible in the notebook\nCheck that your video link works and includes the correct filename",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 8 (Starts 2 MAR)"
+    ]
+  },
+  {
     "objectID": "assignments/week-07/week-07-assignments.html",
     "href": "assignments/week-07/week-07-assignments.html",
     "title": "Week 7 Assignments",
@@ -710,284 +810,64 @@
     "text": "Conclusion\n\nWhat You’ve Learned\nThis demo introduced pandas’s core concepts:\nSeries: - One-dimensional labeled arrays - Index provides meaningful labels for values - Supports vectorized operations like NumPy - Can be created from lists, dicts, or NumPy arrays\nDataFrames: - Two-dimensional labeled data structures - Each column is a Series - Rows and columns both have labels (indices) - Can be created from dicts, lists of dicts, or other sources\nSelection: - Use .loc[label] for label-based selection - Use .iloc[position] for position-based selection - Use boolean indexing to filter rows based on conditions\nAutomatic Alignment: - pandas aligns data by labels during operations - Mismatched indices result in NaN where labels don’t match - This prevents accidental misalignment errors\nStatistics: - Built-in methods like .mean(), .std(), .describe() - Can operate on entire DataFrames or individual columns - Understand axis=0 (column-wise) vs axis=1 (row-wise)\n\n\nThe NumPy Connection\npandas is built on top of NumPy: - Series and DataFrames store data in NumPy arrays internally - Vectorized operations work the same way - You can access the underlying array with .values - The axis parameter works the same way\nBut pandas adds: - Labels (indices) for rows and columns - Automatic alignment by labels - Mixed data types in different columns - More convenient methods for data manipulation\n\n\nWhat the Textbook Covers Next\nChapter 5 continues with topics not covered in this demo:\nReindexing: - Changing the index of a Series or DataFrame - .reindex() method - Forward-filling and back-filling missing values\nDropping entries: - .drop() to remove rows or columns - Axis parameter for specifying dimension\nAdvanced indexing: - Selecting with boolean Series - Setting values with indexing - The difference between views and copies (like NumPy)\nFunction application: - .apply() to use custom functions on data - Row-wise and column-wise applications\nSorting and ranking: - More sorting options - .rank() to assign rankings to values\nDescriptive statistics: - Correlation and covariance - .unique(), .value_counts() for categorical data - More aggregation methods\n\n\nApplying pandas in Week 6\nWeek 6 is a cumulative application week, similar to Week 4. You’ll apply these pandas basics to solve a complete data analysis problem: - Using Series and DataFrames to organize and analyze data - Applying selection methods to extract subsets - Computing statistics and summaries - Combining pandas concepts from Week 5 with prior weeks’ knowledge\npandas is the foundation for almost all data analysis work in Python. Understanding Series, DataFrames, selection, and alignment gives you the tools to work with any tabular data efficiently.\nThe key difference from Week 4: Instead of manually parsing CSVs and building lists of dictionaries, then converting to NumPy arrays, pandas provides a more powerful and convenient workflow for the same tasks."
   },
   {
-    "objectID": "assignments/week-04/index.html",
-    "href": "assignments/week-04/index.html",
-    "title": "Week 4 Assignment",
+    "objectID": "assignments/week-05/index.html",
+    "href": "assignments/week-05/index.html",
+    "title": "Week 5 Assignments",
     "section": "",
-    "text": "Submission location: All items are submitted in D2L (Week 4 Dropbox).\nReading: Chapters 1–4 (cumulative).\nDataset:  Download Sensor Data"
+    "text": "Here is the link to the Week 5 demo.\n Download Jupyter Notebook",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 5 (Starts 9 FEB)"
+    ]
   },
   {
-    "objectID": "assignments/week-04/index.html#the-situation",
-    "href": "assignments/week-04/index.html#the-situation",
-    "title": "Week 4 Assignment",
-    "section": "The Situation",
-    "text": "The Situation\nYou have been asked to analyze recent sensor data from an industrial manufacturing process. The facility runs a heated chemical process that requires careful monitoring of temperature, humidity, and pressure conditions. Six sensors (SENS_001 through SENS_006) continuously log readings every five minutes.\nThe operations team has reported intermittent issues with the sensor logging system over the past few days. Some records appear to be incomplete or contain invalid data. Your manager needs a clean analysis of the valid sensor readings to assess whether the process is operating within safe parameters.\nThe raw sensor log file has been exported as a CSV. Each record should contain six fields: timestamp, sensor ID, temperature (°F), humidity (%), pressure (PSI), and status. However, the export process is known to occasionally produce malformed records.\nManagement has specific concerns about process stability. Recent maintenance logs suggest that high-temperature events combined with low humidity may indicate a developing issue with the climate control system. They also want to understand the overall distribution of readings across the sensor network and verify that critical measurements remain within expected ranges."
-  },
-  {
-    "objectID": "assignments/week-04/index.html#what-you-need-to-deliver",
-    "href": "assignments/week-04/index.html#what-you-need-to-deliver",
-    "title": "Week 4 Assignment",
-    "section": "What You Need to Deliver",
-    "text": "What You Need to Deliver\nYour analysis must address the following requirements. Use the skills and methods from Weeks 1–4 to complete this work.\n\nData Quality Assessment\nStart by examining the raw data file. The operations team needs to know how reliable the sensor export has been. Your report should include:\n\nThe total number of records in the file\nHow many records were successfully parsed and validated\nHow many records contained errors and could not be processed\nA brief look at the structure of the cleaned data (show a few sample records)\nIdentification of which sensors are represented in the dataset\n\n\n\nProcess Temperature Analysis\nTemperature control is critical for this process. The normal operating range is 150–220°F, but readings above 190°F warrant closer attention. Management needs:\n\nSummary statistics for all valid temperature readings (mean, standard deviation, minimum, maximum)\nIdentification of how many readings exceeded 190°F\nThe actual temperature values that exceeded this threshold\n\n\n\nMulti-Condition Alert Investigation\nThe maintenance team suspects that certain combinations of conditions might indicate system stress. Specifically, they want to investigate readings where temperature exceeded 200°F AND humidity fell below 45%. For this subset of readings:\n\nHow many readings meet both conditions?\nWhat was the average pressure during these events?\n\n\n\nComparative Analysis\nTo better understand the data distribution, provide:\n\nThe five highest temperature readings recorded (sorted from highest to lowest)\nThe position (index) of each of these high-temperature readings in the dataset\nSummary statistics for humidity readings (mean, standard deviation, minimum, maximum)\nSummary statistics for pressure readings (mean, standard deviation, minimum, maximum)\n\n\n\nData Preservation\nFor future reference and potential audit purposes:\n\nSave the processed temperature data to a binary file (temperatures.npy)\nVerify that the saved data can be reloaded successfully"
-  },
-  {
-    "objectID": "assignments/week-04/index.html#technical-requirements",
-    "href": "assignments/week-04/index.html#technical-requirements",
-    "title": "Week 4 Assignment",
-    "section": "Technical Requirements",
-    "text": "Technical Requirements\nYour Jupyter notebook should demonstrate the complete workflow from raw file to final analysis. The notebook must run successfully from start to finish using “Restart Kernel and Run All.”\nFile handling and parsing (Week 2 skills):\nUse standard Python file I/O to read the CSV file. Parse each row into structured records using string methods and type conversion. Handle invalid records gracefully using try/except—the analysis should not crash if malformed rows are encountered. Track both successful parses and errors so you can report on data quality.\nData structures and extraction (Week 2 skills):\nStore cleaned records in an appropriate data structure. Use sets when you need to find distinct values. When extracting numeric measurements for analysis, build lists first before converting to arrays.\nNumPy analysis (Week 3 and Chapter 4 skills):\nConvert extracted measurements into NumPy arrays. Use vectorized operations and built-in statistical methods rather than loops. Apply boolean indexing to filter data based on conditions. Use array methods for sorting and saving/loading data.\nNotebook organization:\nStructure your notebook logically. Use markdown cells to explain what each section does. Include clear print statements showing your results. Make it easy to verify that you have addressed each requirement."
-  },
-  {
-    "objectID": "assignments/week-04/index.html#video-reflection",
-    "href": "assignments/week-04/index.html#video-reflection",
-    "title": "Week 4 Assignment",
-    "section": "Video Reflection",
-    "text": "Video Reflection\nRecord a short video (4-5 minutes) demonstrating your understanding of this assignment.\nPart 1: Explain your approach to the multi-condition alert investigation\nWalk through how you identified readings where temperature exceeded 200°F AND humidity fell below 45%. In your explanation, address:\n\nWhat the requirement was asking you to determine\nHow you broke this down into steps\nWhat each part of your boolean mask is checking\nWhat your results mean (how many readings matched, what the average pressure was)\n\nPart 2: Reflect on your learning\nChoose ONE of the following to discuss:\n\nChallenge or error: Describe a problem you encountered while completing this assignment, how you figured out what was wrong, and how you resolved it\nKey takeaway: Explain one important concept you learned or solidified through this assignment and why it matters for data work\n\nVideo submission requirements:\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week04Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week04Reflection in the link name"
-  },
-  {
-    "objectID": "assignments/week-04/index.html#d2l-submission-checklist",
-    "href": "assignments/week-04/index.html#d2l-submission-checklist",
-    "title": "Week 4 Assignment",
-    "section": "D2L Submission Checklist",
-    "text": "D2L Submission Checklist\nSubmit the following items to the Week 4 Dropbox in D2L:\n\nNotebook file\n\nlastname_week04_assignment.ipynb\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week04Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)\n\nBefore you submit:\n\nRun “Restart Kernel and Run All” to confirm your notebook executes without errors\nVerify all required outputs are visible in the notebook\nCheck that your video link works and includes the correct filename"
-  },
-  {
-    "objectID": "assignments/week-03/index.html",
-    "href": "assignments/week-03/index.html",
-    "title": "Week 3 Assignments",
-    "section": "",
-    "text": "Here is the link to the Week 3 demo.\n Download Jupyter Notebook"
-  },
-  {
-    "objectID": "assignments/week-03/index.html#part-1-reading",
-    "href": "assignments/week-03/index.html#part-1-reading",
-    "title": "Week 3 Assignments",
+    "objectID": "assignments/week-05/index.html#part-1-reading",
+    "href": "assignments/week-05/index.html#part-1-reading",
+    "title": "Week 5 Assignments",
     "section": "Part 1: Reading",
-    "text": "Part 1: Reading\nRead all of Chapter 4.\nChapter 4 introduces NumPy arrays and vectorized computation. The demo provides a hands-on walkthrough of the core concepts, with detailed explanations of how each operation works."
+    "text": "Part 1: Reading\nRead all of Chapter 5.\nChapter 5 introduces pandas, the primary library for working with tabular data in Python. You’ll learn about Series (1D labeled arrays) and DataFrames (2D labeled tables), how to select data by labels and positions, and how pandas automatically aligns data during operations. The demo provides hands-on practice with these concepts using concrete examples.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 5 (Starts 9 FEB)"
+    ]
   },
   {
-    "objectID": "assignments/week-03/index.html#part-2-work-through-the-week-3-demo",
-    "href": "assignments/week-03/index.html#part-2-work-through-the-week-3-demo",
-    "title": "Week 3 Assignments",
-    "section": "Part 2: Work through the Week 3 Demo",
-    "text": "Part 2: Work through the Week 3 Demo\nThe Week 3 demo covers:\n\nCreating arrays from lists and using generation functions\nUnderstanding array attributes (shape, dtype, ndim)\nPerforming vectorized operations (no loops needed)\nIndexing and slicing 1D and 2D arrays\nUsing boolean indexing to filter data\nComputing statistics with and without the axis parameter\nSorting arrays and finding unique values\nWorking with random data\nSaving and loading arrays"
+    "objectID": "assignments/week-05/index.html#part-2-work-through-the-week-5-demo",
+    "href": "assignments/week-05/index.html#part-2-work-through-the-week-5-demo",
+    "title": "Week 5 Assignments",
+    "section": "Part 2: Work through the Week 5 Demo",
+    "text": "Part 2: Work through the Week 5 Demo\nThe Week 5 demo covers:\n\nCreating and working with Series (1D labeled arrays with index)\nSeries attributes and operations (.iloc, .values, vectorization, boolean indexing)\nCreating DataFrames from dictionaries, lists of dictionaries, and understanding structure\nDataFrame attributes (.shape, .dtypes, .columns, .head(), .info())\nSelection methods: .loc for labels, .iloc for positions, single vs double brackets\nBoolean indexing for filtering data with conditions, using & and | operators\nAutomatic alignment: how pandas matches data by labels and handles mismatched indices with NaN\nStatistical methods: .mean(), .describe(), understanding the axis parameter, .sort_values()",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 5 (Starts 9 FEB)"
+    ]
   },
   {
-    "objectID": "assignments/week-03/index.html#part-3-d2l-quiz",
-    "href": "assignments/week-03/index.html#part-3-d2l-quiz",
-    "title": "Week 3 Assignments",
+    "objectID": "assignments/week-05/index.html#part-3-d2l-quiz",
+    "href": "assignments/week-05/index.html#part-3-d2l-quiz",
+    "title": "Week 5 Assignments",
     "section": "Part 3: D2L Quiz",
-    "text": "Part 3: D2L Quiz\nComplete the Week 3 D2L quiz (Chapter 4 concepts).\nThe quiz covers:\n\nCore concepts: arrays vs. lists, vectorization, dtypes, views vs. copies\nOperations: indexing, slicing, boolean indexing, statistical methods\nPractical skills: when to use different array creation methods, understanding axis parameter, file I/O choices"
+    "text": "Part 3: D2L Quiz\nComplete the Week 5 D2L quiz (pandas concepts).\nThe quiz covers:\n\nSeries fundamentals: creation, default index, custom labels, dictionary to Series, display format\nSeries operations: .iloc accessor, label-based access, vectorized operations, boolean indexing\nDataFrame fundamentals: creation from dictionaries and lists, .set_index(), mixed data types, columns as Series\nDataFrame structure: .shape, .dtypes, .columns, .head(), .tail(), .info()\nSelection methods: .loc vs .iloc, single vs double brackets, boolean indexing, multiple conditions with & and |\nAutomatic alignment: behavior with mismatched indices, NaN handling, importance for data integrity\nOperations and statistics: creating new columns, axis parameter, .describe(), .sort_values()\nTool progression: understanding how pandas builds on NumPy (connection to Week 3)",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 5 (Starts 9 FEB)"
+    ]
   },
   {
-    "objectID": "assignments/week-03/index.html#d2l-submission-checklist",
-    "href": "assignments/week-03/index.html#d2l-submission-checklist",
-    "title": "Week 3 Assignments",
+    "objectID": "assignments/week-05/index.html#d2l-submission-checklist",
+    "href": "assignments/week-05/index.html#d2l-submission-checklist",
+    "title": "Week 5 Assignments",
     "section": "D2L submission checklist",
-    "text": "D2L submission checklist\nComplete the following in D2L:\n\nWeek 3 D2L quiz (no file uploads required this week)\n\nNote: This week focuses on reading Chapter 4, understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on building solid conceptual understanding of NumPy fundamentals that will support everything that follows."
-  },
-  {
-    "objectID": "assignments/week-02/index.html",
-    "href": "assignments/week-02/index.html",
-    "title": "Week 2 Assignments",
-    "section": "",
-    "text": "Submission location: All files are submitted in D2L (Week 2 Dropbox)."
-  },
-  {
-    "objectID": "assignments/week-02/index.html#week-2-assignments",
-    "href": "assignments/week-02/index.html#week-2-assignments",
-    "title": "Week 2 Assignments",
-    "section": "",
-    "text": "Submission location: All files are submitted in D2L (Week 2 Dropbox)."
-  },
-  {
-    "objectID": "assignments/week-02/index.html#part-1-reading",
-    "href": "assignments/week-02/index.html#part-1-reading",
-    "title": "Week 2 Assignments",
-    "section": "Part 1: Reading",
-    "text": "Part 1: Reading\nRead all of Chapter 3.\nPay special attention to:\n\nFile I/O basics: open(...), read mode vs write mode, encoding=\"utf-8\"\nWorking with text files as rows: header vs data lines, “one line = one record”\nCore data structures used in the demo: lists, dictionaries, sets, tuples\nExceptions and try/except as a workflow for skipping bad rows without crashing\nSorting with key= (including lambda)\nGenerators and yield (streaming / row-by-row processing)"
-  },
-  {
-    "objectID": "assignments/week-02/index.html#part-2-week-2-demo-activity",
-    "href": "assignments/week-02/index.html#part-2-week-2-demo-activity",
-    "title": "Week 2 Assignments",
-    "section": "Part 2: Week 2 Demo Activity",
-    "text": "Part 2: Week 2 Demo Activity\nYou will make two small changes to the Week 2 demo and submit evidence outputs showing what happened.\n\nTask A: Trigger and observe a parsing error\nIn the “Quick check: confirm the parser works on one line” section:\n\nReplace the valid sample_line with a malformed line that should fail parsing.\n\nMissing a field: 2026-01-19T09:01:10,alice,/home,200\nNot enough commas: bad_row_with_no_commas\nNon-numeric ms: 2026-01-19T09:01:10,alice,/home,200,not_a_number\nExtra field: 2026-01-19T09:01:10,alice,/home,200,34,EXTRA\n\nRun the cell and confirm you see an error message.\nChange the line back to the valid example and re-run successfully.\n\nWhat to submit (evidence):\n\nA screenshot showing the error message output for one malformed line.\n\nRequired filename:\n\nlastname_week02_taskA.png\n\n\n\nTask B: Make one small data change and observe how results change\nChoose ONE option below.\n\nOption 1: Add one valid row and observe how counts change\n\nAdd one new valid row to raw_lines in the dataset-creation section. Example format (must have 5 fields): 2026-01-19T09:02:00,alice,/home,200,35\nRe-run the cells needed to rebuild the cleaned data and the endpoint counts.\nShow that the results changed (for example, endpoint counts or the “top endpoints” output).\n\nEvidence to capture:\n\nOutput showing the updated counts or updated top_endpoints.\n\n\n\nOption 2: Change the “error” threshold and compare summaries\n\nIn the “Compare summaries on different subsets of the data” section, change the error definition from:\n\nstatus &gt;= 400 (errors) to:\nstatus &gt;= 500 (errors)\n\nRe-run the cell and compare the three printed summaries.\n\nEvidence to capture:\n\nOutput showing the updated summaries for All / Success only / Errors only.\n\nWhat to submit (evidence):\n\nA screenshot showing the updated output.\n\nRequired filename:\n\nlastname_week02_taskB.png"
-  },
-  {
-    "objectID": "assignments/week-02/index.html#part-3-d2l-quiz",
-    "href": "assignments/week-02/index.html#part-3-d2l-quiz",
-    "title": "Week 2 Assignments",
-    "section": "Part 3: D2L Quiz",
-    "text": "Part 3: D2L Quiz\nComplete the Week 2 D2L quiz.\nThe quiz focuses on:\n\nwhat “parsing” means and what the parser returns\nwhy we use try/except when reading rows\nwhen to use a set vs a dictionary\nhow the .get(..., 0) + 1 counting pattern works\nwhat dict.items() returns (tuples)\nhow sorting with key= works, and what the lambda returns\nwhat a generator does, what yield changes, and when streaming is useful"
-  },
-  {
-    "objectID": "assignments/week-02/index.html#d2l-submission-checklist",
-    "href": "assignments/week-02/index.html#d2l-submission-checklist",
-    "title": "Week 2 Assignments",
-    "section": "D2L submission checklist",
-    "text": "D2L submission checklist\nSubmit two screenshot files to the Week 2 Dropbox (upload as separate files, not a zip):\n\nlastname_week02_taskA.png\nlastname_week02_taskB.png\n\nAlso complete:\n\nWeek 2 D2L quiz"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
-    "objectID": "assignments/week-01/index.html",
-    "href": "assignments/week-01/index.html",
-    "title": "Week 1 Assignments",
-    "section": "",
-    "text": "Submission location: All items are submitted in D2L (Week 1 dropboxes). Reading: Chapter 1 and Chapter 2 (complete)."
-  },
-  {
-    "objectID": "assignments/week-01/index.html#part-1-reading",
-    "href": "assignments/week-01/index.html#part-1-reading",
-    "title": "Week 1 Assignments",
-    "section": "Part 1: Reading",
-    "text": "Part 1: Reading\nRead all of Chapter 1 and all of Chapter 2.\nPay special attention to:\n\nChapter 1.3 Essential Python Libraries\nChapter 1.4 Installation and Setup\nChapter 1.6 Navigating This Book (import conventions, how to read examples)\nChapter 2.1–2.2 Interpreter + IPython/Jupyter workflow (tab completion, ? help)"
-  },
-  {
-    "objectID": "assignments/week-01/index.html#part-2-setup",
-    "href": "assignments/week-01/index.html#part-2-setup",
-    "title": "Week 1 Assignments",
-    "section": "Part 2: Setup",
-    "text": "Part 2: Setup\nSubmit the following screenshots (each as a separate file):\n\nGit installed Screenshot name: lastname_git-version.png Show the output of:\n\n\ngit --version\n\n\nCourse folders created Screenshot name: lastname_course-folders.png Show File Explorer displaying:\n\n\nC:\\cmsc-1217\\course-work\\\nC:\\cmsc-1217\\book\\\nC:\\cmsc-1217\\data\\\n\n\nBook files cloned Screenshot name: lastname_book-clone.png Show either:\n\n\nthe successful git clone output, or\nFile Explorer showing: C:\\cmsc-1217\\book\\pydata-book\\\n\n\nConda environment exists Screenshot name: lastname_conda-env-list.png Show the output of:\n\n\nconda info --envs\n\n\nCore packages installed Screenshot name: lastname_pandas-version.png Show the output of:\n\n\npython -c \"import pandas as pd; print(pd.__version__)\"\n\n(We will keep a consistent pandas version for compatibility with course/book notebooks.)"
-  },
-  {
-    "objectID": "assignments/week-01/index.html#part-3-jupyterlab-practice",
-    "href": "assignments/week-01/index.html#part-3-jupyterlab-practice",
-    "title": "Week 1 Assignments",
-    "section": "Part 3: JupyterLab practice",
-    "text": "Part 3: JupyterLab practice\n\nA) Launch JupyterLab in the correct folder\nFrom Anaconda Prompt:\n\nconda activate pydata-book\ncd C:\\cmsc-1217\\course-work\njupyter lab\n\n\n\nB) Create a week01 folder in cmsc-1217 and then create and run a notebook\nCreate: week01-notebook-practice.ipynb in course-work\\week01.\nRun these cells:\nimport sys\nsys.executable\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmessage = \"Notebooks run Python too\"\nmessage\nx = 10\nx + 5\nThen use JupyterLab to:\n\nRestart the kernel\nRun all cells\n\nFinally, do:\n\nTab completion: type np.random. and use completion\nHelp/introspection:\n\nnp.random.standard_normal?\nThese behaviors are part of the Chapter 2 IPython/Jupyter workflow.\n\n\nRequired screenshots\n\nJupyterLab opened in course-work Screenshot name: lastname_jupyterlab-course-work.png Show the JupyterLab file browser open in C:\\cmsc-1217\\course-work\\week01.\nsys.executable output Screenshot name: lastname_sys-executable.png\nIntrospection output (?) Screenshot name: lastname_ipython-help.png"
-  },
-  {
-    "objectID": "assignments/week-01/index.html#part-4-ipython-in-a-terminal",
-    "href": "assignments/week-01/index.html#part-4-ipython-in-a-terminal",
-    "title": "Week 1 Assignments",
-    "section": "Part 4: IPython in a terminal",
-    "text": "Part 4: IPython in a terminal\nOpen a new Anaconda Prompt tab/window:\n\nconda activate pydata-book\nipython\n\nRun at least one small example that produces an In [ ] and an Out [ ] (for example, assign a variable and then evaluate it).\n\nIPython running Screenshot name: lastname_ipython-prompt.png Show the IPython prompt and at least one In [ ] / Out [ ] interaction."
-  },
-  {
-    "objectID": "assignments/week-01/index.html#part-5-d2l-quiz",
-    "href": "assignments/week-01/index.html#part-5-d2l-quiz",
-    "title": "Week 1 Assignments",
-    "section": "Part 5: D2L quiz",
-    "text": "Part 5: D2L quiz\nComplete the D2L Chapter 1 and Chapter 2 quiz."
-  },
-  {
-    "objectID": "assignments/week-01/index.html#part-6-video-reflection",
-    "href": "assignments/week-01/index.html#part-6-video-reflection",
-    "title": "Week 1 Assignments",
-    "section": "Part 6: Video reflection",
-    "text": "Part 6: Video reflection\n\nVideo Submission Instructions\nRecord a short video of yourself explaining your understanding of the Week 1 workflow. Focus on explaining concepts clearly and using correct terminology rather than reading text from the screen.\nIn your video, address:\n\nWhat feels different from running .py scripts in an editor\nWhat the kernel is (in your own words)\nWhy “restart the kernel” and “run all” are useful habits\n\nRequirements\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week01Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week01Reflectionin the link name. This will appear if you copy the link."
-  },
-  {
-    "objectID": "assignments/week-01/index.html#d2l-submission-checklist",
-    "href": "assignments/week-01/index.html#d2l-submission-checklist",
-    "title": "Week 1 Assignments",
-    "section": "D2L submission checklist",
-    "text": "D2L submission checklist\nSubmit the following items to the Week 1 D2L dropboxes.\n\nScreenshot files (upload as separate files, not a zip)\n\nlastname_git-version.png\nlastname_course-folders.png\nlastname_book-clone.png\nlastname_conda-env-list.png\nlastname_pandas-version.png\nlastname_jupyterlab-course-work.png\nlastname_sys-executable.png\nlastname_ipython-help.png\nlastname_ipython-prompt.png\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week01Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html",
-    "href": "assignments/week-02/week-2-demo.html",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "",
-    "text": "Download Jupyter Notebook\nThis demo cleans and summarizes a small “messy” dataset.\nThe goals are to practice:"
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#create-a-small-dataset-and-save-it-to-a-file",
-    "href": "assignments/week-02/week-2-demo.html#create-a-small-dataset-and-save-it-to-a-file",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Create a small dataset and save it to a file",
-    "text": "Create a small dataset and save it to a file\nWe’ll generate a fake server log file. Some rows are intentionally messy: - missing fields - non-numeric values - extra whitespace\nWe’re doing this so we can practice file I/O (open, read/write) and then practice data structures + functions on the contents.\n\nimport os\n\n# Make a folder named \"data\" if it doesn't already exist\nos.makedirs(\"data\", exist_ok=True)\n\nfilename = \"data/tiny_access_log.csv\"\n\nraw_lines = [\n    \"timestamp,user,endpoint,status,ms\",\n    \"2026-01-19T09:01:10,alice,/home,200,34\",\n    \"2026-01-19T09:01:12,bob,/login,401,18\",\n    \"2026-01-19T09:01:13,alice,/items,200,51\",\n    \"2026-01-19T09:01:15,carol,/items,500,73\",\n    \"2026-01-19T09:01:16,dan,/home,200,not_a_number\",   # bad ms\n    \"2026-01-19T09:01:20,erin,/search,200,44\",\n    \"2026-01-19T09:01:21,  frank  ,/search,200, 40  \",  # extra whitespace\n    \"2026-01-19T09:01:25,alice,/checkout,200,62\",\n    \"2026-01-19T09:01:26,bob,/items,200\",               # missing ms\n    \"bad_row_with_no_commas\",                           # completely malformed\n]\n\nwith open(filename, \"w\", encoding=\"utf-8\") as f:\n    for line in raw_lines:\n        f.write(line + \"\\n\")\n\nfilename\n\n'data/tiny_access_log.csv'\n\n\nLoading the tool we need\n\nimport os loads Python’s standard library module for interacting with the operating system.\n\nCreating a folder\n\nos.makedirs(\"data\", exist_ok=True) creates a folder named data.\nexist_ok=True means: if the folder already exists, don’t raise an error.\n\nChoosing a filename\n\nfilename = \"data/tiny_access_log.csv\" stores the path to our file as a string.\nWe use a string path because Chapter 3’s file section is built around passing filenames into open(...).\n\nBuilding the dataset in memory\n\nraw_lines = [...] creates a list of strings.\nEach string is one line we plan to write to the file.\nThe first line is a header: timestamp,user,endpoint,status,ms.\n\nWhy the data is “messy” Some rows are intentionally flawed so we can practice robust parsing later:\n\n\"not_a_number\" will fail when we try to convert the ms field to an integer.\nOne row is missing a field (no ms value at the end).\nOne row has extra whitespace around values.\nOne row is completely malformed (no commas).\n\nOpening the file (write mode)\n\nwith open(filename, \"w\", encoding=\"utf-8\") as f: opens the file for writing.\n\"w\" means “write mode” (create/overwrite the file).\nencoding=\"utf-8\" ensures the file is written as standard UTF-8 text.\nThe with statement ensures the file closes automatically when we finish.\n\nWriting each line\n\nfor line in raw_lines: loops through the list of lines.\nf.write(line + \"\\n\") writes the line and adds a newline so each entry becomes its own line in the file.\n\nShowing the result\n\nThe final filename prints the file path so you can confirm where it was created."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#read-the-file-and-preview-the-raw-lines",
-    "href": "assignments/week-02/week-2-demo.html#read-the-file-and-preview-the-raw-lines",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Read the file and preview the raw lines",
-    "text": "Read the file and preview the raw lines\nNow that we’ve created the file, we need to look at what’s inside it. We’ll read the entire file into a single string and print it. That lets us see the header row, the expected rows, and the intentionally messy rows we’ll need to handle when we start parsing.\n\n# Read the entire file as one string\nwith open(filename, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n\nprint(text)\n\ntimestamp,user,endpoint,status,ms\n2026-01-19T09:01:10,alice,/home,200,34\n2026-01-19T09:01:12,bob,/login,401,18\n2026-01-19T09:01:13,alice,/items,200,51\n2026-01-19T09:01:15,carol,/items,500,73\n2026-01-19T09:01:16,dan,/home,200,not_a_number\n2026-01-19T09:01:20,erin,/search,200,44\n2026-01-19T09:01:21,  frank  ,/search,200, 40  \n2026-01-19T09:01:25,alice,/checkout,200,62\n2026-01-19T09:01:26,bob,/items,200\nbad_row_with_no_commas\n\n\n\nOpening the file for reading\n\nwith open(filename, \"r\", encoding=\"utf-8\") as f: opens the file named by filename.\n\"r\" means read mode (we are not changing the file).\nencoding=\"utf-8\" tells Python how to interpret the bytes in the file as text.\nThe with statement ensures the file closes automatically when we’re done.\n\nReading the full contents\n\ntext = f.read() reads the entire file into a single string named text.\n\nPreviewing what we read\n\nprint(text) prints the string so we can verify:\n\nthe header line is present\neach record is on its own line\nthe “messy” rows are visible (missing fields, bad values, etc.)"
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#parse-one-row-into-a-dictionary",
-    "href": "assignments/week-02/week-2-demo.html#parse-one-row-into-a-dictionary",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Parse one row into a dictionary",
-    "text": "Parse one row into a dictionary\nWe’ve confirmed that the file exists and we’ve seen the raw text. The next goal is to turn each line of text into something we can work with programmatically. We’ll write a function that parses one line at a time. In programming, parsing means taking unstructured text (like a line from a file) and breaking it into meaningful pieces. The result is usually a more structured object (like a list or a dictionary) that Python can work with more easily for counting, filtering, and summarizing.\nWe are parsing each line because we want to build a clean dataset in memory. Each line in the file represents one “record” (one request), and we want to convert that record into a dictionary so we can later do analytics tasks like counting users, finding the most common endpoints, and computing average response times. Here we’ll represent each row as a dictionary:\n\nkeys = column names (timestamp, user, endpoint, status, ms)\nvalues = the data from that row (with numeric fields converted to integers)\n\nThis parser function also helps us detect problems in the raw data. If a line is missing fields, has extra fields, or contains values that can’t be converted to numbers, this function will raise an error. In the next section, we’ll use try/except to catch those errors so we can skip bad rows without stopping the whole program.\n\ndef parse_log_line(line):\n    # Split the line into fields and remove extra whitespace around each field\n    parts = [p.strip() for p in line.split(\",\")]\n\n    # We expect exactly 5 fields: timestamp, user, endpoint, status, ms\n    if len(parts) != 5:\n        raise ValueError(f\"Expected 5 fields, got {len(parts)}: {line!r}\")\n\n    # Unpack the five fields into separate variables\n    timestamp, user, endpoint, status, ms = parts\n\n    # Build a dictionary for one record (one row)\n    return {\n        \"timestamp\": timestamp,\n        \"user\": user,\n        \"endpoint\": endpoint,\n        \"status\": int(status),\n        \"ms\": int(ms),\n    }\n\nList comprehension vs a normal loop (same result)\nA list comprehension is often just a shorter way to write a loop that builds a list.\nFor example, these two blocks do the same thing (they both build a list of users).\nList comprehension version\nusers = [r[\"user\"] for r in good_rows]\nEquivalent loop version\nusers = []\nfor r in good_rows:\n    users.append(r[\"user\"])\nIn both cases:\n\nwe loop over each record dictionary r in good_rows\nwe take the \"user\" value from that dictionary\nwe add it to the users list\n\nThe list comprehension is just the “compact form” of the same idea.\nDefining a function\n\ndef parse_log_line(line): creates a function named parse_log_line.\n\ndef is the keyword Python uses to start a function definition.\nparse_log_line is the function name we’ll call later.\nline is a parameter: when we call the function, we will pass in one line of text from the file.\n\nEverything indented under the def line is the function body (the steps Python runs when the function is called).\nThe return statement ends the function and sends a value back to the caller.\n\nIn this case, the function returns a dictionary representing one parsed row.\n\n\nWhy we’re writing a parser function\n\nThis file is still just text.\nA parser function gives us a repeatable way to turn a line into a structured record.\nOnce each row is a dictionary, we can count, filter, summarize, and sort using normal Python tools.\n\nSplitting the line into fields\n\nline.split(\",\") breaks the row into pieces wherever there is a comma.\n[p.strip() for p in ...] removes extra spaces around each field.\n\nThis matters because our file includes rows with extra whitespace (for example: \"  frank  \" and \" 40  \").\n\n\nChecking that the row has the right number of fields\n\nif len(parts) != 5: checks whether the row has exactly 5 fields.\nraise ValueError(...) stops and reports a clear error message if the row is malformed.\n\nThis catches rows that are missing a field or don’t have commas at all.\n\n\nUnpacking the fields\n\ntimestamp, user, endpoint, status, ms = parts assigns each piece to a named variable.\nUnpacking is convenient here because it keeps the rest of the code readable.\n\nBuilding a dictionary record\n\nreturn {...} creates one dictionary representing one row.\nint(status) converts the status code from text to an integer (e.g., \"200\" → 200).\nint(ms) converts the response time from text to an integer.\n\nThis will fail for \"not_a_number\" — and that’s okay. In the next section, we’ll use try/except so we can skip bad rows without crashing the whole process."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#quick-check-confirm-the-parser-works-on-one-line",
-    "href": "assignments/week-02/week-2-demo.html#quick-check-confirm-the-parser-works-on-one-line",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Quick check: confirm the parser works on one line",
-    "text": "Quick check: confirm the parser works on one line\nThis function we just created doesn’t produce output by itself. To confirm it works, we’ll call it once with a known-good line and display the result.\n\nsample_line = \"2026-01-19T09:01:10,alice,/home,200,34\"\nparse_log_line(sample_line)\n\n{'timestamp': '2026-01-19T09:01:10',\n 'user': 'alice',\n 'endpoint': '/home',\n 'status': 200,\n 'ms': 34}\n\n\nTesting the function\n\nsample_line = ... creates one correctly formatted row.\nparse_log_line(sample_line) runs the parser and returns a dictionary.\nThe output should be a dictionary with the expected keys."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#read-the-file-safely-and-build-a-clean-list-of-rows",
-    "href": "assignments/week-02/week-2-demo.html#read-the-file-safely-and-build-a-clean-list-of-rows",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Read the file safely and build a clean list of rows",
-    "text": "Read the file safely and build a clean list of rows\nReal-world datasets almost always contain a few rows that are incomplete, malformed, or inconsistent. Instead of letting one bad row crash the whole program, we want a workflow that:\n\nkeeps the rows we can parse\nskips the rows we can’t parse\nrecords how many problems we saw (and a few examples) so we can diagnose the data later\n\nIn this step, we’ll read the file line-by-line, use the parse_log_line(...) function on each row, and build a clean dataset called good_rows.\n\ngood_rows = []\nbad_count = 0\nerrors = []\n\n# Read all lines from the file (each line is one string)\nwith open(filename, \"r\", encoding=\"utf-8\") as f:\n    lines = f.read().splitlines()\n\nheader = lines[0]\ndata_lines = lines[1:]\n\nfor line in data_lines:\n    try:\n        row = parse_log_line(line)\n        good_rows.append(row)\n    except Exception as e:\n        bad_count += 1\n        errors.append(str(e))\n\nprint(\"Good rows:\", len(good_rows))\nprint(\"Bad rows:\", bad_count)\nprint(\"\\nErrors:\")\nfor msg in errors[:3]:\n    print(\"-\", msg)\n\nGood rows: 7\nBad rows: 3\n\nErrors:\n- invalid literal for int() with base 10: 'not_a_number'\n- Expected 5 fields, got 4: '2026-01-19T09:01:26,bob,/items,200'\n- Expected 5 fields, got 1: 'bad_row_with_no_commas'\n\n\nSetting up containers for our results\n\ngood_rows = [] is a list that will store the successfully parsed rows.\n\nEach item we append to this list will be a dictionary (one record).\n\nbad_count = 0 will count how many rows failed to parse.\nerrors = [] is a list that will store error messages from failed rows (for debugging).\n\nReading the file into a list of lines\n\nwith open(filename, \"r\", encoding=\"utf-8\") as f: opens the file for reading.\nf.read() reads the whole file as one string.\n.splitlines() turns that one string into a list where each element is one line (without the newline characters).\n\nSeparating the header from the data\n\nheader = lines[0] stores the header line (the column names).\ndata_lines = lines[1:] stores everything after the header (the actual records).\nWe separate these because the header is not a data row and shouldn’t be parsed into a record.\n\nParsing each line with error handling\n\nfor line in data_lines: loops through each raw record line.\ntry: tells Python: “attempt to parse this line.”\nrow = parse_log_line(line) runs our parser and returns a dictionary if successful.\ngood_rows.append(row) adds the dictionary to our clean dataset.\n\nHandling bad rows\n\nexcept Exception as e: runs if anything goes wrong (missing fields, non-numeric values, etc.).\nbad_count += 1 increments our count of failures.\nerrors.append(str(e)) saves a readable version of the error message.\n\nPrinting a summary\n\nThe print(...) lines show:\n\nhow many rows we successfully kept\nhow many rows we had to skip\na few example error messages so we can see what went wrong\n\n\nWhat we built\n\nAfter this cell runs, good_rows is a list of dictionaries.\nFor example, good_rows[0] will be one dictionary record that looks like: {'timestamp': '2026-01-19T09:01:10', 'user': 'alice', 'endpoint': '/home', 'status': 200, 'ms': 34}"
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#quick-look-at-the-cleaned-data",
-    "href": "assignments/week-02/week-2-demo.html#quick-look-at-the-cleaned-data",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Quick look at the cleaned data",
-    "text": "Quick look at the cleaned data\nAt this point we’ve turned the file into a clean dataset in memory: good_rows, a list of dictionary records. Before we start counting or summarizing, it’s a good idea to preview a few records and confirm they look the way we expect.\n\ngood_rows[:3]\n\n[{'timestamp': '2026-01-19T09:01:10',\n  'user': 'alice',\n  'endpoint': '/home',\n  'status': 200,\n  'ms': 34},\n {'timestamp': '2026-01-19T09:01:12',\n  'user': 'bob',\n  'endpoint': '/login',\n  'status': 401,\n  'ms': 18},\n {'timestamp': '2026-01-19T09:01:13',\n  'user': 'alice',\n  'endpoint': '/items',\n  'status': 200,\n  'ms': 51}]\n\n\nSelecting a small sample\n\ngood_rows[:3] uses list slicing to take a piece (a “slice”) of the list.\nSlicing has the form list[start:stop]:\n\nstart is the index where you begin (inclusive)\nstop is the index where you stop (exclusive)\n\nIn this case, we left start blank, so Python assumes we start at the beginning (0).\nThe stop value is 3, so this returns items at indexes 0, 1, and 2.\n\nWhat you should see\n\nThe output should be a list containing three dictionaries.\nEach dictionary should have the same keys:\n\ntimestamp, user, endpoint, status, ms\n\nThe values for status and ms should be integers (not strings).\nIf this looks right, we can confidently start doing analysis tasks like counting, filtering, and summarizing."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#extract-columns-from-our-records-list-comprehensions",
-    "href": "assignments/week-02/week-2-demo.html#extract-columns-from-our-records-list-comprehensions",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Extract “columns” from our records (list comprehensions)",
-    "text": "Extract “columns” from our records (list comprehensions)\nRight now, our dataset is a list of dictionaries (good_rows). That’s great for keeping each record together, but many analytics tasks are easier when you work with one field at a time—like a list of all users or a list of all endpoints.\nIn a spreadsheet, these would be columns. We’ll pull out these columns using list comprehensions.\nWhat does “endpoint” mean? In web-style logs, an endpoint is the path being requested on a website or service—like /home, /login, or /search. You can think of it as “which page or resource was accessed.”\n\nusers = [r[\"user\"] for r in good_rows]\nendpoints = [r[\"endpoint\"] for r in good_rows]\nstatuses = [r[\"status\"] for r in good_rows]\ntimes_ms = [r[\"ms\"] for r in good_rows]\n\nprint(\"First 5 users:     \", users[:5])\nprint(\"First 5 endpoints: \", endpoints[:5])\nprint(\"First 5 statuses:  \", statuses[:5])\nprint(\"First 5 times (ms):\", times_ms[:5])\n\nFirst 5 users:      ['alice', 'bob', 'alice', 'carol', 'erin']\nFirst 5 endpoints:  ['/home', '/login', '/items', '/items', '/search']\nFirst 5 statuses:   [200, 401, 200, 500, 200]\nFirst 5 times (ms): [34, 18, 51, 73, 44]\n\n\nExtracting one field from each record\n\nusers = [r[\"user\"] for r in good_rows]\n\nfor r in good_rows loops through each record dictionary.\nr[\"user\"] pulls the value associated with the \"user\" key.\nThe result is a list containing the user value from every record.\n\n\nThe other lines do the same thing for other keys:\n\nendpoints = [r[\"endpoint\"] for r in good_rows] → list of endpoints (requested paths)\nstatuses = [r[\"status\"] for r in good_rows] → list of HTTP-style status codes\ntimes_ms = [r[\"ms\"] for r in good_rows] → list of response times in milliseconds\n\nPrinting a readable preview\n\nInstead of printing the entire lists, we print just the first 5 values from each list.\nusers[:5], endpoints[:5], etc. use slicing to take the first five items so the output stays readable.\n\nThis gives us clean “columns” we can now use for analysis tasks like unique counts, frequency tables, and summary statistics."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#using-sets-to-find-uniqueness",
-    "href": "assignments/week-02/week-2-demo.html#using-sets-to-find-uniqueness",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Using Sets to find uniqueness",
-    "text": "Using Sets to find uniqueness\nWhen you’re exploring a dataset, a question you often ask is: how many distinct values do we have? For example:\n\nHow many different users appear in the log?\nHow many different endpoints were accessed?\n\nA set is a built-in Python collection that stores unique values only. If you add the same value multiple times, the set keeps just one copy. That makes sets perfect for “distinct count” questions.\n\nunique_users = set(users)\nunique_endpoints = set(endpoints)\n\nprint(\"Unique users:\", unique_users)\nprint(\"Unique endpoints:\", unique_endpoints)\nprint(\"Number of unique users:\", len(unique_users))\nprint(\"Number of unique endpoints:\", len(unique_endpoints))\n\nUnique users: {'erin', 'alice', 'frank', 'bob', 'carol'}\nUnique endpoints: {'/login', '/search', '/home', '/checkout', '/items'}\nNumber of unique users: 5\nNumber of unique endpoints: 5\n\n\nWhat a set is (quick refresher)\n\nA list can contain duplicates: [\"alice\", \"alice\", \"bob\"]\nA set automatically removes duplicates: {\"alice\", \"bob\"}\nSets are also great for fast membership tests (for example: \"alice\" in unique_users).\n\nConverting a list into a set\n\nunique_users = set(users) converts the users list into a set.\n\nIf \"alice\" appears 10 times in the list, it appears once in the set.\n\nunique_endpoints = set(endpoints) does the same thing for endpoints.\n\nPrinting the sets\n\nprint(\"Unique users:\", unique_users) shows the distinct user names.\nprint(\"Unique endpoints:\", unique_endpoints) shows the distinct endpoints.\n\nNote: sets do not keep a guaranteed order, so the values may appear in a different order each time you run it.\nCounting distinct values\n\nlen(unique_users) is the number of distinct users.\nlen(unique_endpoints) is the number of distinct endpoints.\n\nThis gives us a quick “shape” of the data: how many different users and endpoints show up in our log."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#counts-using-dictionaries-a-simple-group-by",
-    "href": "assignments/week-02/week-2-demo.html#counts-using-dictionaries-a-simple-group-by",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Counts using dictionaries (a simple “group by”)",
-    "text": "Counts using dictionaries (a simple “group by”)\nAnother common analytical task is to count how often different values appear. In pandas or SQL, you might call this a “group by.” In Python, a dictionary is a natural tool for this:\n\nkeys = the category we’re counting (status code, endpoint, user, etc.)\nvalues = the count so far\n\nA helpful method for counting is the dictionary .get().\n\nCount requests by status code\n\ncounts_by_status = {}\n\nfor s in statuses:\n    counts_by_status[s] = counts_by_status.get(s, 0) + 1\n\ncounts_by_status\n\n{200: 5, 401: 1, 500: 1}\n\n\nSetting up the dictionary\n\ncounts_by_status = {} starts an empty dictionary.\nWe will fill it with:\n\nkey = a status code (like 200, 401, 500)\nvalue = how many times that status appears\n\n\nLooping over the values we want to count\n\nfor s in statuses: goes through the list of status codes, one at a time.\n\nUsing .get() to handle “first time we see a key”\n\ncounts_by_status.get(s, 0) means:\n\n“Look up the key s in the dictionary.”\nIf s is not in the dictionary yet, use 0 instead.\n\nThen we add 1, because we just saw one more occurrence of that status code.\n\nSo this line:\n\ncounts_by_status[s] = counts_by_status.get(s, 0) + 1\n\nmeans:\n\nstart with the current count for s (or 0 if it’s new)\nadd 1\nstore it back in the dictionary\n\nDisplaying the result\n\ncounts_by_status on the last line displays the dictionary of counts.\n\n\n\nCount requests per endpoint\n\ncounts_by_endpoint = {}\n\nfor ep in endpoints:\n    counts_by_endpoint[ep] = counts_by_endpoint.get(ep, 0) + 1\n\ncounts_by_endpoint\n\n{'/home': 1, '/login': 1, '/items': 2, '/search': 2, '/checkout': 1}\n\n\nSame idea, different key\n\ncounts_by_endpoint = {} starts an empty dictionary for endpoint counts.\nfor ep in endpoints: loops through each endpoint string (like \"/home\" or \"/search\").\ncounts_by_endpoint.get(ep, 0) + 1 updates the count for that endpoint, creating it if it doesn’t exist yet.\ncounts_by_endpoint displays the final counts.\n\nAt the end of these two cells, we have two useful frequency tables in Python: one for status codes and one for endpoints."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#sorting-with-key-finding-the-top-endpoints",
-    "href": "assignments/week-02/week-2-demo.html#sorting-with-key-finding-the-top-endpoints",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Sorting with key= (finding the “top endpoints”)",
-    "text": "Sorting with key= (finding the “top endpoints”)\nRight now, counts_by_endpoint tells us how many times each endpoint appears. The next natural question in analytics is:\nWhich endpoints are the most common?\nTo answer that, we need to sort the dictionary items by their counts (largest to smallest).\n\ndict.items() gives us pairs like (endpoint, count)\nsorted(..., key=...) lets us tell Python what to sort by\n\n\ntop_endpoints = sorted(\n    counts_by_endpoint.items(),\n    key=lambda pair: pair[1],   # pair is (endpoint, count)\n    reverse=True\n)\n\ntop_endpoints\n\n[('/items', 2), ('/search', 2), ('/home', 1), ('/login', 1), ('/checkout', 1)]\n\n\nGetting (key, value) pairs from a dictionary\n\ncounts_by_endpoint.items() returns a view of the dictionary as (key, value) pairs.\nIn our case, each pair looks like:\n\n(\"/search\", 2) or (\"/home\", 2)\n\nThese pairs are tuples: small, ordered containers.\n\nSorting with sorted\n\nsorted(...) takes an iterable and returns a new list in sorted order.\nBy default, sorted sorts by the whole value it sees.\n\nBut here, each item is a tuple (endpoint, count), and we specifically want to sort by the count.\n\n\nThe key= argument\n\nkey= is how we tell sorted what to use for sorting.\nThe key must be a function that takes one item and returns the value we want to sort by.\n\nIn our code, each item is a tuple called pair, so we want:\n\ninput: pair (like (\"/search\", 2))\noutput: the count part (2)\n\nThat’s what this does:\n\nkey=lambda pair: pair[1]\n\nWhat lambda means (first introduction)\n\nlambda creates a small anonymous function (a function without a name).\nIt’s useful when you need a simple function once and don’t want to define it with def.\n\nThis lambda:\n\nlambda pair: pair[1]\n\nmeans:\n\n“Take one argument named pair”\n“Return pair[1]” (the second element of the tuple)\n\nSo if pair is (\"/home\", 5), the lambda returns 5.\nEquivalent def version (same behavior)\nThe lambda is short, but it’s the same as writing:\ndef get_count(pair):\n    return pair[1]\nand then using:\nsorted(counts_by_endpoint.items(), key=get_count, reverse=True)\nSorting in descending order\n\nreverse=True means “largest first.”\nWithout it, the smallest counts would appear first.\n\nDisplaying the result\n\ntop_endpoints is now a list of tuples sorted by count, like:\n\n[('/items', 3), ('/home', 2), ('/search', 2), ...]"
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#write-a-reusable-summary-function",
-    "href": "assignments/week-02/week-2-demo.html#write-a-reusable-summary-function",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Write a reusable summary function",
-    "text": "Write a reusable summary function\nAt this point, we’ve already written several small analysis steps: counting, filtering, and computing averages. If we keep writing those same patterns over and over, our notebook gets longer, harder to read, and easier to break.\nWe should always try to bundle a repeated set of steps into a single function—so we can reuse it anytime we want a quick summary of a dataset (or a filtered subset of a dataset).\nThis function computes:\n\naverage response time\npercent errors (status &gt;= 400)\nmost common endpoint\n\n\ndef summarize(rows):\n    if not rows:\n        return {\"n\": 0}\n\n    n = len(rows)\n    avg_ms = sum(r[\"ms\"] for r in rows) / n\n\n    error_rows = [r for r in rows if r[\"status\"] &gt;= 400]\n    error_rate = len(error_rows) / n\n\n    endpoint_counts = {}\n    for r in rows:\n        ep = r[\"endpoint\"]\n        endpoint_counts[ep] = endpoint_counts.get(ep, 0) + 1\n\n    most_common = max(endpoint_counts.items(), key=lambda pair: pair[1])\n\n    return {\n        \"n\": n,\n        \"avg_ms\": round(avg_ms, 2),\n        \"error_rate\": round(error_rate, 3),\n        \"most_common_endpoint\": most_common[0],\n        \"most_common_count\": most_common[1],\n    }\n\nsummarize(good_rows)\n\n{'n': 7,\n 'avg_ms': 46.0,\n 'error_rate': 0.286,\n 'most_common_endpoint': '/items',\n 'most_common_count': 2}\n\n\nWhy make a summary function\n\nWe often want the same basic summary for different slices of data (all rows, only successful rows, only error rows).\nPutting the steps in a function keeps our notebook cleaner and reduces copy/paste code.\n\nHandling the empty-data case\n\nif not rows: checks whether the list is empty.\nIf it is, we return a minimal summary so we don’t divide by zero later.\n\nCounting how many records we have\n\nn = len(rows) stores the number of records (rows) we’re summarizing.\n\nComputing average response time\n\nsum(r[\"ms\"] for r in rows) adds up the ms values across all records.\nDividing by n gives the average.\n\nFinding error rows and error rate\n\nerror_rows = [r for r in rows if r[\"status\"] &gt;= 400] filters the records down to just error responses.\nerror_rate = len(error_rows) / n computes the fraction of rows that were errors.\n\nCounting endpoints again (inside the function)\n\nWe build endpoint_counts again because this function is meant to work on any list of rows we pass in.\nThe loop uses the same .get(..., 0) + 1 counting pattern from earlier.\n\nFinding the most common endpoint\n\nendpoint_counts.items() produces (endpoint, count) pairs.\nmax(..., key=lambda pair: pair[1]) selects the pair with the largest count.\n\nReturning a compact summary\n\nThe function returns a dictionary so the results are labeled and easy to read.\nThe final line summarize(good_rows) runs the function and displays the summary for our full cleaned dataset."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#compare-summaries-on-different-subsets-of-the-data",
-    "href": "assignments/week-02/week-2-demo.html#compare-summaries-on-different-subsets-of-the-data",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "Compare summaries on different subsets of the data",
-    "text": "Compare summaries on different subsets of the data\nWe rarely summarize only the full dataset. We usually break the data into meaningful subsets (groups) and compare them. An example here is:\n\nrequests that were successful (status &lt; 400)\nrequests that were errors (status &gt;= 400)\n\nThe key idea is that we can reuse the same summarize(...) function on each subset, which makes the comparison consistent.\n\nsuccess_rows = [r for r in good_rows if r[\"status\"] &lt; 400]\nerror_rows = [r for r in good_rows if r[\"status\"] &gt;= 400]\n\nprint(\"All:\", summarize(good_rows))\nprint(\"Success only:\", summarize(success_rows))\nprint(\"Errors only:\", summarize(error_rows))\n\nAll: {'n': 7, 'avg_ms': 46.0, 'error_rate': 0.286, 'most_common_endpoint': '/items', 'most_common_count': 2}\nSuccess only: {'n': 5, 'avg_ms': 46.2, 'error_rate': 0.0, 'most_common_endpoint': '/search', 'most_common_count': 2}\nErrors only: {'n': 2, 'avg_ms': 45.5, 'error_rate': 1.0, 'most_common_endpoint': '/login', 'most_common_count': 1}\n\n\nCreating subsets with filtering\n\nsuccess_rows = [r for r in good_rows if r[\"status\"] &lt; 400] builds a list of records that are not errors.\nerror_rows = [r for r in good_rows if r[\"status\"] &gt;= 400] builds a list of records that are errors.\n\nReusing the same summary function\n\nsummarize(good_rows) gives the overall summary.\nsummarize(success_rows) summarizes only the successful requests.\nsummarize(error_rows) summarizes only the error requests."
-  },
-  {
-    "objectID": "assignments/week-02/week-2-demo.html#a-streaming-approach-with-a-generator-processing-one-row-at-a-time",
-    "href": "assignments/week-02/week-2-demo.html#a-streaming-approach-with-a-generator-processing-one-row-at-a-time",
-    "title": "Week 2 Demo: Wrangling a Log File with Python",
-    "section": "A streaming approach with a generator (processing one row at a time)",
-    "text": "A streaming approach with a generator (processing one row at a time)\nSo far, we’ve been reading the entire file into memory and building full lists like lines and good_rows. That’s totally fine for small datasets, but real data files can be huge. When a file is large, it’s often better to process it one line at a time instead of loading everything at once.\nA generator is a Python tool that helps with this. A generator function looks like a normal function, but it uses yield instead of return. Each time the generator yields a value, it “pauses” and remembers where it left off. The next time you ask for another value (usually by looping), it picks up right where it stopped.\nIn this step, we’ll build a generator that reads the file and produces parsed rows one at a time.\n\ndef iter_parsed_rows(filename):\n    with open(filename, \"r\", encoding=\"utf-8\") as f:\n        header = next(f)  # skip the header line\n        for line in f:\n            line = line.rstrip(\"\\n\")\n            try:\n                yield parse_log_line(line)\n            except Exception:\n                continue\n\n# Example: compute average ms without storing all rows\ntotal_ms = 0\ncount = 0\n\nfor row in iter_parsed_rows(filename):\n    total_ms += row[\"ms\"]\n    count += 1\n\navg_ms_streaming = total_ms / count if count else None\navg_ms_streaming\n\n46.0\n\n\nDefining a generator function\n\ndef iter_parsed_rows(filename): defines a function that will produce rows from the file.\nThis function is different from our earlier functions because it uses yield.\n\nOpening the file and skipping the header\n\nwith open(filename, \"r\", encoding=\"utf-8\") as f: opens the file for reading.\nheader = next(f) reads the first line from the file (the header) and moves the file cursor forward by one line.\n\nWe store it in header but we don’t use it further, because we don’t want to parse the header as data.\n\n\nLooping over the file one line at a time\n\nfor line in f: iterates through the remaining lines in the file.\n\nThis is a memory-friendly pattern: Python reads lines as needed instead of loading the whole file at once.\n\n\nCleaning the line\n\nline = line.rstrip(\"\\n\") removes the trailing newline character from the end of the line.\n\nParsing and yielding good rows\n\nyield parse_log_line(line) attempts to parse the line and yields the resulting dictionary.\nyield means: “produce one value now, and pause until the next one is needed.”\nIf parsing fails, the except Exception: block runs and continue skips that bad line.\n\nUsing the generator to compute an average\n\ntotal_ms = 0 and count = 0 set up running totals.\nfor row in iter_parsed_rows(filename): loops over the generator.\n\nEach row is one parsed dictionary record.\n\nWe add row[\"ms\"] into total_ms and increment count.\n\nFinishing the calculation\n\navg_ms_streaming = total_ms / count if count else None computes the average safely.\n\nIf count is 0 (no good rows), we avoid dividing by zero."
+    "text": "D2L submission checklist\n\nWeek 5 D2L quiz (no file uploads required this week)\n\nNote: This week emphasizes reading Chapter 5, understanding the demo, and demonstrating comprehension through the quiz. Focus on understanding pandas fundamentals—Series, DataFrames, selection methods, and automatic alignment—rather than just completing steps. The pandas patterns you learn this week are the foundation for all data manipulation tasks that follow.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 5 (Starts 9 FEB)"
+    ]
   },
   {
     "objectID": "assignments/week-03/week-3-demo.html",
@@ -1158,64 +1038,319 @@
     "text": "File Input and Output with NumPy\nNumPy provides functions for saving arrays to disk and loading them back into memory, enabling persistent storage of numerical data between program executions. NumPy supports two primary file formats: a binary format (.npy) optimized for NumPy arrays, and text-based formats for interoperability with other tools. Binary format preserves data types exactly and offers faster read/write speeds, while text formats provide human readability and compatibility with spreadsheet applications and other programming languages. Choosing the appropriate format depends on your use case and whether interoperability or performance is the priority.\n\nimport os\nos.makedirs(\"data\", exist_ok=True)\n\n# Create sample data\ndata = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])\n\n# Save to binary format (.npy)\nnp.save('data/my_array.npy', data)\nprint(\"Saved to my_array.npy\")\n\n# Load from binary format\nloaded = np.load('data/my_array.npy')\nprint(\"Loaded from .npy file:\")\nprint(loaded)\n\n# Save to text file\nnp.savetxt('data/my_array.txt', data, fmt='%d', delimiter=',')\nprint(\"\\nSaved to my_array.txt (CSV format)\")\n\n# Load from text file\nloaded_txt = np.loadtxt('data/my_array.txt', delimiter=',')\nprint(\"Loaded from .txt file:\")\nprint(loaded_txt)\n\nSaved to my_array.npy\nLoaded from .npy file:\n[[1 2 3]\n [4 5 6]\n [7 8 9]]\n\nSaved to my_array.txt (CSV format)\nLoaded from .txt file:\n[[1. 2. 3.]\n [4. 5. 6.]\n [7. 8. 9.]]\n\n\nSetting up the file system\n\nimport os imports Python’s operating system module.\nos.makedirs(\"data\", exist_ok=True) creates a directory named “data”.\n\nexist_ok=True prevents an error if the directory already exists.\nEnsures the destination directory exists before saving files.\n\n\nBinary format (.npy files)\n\nnp.save('data/my_array.npy', data) saves the array in NumPy’s binary format.\n\nThe .npy extension is conventional for NumPy binary files.\nBinary format is fast and preserves all data types exactly.\nRequires less disk space than text format due to compact binary representation.\nFiles are not human-readable and can only be read by NumPy.\n\nnp.load('data/my_array.npy') loads a binary file back into an array.\n\nReturns an array identical to the original (same shape, dtype, and values).\nFast loading operation suitable for large datasets.\n\n\nText format (CSV and other delimited formats)\n\nnp.savetxt('data/my_array.txt', data, fmt='%d', delimiter=',') saves the array as text.\n\nfmt='%d' specifies integer formatting using C-style format specifiers (use '%.2f' for floating-point values with 2 decimal places, '%.6e' for scientific notation).\ndelimiter=',' creates comma-separated values (CSV format).\nResults in a human-readable text file that can be opened in text editors or spreadsheet applications.\nSlower and uses more disk space than binary format.\n\nnp.loadtxt('data/my_array.txt', delimiter=',') loads a text file into an array.\n\ndelimiter=',' specifies that values are comma-separated.\nCan also read space-separated (default) or tab-separated files by changing the delimiter.\nReturns an array with inferred dtype (typically float64 even if the original data was integer).\n\n\nChoosing the appropriate format\nUse binary format (.npy) for: - Intermediate data storage within your own analysis workflows - Large datasets where performance and disk space matter - Preserving exact data types and precision\nUse text format for: - Sharing data with non-Python tools (Excel, R, MATLAB, etc.) - Creating human-readable output for inspection - Interoperability when the receiving system cannot read NumPy binary files\nKey Takeaways: 1. NumPy is 10-100x faster than pure Python for numerical operations 2. Vectorization (avoiding loops) is the key to writing fast NumPy code 3. NumPy is the foundation for pandas, matplotlib, scikit-learn, and most scientific Python\nRelationship to Pandas: - Chapter 5 introduces pandas, which builds on NumPy arrays - Pandas adds labeled rows/columns (like a spreadsheet) and higher-level data manipulation - The concepts learned here transfer directly to pandas DataFrames"
   },
   {
-    "objectID": "assignments/week-05/index.html",
-    "href": "assignments/week-05/index.html",
+    "objectID": "assignments/week-02/week-2-demo.html",
+    "href": "assignments/week-02/week-2-demo.html",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "",
+    "text": "Download Jupyter Notebook\nThis demo cleans and summarizes a small “messy” dataset.\nThe goals are to practice:"
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#create-a-small-dataset-and-save-it-to-a-file",
+    "href": "assignments/week-02/week-2-demo.html#create-a-small-dataset-and-save-it-to-a-file",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Create a small dataset and save it to a file",
+    "text": "Create a small dataset and save it to a file\nWe’ll generate a fake server log file. Some rows are intentionally messy: - missing fields - non-numeric values - extra whitespace\nWe’re doing this so we can practice file I/O (open, read/write) and then practice data structures + functions on the contents.\n\nimport os\n\n# Make a folder named \"data\" if it doesn't already exist\nos.makedirs(\"data\", exist_ok=True)\n\nfilename = \"data/tiny_access_log.csv\"\n\nraw_lines = [\n    \"timestamp,user,endpoint,status,ms\",\n    \"2026-01-19T09:01:10,alice,/home,200,34\",\n    \"2026-01-19T09:01:12,bob,/login,401,18\",\n    \"2026-01-19T09:01:13,alice,/items,200,51\",\n    \"2026-01-19T09:01:15,carol,/items,500,73\",\n    \"2026-01-19T09:01:16,dan,/home,200,not_a_number\",   # bad ms\n    \"2026-01-19T09:01:20,erin,/search,200,44\",\n    \"2026-01-19T09:01:21,  frank  ,/search,200, 40  \",  # extra whitespace\n    \"2026-01-19T09:01:25,alice,/checkout,200,62\",\n    \"2026-01-19T09:01:26,bob,/items,200\",               # missing ms\n    \"bad_row_with_no_commas\",                           # completely malformed\n]\n\nwith open(filename, \"w\", encoding=\"utf-8\") as f:\n    for line in raw_lines:\n        f.write(line + \"\\n\")\n\nfilename\n\n'data/tiny_access_log.csv'\n\n\nLoading the tool we need\n\nimport os loads Python’s standard library module for interacting with the operating system.\n\nCreating a folder\n\nos.makedirs(\"data\", exist_ok=True) creates a folder named data.\nexist_ok=True means: if the folder already exists, don’t raise an error.\n\nChoosing a filename\n\nfilename = \"data/tiny_access_log.csv\" stores the path to our file as a string.\nWe use a string path because Chapter 3’s file section is built around passing filenames into open(...).\n\nBuilding the dataset in memory\n\nraw_lines = [...] creates a list of strings.\nEach string is one line we plan to write to the file.\nThe first line is a header: timestamp,user,endpoint,status,ms.\n\nWhy the data is “messy” Some rows are intentionally flawed so we can practice robust parsing later:\n\n\"not_a_number\" will fail when we try to convert the ms field to an integer.\nOne row is missing a field (no ms value at the end).\nOne row has extra whitespace around values.\nOne row is completely malformed (no commas).\n\nOpening the file (write mode)\n\nwith open(filename, \"w\", encoding=\"utf-8\") as f: opens the file for writing.\n\"w\" means “write mode” (create/overwrite the file).\nencoding=\"utf-8\" ensures the file is written as standard UTF-8 text.\nThe with statement ensures the file closes automatically when we finish.\n\nWriting each line\n\nfor line in raw_lines: loops through the list of lines.\nf.write(line + \"\\n\") writes the line and adds a newline so each entry becomes its own line in the file.\n\nShowing the result\n\nThe final filename prints the file path so you can confirm where it was created."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#read-the-file-and-preview-the-raw-lines",
+    "href": "assignments/week-02/week-2-demo.html#read-the-file-and-preview-the-raw-lines",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Read the file and preview the raw lines",
+    "text": "Read the file and preview the raw lines\nNow that we’ve created the file, we need to look at what’s inside it. We’ll read the entire file into a single string and print it. That lets us see the header row, the expected rows, and the intentionally messy rows we’ll need to handle when we start parsing.\n\n# Read the entire file as one string\nwith open(filename, \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\n\nprint(text)\n\ntimestamp,user,endpoint,status,ms\n2026-01-19T09:01:10,alice,/home,200,34\n2026-01-19T09:01:12,bob,/login,401,18\n2026-01-19T09:01:13,alice,/items,200,51\n2026-01-19T09:01:15,carol,/items,500,73\n2026-01-19T09:01:16,dan,/home,200,not_a_number\n2026-01-19T09:01:20,erin,/search,200,44\n2026-01-19T09:01:21,  frank  ,/search,200, 40  \n2026-01-19T09:01:25,alice,/checkout,200,62\n2026-01-19T09:01:26,bob,/items,200\nbad_row_with_no_commas\n\n\n\nOpening the file for reading\n\nwith open(filename, \"r\", encoding=\"utf-8\") as f: opens the file named by filename.\n\"r\" means read mode (we are not changing the file).\nencoding=\"utf-8\" tells Python how to interpret the bytes in the file as text.\nThe with statement ensures the file closes automatically when we’re done.\n\nReading the full contents\n\ntext = f.read() reads the entire file into a single string named text.\n\nPreviewing what we read\n\nprint(text) prints the string so we can verify:\n\nthe header line is present\neach record is on its own line\nthe “messy” rows are visible (missing fields, bad values, etc.)"
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#parse-one-row-into-a-dictionary",
+    "href": "assignments/week-02/week-2-demo.html#parse-one-row-into-a-dictionary",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Parse one row into a dictionary",
+    "text": "Parse one row into a dictionary\nWe’ve confirmed that the file exists and we’ve seen the raw text. The next goal is to turn each line of text into something we can work with programmatically. We’ll write a function that parses one line at a time. In programming, parsing means taking unstructured text (like a line from a file) and breaking it into meaningful pieces. The result is usually a more structured object (like a list or a dictionary) that Python can work with more easily for counting, filtering, and summarizing.\nWe are parsing each line because we want to build a clean dataset in memory. Each line in the file represents one “record” (one request), and we want to convert that record into a dictionary so we can later do analytics tasks like counting users, finding the most common endpoints, and computing average response times. Here we’ll represent each row as a dictionary:\n\nkeys = column names (timestamp, user, endpoint, status, ms)\nvalues = the data from that row (with numeric fields converted to integers)\n\nThis parser function also helps us detect problems in the raw data. If a line is missing fields, has extra fields, or contains values that can’t be converted to numbers, this function will raise an error. In the next section, we’ll use try/except to catch those errors so we can skip bad rows without stopping the whole program.\n\ndef parse_log_line(line):\n    # Split the line into fields and remove extra whitespace around each field\n    parts = [p.strip() for p in line.split(\",\")]\n\n    # We expect exactly 5 fields: timestamp, user, endpoint, status, ms\n    if len(parts) != 5:\n        raise ValueError(f\"Expected 5 fields, got {len(parts)}: {line!r}\")\n\n    # Unpack the five fields into separate variables\n    timestamp, user, endpoint, status, ms = parts\n\n    # Build a dictionary for one record (one row)\n    return {\n        \"timestamp\": timestamp,\n        \"user\": user,\n        \"endpoint\": endpoint,\n        \"status\": int(status),\n        \"ms\": int(ms),\n    }\n\nList comprehension vs a normal loop (same result)\nA list comprehension is often just a shorter way to write a loop that builds a list.\nFor example, these two blocks do the same thing (they both build a list of users).\nList comprehension version\nusers = [r[\"user\"] for r in good_rows]\nEquivalent loop version\nusers = []\nfor r in good_rows:\n    users.append(r[\"user\"])\nIn both cases:\n\nwe loop over each record dictionary r in good_rows\nwe take the \"user\" value from that dictionary\nwe add it to the users list\n\nThe list comprehension is just the “compact form” of the same idea.\nDefining a function\n\ndef parse_log_line(line): creates a function named parse_log_line.\n\ndef is the keyword Python uses to start a function definition.\nparse_log_line is the function name we’ll call later.\nline is a parameter: when we call the function, we will pass in one line of text from the file.\n\nEverything indented under the def line is the function body (the steps Python runs when the function is called).\nThe return statement ends the function and sends a value back to the caller.\n\nIn this case, the function returns a dictionary representing one parsed row.\n\n\nWhy we’re writing a parser function\n\nThis file is still just text.\nA parser function gives us a repeatable way to turn a line into a structured record.\nOnce each row is a dictionary, we can count, filter, summarize, and sort using normal Python tools.\n\nSplitting the line into fields\n\nline.split(\",\") breaks the row into pieces wherever there is a comma.\n[p.strip() for p in ...] removes extra spaces around each field.\n\nThis matters because our file includes rows with extra whitespace (for example: \"  frank  \" and \" 40  \").\n\n\nChecking that the row has the right number of fields\n\nif len(parts) != 5: checks whether the row has exactly 5 fields.\nraise ValueError(...) stops and reports a clear error message if the row is malformed.\n\nThis catches rows that are missing a field or don’t have commas at all.\n\n\nUnpacking the fields\n\ntimestamp, user, endpoint, status, ms = parts assigns each piece to a named variable.\nUnpacking is convenient here because it keeps the rest of the code readable.\n\nBuilding a dictionary record\n\nreturn {...} creates one dictionary representing one row.\nint(status) converts the status code from text to an integer (e.g., \"200\" → 200).\nint(ms) converts the response time from text to an integer.\n\nThis will fail for \"not_a_number\" — and that’s okay. In the next section, we’ll use try/except so we can skip bad rows without crashing the whole process."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#quick-check-confirm-the-parser-works-on-one-line",
+    "href": "assignments/week-02/week-2-demo.html#quick-check-confirm-the-parser-works-on-one-line",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Quick check: confirm the parser works on one line",
+    "text": "Quick check: confirm the parser works on one line\nThis function we just created doesn’t produce output by itself. To confirm it works, we’ll call it once with a known-good line and display the result.\n\nsample_line = \"2026-01-19T09:01:10,alice,/home,200,34\"\nparse_log_line(sample_line)\n\n{'timestamp': '2026-01-19T09:01:10',\n 'user': 'alice',\n 'endpoint': '/home',\n 'status': 200,\n 'ms': 34}\n\n\nTesting the function\n\nsample_line = ... creates one correctly formatted row.\nparse_log_line(sample_line) runs the parser and returns a dictionary.\nThe output should be a dictionary with the expected keys."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#read-the-file-safely-and-build-a-clean-list-of-rows",
+    "href": "assignments/week-02/week-2-demo.html#read-the-file-safely-and-build-a-clean-list-of-rows",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Read the file safely and build a clean list of rows",
+    "text": "Read the file safely and build a clean list of rows\nReal-world datasets almost always contain a few rows that are incomplete, malformed, or inconsistent. Instead of letting one bad row crash the whole program, we want a workflow that:\n\nkeeps the rows we can parse\nskips the rows we can’t parse\nrecords how many problems we saw (and a few examples) so we can diagnose the data later\n\nIn this step, we’ll read the file line-by-line, use the parse_log_line(...) function on each row, and build a clean dataset called good_rows.\n\ngood_rows = []\nbad_count = 0\nerrors = []\n\n# Read all lines from the file (each line is one string)\nwith open(filename, \"r\", encoding=\"utf-8\") as f:\n    lines = f.read().splitlines()\n\nheader = lines[0]\ndata_lines = lines[1:]\n\nfor line in data_lines:\n    try:\n        row = parse_log_line(line)\n        good_rows.append(row)\n    except Exception as e:\n        bad_count += 1\n        errors.append(str(e))\n\nprint(\"Good rows:\", len(good_rows))\nprint(\"Bad rows:\", bad_count)\nprint(\"\\nErrors:\")\nfor msg in errors[:3]:\n    print(\"-\", msg)\n\nGood rows: 7\nBad rows: 3\n\nErrors:\n- invalid literal for int() with base 10: 'not_a_number'\n- Expected 5 fields, got 4: '2026-01-19T09:01:26,bob,/items,200'\n- Expected 5 fields, got 1: 'bad_row_with_no_commas'\n\n\nSetting up containers for our results\n\ngood_rows = [] is a list that will store the successfully parsed rows.\n\nEach item we append to this list will be a dictionary (one record).\n\nbad_count = 0 will count how many rows failed to parse.\nerrors = [] is a list that will store error messages from failed rows (for debugging).\n\nReading the file into a list of lines\n\nwith open(filename, \"r\", encoding=\"utf-8\") as f: opens the file for reading.\nf.read() reads the whole file as one string.\n.splitlines() turns that one string into a list where each element is one line (without the newline characters).\n\nSeparating the header from the data\n\nheader = lines[0] stores the header line (the column names).\ndata_lines = lines[1:] stores everything after the header (the actual records).\nWe separate these because the header is not a data row and shouldn’t be parsed into a record.\n\nParsing each line with error handling\n\nfor line in data_lines: loops through each raw record line.\ntry: tells Python: “attempt to parse this line.”\nrow = parse_log_line(line) runs our parser and returns a dictionary if successful.\ngood_rows.append(row) adds the dictionary to our clean dataset.\n\nHandling bad rows\n\nexcept Exception as e: runs if anything goes wrong (missing fields, non-numeric values, etc.).\nbad_count += 1 increments our count of failures.\nerrors.append(str(e)) saves a readable version of the error message.\n\nPrinting a summary\n\nThe print(...) lines show:\n\nhow many rows we successfully kept\nhow many rows we had to skip\na few example error messages so we can see what went wrong\n\n\nWhat we built\n\nAfter this cell runs, good_rows is a list of dictionaries.\nFor example, good_rows[0] will be one dictionary record that looks like: {'timestamp': '2026-01-19T09:01:10', 'user': 'alice', 'endpoint': '/home', 'status': 200, 'ms': 34}"
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#quick-look-at-the-cleaned-data",
+    "href": "assignments/week-02/week-2-demo.html#quick-look-at-the-cleaned-data",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Quick look at the cleaned data",
+    "text": "Quick look at the cleaned data\nAt this point we’ve turned the file into a clean dataset in memory: good_rows, a list of dictionary records. Before we start counting or summarizing, it’s a good idea to preview a few records and confirm they look the way we expect.\n\ngood_rows[:3]\n\n[{'timestamp': '2026-01-19T09:01:10',\n  'user': 'alice',\n  'endpoint': '/home',\n  'status': 200,\n  'ms': 34},\n {'timestamp': '2026-01-19T09:01:12',\n  'user': 'bob',\n  'endpoint': '/login',\n  'status': 401,\n  'ms': 18},\n {'timestamp': '2026-01-19T09:01:13',\n  'user': 'alice',\n  'endpoint': '/items',\n  'status': 200,\n  'ms': 51}]\n\n\nSelecting a small sample\n\ngood_rows[:3] uses list slicing to take a piece (a “slice”) of the list.\nSlicing has the form list[start:stop]:\n\nstart is the index where you begin (inclusive)\nstop is the index where you stop (exclusive)\n\nIn this case, we left start blank, so Python assumes we start at the beginning (0).\nThe stop value is 3, so this returns items at indexes 0, 1, and 2.\n\nWhat you should see\n\nThe output should be a list containing three dictionaries.\nEach dictionary should have the same keys:\n\ntimestamp, user, endpoint, status, ms\n\nThe values for status and ms should be integers (not strings).\nIf this looks right, we can confidently start doing analysis tasks like counting, filtering, and summarizing."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#extract-columns-from-our-records-list-comprehensions",
+    "href": "assignments/week-02/week-2-demo.html#extract-columns-from-our-records-list-comprehensions",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Extract “columns” from our records (list comprehensions)",
+    "text": "Extract “columns” from our records (list comprehensions)\nRight now, our dataset is a list of dictionaries (good_rows). That’s great for keeping each record together, but many analytics tasks are easier when you work with one field at a time—like a list of all users or a list of all endpoints.\nIn a spreadsheet, these would be columns. We’ll pull out these columns using list comprehensions.\nWhat does “endpoint” mean? In web-style logs, an endpoint is the path being requested on a website or service—like /home, /login, or /search. You can think of it as “which page or resource was accessed.”\n\nusers = [r[\"user\"] for r in good_rows]\nendpoints = [r[\"endpoint\"] for r in good_rows]\nstatuses = [r[\"status\"] for r in good_rows]\ntimes_ms = [r[\"ms\"] for r in good_rows]\n\nprint(\"First 5 users:     \", users[:5])\nprint(\"First 5 endpoints: \", endpoints[:5])\nprint(\"First 5 statuses:  \", statuses[:5])\nprint(\"First 5 times (ms):\", times_ms[:5])\n\nFirst 5 users:      ['alice', 'bob', 'alice', 'carol', 'erin']\nFirst 5 endpoints:  ['/home', '/login', '/items', '/items', '/search']\nFirst 5 statuses:   [200, 401, 200, 500, 200]\nFirst 5 times (ms): [34, 18, 51, 73, 44]\n\n\nExtracting one field from each record\n\nusers = [r[\"user\"] for r in good_rows]\n\nfor r in good_rows loops through each record dictionary.\nr[\"user\"] pulls the value associated with the \"user\" key.\nThe result is a list containing the user value from every record.\n\n\nThe other lines do the same thing for other keys:\n\nendpoints = [r[\"endpoint\"] for r in good_rows] → list of endpoints (requested paths)\nstatuses = [r[\"status\"] for r in good_rows] → list of HTTP-style status codes\ntimes_ms = [r[\"ms\"] for r in good_rows] → list of response times in milliseconds\n\nPrinting a readable preview\n\nInstead of printing the entire lists, we print just the first 5 values from each list.\nusers[:5], endpoints[:5], etc. use slicing to take the first five items so the output stays readable.\n\nThis gives us clean “columns” we can now use for analysis tasks like unique counts, frequency tables, and summary statistics."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#using-sets-to-find-uniqueness",
+    "href": "assignments/week-02/week-2-demo.html#using-sets-to-find-uniqueness",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Using Sets to find uniqueness",
+    "text": "Using Sets to find uniqueness\nWhen you’re exploring a dataset, a question you often ask is: how many distinct values do we have? For example:\n\nHow many different users appear in the log?\nHow many different endpoints were accessed?\n\nA set is a built-in Python collection that stores unique values only. If you add the same value multiple times, the set keeps just one copy. That makes sets perfect for “distinct count” questions.\n\nunique_users = set(users)\nunique_endpoints = set(endpoints)\n\nprint(\"Unique users:\", unique_users)\nprint(\"Unique endpoints:\", unique_endpoints)\nprint(\"Number of unique users:\", len(unique_users))\nprint(\"Number of unique endpoints:\", len(unique_endpoints))\n\nUnique users: {'erin', 'alice', 'frank', 'bob', 'carol'}\nUnique endpoints: {'/login', '/search', '/home', '/checkout', '/items'}\nNumber of unique users: 5\nNumber of unique endpoints: 5\n\n\nWhat a set is (quick refresher)\n\nA list can contain duplicates: [\"alice\", \"alice\", \"bob\"]\nA set automatically removes duplicates: {\"alice\", \"bob\"}\nSets are also great for fast membership tests (for example: \"alice\" in unique_users).\n\nConverting a list into a set\n\nunique_users = set(users) converts the users list into a set.\n\nIf \"alice\" appears 10 times in the list, it appears once in the set.\n\nunique_endpoints = set(endpoints) does the same thing for endpoints.\n\nPrinting the sets\n\nprint(\"Unique users:\", unique_users) shows the distinct user names.\nprint(\"Unique endpoints:\", unique_endpoints) shows the distinct endpoints.\n\nNote: sets do not keep a guaranteed order, so the values may appear in a different order each time you run it.\nCounting distinct values\n\nlen(unique_users) is the number of distinct users.\nlen(unique_endpoints) is the number of distinct endpoints.\n\nThis gives us a quick “shape” of the data: how many different users and endpoints show up in our log."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#counts-using-dictionaries-a-simple-group-by",
+    "href": "assignments/week-02/week-2-demo.html#counts-using-dictionaries-a-simple-group-by",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Counts using dictionaries (a simple “group by”)",
+    "text": "Counts using dictionaries (a simple “group by”)\nAnother common analytical task is to count how often different values appear. In pandas or SQL, you might call this a “group by.” In Python, a dictionary is a natural tool for this:\n\nkeys = the category we’re counting (status code, endpoint, user, etc.)\nvalues = the count so far\n\nA helpful method for counting is the dictionary .get().\n\nCount requests by status code\n\ncounts_by_status = {}\n\nfor s in statuses:\n    counts_by_status[s] = counts_by_status.get(s, 0) + 1\n\ncounts_by_status\n\n{200: 5, 401: 1, 500: 1}\n\n\nSetting up the dictionary\n\ncounts_by_status = {} starts an empty dictionary.\nWe will fill it with:\n\nkey = a status code (like 200, 401, 500)\nvalue = how many times that status appears\n\n\nLooping over the values we want to count\n\nfor s in statuses: goes through the list of status codes, one at a time.\n\nUsing .get() to handle “first time we see a key”\n\ncounts_by_status.get(s, 0) means:\n\n“Look up the key s in the dictionary.”\nIf s is not in the dictionary yet, use 0 instead.\n\nThen we add 1, because we just saw one more occurrence of that status code.\n\nSo this line:\n\ncounts_by_status[s] = counts_by_status.get(s, 0) + 1\n\nmeans:\n\nstart with the current count for s (or 0 if it’s new)\nadd 1\nstore it back in the dictionary\n\nDisplaying the result\n\ncounts_by_status on the last line displays the dictionary of counts.\n\n\n\nCount requests per endpoint\n\ncounts_by_endpoint = {}\n\nfor ep in endpoints:\n    counts_by_endpoint[ep] = counts_by_endpoint.get(ep, 0) + 1\n\ncounts_by_endpoint\n\n{'/home': 1, '/login': 1, '/items': 2, '/search': 2, '/checkout': 1}\n\n\nSame idea, different key\n\ncounts_by_endpoint = {} starts an empty dictionary for endpoint counts.\nfor ep in endpoints: loops through each endpoint string (like \"/home\" or \"/search\").\ncounts_by_endpoint.get(ep, 0) + 1 updates the count for that endpoint, creating it if it doesn’t exist yet.\ncounts_by_endpoint displays the final counts.\n\nAt the end of these two cells, we have two useful frequency tables in Python: one for status codes and one for endpoints."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#sorting-with-key-finding-the-top-endpoints",
+    "href": "assignments/week-02/week-2-demo.html#sorting-with-key-finding-the-top-endpoints",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Sorting with key= (finding the “top endpoints”)",
+    "text": "Sorting with key= (finding the “top endpoints”)\nRight now, counts_by_endpoint tells us how many times each endpoint appears. The next natural question in analytics is:\nWhich endpoints are the most common?\nTo answer that, we need to sort the dictionary items by their counts (largest to smallest).\n\ndict.items() gives us pairs like (endpoint, count)\nsorted(..., key=...) lets us tell Python what to sort by\n\n\ntop_endpoints = sorted(\n    counts_by_endpoint.items(),\n    key=lambda pair: pair[1],   # pair is (endpoint, count)\n    reverse=True\n)\n\ntop_endpoints\n\n[('/items', 2), ('/search', 2), ('/home', 1), ('/login', 1), ('/checkout', 1)]\n\n\nGetting (key, value) pairs from a dictionary\n\ncounts_by_endpoint.items() returns a view of the dictionary as (key, value) pairs.\nIn our case, each pair looks like:\n\n(\"/search\", 2) or (\"/home\", 2)\n\nThese pairs are tuples: small, ordered containers.\n\nSorting with sorted\n\nsorted(...) takes an iterable and returns a new list in sorted order.\nBy default, sorted sorts by the whole value it sees.\n\nBut here, each item is a tuple (endpoint, count), and we specifically want to sort by the count.\n\n\nThe key= argument\n\nkey= is how we tell sorted what to use for sorting.\nThe key must be a function that takes one item and returns the value we want to sort by.\n\nIn our code, each item is a tuple called pair, so we want:\n\ninput: pair (like (\"/search\", 2))\noutput: the count part (2)\n\nThat’s what this does:\n\nkey=lambda pair: pair[1]\n\nWhat lambda means (first introduction)\n\nlambda creates a small anonymous function (a function without a name).\nIt’s useful when you need a simple function once and don’t want to define it with def.\n\nThis lambda:\n\nlambda pair: pair[1]\n\nmeans:\n\n“Take one argument named pair”\n“Return pair[1]” (the second element of the tuple)\n\nSo if pair is (\"/home\", 5), the lambda returns 5.\nEquivalent def version (same behavior)\nThe lambda is short, but it’s the same as writing:\ndef get_count(pair):\n    return pair[1]\nand then using:\nsorted(counts_by_endpoint.items(), key=get_count, reverse=True)\nSorting in descending order\n\nreverse=True means “largest first.”\nWithout it, the smallest counts would appear first.\n\nDisplaying the result\n\ntop_endpoints is now a list of tuples sorted by count, like:\n\n[('/items', 3), ('/home', 2), ('/search', 2), ...]"
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#write-a-reusable-summary-function",
+    "href": "assignments/week-02/week-2-demo.html#write-a-reusable-summary-function",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Write a reusable summary function",
+    "text": "Write a reusable summary function\nAt this point, we’ve already written several small analysis steps: counting, filtering, and computing averages. If we keep writing those same patterns over and over, our notebook gets longer, harder to read, and easier to break.\nWe should always try to bundle a repeated set of steps into a single function—so we can reuse it anytime we want a quick summary of a dataset (or a filtered subset of a dataset).\nThis function computes:\n\naverage response time\npercent errors (status &gt;= 400)\nmost common endpoint\n\n\ndef summarize(rows):\n    if not rows:\n        return {\"n\": 0}\n\n    n = len(rows)\n    avg_ms = sum(r[\"ms\"] for r in rows) / n\n\n    error_rows = [r for r in rows if r[\"status\"] &gt;= 400]\n    error_rate = len(error_rows) / n\n\n    endpoint_counts = {}\n    for r in rows:\n        ep = r[\"endpoint\"]\n        endpoint_counts[ep] = endpoint_counts.get(ep, 0) + 1\n\n    most_common = max(endpoint_counts.items(), key=lambda pair: pair[1])\n\n    return {\n        \"n\": n,\n        \"avg_ms\": round(avg_ms, 2),\n        \"error_rate\": round(error_rate, 3),\n        \"most_common_endpoint\": most_common[0],\n        \"most_common_count\": most_common[1],\n    }\n\nsummarize(good_rows)\n\n{'n': 7,\n 'avg_ms': 46.0,\n 'error_rate': 0.286,\n 'most_common_endpoint': '/items',\n 'most_common_count': 2}\n\n\nWhy make a summary function\n\nWe often want the same basic summary for different slices of data (all rows, only successful rows, only error rows).\nPutting the steps in a function keeps our notebook cleaner and reduces copy/paste code.\n\nHandling the empty-data case\n\nif not rows: checks whether the list is empty.\nIf it is, we return a minimal summary so we don’t divide by zero later.\n\nCounting how many records we have\n\nn = len(rows) stores the number of records (rows) we’re summarizing.\n\nComputing average response time\n\nsum(r[\"ms\"] for r in rows) adds up the ms values across all records.\nDividing by n gives the average.\n\nFinding error rows and error rate\n\nerror_rows = [r for r in rows if r[\"status\"] &gt;= 400] filters the records down to just error responses.\nerror_rate = len(error_rows) / n computes the fraction of rows that were errors.\n\nCounting endpoints again (inside the function)\n\nWe build endpoint_counts again because this function is meant to work on any list of rows we pass in.\nThe loop uses the same .get(..., 0) + 1 counting pattern from earlier.\n\nFinding the most common endpoint\n\nendpoint_counts.items() produces (endpoint, count) pairs.\nmax(..., key=lambda pair: pair[1]) selects the pair with the largest count.\n\nReturning a compact summary\n\nThe function returns a dictionary so the results are labeled and easy to read.\nThe final line summarize(good_rows) runs the function and displays the summary for our full cleaned dataset."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#compare-summaries-on-different-subsets-of-the-data",
+    "href": "assignments/week-02/week-2-demo.html#compare-summaries-on-different-subsets-of-the-data",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "Compare summaries on different subsets of the data",
+    "text": "Compare summaries on different subsets of the data\nWe rarely summarize only the full dataset. We usually break the data into meaningful subsets (groups) and compare them. An example here is:\n\nrequests that were successful (status &lt; 400)\nrequests that were errors (status &gt;= 400)\n\nThe key idea is that we can reuse the same summarize(...) function on each subset, which makes the comparison consistent.\n\nsuccess_rows = [r for r in good_rows if r[\"status\"] &lt; 400]\nerror_rows = [r for r in good_rows if r[\"status\"] &gt;= 400]\n\nprint(\"All:\", summarize(good_rows))\nprint(\"Success only:\", summarize(success_rows))\nprint(\"Errors only:\", summarize(error_rows))\n\nAll: {'n': 7, 'avg_ms': 46.0, 'error_rate': 0.286, 'most_common_endpoint': '/items', 'most_common_count': 2}\nSuccess only: {'n': 5, 'avg_ms': 46.2, 'error_rate': 0.0, 'most_common_endpoint': '/search', 'most_common_count': 2}\nErrors only: {'n': 2, 'avg_ms': 45.5, 'error_rate': 1.0, 'most_common_endpoint': '/login', 'most_common_count': 1}\n\n\nCreating subsets with filtering\n\nsuccess_rows = [r for r in good_rows if r[\"status\"] &lt; 400] builds a list of records that are not errors.\nerror_rows = [r for r in good_rows if r[\"status\"] &gt;= 400] builds a list of records that are errors.\n\nReusing the same summary function\n\nsummarize(good_rows) gives the overall summary.\nsummarize(success_rows) summarizes only the successful requests.\nsummarize(error_rows) summarizes only the error requests."
+  },
+  {
+    "objectID": "assignments/week-02/week-2-demo.html#a-streaming-approach-with-a-generator-processing-one-row-at-a-time",
+    "href": "assignments/week-02/week-2-demo.html#a-streaming-approach-with-a-generator-processing-one-row-at-a-time",
+    "title": "Week 2 Demo: Wrangling a Log File with Python",
+    "section": "A streaming approach with a generator (processing one row at a time)",
+    "text": "A streaming approach with a generator (processing one row at a time)\nSo far, we’ve been reading the entire file into memory and building full lists like lines and good_rows. That’s totally fine for small datasets, but real data files can be huge. When a file is large, it’s often better to process it one line at a time instead of loading everything at once.\nA generator is a Python tool that helps with this. A generator function looks like a normal function, but it uses yield instead of return. Each time the generator yields a value, it “pauses” and remembers where it left off. The next time you ask for another value (usually by looping), it picks up right where it stopped.\nIn this step, we’ll build a generator that reads the file and produces parsed rows one at a time.\n\ndef iter_parsed_rows(filename):\n    with open(filename, \"r\", encoding=\"utf-8\") as f:\n        header = next(f)  # skip the header line\n        for line in f:\n            line = line.rstrip(\"\\n\")\n            try:\n                yield parse_log_line(line)\n            except Exception:\n                continue\n\n# Example: compute average ms without storing all rows\ntotal_ms = 0\ncount = 0\n\nfor row in iter_parsed_rows(filename):\n    total_ms += row[\"ms\"]\n    count += 1\n\navg_ms_streaming = total_ms / count if count else None\navg_ms_streaming\n\n46.0\n\n\nDefining a generator function\n\ndef iter_parsed_rows(filename): defines a function that will produce rows from the file.\nThis function is different from our earlier functions because it uses yield.\n\nOpening the file and skipping the header\n\nwith open(filename, \"r\", encoding=\"utf-8\") as f: opens the file for reading.\nheader = next(f) reads the first line from the file (the header) and moves the file cursor forward by one line.\n\nWe store it in header but we don’t use it further, because we don’t want to parse the header as data.\n\n\nLooping over the file one line at a time\n\nfor line in f: iterates through the remaining lines in the file.\n\nThis is a memory-friendly pattern: Python reads lines as needed instead of loading the whole file at once.\n\n\nCleaning the line\n\nline = line.rstrip(\"\\n\") removes the trailing newline character from the end of the line.\n\nParsing and yielding good rows\n\nyield parse_log_line(line) attempts to parse the line and yields the resulting dictionary.\nyield means: “produce one value now, and pause until the next one is needed.”\nIf parsing fails, the except Exception: block runs and continue skips that bad line.\n\nUsing the generator to compute an average\n\ntotal_ms = 0 and count = 0 set up running totals.\nfor row in iter_parsed_rows(filename): loops over the generator.\n\nEach row is one parsed dictionary record.\n\nWe add row[\"ms\"] into total_ms and increment count.\n\nFinishing the calculation\n\navg_ms_streaming = total_ms / count if count else None computes the average safely.\n\nIf count is 0 (no good rows), we avoid dividing by zero."
+  },
+  {
+    "objectID": "assignments/week-01/index.html",
+    "href": "assignments/week-01/index.html",
+    "title": "Week 1 Assignments",
+    "section": "",
+    "text": "Submission location: All items are submitted in D2L (Week 1 dropboxes). Reading: Chapter 1 and Chapter 2 (complete)."
+  },
+  {
+    "objectID": "assignments/week-01/index.html#part-1-reading",
+    "href": "assignments/week-01/index.html#part-1-reading",
+    "title": "Week 1 Assignments",
+    "section": "Part 1: Reading",
+    "text": "Part 1: Reading\nRead all of Chapter 1 and all of Chapter 2.\nPay special attention to:\n\nChapter 1.3 Essential Python Libraries\nChapter 1.4 Installation and Setup\nChapter 1.6 Navigating This Book (import conventions, how to read examples)\nChapter 2.1–2.2 Interpreter + IPython/Jupyter workflow (tab completion, ? help)"
+  },
+  {
+    "objectID": "assignments/week-01/index.html#part-2-setup",
+    "href": "assignments/week-01/index.html#part-2-setup",
+    "title": "Week 1 Assignments",
+    "section": "Part 2: Setup",
+    "text": "Part 2: Setup\nSubmit the following screenshots (each as a separate file):\n\nGit installed Screenshot name: lastname_git-version.png Show the output of:\n\n\ngit --version\n\n\nCourse folders created Screenshot name: lastname_course-folders.png Show File Explorer displaying:\n\n\nC:\\cmsc-1217\\course-work\\\nC:\\cmsc-1217\\book\\\nC:\\cmsc-1217\\data\\\n\n\nBook files cloned Screenshot name: lastname_book-clone.png Show either:\n\n\nthe successful git clone output, or\nFile Explorer showing: C:\\cmsc-1217\\book\\pydata-book\\\n\n\nConda environment exists Screenshot name: lastname_conda-env-list.png Show the output of:\n\n\nconda info --envs\n\n\nCore packages installed Screenshot name: lastname_pandas-version.png Show the output of:\n\n\npython -c \"import pandas as pd; print(pd.__version__)\"\n\n(We will keep a consistent pandas version for compatibility with course/book notebooks.)"
+  },
+  {
+    "objectID": "assignments/week-01/index.html#part-3-jupyterlab-practice",
+    "href": "assignments/week-01/index.html#part-3-jupyterlab-practice",
+    "title": "Week 1 Assignments",
+    "section": "Part 3: JupyterLab practice",
+    "text": "Part 3: JupyterLab practice\n\nA) Launch JupyterLab in the correct folder\nFrom Anaconda Prompt:\n\nconda activate pydata-book\ncd C:\\cmsc-1217\\course-work\njupyter lab\n\n\n\nB) Create a week01 folder in cmsc-1217 and then create and run a notebook\nCreate: week01-notebook-practice.ipynb in course-work\\week01.\nRun these cells:\nimport sys\nsys.executable\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmessage = \"Notebooks run Python too\"\nmessage\nx = 10\nx + 5\nThen use JupyterLab to:\n\nRestart the kernel\nRun all cells\n\nFinally, do:\n\nTab completion: type np.random. and use completion\nHelp/introspection:\n\nnp.random.standard_normal?\nThese behaviors are part of the Chapter 2 IPython/Jupyter workflow.\n\n\nRequired screenshots\n\nJupyterLab opened in course-work Screenshot name: lastname_jupyterlab-course-work.png Show the JupyterLab file browser open in C:\\cmsc-1217\\course-work\\week01.\nsys.executable output Screenshot name: lastname_sys-executable.png\nIntrospection output (?) Screenshot name: lastname_ipython-help.png"
+  },
+  {
+    "objectID": "assignments/week-01/index.html#part-4-ipython-in-a-terminal",
+    "href": "assignments/week-01/index.html#part-4-ipython-in-a-terminal",
+    "title": "Week 1 Assignments",
+    "section": "Part 4: IPython in a terminal",
+    "text": "Part 4: IPython in a terminal\nOpen a new Anaconda Prompt tab/window:\n\nconda activate pydata-book\nipython\n\nRun at least one small example that produces an In [ ] and an Out [ ] (for example, assign a variable and then evaluate it).\n\nIPython running Screenshot name: lastname_ipython-prompt.png Show the IPython prompt and at least one In [ ] / Out [ ] interaction."
+  },
+  {
+    "objectID": "assignments/week-01/index.html#part-5-d2l-quiz",
+    "href": "assignments/week-01/index.html#part-5-d2l-quiz",
+    "title": "Week 1 Assignments",
+    "section": "Part 5: D2L quiz",
+    "text": "Part 5: D2L quiz\nComplete the D2L Chapter 1 and Chapter 2 quiz."
+  },
+  {
+    "objectID": "assignments/week-01/index.html#part-6-video-reflection",
+    "href": "assignments/week-01/index.html#part-6-video-reflection",
+    "title": "Week 1 Assignments",
+    "section": "Part 6: Video reflection",
+    "text": "Part 6: Video reflection\n\nVideo Submission Instructions\nRecord a short video of yourself explaining your understanding of the Week 1 workflow. Focus on explaining concepts clearly and using correct terminology rather than reading text from the screen.\nIn your video, address:\n\nWhat feels different from running .py scripts in an editor\nWhat the kernel is (in your own words)\nWhy “restart the kernel” and “run all” are useful habits\n\nRequirements\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week01Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week01Reflectionin the link name. This will appear if you copy the link."
+  },
+  {
+    "objectID": "assignments/week-01/index.html#d2l-submission-checklist",
+    "href": "assignments/week-01/index.html#d2l-submission-checklist",
+    "title": "Week 1 Assignments",
+    "section": "D2L submission checklist",
+    "text": "D2L submission checklist\nSubmit the following items to the Week 1 D2L dropboxes.\n\nScreenshot files (upload as separate files, not a zip)\n\nlastname_git-version.png\nlastname_course-folders.png\nlastname_book-clone.png\nlastname_conda-env-list.png\nlastname_pandas-version.png\nlastname_jupyterlab-course-work.png\nlastname_sys-executable.png\nlastname_ipython-help.png\nlastname_ipython-prompt.png\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week01Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "assignments/week-02/index.html",
+    "href": "assignments/week-02/index.html",
+    "title": "Week 2 Assignments",
+    "section": "",
+    "text": "Submission location: All files are submitted in D2L (Week 2 Dropbox)."
+  },
+  {
+    "objectID": "assignments/week-02/index.html#week-2-assignments",
+    "href": "assignments/week-02/index.html#week-2-assignments",
+    "title": "Week 2 Assignments",
+    "section": "",
+    "text": "Submission location: All files are submitted in D2L (Week 2 Dropbox)."
+  },
+  {
+    "objectID": "assignments/week-02/index.html#part-1-reading",
+    "href": "assignments/week-02/index.html#part-1-reading",
+    "title": "Week 2 Assignments",
+    "section": "Part 1: Reading",
+    "text": "Part 1: Reading\nRead all of Chapter 3.\nPay special attention to:\n\nFile I/O basics: open(...), read mode vs write mode, encoding=\"utf-8\"\nWorking with text files as rows: header vs data lines, “one line = one record”\nCore data structures used in the demo: lists, dictionaries, sets, tuples\nExceptions and try/except as a workflow for skipping bad rows without crashing\nSorting with key= (including lambda)\nGenerators and yield (streaming / row-by-row processing)"
+  },
+  {
+    "objectID": "assignments/week-02/index.html#part-2-week-2-demo-activity",
+    "href": "assignments/week-02/index.html#part-2-week-2-demo-activity",
+    "title": "Week 2 Assignments",
+    "section": "Part 2: Week 2 Demo Activity",
+    "text": "Part 2: Week 2 Demo Activity\nYou will make two small changes to the Week 2 demo and submit evidence outputs showing what happened.\n\nTask A: Trigger and observe a parsing error\nIn the “Quick check: confirm the parser works on one line” section:\n\nReplace the valid sample_line with a malformed line that should fail parsing.\n\nMissing a field: 2026-01-19T09:01:10,alice,/home,200\nNot enough commas: bad_row_with_no_commas\nNon-numeric ms: 2026-01-19T09:01:10,alice,/home,200,not_a_number\nExtra field: 2026-01-19T09:01:10,alice,/home,200,34,EXTRA\n\nRun the cell and confirm you see an error message.\nChange the line back to the valid example and re-run successfully.\n\nWhat to submit (evidence):\n\nA screenshot showing the error message output for one malformed line.\n\nRequired filename:\n\nlastname_week02_taskA.png\n\n\n\nTask B: Make one small data change and observe how results change\nChoose ONE option below.\n\nOption 1: Add one valid row and observe how counts change\n\nAdd one new valid row to raw_lines in the dataset-creation section. Example format (must have 5 fields): 2026-01-19T09:02:00,alice,/home,200,35\nRe-run the cells needed to rebuild the cleaned data and the endpoint counts.\nShow that the results changed (for example, endpoint counts or the “top endpoints” output).\n\nEvidence to capture:\n\nOutput showing the updated counts or updated top_endpoints.\n\n\n\nOption 2: Change the “error” threshold and compare summaries\n\nIn the “Compare summaries on different subsets of the data” section, change the error definition from:\n\nstatus &gt;= 400 (errors) to:\nstatus &gt;= 500 (errors)\n\nRe-run the cell and compare the three printed summaries.\n\nEvidence to capture:\n\nOutput showing the updated summaries for All / Success only / Errors only.\n\nWhat to submit (evidence):\n\nA screenshot showing the updated output.\n\nRequired filename:\n\nlastname_week02_taskB.png"
+  },
+  {
+    "objectID": "assignments/week-02/index.html#part-3-d2l-quiz",
+    "href": "assignments/week-02/index.html#part-3-d2l-quiz",
+    "title": "Week 2 Assignments",
+    "section": "Part 3: D2L Quiz",
+    "text": "Part 3: D2L Quiz\nComplete the Week 2 D2L quiz.\nThe quiz focuses on:\n\nwhat “parsing” means and what the parser returns\nwhy we use try/except when reading rows\nwhen to use a set vs a dictionary\nhow the .get(..., 0) + 1 counting pattern works\nwhat dict.items() returns (tuples)\nhow sorting with key= works, and what the lambda returns\nwhat a generator does, what yield changes, and when streaming is useful"
+  },
+  {
+    "objectID": "assignments/week-02/index.html#d2l-submission-checklist",
+    "href": "assignments/week-02/index.html#d2l-submission-checklist",
+    "title": "Week 2 Assignments",
+    "section": "D2L submission checklist",
+    "text": "D2L submission checklist\nSubmit two screenshot files to the Week 2 Dropbox (upload as separate files, not a zip):\n\nlastname_week02_taskA.png\nlastname_week02_taskB.png\n\nAlso complete:\n\nWeek 2 D2L quiz"
+  },
+  {
+    "objectID": "assignments/week-03/index.html",
+    "href": "assignments/week-03/index.html",
+    "title": "Week 3 Assignments",
+    "section": "",
+    "text": "Here is the link to the Week 3 demo.\n Download Jupyter Notebook"
+  },
+  {
+    "objectID": "assignments/week-03/index.html#part-1-reading",
+    "href": "assignments/week-03/index.html#part-1-reading",
+    "title": "Week 3 Assignments",
+    "section": "Part 1: Reading",
+    "text": "Part 1: Reading\nRead all of Chapter 4.\nChapter 4 introduces NumPy arrays and vectorized computation. The demo provides a hands-on walkthrough of the core concepts, with detailed explanations of how each operation works."
+  },
+  {
+    "objectID": "assignments/week-03/index.html#part-2-work-through-the-week-3-demo",
+    "href": "assignments/week-03/index.html#part-2-work-through-the-week-3-demo",
+    "title": "Week 3 Assignments",
+    "section": "Part 2: Work through the Week 3 Demo",
+    "text": "Part 2: Work through the Week 3 Demo\nThe Week 3 demo covers:\n\nCreating arrays from lists and using generation functions\nUnderstanding array attributes (shape, dtype, ndim)\nPerforming vectorized operations (no loops needed)\nIndexing and slicing 1D and 2D arrays\nUsing boolean indexing to filter data\nComputing statistics with and without the axis parameter\nSorting arrays and finding unique values\nWorking with random data\nSaving and loading arrays"
+  },
+  {
+    "objectID": "assignments/week-03/index.html#part-3-d2l-quiz",
+    "href": "assignments/week-03/index.html#part-3-d2l-quiz",
+    "title": "Week 3 Assignments",
+    "section": "Part 3: D2L Quiz",
+    "text": "Part 3: D2L Quiz\nComplete the Week 3 D2L quiz (Chapter 4 concepts).\nThe quiz covers:\n\nCore concepts: arrays vs. lists, vectorization, dtypes, views vs. copies\nOperations: indexing, slicing, boolean indexing, statistical methods\nPractical skills: when to use different array creation methods, understanding axis parameter, file I/O choices"
+  },
+  {
+    "objectID": "assignments/week-03/index.html#d2l-submission-checklist",
+    "href": "assignments/week-03/index.html#d2l-submission-checklist",
+    "title": "Week 3 Assignments",
+    "section": "D2L submission checklist",
+    "text": "D2L submission checklist\nComplete the following in D2L:\n\nWeek 3 D2L quiz (no file uploads required this week)\n\nNote: This week focuses on reading Chapter 4, understanding the demo, and demonstrating comprehension through the quiz. There are no screenshot or coding submissions this week. The emphasis is on building solid conceptual understanding of NumPy fundamentals that will support everything that follows."
+  },
+  {
+    "objectID": "assignments/week-04/index.html",
+    "href": "assignments/week-04/index.html",
+    "title": "Week 4 Assignment",
+    "section": "",
+    "text": "Submission location: All items are submitted in D2L (Week 4 Dropbox).\nReading: Chapters 1–4 (cumulative).\nDataset:  Download Sensor Data"
+  },
+  {
+    "objectID": "assignments/week-04/index.html#the-situation",
+    "href": "assignments/week-04/index.html#the-situation",
+    "title": "Week 4 Assignment",
+    "section": "The Situation",
+    "text": "The Situation\nYou have been asked to analyze recent sensor data from an industrial manufacturing process. The facility runs a heated chemical process that requires careful monitoring of temperature, humidity, and pressure conditions. Six sensors (SENS_001 through SENS_006) continuously log readings every five minutes.\nThe operations team has reported intermittent issues with the sensor logging system over the past few days. Some records appear to be incomplete or contain invalid data. Your manager needs a clean analysis of the valid sensor readings to assess whether the process is operating within safe parameters.\nThe raw sensor log file has been exported as a CSV. Each record should contain six fields: timestamp, sensor ID, temperature (°F), humidity (%), pressure (PSI), and status. However, the export process is known to occasionally produce malformed records.\nManagement has specific concerns about process stability. Recent maintenance logs suggest that high-temperature events combined with low humidity may indicate a developing issue with the climate control system. They also want to understand the overall distribution of readings across the sensor network and verify that critical measurements remain within expected ranges."
+  },
+  {
+    "objectID": "assignments/week-04/index.html#what-you-need-to-deliver",
+    "href": "assignments/week-04/index.html#what-you-need-to-deliver",
+    "title": "Week 4 Assignment",
+    "section": "What You Need to Deliver",
+    "text": "What You Need to Deliver\nYour analysis must address the following requirements. Use the skills and methods from Weeks 1–4 to complete this work.\n\nData Quality Assessment\nStart by examining the raw data file. The operations team needs to know how reliable the sensor export has been. Your report should include:\n\nThe total number of records in the file\nHow many records were successfully parsed and validated\nHow many records contained errors and could not be processed\nA brief look at the structure of the cleaned data (show a few sample records)\nIdentification of which sensors are represented in the dataset\n\n\n\nProcess Temperature Analysis\nTemperature control is critical for this process. The normal operating range is 150–220°F, but readings above 190°F warrant closer attention. Management needs:\n\nSummary statistics for all valid temperature readings (mean, standard deviation, minimum, maximum)\nIdentification of how many readings exceeded 190°F\nThe actual temperature values that exceeded this threshold\n\n\n\nMulti-Condition Alert Investigation\nThe maintenance team suspects that certain combinations of conditions might indicate system stress. Specifically, they want to investigate readings where temperature exceeded 200°F AND humidity fell below 45%. For this subset of readings:\n\nHow many readings meet both conditions?\nWhat was the average pressure during these events?\n\n\n\nComparative Analysis\nTo better understand the data distribution, provide:\n\nThe five highest temperature readings recorded (sorted from highest to lowest)\nThe position (index) of each of these high-temperature readings in the dataset\nSummary statistics for humidity readings (mean, standard deviation, minimum, maximum)\nSummary statistics for pressure readings (mean, standard deviation, minimum, maximum)\n\n\n\nData Preservation\nFor future reference and potential audit purposes:\n\nSave the processed temperature data to a binary file (temperatures.npy)\nVerify that the saved data can be reloaded successfully"
+  },
+  {
+    "objectID": "assignments/week-04/index.html#technical-requirements",
+    "href": "assignments/week-04/index.html#technical-requirements",
+    "title": "Week 4 Assignment",
+    "section": "Technical Requirements",
+    "text": "Technical Requirements\nYour Jupyter notebook should demonstrate the complete workflow from raw file to final analysis. The notebook must run successfully from start to finish using “Restart Kernel and Run All.”\nFile handling and parsing (Week 2 skills):\nUse standard Python file I/O to read the CSV file. Parse each row into structured records using string methods and type conversion. Handle invalid records gracefully using try/except—the analysis should not crash if malformed rows are encountered. Track both successful parses and errors so you can report on data quality.\nData structures and extraction (Week 2 skills):\nStore cleaned records in an appropriate data structure. Use sets when you need to find distinct values. When extracting numeric measurements for analysis, build lists first before converting to arrays.\nNumPy analysis (Week 3 and Chapter 4 skills):\nConvert extracted measurements into NumPy arrays. Use vectorized operations and built-in statistical methods rather than loops. Apply boolean indexing to filter data based on conditions. Use array methods for sorting and saving/loading data.\nNotebook organization:\nStructure your notebook logically. Use markdown cells to explain what each section does. Include clear print statements showing your results. Make it easy to verify that you have addressed each requirement."
+  },
+  {
+    "objectID": "assignments/week-04/index.html#video-reflection",
+    "href": "assignments/week-04/index.html#video-reflection",
+    "title": "Week 4 Assignment",
+    "section": "Video Reflection",
+    "text": "Video Reflection\nRecord a short video (4-5 minutes) demonstrating your understanding of this assignment.\nPart 1: Explain your approach to the multi-condition alert investigation\nWalk through how you identified readings where temperature exceeded 200°F AND humidity fell below 45%. In your explanation, address:\n\nWhat the requirement was asking you to determine\nHow you broke this down into steps\nWhat each part of your boolean mask is checking\nWhat your results mean (how many readings matched, what the average pressure was)\n\nPart 2: Reflect on your learning\nChoose ONE of the following to discuss:\n\nChallenge or error: Describe a problem you encountered while completing this assignment, how you figured out what was wrong, and how you resolved it\nKey takeaway: Explain one important concept you learned or solidified through this assignment and why it matters for data work\n\nVideo submission requirements:\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week04Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week04Reflection in the link name"
+  },
+  {
+    "objectID": "assignments/week-04/index.html#d2l-submission-checklist",
+    "href": "assignments/week-04/index.html#d2l-submission-checklist",
+    "title": "Week 4 Assignment",
+    "section": "D2L Submission Checklist",
+    "text": "D2L Submission Checklist\nSubmit the following items to the Week 4 Dropbox in D2L:\n\nNotebook file\n\nlastname_week04_assignment.ipynb\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week04Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)\n\nBefore you submit:\n\nRun “Restart Kernel and Run All” to confirm your notebook executes without errors\nVerify all required outputs are visible in the notebook\nCheck that your video link works and includes the correct filename"
+  },
+  {
+    "objectID": "assignments/week-05/week-05-assignments.html",
+    "href": "assignments/week-05/week-05-assignments.html",
     "title": "Week 5 Assignments",
     "section": "",
-    "text": "Here is the link to the Week 5 demo.\n Download Jupyter Notebook",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 5 (Starts 9 FEB)"
-    ]
+    "text": "Here is the link to the Week 5 demo.\n Download Jupyter Notebook"
   },
   {
-    "objectID": "assignments/week-05/index.html#part-1-reading",
-    "href": "assignments/week-05/index.html#part-1-reading",
+    "objectID": "assignments/week-05/week-05-assignments.html#part-1-reading",
+    "href": "assignments/week-05/week-05-assignments.html#part-1-reading",
     "title": "Week 5 Assignments",
     "section": "Part 1: Reading",
-    "text": "Part 1: Reading\nRead all of Chapter 5.\nChapter 5 introduces pandas, the primary library for working with tabular data in Python. You’ll learn about Series (1D labeled arrays) and DataFrames (2D labeled tables), how to select data by labels and positions, and how pandas automatically aligns data during operations. The demo provides hands-on practice with these concepts using concrete examples.",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 5 (Starts 9 FEB)"
-    ]
+    "text": "Part 1: Reading\nRead all of Chapter 5.\nChapter 5 introduces pandas, the primary library for working with tabular data in Python. You’ll learn about Series (1D labeled arrays) and DataFrames (2D labeled tables), how to select data by labels and positions, and how pandas automatically aligns data during operations. The demo provides hands-on practice with these concepts using concrete examples."
   },
   {
-    "objectID": "assignments/week-05/index.html#part-2-work-through-the-week-5-demo",
-    "href": "assignments/week-05/index.html#part-2-work-through-the-week-5-demo",
+    "objectID": "assignments/week-05/week-05-assignments.html#part-2-work-through-the-week-5-demo",
+    "href": "assignments/week-05/week-05-assignments.html#part-2-work-through-the-week-5-demo",
     "title": "Week 5 Assignments",
     "section": "Part 2: Work through the Week 5 Demo",
-    "text": "Part 2: Work through the Week 5 Demo\nThe Week 5 demo covers:\n\nCreating and working with Series (1D labeled arrays with index)\nSeries attributes and operations (.iloc, .values, vectorization, boolean indexing)\nCreating DataFrames from dictionaries, lists of dictionaries, and understanding structure\nDataFrame attributes (.shape, .dtypes, .columns, .head(), .info())\nSelection methods: .loc for labels, .iloc for positions, single vs double brackets\nBoolean indexing for filtering data with conditions, using & and | operators\nAutomatic alignment: how pandas matches data by labels and handles mismatched indices with NaN\nStatistical methods: .mean(), .describe(), understanding the axis parameter, .sort_values()",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 5 (Starts 9 FEB)"
-    ]
+    "text": "Part 2: Work through the Week 5 Demo\nThe Week 5 demo covers:\n\nCreating and working with Series (1D labeled arrays with index)\nSeries attributes and operations (.iloc, .values, vectorization, boolean indexing)\nCreating DataFrames from dictionaries, lists of dictionaries, and understanding structure\nDataFrame attributes (.shape, .dtypes, .columns, .head(), .info())\nSelection methods: .loc for labels, .iloc for positions, single vs double brackets\nBoolean indexing for filtering data with conditions, using & and | operators\nAutomatic alignment: how pandas matches data by labels and handles mismatched indices with NaN\nStatistical methods: .mean(), .describe(), understanding the axis parameter, .sort_values()"
   },
   {
-    "objectID": "assignments/week-05/index.html#part-3-d2l-quiz",
-    "href": "assignments/week-05/index.html#part-3-d2l-quiz",
+    "objectID": "assignments/week-05/week-05-assignments.html#part-3-d2l-quiz",
+    "href": "assignments/week-05/week-05-assignments.html#part-3-d2l-quiz",
     "title": "Week 5 Assignments",
     "section": "Part 3: D2L Quiz",
-    "text": "Part 3: D2L Quiz\nComplete the Week 5 D2L quiz (pandas concepts).\nThe quiz covers:\n\nSeries fundamentals: creation, default index, custom labels, dictionary to Series, display format\nSeries operations: .iloc accessor, label-based access, vectorized operations, boolean indexing\nDataFrame fundamentals: creation from dictionaries and lists, .set_index(), mixed data types, columns as Series\nDataFrame structure: .shape, .dtypes, .columns, .head(), .tail(), .info()\nSelection methods: .loc vs .iloc, single vs double brackets, boolean indexing, multiple conditions with & and |\nAutomatic alignment: behavior with mismatched indices, NaN handling, importance for data integrity\nOperations and statistics: creating new columns, axis parameter, .describe(), .sort_values()\nTool progression: understanding how pandas builds on NumPy (connection to Week 3)",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 5 (Starts 9 FEB)"
-    ]
+    "text": "Part 3: D2L Quiz\nComplete the Week 5 D2L quiz (pandas concepts).\nThe quiz covers:\n\nSeries fundamentals: creation, default index, custom labels, dictionary to Series, display format\nSeries operations: .iloc accessor, label-based access, vectorized operations, boolean indexing\nDataFrame fundamentals: creation from dictionaries and lists, .set_index(), mixed data types, columns as Series\nDataFrame structure: .shape, .dtypes, .columns, .head(), .tail(), .info()\nSelection methods: .loc vs .iloc, single vs double brackets, boolean indexing, multiple conditions with & and |\nAutomatic alignment: behavior with mismatched indices, NaN handling, importance for data integrity\nOperations and statistics: creating new columns, axis parameter, .describe(), .sort_values()\nTool progression: understanding how pandas builds on NumPy (connection to Week 3)"
   },
   {
-    "objectID": "assignments/week-05/index.html#d2l-submission-checklist",
-    "href": "assignments/week-05/index.html#d2l-submission-checklist",
+    "objectID": "assignments/week-05/week-05-assignments.html#d2l-submission-checklist",
+    "href": "assignments/week-05/week-05-assignments.html#d2l-submission-checklist",
     "title": "Week 5 Assignments",
     "section": "D2L submission checklist",
-    "text": "D2L submission checklist\n\nWeek 5 D2L quiz (no file uploads required this week)\n\nNote: This week emphasizes reading Chapter 5, understanding the demo, and demonstrating comprehension through the quiz. Focus on understanding pandas fundamentals—Series, DataFrames, selection methods, and automatic alignment—rather than just completing steps. The pandas patterns you learn this week are the foundation for all data manipulation tasks that follow.",
-    "crumbs": [
-      "Home",
-      "Weekly Assignments",
-      "Week 5 (Starts 9 FEB)"
-    ]
+    "text": "D2L submission checklist\n\nWeek 5 D2L quiz (no file uploads required this week)\n\nNote: This week emphasizes reading Chapter 5, understanding the demo, and demonstrating comprehension through the quiz. Focus on understanding pandas fundamentals—Series, DataFrames, selection methods, and automatic alignment—rather than just completing steps. The pandas patterns you learn this week are the foundation for all data manipulation tasks that follow."
   },
   {
     "objectID": "assignments/week-06/index.html",
@@ -1382,7 +1517,7 @@
     "href": "assignments/week-07/week-7-demo.html#part-3-interacting-with-web-apis",
     "title": "Week 7 Demo: Data Loading with pandas",
     "section": "Part 3: Interacting with Web APIs",
-    "text": "Part 3: Interacting with Web APIs\nParts 1 and 2 covered loading data from local files, both CSV and JSON. But a large amount of data is available through web APIs (Application Programming Interfaces). A web API lets you request specific data from a server over the internet and receive a structured response, usually in JSON format. This is where the JSON skills from Part 2 become directly practical.\n\nWhat a web API is\nWhen you visit a website, your browser sends a request to a server and gets back an HTML page for humans to read. A web API works the same way, but the response is structured data (usually JSON) designed for programs to process.\nThe pattern is straightforward: 1. Send an HTTP request to a URL (the API endpoint) 2. Receive a response containing structured data 3. Parse the response (usually JSON) 4. Work with the data in Python\n\n\nMaking an API request\nPython’s requests library makes HTTP requests simple. We’ll use the GitHub API as an example. It provides public data about GitHub repositories without requiring an account or API key.\nThe following code cells require internet access to reach the GitHub API. If you are working offline or the request fails, read through the code and explanations to understand the pattern. The concepts (make a request, check the response, parse JSON, convert to DataFrame) are what matter. You can re-run these cells later when you have internet access.\n\nimport requests\n\n# Request recent issues from the pandas GitHub repository\n# (This is the same API endpoint used in the textbook's Chapter 6 example)\nurl = 'https://api.github.com/repos/pandas-dev/pandas/issues'\nresp = requests.get(url)\nresp.raise_for_status()\n\nprint(f\"Status code: {resp.status_code}\")\nprint(f\"Response type: {type(resp.json())}\")\nprint(f\"Number of items: {len(resp.json())}\")\n\nStatus code: 200\nResponse type: &lt;class 'list'&gt;\nNumber of items: 30\n\n\nIf import requests gives a ModuleNotFoundError, you need to install the library. Run pip install requests in your terminal, then restart your kernel and try again.\nUnderstanding the request:\nrequests.get(url) sends an HTTP GET request to the GitHub API. This is the same kind of request your browser makes when you visit a web page, but instead of HTML, the server returns JSON data.\nresp.raise_for_status() checks whether the request succeeded. If something went wrong (server error, invalid URL, rate limit exceeded), this raises an exception. This is similar to how you use try/except to catch errors in file processing. A status code of 200 means success.\nresp.json() parses the JSON response into Python objects (a list of dictionaries in this case). This is equivalent to calling json.loads() on the response text, which you used in Part 2.\n\n\nFrom API response to DataFrame\nNow that we have a successful response, let’s see what the API returned and convert it to a DataFrame. The GitHub API returns a list of dictionaries, one per issue. Each dictionary contains many fields.\n\n# Parse the JSON response\ndata = resp.json()\n\n# Look at the keys available in one issue\nprint(\"Available fields in each issue:\")\nprint(sorted(data[0].keys()))\n\nAvailable fields in each issue:\n['active_lock_reason', 'assignee', 'assignees', 'author_association', 'body', 'closed_at', 'closed_by', 'comments', 'comments_url', 'created_at', 'draft', 'events_url', 'html_url', 'id', 'labels', 'labels_url', 'locked', 'milestone', 'node_id', 'number', 'performed_via_github_app', 'pull_request', 'reactions', 'repository_url', 'state', 'state_reason', 'timeline_url', 'title', 'type', 'updated_at', 'url', 'user']\n\n\nUnderstanding the response:\nEach issue is a dictionary with many fields: title, body, user information, labels, timestamps, and more. Most API responses contain more data than you need. The next step is to convert to a DataFrame and select the relevant columns.\n\n# Convert to DataFrame\nissues = pd.DataFrame(data)\n\n# Select useful columns\nissues_subset = issues[['number', 'title', 'state', 'created_at']]\nprint(issues_subset.head(10))\n\n   number                                              title state  \\\n0   64279                        CI: Simplify wheel workflow  open   \n1   64278  TST: add test for GH#55423 loc setitem preserv...  open   \n2   64277             TST: add regression test for GH #42437  open   \n3   64276  BUG: Suppress unnecessary RuntimeWarning in to...  open   \n4   64275  BUILD: generate_version.py line ending breaks ...  open   \n5   64274  DOC: clarify Series reindexing on column assig...  open   \n6   64273  BUG: The order of items in pd.concat matters f...  open   \n7   64272  BUILD: generate_version.py line ending breaks ...  open   \n8   64270          BUG: Support for Expressions with dunders  open   \n9   64269  TST: Add regression test for DatetimeIndex.equ...  open   \n\n             created_at  \n0  2026-02-22T23:30:44Z  \n1  2026-02-22T19:00:13Z  \n2  2026-02-22T18:21:15Z  \n3  2026-02-22T17:56:13Z  \n4  2026-02-22T16:19:50Z  \n5  2026-02-22T11:18:11Z  \n6  2026-02-22T09:09:04Z  \n7  2026-02-22T00:58:39Z  \n8  2026-02-21T22:00:25Z  \n9  2026-02-21T19:40:19Z  \n\n\nUnderstanding the workflow:\nThis is the same pd.DataFrame() call you’ve been using. A list of dictionaries becomes a DataFrame where each dictionary is a row. Then we use column selection (double brackets from Week 5) to keep just the columns we need.\nThe result is a clean, labeled DataFrame created from live data on the internet. You went from a URL to an analyzable DataFrame in a few lines of code.\nThe specific issues shown depend on when you run this code. GitHub issues are created and updated constantly, so your output will differ from someone who runs this at a different time.\n\n\nA note about APIs\nThe GitHub API we used here is public and doesn’t require authentication for basic requests. But there are important practical considerations.\nMost APIs limit how many requests you can make per hour. The GitHub API allows 60 requests per hour without authentication. If you exceed the limit, requests will fail temporarily.\nMany APIs also require an API key or account credentials. This is how services control access and track usage. The textbook covers this briefly, and you’ll encounter it when working with data from services like Twitter, weather providers, or financial data platforms.\nNot all APIs return simple lists of dictionaries, either. Some wrap data in metadata, use pagination for large results, or nest data in complex structures. The json.loads() + pd.DataFrame() approach gives you more control for these cases than pd.read_json() alone."
+    "text": "Part 3: Interacting with Web APIs\nParts 1 and 2 covered loading data from local files, both CSV and JSON. But a large amount of data is available through web APIs (Application Programming Interfaces). A web API lets you request specific data from a server over the internet and receive a structured response, usually in JSON format. This is where the JSON skills from Part 2 become directly practical.\n\nWhat a web API is\nWhen you visit a website, your browser sends a request to a server and gets back an HTML page for humans to read. A web API works the same way, but the response is structured data (usually JSON) designed for programs to process.\nThe pattern is straightforward: 1. Send an HTTP request to a URL (the API endpoint) 2. Receive a response containing structured data 3. Parse the response (usually JSON) 4. Work with the data in Python\n\n\nMaking an API request\nPython’s requests library makes HTTP requests simple. We’ll use the GitHub API as an example. It provides public data about GitHub repositories without requiring an account or API key.\nThe following code cells require internet access to reach the GitHub API. If you are working offline or the request fails, read through the code and explanations to understand the pattern. The concepts (make a request, check the response, parse JSON, convert to DataFrame) are what matter. You can re-run these cells later when you have internet access.\n\nimport requests\n\n# Request recent issues from the pandas GitHub repository\n# (This is the same API endpoint used in the textbook's Chapter 6 example)\nurl = 'https://api.github.com/repos/pandas-dev/pandas/issues'\nresp = requests.get(url)\nresp.raise_for_status()\n\nprint(f\"Status code: {resp.status_code}\")\nprint(f\"Response type: {type(resp.json())}\")\nprint(f\"Number of items: {len(resp.json())}\")\n\nStatus code: 200\nResponse type: &lt;class 'list'&gt;\nNumber of items: 30\n\n\nIf import requests gives a ModuleNotFoundError, you need to install the library. Run pip install requests in your terminal, then restart your kernel and try again.\nUnderstanding the request:\nrequests.get(url) sends an HTTP GET request to the GitHub API. This is the same kind of request your browser makes when you visit a web page, but instead of HTML, the server returns JSON data.\nresp.raise_for_status() checks whether the request succeeded. If something went wrong (server error, invalid URL, rate limit exceeded), this raises an exception. This is similar to how you use try/except to catch errors in file processing. A status code of 200 means success.\nresp.json() parses the JSON response into Python objects (a list of dictionaries in this case). This is equivalent to calling json.loads() on the response text, which you used in Part 2.\n\n\nFrom API response to DataFrame\nNow that we have a successful response, let’s see what the API returned and convert it to a DataFrame. The GitHub API returns a list of dictionaries, one per issue. Each dictionary contains many fields.\n\n# Parse the JSON response\ndata = resp.json()\n\n# Look at the keys available in one issue\nprint(\"Available fields in each issue:\")\nprint(sorted(data[0].keys()))\n\nAvailable fields in each issue:\n['active_lock_reason', 'assignee', 'assignees', 'author_association', 'body', 'closed_at', 'closed_by', 'comments', 'comments_url', 'created_at', 'draft', 'events_url', 'html_url', 'id', 'labels', 'labels_url', 'locked', 'milestone', 'node_id', 'number', 'performed_via_github_app', 'pull_request', 'reactions', 'repository_url', 'state', 'state_reason', 'timeline_url', 'title', 'type', 'updated_at', 'url', 'user']\n\n\nUnderstanding the response:\nEach issue is a dictionary with many fields: title, body, user information, labels, timestamps, and more. Most API responses contain more data than you need. The next step is to convert to a DataFrame and select the relevant columns.\n\n# Convert to DataFrame\nissues = pd.DataFrame(data)\n\n# Select useful columns\nissues_subset = issues[['number', 'title', 'state', 'created_at']]\nprint(issues_subset.head(10))\n\n   number                                              title state  \\\n0   64359                        PERF: use pc.utf8_normalize  open   \n1   64357  BUG: fix 1-ULP rounding error in precise_xstrt...  open   \n2   64356                                     PERF: floatify  open   \n3   64349  BUG: large memory allocation when attempting t...  open   \n4   64347                          WIP: parallelize read_csv  open   \n5   64346      DOC: use docs version for stable source links  open   \n6   64345              DISC: pd.option_context thread-safety  open   \n7   64344  BUG: fix read_sas large datetimes off by 2 day...  open   \n8   64343  BUG: Fix MultiIndex partial-key lookup when np...  open   \n9   64342                    ENH: Add arrow engine to to_csv  open   \n\n             created_at  \n0  2026-03-01T20:19:41Z  \n1  2026-03-01T19:12:48Z  \n2  2026-03-01T19:07:54Z  \n3  2026-02-28T20:40:33Z  \n4  2026-02-28T19:28:17Z  \n5  2026-02-28T07:37:58Z  \n6  2026-02-28T03:12:45Z  \n7  2026-02-28T02:50:23Z  \n8  2026-02-27T20:57:45Z  \n9  2026-02-27T19:31:21Z  \n\n\nUnderstanding the workflow:\nThis is the same pd.DataFrame() call you’ve been using. A list of dictionaries becomes a DataFrame where each dictionary is a row. Then we use column selection (double brackets from Week 5) to keep just the columns we need.\nThe result is a clean, labeled DataFrame created from live data on the internet. You went from a URL to an analyzable DataFrame in a few lines of code.\nThe specific issues shown depend on when you run this code. GitHub issues are created and updated constantly, so your output will differ from someone who runs this at a different time.\n\n\nA note about APIs\nThe GitHub API we used here is public and doesn’t require authentication for basic requests. But there are important practical considerations.\nMost APIs limit how many requests you can make per hour. The GitHub API allows 60 requests per hour without authentication. If you exceed the limit, requests will fail temporarily.\nMany APIs also require an API key or account credentials. This is how services control access and track usage. The textbook covers this briefly, and you’ll encounter it when working with data from services like Twitter, weather providers, or financial data platforms.\nNot all APIs return simple lists of dictionaries, either. Some wrap data in metadata, use pagination for large results, or nest data in complex structures. The json.loads() + pd.DataFrame() approach gives you more control for these cases than pd.read_json() alone."
   },
   {
     "objectID": "assignments/week-07/week-7-demo.html#conclusion",
@@ -1390,6 +1525,48 @@
     "title": "Week 7 Demo: Data Loading with pandas",
     "section": "Conclusion",
     "text": "Conclusion\n\nWhat You’ve Learned\nThis demo introduced the core data loading tools from Chapter 6.\nFor CSV files, you learned to use pd.read_csv() to read files into DataFrames with automatic header detection and type inference. You saw how to customize loading with parameters (header, names, index_col, usecols, nrows, na_values), how to handle missing data and sentinel values during loading, and how to write DataFrames back to CSV with to_csv().\nFor JSON data, you learned how JSON structures map to Python dictionaries and lists, how to use Python’s json module (json.loads() to parse, json.dumps() to write), and how pd.read_json() can convert JSON files directly into DataFrames.\nFor web APIs, you learned how to use requests.get() to fetch data from a URL, parse the JSON response, and convert it to a DataFrame. You also saw practical considerations like rate limits and authentication.\n\n\nThe Manual Parsing Connection\nEvery step in the manual parsing pipeline you’ve been writing (opening files, splitting fields, stripping whitespace, converting types, detecting headers, handling bad values, building the result) has a corresponding behavior inside pd.read_csv(). Understanding what happens under the hood makes you a better analyst. When pd.read_csv() doesn’t behave as expected, whether it’s wrong types, missing values not detected, or columns misaligned, you’ll know where to look because you’ve done each of those steps manually.\n\n\nWhat the Textbook Covers Next\nChapter 6 continues with data formats and tools not covered in this demo. These are worth knowing about, even if you don’t use them immediately.\npd.read_html() extracts tables from web pages into DataFrames. It’s useful for scraping tabular data from websites, though it requires additional libraries (lxml, beautifulsoup4).\npd.read_excel() reads .xlsx and .xls files and works similarly to pd.read_csv() with comparable parameters. to_excel() handles writing.\nThe chapter also covers binary storage formats: Pickle (Python’s built-in serialization, fast but Python-only), HDF5 (hierarchical data format for large scientific datasets), and Parquet (columnar format optimized for analytics, increasingly common in industry). These formats are more efficient than CSV for large datasets.\nFinally, pd.read_sql() lets you run SQL queries and return the results as DataFrames, connecting pandas to relational databases like SQLite, PostgreSQL, and MySQL through the SQLAlchemy library.\nEach of these follows the same pattern: pd.read_*() to load data into a DataFrame, and a corresponding to_*() method to write data back out. Once you understand the read_csv() workflow, the other loading functions feel familiar."
+  },
+  {
+    "objectID": "assignments/week-08/week-08-assignments.html",
+    "href": "assignments/week-08/week-08-assignments.html",
+    "title": "Week 8 Assignment",
+    "section": "",
+    "text": "Submission location: All items are submitted in D2L (Week 8 Dropbox).\nReading: Chapters 1–6 (cumulative).\nDatasets:"
+  },
+  {
+    "objectID": "assignments/week-08/week-08-assignments.html#the-situation",
+    "href": "assignments/week-08/week-08-assignments.html#the-situation",
+    "title": "Week 8 Assignment",
+    "section": "The Situation",
+    "text": "The Situation\nYou work part-time at Hexagon Games, a small board game store that also hosts weekly game nights. The owner, Dana, is preparing for a quarterly business review with the store’s co-investor. She needs a clear picture of recent sales performance and wants the store’s game catalog organized into a usable format for inventory decisions.\nThe store’s point-of-sale system exports transaction data as a CSV file. Each record should contain seven fields: date, game name, quantity sold, unit price, customer type (member or walk-in), payment method, and the staff member who handled the sale. Dana has mentioned that the POS system sometimes logs incomplete transactions — missing payment methods, placeholder values where the staff member forgot to scan a membership card, and a few records that just didn’t export correctly.\nThe store also has a game catalog file from their distributor. This file is in JSON format and contains detailed information about each game in stock: name, category, player count range, estimated play time, complexity rating, and a list of game mechanics. The catalog has more structure than a simple spreadsheet — some fields contain nested information rather than single values.\nDana needs two things from you. First, a sales analysis from the CSV data that she can present at the review. Second, the catalog data pulled into a clean table so she can use it to evaluate which categories and complexity levels are represented in the store’s inventory."
+  },
+  {
+    "objectID": "assignments/week-08/week-08-assignments.html#what-you-need-to-deliver",
+    "href": "assignments/week-08/week-08-assignments.html#what-you-need-to-deliver",
+    "title": "Week 8 Assignment",
+    "section": "What You Need to Deliver",
+    "text": "What You Need to Deliver\nYour analysis must address the following requirements. Use the skills and methods from Weeks 1–7 to complete this work.\n\nPart 1: Sales Data (CSV)\n\nData Loading and Quality Assessment\nLoad the sales log using pd.read_csv(). The file contains some placeholder values for missing data. After loading, inspect the result to assess data quality. If columns have unexpected data types or values that should be missing aren’t being treated as missing, determine which pd.read_csv() parameter can address this and reload the file. Your report should include:\n\nThe shape of the loaded DataFrame (rows and columns)\nThe output of .info() showing column types and non-null counts\nWhich columns contain missing values and how many are missing in each\nWhich columns changed data type because of missing values (and what type they became)\nA look at the first few rows to verify the data loaded correctly\n\n\n\nSales Analysis\nDana needs to understand the store’s recent performance. Using the loaded DataFrame:\n\nCompute summary statistics for unit price and quantity using .describe()\nCreate a new column calculating revenue for each transaction (quantity multiplied by unit price)\nShow the ten highest-revenue transactions, sorted from highest to lowest\nCount how many transactions came from each customer type\nCalculate the average revenue for member transactions versus walk-in transactions\n\n\n\nMulti-Condition Investigation\nDana has noticed that large walk-in purchases might represent event organizers buying for game nights at other venues. She wants to investigate transactions where the customer type was walk-in AND the quantity sold was 3 or more. For this subset:\n\nHow many transactions meet both conditions?\nWhat is the average revenue for these transactions?\nWhat games appear in this group?\n\n\n\nSave Cleaned Results\nSave the DataFrame with the new revenue column to a CSV file called sales_cleaned.csv. Make sure the default row index is not written to the file.\n\n\n\nPart 2: Game Catalog (JSON)\n\nLoad and Inspect the Catalog\nLoad the game catalog JSON file using Python’s json module. The catalog has a nested structure — not every field is a simple value. After loading:\n\nShow the raw Python structure for one game entry so you can see how the data is organized\nIdentify which fields are simple values and which are nested (lists or dictionaries)\nExplain briefly (in a markdown cell) what the nested fields contain\n\n\n\nBuild a Catalog DataFrame\nExtract the catalog data into a pandas DataFrame. Because of the nested structure, pd.read_json() will not handle this cleanly — you will need to work through the data manually. The catalog contains fields that are nested — lists or dictionaries inside each game entry. Your DataFrame must include information from these nested fields, not just the simple ones. For each nested field, decide how to represent it: extract a specific value (like minimum player count from a player count range) or convert a list into a comma-separated string. After creating the DataFrame:\n\nShow the shape and column names\nDisplay the first few rows\nShow .dtypes to confirm the columns have appropriate types\n\n\n\nCatalog Analysis\nWith the catalog in a DataFrame, answer the following for Dana’s inventory review:\n\nHow many games are in each category?\nWhat are the summary statistics for complexity rating using .describe()?\nWhich games have a complexity rating of 4 or higher? Show these rows sorted by complexity from highest to lowest.\nWhat is the average play time across all games in the catalog?"
+  },
+  {
+    "objectID": "assignments/week-08/week-08-assignments.html#technical-requirements",
+    "href": "assignments/week-08/week-08-assignments.html#technical-requirements",
+    "title": "Week 8 Assignment",
+    "section": "Technical Requirements",
+    "text": "Technical Requirements\nYour Jupyter notebook should demonstrate the complete workflow from raw files to final analysis. The notebook must run successfully from start to finish using “Restart Kernel and Run All.”\nUse pd.read_csv() to load the CSV — do not manually parse it. Use json.loads() to parse the JSON into Python objects, then extract what you need and build a DataFrame with pd.DataFrame(). All analysis should use DataFrame operations — not raw loops for filtering or statistics. Use to_csv() to save your cleaned results — not manual file writing.\n\nData loading and output (Chapter 6): pd.read_csv() with parameters, to_csv() with index=False\nJSON parsing (Chapter 6): json.loads(), navigating nested structures, pd.DataFrame() from a list of dicts\nDataFrame operations (Chapter 5): .info(), .dtypes, .shape, .head(), boolean indexing with &, .describe(), .sort_values(), new columns from existing columns\nNotebook organization: markdown cells explaining each section, clear print statements, Restart Kernel and Run All"
+  },
+  {
+    "objectID": "assignments/week-08/week-08-assignments.html#video-reflection",
+    "href": "assignments/week-08/week-08-assignments.html#video-reflection",
+    "title": "Week 8 Assignment",
+    "section": "Video Reflection",
+    "text": "Video Reflection\nRecord a short video demonstrating your understanding of this assignment.\nPart 1: Explain how you loaded and structured the game catalog\nWalk through how you went from the JSON file to a usable DataFrame. In your explanation, address:\n\nWhat the JSON structure looked like when you first loaded it\nWhich fields were nested and how you navigated to the data you needed\nHow you built the list of dictionaries to pass to pd.DataFrame()\nWhat decisions you made about handling nested fields (what you included, what you left out, and why)\n\nPart 2: Reflect on your learning\nChoose ONE of the following to discuss:\n\nChallenge or error: Describe a problem you encountered while completing this assignment, how you figured out what was wrong, and how you resolved it\nKey takeaway: Explain one important concept you learned or solidified through this assignment and why it matters for data work\n\nVideo submission requirements:\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week08Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week08Reflection in the link name"
+  },
+  {
+    "objectID": "assignments/week-08/week-08-assignments.html#d2l-submission-checklist",
+    "href": "assignments/week-08/week-08-assignments.html#d2l-submission-checklist",
+    "title": "Week 8 Assignment",
+    "section": "D2L Submission Checklist",
+    "text": "D2L Submission Checklist\nSubmit the following items to the Week 8 Dropbox in D2L:\n\nNotebook file\n\nlastname_week08_assignment.ipynb\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week08Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)\n\nBefore you submit:\n\nRun “Restart Kernel and Run All” to confirm your notebook executes without errors\nVerify all required outputs are visible in the notebook\nCheck that your video link works and includes the correct filename"
   },
   {
     "objectID": "course/syllabus.html",
@@ -1974,6 +2151,54 @@
       "Home",
       "Weekly Overview",
       "Week 7 (Starts 23 FEB)"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-08/index.html",
+    "href": "weekly-overview/week-08/index.html",
+    "title": "Week 8 Guide",
+    "section": "",
+    "text": "Week 8 is a cumulative application of everything from Chapters 1–6. You will work with sales and catalog data from a board game store, requiring you to apply Week 7 data loading skills (pd.read_csv() with parameters, JSON parsing with json.loads()) and Week 5 pandas skills (DataFrames, boolean indexing, column operations, statistics). The assignment presents a scenario-based problem where you determine the approach and build the complete workflow from raw files to analytical results. The key difference from Weeks 4 and 6 is how you get data into your notebook: instead of manually parsing CSV files with open/split/strip/convert/try-except, you use pd.read_csv() to load directly into a DataFrame. The manual parsing experience from earlier weeks is what makes this meaningful — you understand what the function is doing because you have done each of those steps by hand.\nAssignment:",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 8 (Starts 2 MAR)"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-08/index.html#concepts-applied-this-week",
+    "href": "weekly-overview/week-08/index.html#concepts-applied-this-week",
+    "title": "Week 8 Guide",
+    "section": "Concepts applied this week",
+    "text": "Concepts applied this week\n\nData loading and output (Chapter 6)\npd.read_csv() automates the entire parsing pipeline you built by hand in Weeks 2, 4, and 6: opening the file, detecting the header row, splitting each line into fields, stripping whitespace, converting values to appropriate types, and assembling the result into a DataFrame. The function provides parameters to customize this behavior when files are not perfectly clean. In this assignment, the CSV file contains placeholder values that pandas does not recognize as missing by default, so you will need to determine which parameter addresses this and apply it during loading. After loading, you verify the result with .info() and .dtypes to confirm that columns have the expected types and to identify where missing values exist. When your analysis is complete, to_csv() writes a DataFrame back to a CSV file. Setting index=False omits the default row index from the output, producing a cleaner file.\n\n\nMissing data and type inference (Chapter 6)\nWhen pd.read_csv() loads a file, it infers the data type of each column based on the values it finds. If a numeric column contains even one non-numeric placeholder (like a string the system used instead of leaving the field blank), pandas treats the entire column as text. Telling pd.read_csv() which placeholder values to treat as missing causes pandas to replace them with NaN during loading, which allows the column to load as a numeric type. Because NaN is a floating-point value, integer columns that contain missing data become float64 — this is a pandas design constraint, not an error. Recognizing this pattern (unexpected float types, non-null counts that don’t match the row count) is how you identify and verify missing data in a loaded DataFrame.\n\n\nJSON parsing (Chapter 6)\nJSON stores data in nested structures — objects (dictionaries) and arrays (lists) that can contain other objects and arrays. This is more flexible than CSV’s flat tabular format, but it means pd.read_json() does not always produce a clean DataFrame. When JSON data contains nested fields, the approach is to parse the file with json.loads() (or json.load() with a file object), navigate the Python dictionaries and lists to understand the structure, extract the fields you need into a flat list of dictionaries, and pass that list to pd.DataFrame(). This is the same list-of-dictionaries-to-DataFrame conversion you used in Week 6, but the source is a JSON file rather than a manually parsed CSV. Deciding how to represent nested fields — extracting specific values from a dictionary, joining a list into a string — is a design decision that depends on what analysis you need to perform.\n\n\nDataFrame operations (Chapter 5)\nOnce your data is in a DataFrame, the analysis uses the same operations you applied in Week 6: .describe() for summary statistics, .sort_values() for rankings, boolean indexing with & for multi-condition filtering, .value_counts() for category counts, and new columns created from calculations on existing columns. The difference is how you got there. In Week 6, you spent significant effort parsing the file before you could begin analysis. In Week 8, pd.read_csv() handles the loading, and you spend more time on the analysis itself.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 8 (Starts 2 MAR)"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-08/index.html#week-8-tasks",
+    "href": "weekly-overview/week-08/index.html#week-8-tasks",
+    "title": "Week 8 Guide",
+    "section": "Week 8 tasks",
+    "text": "Week 8 tasks\n\nComplete the Week 8 Assignment (game store sales and catalog analysis).\nRecord and submit your video reflection.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 8 (Starts 2 MAR)"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-08/index.html#knowledge-goals-for-week-8",
+    "href": "weekly-overview/week-08/index.html#knowledge-goals-for-week-8",
+    "title": "Week 8 Guide",
+    "section": "Knowledge goals for Week 8",
+    "text": "Knowledge goals for Week 8\nBy the end of Week 8, you should be able to:\n\nuse pd.read_csv() with parameters to load a CSV file into a DataFrame, handling missing data during loading\nidentify missing data and type inference issues by inspecting a loaded DataFrame with .info() and .dtypes\nparse a JSON file with nested structure using json.loads(), extract data into a list of dictionaries, and convert it to a DataFrame with pd.DataFrame()\nsave a DataFrame to a CSV file using to_csv() with index=False\napply boolean indexing, .describe(), .sort_values(), .value_counts(), and column operations to analyze DataFrame data\nexplain how pd.read_csv() relates to the manual parsing pipeline from earlier weeks",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 8 (Starts 2 MAR)"
     ]
   }
 ]

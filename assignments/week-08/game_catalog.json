@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Catan",
+    "category": "Strategy",
+    "players": {"min": 3, "max": 4},
+    "play_time": 90,
+    "complexity": 2.3,
+    "mechanics": ["Trading", "Resource Management", "Dice Rolling"]
+  },
+  {
+    "name": "Ticket to Ride",
+    "category": "Family",
+    "players": {"min": 2, "max": 5},
+    "play_time": 60,
+    "complexity": 1.8,
+    "mechanics": ["Set Collection", "Route Building"]
+  },
+  {
+    "name": "Wingspan",
+    "category": "Strategy",
+    "players": {"min": 1, "max": 5},
+    "play_time": 70,
+    "complexity": 2.4,
+    "mechanics": ["Engine Building", "Card Drafting", "Set Collection"]
+  },
+  {
+    "name": "Codenames",
+    "category": "Party",
+    "players": {"min": 4, "max": 8},
+    "play_time": 20,
+    "complexity": 1.3,
+    "mechanics": ["Word Association", "Team Play"]
+  },
+  {
+    "name": "Azul",
+    "category": "Abstract",
+    "players": {"min": 2, "max": 4},
+    "play_time": 40,
+    "complexity": 1.8,
+    "mechanics": ["Tile Placement", "Pattern Building", "Drafting"]
+  },
+  {
+    "name": "Pandemic",
+    "category": "Cooperative",
+    "players": {"min": 2, "max": 4},
+    "play_time": 60,
+    "complexity": 2.4,
+    "mechanics": ["Cooperative Play", "Action Points", "Set Collection"]
+  },
+  {
+    "name": "Splendor",
+    "category": "Strategy",
+    "players": {"min": 2, "max": 4},
+    "play_time": 30,
+    "complexity": 1.8,
+    "mechanics": ["Engine Building", "Set Collection"]
+  },
+  {
+    "name": "7 Wonders",
+    "category": "Strategy",
+    "players": {"min": 3, "max": 7},
+    "play_time": 30,
+    "complexity": 2.3,
+    "mechanics": ["Card Drafting", "Set Collection", "Simultaneous Action"]
+  },
+  {
+    "name": "Carcassonne",
+    "category": "Family",
+    "players": {"min": 2, "max": 5},
+    "play_time": 45,
+    "complexity": 1.9,
+    "mechanics": ["Tile Placement", "Area Control"]
+  },
+  {
+    "name": "Terraforming Mars",
+    "category": "Strategy",
+    "players": {"min": 1, "max": 5},
+    "play_time": 150,
+    "complexity": 3.2,
+    "mechanics": ["Engine Building", "Card Drafting", "Tile Placement"]
+  },
+  {
+    "name": "Root",
+    "category": "Strategy",
+    "players": {"min": 2, "max": 4},
+    "play_time": 90,
+    "complexity": 3.7,
+    "mechanics": ["Area Control", "Asymmetric Powers", "Hand Management"]
+  },
+  {
+    "name": "Everdell",
+    "category": "Strategy",
+    "players": {"min": 1, "max": 4},
+    "play_time": 80,
+    "complexity": 2.8,
+    "mechanics": ["Worker Placement", "Engine Building", "Card Drafting"]
+  },
+  {
+    "name": "King of Tokyo",
+    "category": "Family",
+    "players": {"min": 2, "max": 6},
+    "play_time": 30,
+    "complexity": 1.5,
+    "mechanics": ["Dice Rolling", "Push Your Luck"]
+  },
+  {
+    "name": "Dixit",
+    "category": "Party",
+    "players": {"min": 3, "max": 8},
+    "play_time": 30,
+    "complexity": 1.2,
+    "mechanics": ["Storytelling", "Voting"]
+  },
+  {
+    "name": "Dominion",
+    "category": "Strategy",
+    "players": {"min": 2, "max": 4},
+    "play_time": 30,
+    "complexity": 2.4,
+    "mechanics": ["Deck Building", "Hand Management"]
+  },
+  {
+    "name": "Scythe",
+    "category": "Strategy",
+    "players": {"min": 1, "max": 5},
+    "play_time": 115,
+    "complexity": 3.4,
+    "mechanics": ["Area Control", "Engine Building", "Resource Management"]
+  },
+  {
+    "name": "Spirit Island",
+    "category": "Cooperative",
+    "players": {"min": 1, "max": 4},
+    "play_time": 120,
+    "complexity": 4.0,
+    "mechanics": ["Cooperative Play", "Hand Management", "Area Control"]
+  },
+  {
+    "name": "Gloomhaven",
+    "category": "Cooperative",
+    "players": {"min": 1, "max": 4},
+    "play_time": 120,
+    "complexity": 4.3,
+    "mechanics": ["Cooperative Play", "Hand Management", "Campaign"]
+  },
+  {
+    "name": "Betrayal at House on the Hill",
+    "category": "Thematic",
+    "players": {"min": 3, "max": 6},
+    "play_time": 60,
+    "complexity": 2.1,
+    "mechanics": ["Tile Placement", "Cooperative Play", "Traitor"]
+  },
+  {
+    "name": "Ark Nova",
+    "category": "Strategy",
+    "players": {"min": 1, "max": 4},
+    "play_time": 150,
+    "complexity": 3.7,
+    "mechanics": ["Card Drafting", "Hand Management", "Set Collection"]
+  }
+]
