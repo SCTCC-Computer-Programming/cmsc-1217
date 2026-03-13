@@ -1,0 +1,60 @@
+---
+title: "Week 10 Assignments"
+subtitle: "Chapter 7 Reading, Data Cleaning Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+    css:
+      - styles.css
+---
+
+- Here is the link to the **[Week 10 demo](week-10-demo.html)**.
+- <a href="week-10-demo.ipynb" download="week-10-demo.ipynb"> Download Jupyter Notebook </a>
+
+## Part 1: Reading
+
+Read **all of Chapter 7**.
+
+Chapter 7 covers data cleaning and preparation: the work that happens between loading a dataset and being able to analyze it. Each section addresses a specific category of problem, including missing values, duplicate records, values that need to be recoded or reformatted, outliers that distort calculations, and string columns with inconsistent casing or whitespace. The demo works through all of these categories. The chapter goes further into forward and back fill strategies for `fillna()`, value substitution with `replace()`, regular expressions for pattern-based string manipulation, dummy variables with `pd.get_dummies()`, extension data types, and categorical data. Read the full chapter; the quiz focuses on the operations covered in the demo.
+
+## Part 2: Work through the Week 10 Demo
+
+Before running any cells, download `fleet_registry_v2.csv` from the course page and place it in your `week10` folder alongside the notebook.
+
+The Week 10 demo covers:
+
+1. Inspecting raw file contents before loading to identify data quality problems at the source
+2. Loading with `pd.read_csv()` and interpreting `.info()` output: unexpected column types and missing value counts
+3. Identifying missing values with `isnull().sum()` and understanding why sentinel strings like `UNKNOWN` do not appear as missing
+4. Removing rows with `dropna()`: default behavior, the `subset` parameter, and why `dropna()` does not modify the original DataFrame unless you assign the result back
+5. Filling missing values with `fillna()`: constant fill versus computed fill using the column mean or median, and when each is appropriate
+6. Converting text columns to numeric types with `pd.to_numeric(errors='coerce')` and why `errors='coerce'` replaces non-convertible values with `NaN` instead of raising an error
+7. Removing duplicate rows with `drop_duplicates()` and controlling what counts as a duplicate with the `subset` parameter
+8. Recoding stored values to readable labels with `map()` and updating column names with `rename()`
+9. Detecting outliers with `describe()` and boolean indexing, then replacing them in place using `.loc` assignment
+10. Grouping continuous numeric values into labeled categories with `pd.cut()`: defining bin edges, assigning labels, and the interval structure
+11. Cleaning string columns with the `str` accessor: removing whitespace with `str.strip()`, standardizing case with `str.lower()`, and filtering rows by substring with `str.contains()`
+12. Why the sequence of cleaning operations matters, and what goes wrong when steps run out of order
+
+## Part 3: D2L Quiz
+
+Complete the **Week 10 D2L quiz** (data cleaning concepts).
+
+The quiz covers:
+
+- **Missing values:** `isnull()` and `isnull().sum()`, why sentinel strings do not register as missing, and the float64 consequence for integer columns with blank fields
+- **Dropping and filling:** `dropna()` default behavior and the `subset` parameter, `fillna()` with constants and computed values, and when mean versus median is the better choice
+- **Type conversion:** `pd.to_numeric()`, the `errors` parameter, and how `errors='coerce'` handles non-numeric strings
+- **Deduplication and recoding:** `drop_duplicates()` default and `subset` behavior, `map()` for dictionary-based value replacement, and `rename()` for updating column names
+- **Outlier handling:** using `describe()` to identify outliers, boolean indexing to locate them, and `.loc` assignment to replace them in place
+- **Binning:** `pd.cut()`: bin edges, labels, interval structure, and why the number of labels is one fewer than the number of edges
+- **String cleaning:** the `str` accessor, `str.strip()`, `str.lower()`, `str.upper()`, `str.title()`, and `str.contains()` with boolean indexing
+- **Textbook awareness:** forward and back fill with `fillna()`, `replace()`, regular expressions for string manipulation, and `pd.get_dummies()`
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+* **Week 10 D2L quiz** (no file uploads required this week)
+
+**Note:** This week's emphasis is on understanding how each cleaning operation works and why the sequence matters: applying operations in the wrong order can produce results that are silently wrong. Read Chapter 7, work through the demo carefully, and use the quiz to confirm your understanding. There are no coding or file upload submissions this week.
