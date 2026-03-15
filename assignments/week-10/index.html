@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 5 Guide – CMSC 1217 : Introduction to Data Analytics</title>
+<title>Week 10 Assignments – CMSC 1217 : Introduction to Data Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,6 +74,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -271,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 5 Guide</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/week-05/index.html">Weekly Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/week-10/index.html">Week 10 (Starts 16 MAR)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -418,7 +419,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../assignments/week-10/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../assignments/week-10/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 10 (Starts 16 MAR)</span></a>
   </div>
 </li>
@@ -502,20 +503,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#chapter-5-concepts-used-this-week" id="toc-chapter-5-concepts-used-this-week" class="nav-link active" data-scroll-target="#chapter-5-concepts-used-this-week">Chapter 5 concepts used this week</a>
-  <ul class="collapse">
-  <li><a href="#what-pandas-adds-to-numpy" id="toc-what-pandas-adds-to-numpy" class="nav-link" data-scroll-target="#what-pandas-adds-to-numpy">What pandas adds to NumPy</a></li>
-  <li><a href="#series-labeled-one-dimensional-data" id="toc-series-labeled-one-dimensional-data" class="nav-link" data-scroll-target="#series-labeled-one-dimensional-data">Series: labeled one-dimensional data</a></li>
-  <li><a href="#dataframes-labeled-two-dimensional-data" id="toc-dataframes-labeled-two-dimensional-data" class="nav-link" data-scroll-target="#dataframes-labeled-two-dimensional-data">DataFrames: labeled two-dimensional data</a></li>
-  <li><a href="#the-index-pandass-label-system" id="toc-the-index-pandass-label-system" class="nav-link" data-scroll-target="#the-index-pandass-label-system">The index: pandas’s label system</a></li>
-  <li><a href="#selection-labels-versus-positions" id="toc-selection-labels-versus-positions" class="nav-link" data-scroll-target="#selection-labels-versus-positions">Selection: labels versus positions</a></li>
-  <li><a href="#automatic-alignment-by-labels" id="toc-automatic-alignment-by-labels" class="nav-link" data-scroll-target="#automatic-alignment-by-labels">Automatic alignment by labels</a></li>
-  <li><a href="#boolean-indexing-and-filtering" id="toc-boolean-indexing-and-filtering" class="nav-link" data-scroll-target="#boolean-indexing-and-filtering">Boolean indexing and filtering</a></li>
-  <li><a href="#operations-and-statistics-on-labeled-data" id="toc-operations-and-statistics-on-labeled-data" class="nav-link" data-scroll-target="#operations-and-statistics-on-labeled-data">Operations and statistics on labeled data</a></li>
-  </ul></li>
-  <li><a href="#reading-expectations-for-week-5" id="toc-reading-expectations-for-week-5" class="nav-link" data-scroll-target="#reading-expectations-for-week-5">Reading expectations for Week 5</a></li>
-  <li><a href="#week-5-tasks" id="toc-week-5-tasks" class="nav-link" data-scroll-target="#week-5-tasks">Week 5 tasks</a></li>
-  <li><a href="#knowledge-goals-for-week-5" id="toc-knowledge-goals-for-week-5" class="nav-link" data-scroll-target="#knowledge-goals-for-week-5">Knowledge goals for Week 5</a></li>
+  <li><a href="#part-1-reading" id="toc-part-1-reading" class="nav-link active" data-scroll-target="#part-1-reading">Part 1: Reading</a></li>
+  <li><a href="#part-2-work-through-the-week-10-demo" id="toc-part-2-work-through-the-week-10-demo" class="nav-link" data-scroll-target="#part-2-work-through-the-week-10-demo">Part 2: Work through the Week 10 Demo</a></li>
+  <li><a href="#part-3-d2l-quiz" id="toc-part-3-d2l-quiz" class="nav-link" data-scroll-target="#part-3-d2l-quiz">Part 3: D2L Quiz</a></li>
+  <li><a href="#d2l-submission-checklist" id="toc-d2l-submission-checklist" class="nav-link" data-scroll-target="#d2l-submission-checklist">D2L submission checklist</a></li>
   </ul>
 </nav>
     </div>
@@ -523,10 +514,10 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../assignments/week-05/index.html">Weekly Assignments</a></li><li class="breadcrumb-item"><a href="../../assignments/week-10/index.html">Week 10 (Starts 16 MAR)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 5 Guide</h1>
-<p class="subtitle lead">Chapter 5 — Introduction to pandas</p>
+<h1 class="title">Week 10 Assignments</h1>
+<p class="subtitle lead">Chapter 7 Reading, Data Cleaning Demo, and D2L Quiz</p>
 </div>
 
 
@@ -538,7 +529,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 5, 2026</p>
+      <p class="date-modified">March 13, 2026</p>
     </div>
   </div>
     
@@ -549,103 +540,56 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Week 4 brought together the parsing skills from Week 2 and the NumPy operations from Week 3, building complete analysis pipelines from raw data to results. You worked with NumPy arrays for efficient computation, but managing data by position alone—remembering that “column 0 is temperature” or “row 3 is sensor SENS_004”—becomes fragile as datasets grow more complex. This week introduces <strong>pandas</strong>, Python’s primary library for working with labeled, tabular data.</p>
-<p>pandas builds on top of NumPy arrays—it uses them internally for storage—but adds powerful features specifically designed for real-world tabular data. Instead of tracking data by position, pandas lets you label rows and columns with meaningful names. Instead of requiring all data to be the same type, pandas allows different columns to hold different types. And instead of relying on you to keep arrays aligned manually, pandas automatically aligns data by labels when combining datasets. These features make data self-documenting and prevent the alignment errors that occur with position-based indexing.</p>
-<p>This week focuses on pandas’s two core data structures: <strong>Series</strong> (one-dimensional labeled arrays) and <strong>DataFrames</strong> (two-dimensional labeled tables). You will learn how labels enable selection by meaningful names instead of positions, how pandas automatically aligns data during operations, and how the concepts you learned in Week 3—vectorization, boolean indexing, and the axis parameter—transfer directly to pandas. Understanding these fundamentals gives you the foundation for all data manipulation work in Python.</p>
-<p><strong>Week 5 Demo:</strong></p>
 <ul>
-<li>Here is the link to the <strong><a href="../../assignments/week-05/index.html">Week 5 Assignment</a></strong>.</li>
-<li><a href="week-5-demo.ipynb" download="week-5-demo.ipynb"> Download Jupyter Notebook </a></li>
+<li>Here is the link to the <strong><a href="week-10-demo.html">Week 10 demo</a></strong>.</li>
+<li><a href="week-10-demo.ipynb" download="week-10-demo.ipynb"> Download Jupyter Notebook </a></li>
 </ul>
-<section id="chapter-5-concepts-used-this-week" class="level2">
-<h2 class="anchored" data-anchor-id="chapter-5-concepts-used-this-week">Chapter 5 concepts used this week</h2>
-<section id="what-pandas-adds-to-numpy" class="level3">
-<h3 class="anchored" data-anchor-id="what-pandas-adds-to-numpy">What pandas adds to NumPy</h3>
-<p>NumPy arrays (Week 3) are powerful for numerical computation, but they have limitations when working with real-world tabular data. Arrays have no built-in way to label rows and columns, forcing you to track what each position represents mentally or in separate documentation. All elements must be the same type, which doesn’t match how real datasets mix numbers, text, and dates. And when combining arrays, you must manually ensure they align correctly—a single misalignment produces wrong results without warning.</p>
-<p>pandas solves these problems by adding <strong>labels</strong> to data structures. Every row and column can have a meaningful name, making data self-documenting. Different columns can hold different types—one column of numbers, another of text, another of dates. And when combining datasets, pandas automatically aligns by labels, preventing the misalignment errors common with position-based indexing. These features transform data work from fragile position-tracking to robust label-based operations.</p>
-<p>pandas is built on top of NumPy arrays—it uses them internally for storage—so you still get NumPy’s computational speed. But you also get the usability features needed for real-world data analysis: meaningful names, mixed types, and automatic alignment. This combination makes pandas the standard tool for data manipulation in Python.</p>
+<section id="part-1-reading" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-reading">Part 1: Reading</h2>
+<p>Read <strong>all of Chapter 7</strong>.</p>
+<p>Chapter 7 covers data cleaning and preparation: the work that happens between loading a dataset and being able to analyze it. Each section addresses a specific category of problem, including missing values, duplicate records, values that need to be recoded or reformatted, outliers that distort calculations, and string columns with inconsistent casing or whitespace. The demo works through all of these categories. The chapter goes further into forward and back fill strategies for <code>fillna()</code>, value substitution with <code>replace()</code>, regular expressions for pattern-based string manipulation, dummy variables with <code>pd.get_dummies()</code>, extension data types, and categorical data. Read the full chapter; the quiz focuses on the operations covered in the demo.</p>
 </section>
-<section id="series-labeled-one-dimensional-data" class="level3">
-<h3 class="anchored" data-anchor-id="series-labeled-one-dimensional-data">Series: labeled one-dimensional data</h3>
-<p>A <strong>Series</strong> is pandas’s one-dimensional data structure—conceptually, it’s a NumPy array with an index attached. The index provides a label for each value, transforming data from position-based (where you must remember “element 0 is Monday”) to label-based (where the data tells you “this is Monday’s value”). This seemingly simple addition enables powerful features: you can select data by meaningful names instead of positions, combine Series and have pandas automatically match by label, and create self-documenting code where operations read like natural descriptions of what they do.</p>
-<p>The index can be integers (the default, starting at 0 like list positions) or any immutable type—strings, dates, categorical values. Regardless of type, the index’s purpose is the same: attach meaningful labels to data so operations align correctly and code remains readable as datasets evolve.</p>
-<p>You can create Series from various sources—lists, dictionaries, arrays—but the key concept is that every value has an associated label. When you create a Series from a dictionary, the dictionary keys automatically become the index, making this a natural way to build labeled data. The <code>.values</code> attribute gives you the underlying NumPy array when you need it, showing the direct connection between pandas and NumPy.</p>
-</section>
-<section id="dataframes-labeled-two-dimensional-data" class="level3">
-<h3 class="anchored" data-anchor-id="dataframes-labeled-two-dimensional-data">DataFrames: labeled two-dimensional data</h3>
-<p>A <strong>DataFrame</strong> is pandas’s two-dimensional data structure—a table where both rows and columns have labels. You can think of it as a spreadsheet or database table, but with the computational power of NumPy underneath. Each column is a Series, meaning columns can have different data types—one column of integers, another of floats, another of text. This matches how real-world data actually looks: a dataset of people might have numeric ages, text names, and boolean flags all in the same table.</p>
-<p>Both dimensions have labels: the <strong>index</strong> labels rows, and <strong>column names</strong> label columns. This makes DataFrames self-documenting—instead of remembering “column 0 is temperature,” you reference the temperature column by name. The structure also connects to Week 2’s lists of dictionaries: if you had built a list where each dictionary represents one record, you can convert that directly to a DataFrame with <code>pd.DataFrame()</code>, with dictionary keys becoming column names.</p>
-<p>Understanding that each column is a Series helps explain many DataFrame operations. When you select a single column, you get a Series. When you select multiple columns, you get a DataFrame. Statistical operations can work on entire DataFrames or on individual columns (Series). This consistent structure—DataFrames contain Series—makes the library easier to learn once you understand the relationship.</p>
-</section>
-<section id="the-index-pandass-label-system" class="level3">
-<h3 class="anchored" data-anchor-id="the-index-pandass-label-system">The index: pandas’s label system</h3>
-<p>The <strong>index</strong> is fundamental to how pandas works. It’s not just row numbers—it’s a label system that identifies what each row represents. A default integer index (0, 1, 2…) works like list positions, but the index’s real power appears when labels are meaningful: student names, dates, sensor IDs, product codes. These labels make data self-documenting and enable pandas’s most powerful feature: automatic alignment.</p>
-<p>When you combine DataFrames or Series, pandas matches by index labels, not positions. If you add sales data for Monday through Friday to costs data for Wednesday through Sunday, pandas automatically aligns the overlapping days and marks mismatches as missing data. This prevents the silent errors that occur with position-based alignment—where adding misaligned arrays produces wrong answers without warning.</p>
-<p>You can set the index when creating a DataFrame or change it later using <code>.set_index()</code>. This method takes a column name and promotes that column to become the index, removing it from the regular columns. For example, if you have a DataFrame with a “student” column, calling <code>.set_index('student')</code> makes student names the row labels, turning position-based row access into name-based row access.</p>
-</section>
-<section id="selection-labels-versus-positions" class="level3">
-<h3 class="anchored" data-anchor-id="selection-labels-versus-positions">Selection: labels versus positions</h3>
-<p>pandas provides two selection methods because you sometimes select by what you know (labels) and sometimes by where things are (positions). <strong>Label-based selection</strong> with <code>.loc</code> uses the names you can see: <code>df.loc['Alice', 'quiz1']</code> selects Alice’s quiz1 score using meaningful identifiers. <strong>Position-based selection</strong> with <code>.iloc</code> uses numeric positions: <code>df.iloc[0, 2]</code> selects the first row, third column, regardless of labels. This works like NumPy indexing from Week 3.</p>
-<p>Why both? Sometimes you know what you want (“get Alice’s data”) but don’t know what position that is. Other times you know the position (“get the last 10 rows”) but don’t care about labels. Having both methods lets you choose the most natural approach for each situation.</p>
-<p>For columns, single brackets return a Series: <code>df['temperature']</code> gives you the temperature column. Double brackets return a DataFrame: <code>df[['temperature', 'humidity']]</code> gives you a DataFrame with those two columns. This distinction matters because Series and DataFrames have different methods and behaviors. Understanding when you get each type helps you predict what operations are available.</p>
-<p>Boolean indexing—filtering rows based on conditions—works with both label-based and position-based thinking. You create a boolean mask with a comparison (<code>df['temperature'] &gt; 80</code>), then use it to filter rows. The mask itself uses position (every row gets True or False), but the result preserves labels, making filtered data self-documenting.</p>
-</section>
-<section id="automatic-alignment-by-labels" class="level3">
-<h3 class="anchored" data-anchor-id="automatic-alignment-by-labels">Automatic alignment by labels</h3>
-<p><strong>Automatic alignment</strong> is pandas’s superpower and what makes it robust for real-world data work. When you combine DataFrames or Series with different indices, pandas matches by labels and marks non-matching positions as NaN (Not a Number). If you add Monday-Friday sales to Wednesday-Sunday costs, pandas aligns the three overlapping days, marks Monday-Tuesday as missing in costs, and marks Saturday-Sunday as missing in sales.</p>
-<p>This prevents the silent errors common with position-based operations. In NumPy (Week 3), adding mismatched arrays either errors (different lengths) or produces wrong results (same length, wrong alignment). pandas instead makes misalignment explicit through NaN, forcing you to decide how to handle it.</p>
-<p>This matters because real datasets rarely align perfectly—different time periods, different sensors active, different products in stock. Automatic alignment handles this complexity gracefully instead of silently producing incorrect results. When you see NaN in results, it’s telling you “these labels didn’t match”—information you need to handle the mismatch appropriately rather than unknowingly computing with misaligned data.</p>
-<p>The alignment happens automatically in arithmetic operations, statistical computations, and data combination operations. You don’t need to manually check that indices match or write code to align them. pandas does this for you, using the index labels to ensure operations combine the correct values.</p>
-</section>
-<section id="boolean-indexing-and-filtering" class="level3">
-<h3 class="anchored" data-anchor-id="boolean-indexing-and-filtering">Boolean indexing and filtering</h3>
-<p><strong>Boolean indexing</strong> from Week 3 transfers directly to pandas with one important enhancement: labels are preserved. You create a boolean mask by comparing values (<code>df['temperature'] &gt; 80</code>), producing True or False for each row, then use that mask to filter (<code>df[df['temperature'] &gt; 80]</code>). The syntax is identical to NumPy, and combining conditions works the same way: <code>&amp;</code> for “and”, <code>|</code> for “or”, <code>~</code> for “not”, with parentheses around each condition.</p>
-<p>The key difference from NumPy: when you filter a DataFrame, the row labels travel with the filtered data. If you filter for temperatures above 80 and the result includes sensors SENS_001 and SENS_004, the index tells you which sensors those are. With NumPy arrays, you’d need to track this separately. This makes pandas filtering more robust—filtered data remains self-documenting.</p>
-<p>Multiple conditions combine using the same operators from Week 3. To find readings where temperature exceeds 200 AND humidity is below 45, you write <code>(df['temperature'] &gt; 200) &amp; (df['humidity'] &lt; 45)</code>. Each condition must be in parentheses because of operator precedence. This creates a boolean mask where only rows meeting both conditions are True, then using that mask as a filter selects those rows with their labels intact.</p>
-</section>
-<section id="operations-and-statistics-on-labeled-data" class="level3">
-<h3 class="anchored" data-anchor-id="operations-and-statistics-on-labeled-data">Operations and statistics on labeled data</h3>
-<p>The vectorized operations and statistical methods from Week 3 transfer directly to pandas with an important enhancement: results preserve labels. Computing <code>df['temperature'] + 10</code> works just like NumPy array operations—no loops needed—but the result is a labeled Series that tells you which values correspond to which rows. The <code>axis</code> parameter works identically: <code>df.mean(axis=0)</code> computes down columns (one mean per column), while <code>axis=1</code> computes across rows (one mean per row).</p>
-<p>This label preservation makes results self-documenting. When you compute statistics, you don’t just get numbers—you get labeled results that tell you what each number represents. The <code>.describe()</code> method computes multiple statistics at once (count, mean, standard deviation, quartiles, min, max) and returns them as a labeled DataFrame, making it easy to understand summary statistics for each column.</p>
-<p>Creating new columns is as simple as assigning to a new column name: <code>df['total'] = df['quiz1'] + df['quiz2']</code>. The right side is evaluated (adding two Series, which aligns by index), and the result is stored as a new column in the DataFrame. The automatic alignment ensures each row’s total corresponds to that row’s quiz scores, even if you later reorder or filter the DataFrame.</p>
-<p>Sorting works on labeled data with <code>.sort_values()</code>, which sorts the entire DataFrame by one or more columns while keeping rows intact. When you sort by a column, each row moves as a complete unit—all its column values stay together. The sorted result maintains the relationship between all columns, with the index labels moving with their rows.</p>
-</section>
-</section>
-<section id="reading-expectations-for-week-5" class="level2">
-<h2 class="anchored" data-anchor-id="reading-expectations-for-week-5">Reading expectations for Week 5</h2>
-<p>As you read Chapter 5 and work through the demo, check whether you can explain the following in your own words:</p>
+<section id="part-2-work-through-the-week-10-demo" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-work-through-the-week-10-demo">Part 2: Work through the Week 10 Demo</h2>
+<p>Before running any cells, download <code>fleet_registry_v2.csv</code> from the course page and place it in your <code>week10</code> folder alongside the notebook.</p>
+<p>The Week 10 demo covers:</p>
 <ol type="1">
-<li>What is a pandas <strong>Series</strong>, and how does it differ from a NumPy array?</li>
-<li>What is an <strong>index</strong> in pandas, and why does it matter?</li>
-<li>What is a <strong>DataFrame</strong>, and how does it organize data?</li>
-<li>What is the difference between <code>.loc</code> and <code>.iloc</code> in pandas?</li>
-<li>How does pandas handle combining DataFrames with different indices, and why does this prevent errors?</li>
-<li>How does <strong>boolean indexing</strong> work in pandas, and what advantage does it have over NumPy boolean indexing?</li>
-<li>Why can DataFrames have different data types in different columns while NumPy 2D arrays cannot?</li>
-<li>What does the <code>axis</code> parameter control in DataFrame operations like <code>.mean()</code>, and how is this the same as NumPy?</li>
-<li>When you filter a DataFrame using boolean indexing or compute statistics, what happens to the row and column labels?</li>
+<li>Inspecting raw file contents before loading to identify data quality problems at the source</li>
+<li>Loading with <code>pd.read_csv()</code> and interpreting <code>.info()</code> output: unexpected column types and missing value counts</li>
+<li>Identifying missing values with <code>isnull().sum()</code> and understanding why sentinel strings like <code>UNKNOWN</code> do not appear as missing</li>
+<li>Removing rows with <code>dropna()</code>: default behavior, the <code>subset</code> parameter, and why <code>dropna()</code> does not modify the original DataFrame unless you assign the result back</li>
+<li>Filling missing values with <code>fillna()</code>: constant fill versus computed fill using the column mean or median, and when each is appropriate</li>
+<li>Converting text columns to numeric types with <code>pd.to_numeric(errors='coerce')</code> and why <code>errors='coerce'</code> replaces non-convertible values with <code>NaN</code> instead of raising an error</li>
+<li>Removing duplicate rows with <code>drop_duplicates()</code> and controlling what counts as a duplicate with the <code>subset</code> parameter</li>
+<li>Recoding stored values to readable labels with <code>map()</code> and updating column names with <code>rename()</code></li>
+<li>Detecting outliers with <code>describe()</code> and boolean indexing, then replacing them in place using <code>.loc</code> assignment</li>
+<li>Grouping continuous numeric values into labeled categories with <code>pd.cut()</code>: defining bin edges, assigning labels, and the interval structure</li>
+<li>Cleaning string columns with the <code>str</code> accessor: removing whitespace with <code>str.strip()</code>, standardizing case with <code>str.lower()</code>, and filtering rows by substring with <code>str.contains()</code></li>
+<li>Why the sequence of cleaning operations matters, and what goes wrong when steps run out of order</li>
 </ol>
 </section>
-<section id="week-5-tasks" class="level2">
-<h2 class="anchored" data-anchor-id="week-5-tasks">Week 5 tasks</h2>
-<ol type="1">
-<li>Read <strong>Chapter 5</strong> (complete).</li>
-<li>Work through the <strong><a href="../../assignments/week-05/week-5-demo.html">Week 5 demo</a></strong> in your Jupyter environment.</li>
-<li>Complete the <strong>Week 5 D2L quiz</strong> (pandas concepts).</li>
-</ol>
-</section>
-<section id="knowledge-goals-for-week-5" class="level2">
-<h2 class="anchored" data-anchor-id="knowledge-goals-for-week-5">Knowledge goals for Week 5</h2>
-<p>By the end of Week 5, you should be able to:</p>
+<section id="part-3-d2l-quiz" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-d2l-quiz">Part 3: D2L Quiz</h2>
+<p>Complete the <strong>Week 10 D2L quiz</strong> (data cleaning concepts).</p>
+<p>The quiz covers:</p>
 <ul>
-<li>create Series and DataFrames from various sources (lists, dictionaries, arrays)</li>
-<li>select data using <code>.loc</code> for label-based selection and <code>.iloc</code> for position-based selection</li>
-<li>filter DataFrames using boolean indexing with single and multiple conditions</li>
-<li>explain how automatic alignment works and why it prevents common data errors</li>
-<li>perform vectorized operations and compute statistics on labeled data</li>
-<li>use the <code>axis</code> parameter to compute statistics along rows or columns</li>
-<li>explain how pandas builds on NumPy concepts from Week 3 while adding labeled data features</li>
+<li><strong>Missing values:</strong> <code>isnull()</code> and <code>isnull().sum()</code>, why sentinel strings do not register as missing, and the float64 consequence for integer columns with blank fields</li>
+<li><strong>Dropping and filling:</strong> <code>dropna()</code> default behavior and the <code>subset</code> parameter, <code>fillna()</code> with constants and computed values, and when mean versus median is the better choice</li>
+<li><strong>Type conversion:</strong> <code>pd.to_numeric()</code>, the <code>errors</code> parameter, and how <code>errors='coerce'</code> handles non-numeric strings</li>
+<li><strong>Deduplication and recoding:</strong> <code>drop_duplicates()</code> default and <code>subset</code> behavior, <code>map()</code> for dictionary-based value replacement, and <code>rename()</code> for updating column names</li>
+<li><strong>Outlier handling:</strong> using <code>describe()</code> to identify outliers, boolean indexing to locate them, and <code>.loc</code> assignment to replace them in place</li>
+<li><strong>Binning:</strong> <code>pd.cut()</code>: bin edges, labels, interval structure, and why the number of labels is one fewer than the number of edges</li>
+<li><strong>String cleaning:</strong> the <code>str</code> accessor, <code>str.strip()</code>, <code>str.lower()</code>, <code>str.upper()</code>, <code>str.title()</code>, and <code>str.contains()</code> with boolean indexing</li>
+<li><strong>Textbook awareness:</strong> forward and back fill with <code>fillna()</code>, <code>replace()</code>, regular expressions for string manipulation, and <code>pd.get_dummies()</code></li>
 </ul>
+</section>
+<section id="d2l-submission-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="d2l-submission-checklist">D2L submission checklist</h2>
+<p>Complete the following in D2L:</p>
+<ul>
+<li><strong>Week 10 D2L quiz</strong> (no file uploads required this week)</li>
+</ul>
+<p><strong>Note:</strong> This week’s emphasis is on understanding how each cleaning operation works and why the sequence matters: applying operations in the wrong order can produce results that are silently wrong. Read Chapter 7, work through the demo carefully, and use the quiz to confirm your understanding. There are no coding or file upload submissions this week.</p>
 
 
 </section>

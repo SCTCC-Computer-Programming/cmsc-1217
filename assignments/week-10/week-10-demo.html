@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>week-10-demo – CMSC 1217 : Introduction to Data Analytics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-feb0c0ed7aac57d66ec8dce0f6a48183.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-b337f537912f5ab074b938eebad4c5d7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">CMSC 1217 : Introduction to Data Analytics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 10 Demo: Data Cleaning with pandas</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+        <div class="sidebar-tools-collapse">
+    <a href="https://discord.gg/az8cmeqJdc" title="" class="quarto-navigation-tool px-1" aria-label="Discord"><i class="bi bi-chat-dots"></i></a>
+    <a href="https://sctcc.learn.minnstate.edu/d2l/login" title="" class="quarto-navigation-tool px-1" aria-label="D2L"><i class="bi bi-book-half"></i></a>
+</div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/office-hours.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Office Hours</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/homework-coursework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignment Policies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Policies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/policies/ai-policy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AI Policy</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Weekly Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 (Starts 9 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 (Starts 16 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 (Starts 23 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 (Starts 2 MAR)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 (Starts 16 MAR)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Weekly Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-05/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 (Starts 9 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-06/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 (Starts 16 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 (Starts 23 FEB)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 (Starts 2 MAR)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 (Starts 16 MAR)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 1</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/setup/miniconda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Miniconda Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/setup/jupyter-learning-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Jupyter Learning Links</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 2</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/cmsc-1217/week-02/cmsc-1217-chap-03-learning-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 3 Reference Videos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Week 3</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../shared/guides/cmsc-1217/week-03/cmsc-1217-chap-04-learning-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chapter 4 Reference Videos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Week 10 Demo: Data Cleaning with pandas</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">March 10, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Chapter 6 covered how to get data into a DataFrame. <code>pd.read_csv()</code>, <code>json.loads()</code>, and <code>requests.get()</code> all produce a DataFrame from a source file or service. But loading data and having data that is ready to analyze are two different things. Real datasets arrive with missing values, inconsistent text formatting, duplicate records, and columns whose types prevent calculation. Chapter 7 covers the tools for addressing those problems before analysis begins.</p>
+<p>This demo works through a fleet registry dataset that has the kinds of problems you encounter in practice: numeric columns with placeholder strings that blocked type inference, blank fields that became <code>NaN</code> during loading, duplicate rows, status codes that need to be expanded to readable labels, and a <code>ship_class</code> column with inconsistent casing and extra whitespace. Each part of the demo introduces tools for one category of problem.</p>
+<section id="what-this-demo-covers" class="level3">
+<h3 class="anchored" data-anchor-id="what-this-demo-covers">What This Demo Covers</h3>
+<ul>
+<li>Part 1: Handling Missing Data: identifying missing values with <code>isnull()</code>, removing rows with <code>dropna()</code>, filling values with <code>fillna()</code>, and converting columns to usable numeric types with <code>pd.to_numeric()</code></li>
+<li>Part 2: Data Transformation: removing duplicates with <code>drop_duplicates()</code>, recoding values with <code>map()</code>, renaming columns with <code>rename()</code>, detecting outliers with boolean indexing, and binning continuous values with <code>pd.cut()</code></li>
+<li>Part 3: String Manipulation: cleaning whitespace with <code>str.strip()</code>, standardizing case with <code>str.lower()</code>, and filtering with <code>str.contains()</code></li>
+</ul>
+<p>Chapter 7 in the textbook covers additional topics not in this demo: forward and back fill strategies for <code>fillna()</code>, value substitution with <code>replace()</code>, regular expressions for pattern-based transformations, dummy variables with <code>pd.get_dummies()</code>, extension data types, and categorical data. This demo focuses on the operations you will use most often.</p>
+</section>
+<section id="before-you-begin" class="level3">
+<h3 class="anchored" data-anchor-id="before-you-begin">Before You Begin</h3>
+<p>Download <code>fleet_registry_v2.csv</code> from the course page and place it in your <code>week10</code> folder alongside this notebook. The <code>pd.read_csv()</code> calls in this demo use just the filename, which means the CSV must be in the same folder as the notebook. If you get a <code>FileNotFoundError</code>, check that the file is in the right location before running any other cells.</p>
+</section>
+</section>
+<section id="part-1-handling-missing-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-handling-missing-data">Part 1: Handling Missing Data</h2>
+<section id="loading-the-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="loading-the-dataset">Loading the dataset</h3>
+<p>Start by looking at the raw file contents, then load it with pandas and inspect what came through.</p>
+<div id="9b3bfcfa" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the raw file contents before loading</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_registry_v2.csv'</span>, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f.read())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ship_name,ship_class,crew_size,max_speed,launch_year,status
+Aurora,Explorer,150,9.2,2371,ACT
+Nebula Runner,  cargo  ,45,6.8,2368,ACT
+Dark Comet,Fighter,12,9.8,2374,ACT
+Star Whisper, Science ,80,7.5,2370,RET
+Iron Horizon,CARGO,50,6.5,2365,MNT
+Void Dancer,Explorer,120,9.0,2373,ACT
+Solar Wind,patrol,30,8.4,2369,ACT
+Crimson Falcon,fighter,15,9.6,2372,RET
+Dust Runner,Cargo,200,UNKNOWN,2375,ACT
+Pale Horizon,science,,7.1,2371,MNT
+Ember Gate,EXPLORER,9999,8.8,2376,ACT
+Nova Crest,Patrol,25,UNKNOWN,,RET
+Iron Horizon,CARGO,50,6.5,2365,MNT
+Dark Comet,Fighter,12,9.8,2374,ACT
+Silver Wake,cargo,60,7.8,2368,ACT
+</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>Reading the file as plain text shows exactly what is stored on disk. Look at the <code>ship_class</code> column: some entries have extra spaces around them, and the casing varies across rows. Look at the <code>max_speed</code> column: two rows have <code>UNKNOWN</code> where a number should be. Look at <code>crew_size</code> and <code>launch_year</code>: two rows have blank fields. These are the problems the demo addresses. Seeing them in the raw file first makes it clear that these are data quality issues, not something pandas introduced during loading.</p>
+<div id="dff1a8a8" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the file and inspect what pandas produced</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry_v2.csv'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fleet.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 15 entries, 0 to 14
+Data columns (total 6 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   ship_name    15 non-null     object 
+ 1   ship_class   15 non-null     object 
+ 2   crew_size    14 non-null     float64
+ 3   max_speed    15 non-null     object 
+ 4   launch_year  14 non-null     float64
+ 5   status       15 non-null     object 
+dtypes: float64(2), object(4)
+memory usage: 852.0+ bytes</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>Three things stand out in the <code>.info()</code> report.</p>
+<p><code>crew_size</code> and <code>launch_year</code> both show <code>float64</code> even though those values should be whole numbers. Both columns also show fewer than 15 non-null entries. This is the same behavior you saw in Week 7: when a numeric column contains even one blank field, pandas has no integer representation for “missing,” so the entire column widens to <code>float64</code> to accommodate <code>NaN</code>.</p>
+<p><code>max_speed</code> shows a text type (<code>object</code> or <code>str</code> depending on your pandas version) and 15 non-null entries, which looks fine until you check the values. Two rows in the file have <code>UNKNOWN</code> where a speed should be. Because pandas encountered a non-numeric string in that column, it treated the entire column as text rather than numbers.</p>
+<p>These three columns need to be fixed before any calculations on them will work.</p>
+</section>
+<section id="identifying-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="identifying-missing-values">Identifying missing values</h3>
+<p><code>isnull()</code> checks every cell in the DataFrame and returns <code>True</code> where a value is missing and <code>False</code> where it is not. Calling <code>.sum()</code> on that result counts the <code>True</code> values per column.</p>
+<div id="8b148665" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet.isnull().<span class="bu">sum</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ship_name      0
+ship_class     0
+crew_size      1
+max_speed      0
+launch_year    1
+status         0
+dtype: int64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p><code>crew_size</code> and <code>launch_year</code> each have one missing value. <code>max_speed</code> shows zero missing values, which confirms what <code>.info()</code> suggested: those <code>UNKNOWN</code> strings loaded as text, not as missing data. pandas does not know <code>UNKNOWN</code> means “no value” unless you tell it.</p>
+</section>
+<section id="dropping-rows-with-missing-data" class="level3">
+<h3 class="anchored" data-anchor-id="dropping-rows-with-missing-data">Dropping rows with missing data</h3>
+<p><code>dropna()</code> removes rows that contain missing values. By default it removes any row where at least one column is <code>NaN</code>.</p>
+<div id="cbdf46fe" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Original row count: </span><span class="sc">{</span><span class="bu">len</span>(fleet)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After dropna(): </span><span class="sc">{</span><span class="bu">len</span>(fleet.dropna())<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Original row count: 15
+After dropna(): 13</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>The default behavior is aggressive. A row missing only <code>launch_year</code> gets dropped even if every other column is complete. For this dataset, that means losing a row where only one field is blank. Whether that is acceptable depends on what your analysis needs.</p>
+<p><code>dropna()</code> returns a new DataFrame. The original <code>fleet</code> is unchanged unless you assign the result back.</p>
+<p><code>dropna(subset=...)</code> limits which columns trigger the drop. A row is only removed if it has a missing value in one of the specified columns.</p>
+<div id="11283771" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only drop rows missing crew_size -- keep rows missing only launch_year</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fleet_crew_required <span class="op">=</span> fleet.dropna(subset<span class="op">=</span>[<span class="st">'crew_size'</span>])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After dropna(subset=['crew_size']): </span><span class="sc">{</span><span class="bu">len</span>(fleet_crew_required)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>After dropna(subset=['crew_size']): 14</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>This keeps any row where <code>crew_size</code> is present, even if <code>launch_year</code> is missing. Use <code>subset</code> when some columns are more critical to your analysis than others.</p>
+</section>
+<section id="filling-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="filling-missing-values">Filling missing values</h3>
+<p>Instead of removing rows with missing data, you can fill them. <code>fillna()</code> replaces <code>NaN</code> with a value you provide.</p>
+<div id="4ca20c98" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing launch_year with a constant</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a preview -- fleet is not modified</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'launch_year'</span>].fillna(<span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0     2371.0
+1     2368.0
+2     2374.0
+3     2370.0
+4     2365.0
+5     2373.0
+6     2369.0
+7     2372.0
+8     2375.0
+9     2371.0
+10    2376.0
+11       0.0
+12    2365.0
+13    2374.0
+14    2368.0
+Name: launch_year, dtype: float64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>The blank entry is now <code>0.0</code>. This works, but the result is misleading: a launch year of 0 does not mean anything in this dataset. Filling with a constant makes sense when there is a meaningful default (for example, filling a missing sales quantity with 0 if no sale occurred). For a numeric measurement like a year or a speed, filling with the column mean or median is usually more appropriate.</p>
+<div id="7c9ddd9f" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing launch_year with the column mean</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>year_mean <span class="op">=</span> fleet[<span class="st">'launch_year'</span>].mean()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean launch year: </span><span class="sc">{</span>year_mean<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'launch_year'</span>] <span class="op">=</span> fleet[<span class="st">'launch_year'</span>].fillna(year_mean)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'launch_year'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mean launch year: 2370.8
+0     2371.000000
+1     2368.000000
+2     2374.000000
+3     2370.000000
+4     2365.000000
+5     2373.000000
+6     2369.000000
+7     2372.000000
+8     2375.000000
+9     2371.000000
+10    2376.000000
+11    2370.785714
+12    2365.000000
+13    2374.000000
+14    2368.000000
+Name: launch_year, dtype: float64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>The mean is calculated from the non-null values and used to fill the gap. The filled value preserves the column’s overall distribution rather than introducing an arbitrary placeholder.</p>
+<p>The mean is sensitive to outliers. If one value is much larger or smaller than the rest, it pulls the mean away from the typical value. When outliers are present, the median (the middle value when sorted) is a more stable choice. To fill with the median instead, swap <code>.mean()</code> for <code>.median()</code> in the pattern above: <code>fleet['launch_year'].fillna(fleet['launch_year'].median())</code>. You will see an example of an outlier in Part 2.</p>
+</section>
+<section id="converting-columns-to-numeric-types" class="level3">
+<h3 class="anchored" data-anchor-id="converting-columns-to-numeric-types">Converting columns to numeric types</h3>
+<p><code>max_speed</code> is still a text column because the <code>UNKNOWN</code> strings blocked type inference during loading. Replacing those strings with <code>NaN</code> and converting the column to a numeric type requires one step: <code>pd.to_numeric()</code>.</p>
+<div id="03f66a4d" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"max_speed type before: </span><span class="sc">{</span>fleet[<span class="st">'max_speed'</span>]<span class="sc">.</span>dtype<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># errors='coerce' replaces any value that cannot be converted with NaN</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'max_speed'</span>] <span class="op">=</span> pd.to_numeric(fleet[<span class="st">'max_speed'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"max_speed type after: </span><span class="sc">{</span>fleet[<span class="st">'max_speed'</span>]<span class="sc">.</span>dtype<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[[<span class="st">'ship_name'</span>, <span class="st">'max_speed'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>max_speed type before: object
+max_speed type after: float64
+         ship_name  max_speed
+0           Aurora        9.2
+1    Nebula Runner        6.8
+2       Dark Comet        9.8
+3     Star Whisper        7.5
+4     Iron Horizon        6.5
+5      Void Dancer        9.0
+6       Solar Wind        8.4
+7   Crimson Falcon        9.6
+8      Dust Runner        NaN
+9     Pale Horizon        7.1
+10      Ember Gate        8.8
+11      Nova Crest        NaN
+12    Iron Horizon        6.5
+13      Dark Comet        9.8
+14     Silver Wake        7.8</code></pre>
+</div>
+</div>
+<p><strong>Understanding the code:</strong></p>
+<p><strong><code>pd.to_numeric()</code></strong> converts a Series to a numeric type. The <code>errors</code> parameter controls what happens when a value cannot be converted.</p>
+<p>The default behavior (<code>errors='raise'</code>) raises an exception when it encounters a non-numeric value. That would fail here because <code>UNKNOWN</code> is not a number.</p>
+<p><code>errors='coerce'</code> replaces any non-convertible value with <code>NaN</code> instead of raising an error. The string <code>UNKNOWN</code> becomes <code>NaN</code>, and the column type becomes <code>float64</code>. The values that were already numeric are unchanged.</p>
+<p>Now that the column is numeric, you can fill the missing values using the same <code>fillna()</code> approach from above.</p>
+<div id="dc94b2f4" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>speed_mean <span class="op">=</span> fleet[<span class="st">'max_speed'</span>].mean()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'max_speed'</span>] <span class="op">=</span> fleet[<span class="st">'max_speed'</span>].fillna(speed_mean)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[[<span class="st">'ship_name'</span>, <span class="st">'max_speed'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         ship_name  max_speed
+0           Aurora   9.200000
+1    Nebula Runner   6.800000
+2       Dark Comet   9.800000
+3     Star Whisper   7.500000
+4     Iron Horizon   6.500000
+5      Void Dancer   9.000000
+6       Solar Wind   8.400000
+7   Crimson Falcon   9.600000
+8      Dust Runner   8.215385
+9     Pale Horizon   7.100000
+10      Ember Gate   8.800000
+11      Nova Crest   8.215385
+12    Iron Horizon   6.500000
+13      Dark Comet   9.800000
+14     Silver Wake   7.800000</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>The two rows that had <code>UNKNOWN</code> now have the column mean as their speed. The column is fully numeric and ready for calculation.</p>
+<p>At this point, the <code>max_speed</code> problem is resolved: the column is now <code>float64</code> and the two <code>UNKNOWN</code> entries have been replaced with the column mean. The <code>crew_size</code> and <code>launch_year</code> columns still have one missing value each. Those are addressed in Part 2, alongside the outlier detection work that needs to happen before filling them.</p>
+</section>
+</section>
+<section id="part-2-data-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-data-transformation">Part 2: Data Transformation</h2>
+<p>This part starts with a fresh load of the file. The missing data work in Part 1 modified <code>fleet</code> in place across several cells. Starting fresh here makes the state of the DataFrame explicit.</p>
+<div id="04330416" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fresh load for Part 2 -- convert max_speed and fill missing values</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry_v2.csv'</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'max_speed'</span>] <span class="op">=</span> pd.to_numeric(fleet[<span class="st">'max_speed'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'max_speed'</span>] <span class="op">=</span> fleet[<span class="st">'max_speed'</span>].fillna(fleet[<span class="st">'max_speed'</span>].mean())</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'crew_size'</span>] <span class="op">=</span> fleet[<span class="st">'crew_size'</span>].fillna(fleet[<span class="st">'crew_size'</span>].median())</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'launch_year'</span>] <span class="op">=</span> fleet[<span class="st">'launch_year'</span>].fillna(fleet[<span class="st">'launch_year'</span>].median())</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         ship_name ship_class  crew_size  max_speed  launch_year status
+0           Aurora   Explorer      150.0   9.200000       2371.0    ACT
+1    Nebula Runner    cargo         45.0   6.800000       2368.0    ACT
+2       Dark Comet    Fighter       12.0   9.800000       2374.0    ACT
+3     Star Whisper   Science        80.0   7.500000       2370.0    RET
+4     Iron Horizon      CARGO       50.0   6.500000       2365.0    MNT
+5      Void Dancer   Explorer      120.0   9.000000       2373.0    ACT
+6       Solar Wind     patrol       30.0   8.400000       2369.0    ACT
+7   Crimson Falcon    fighter       15.0   9.600000       2372.0    RET
+8      Dust Runner      Cargo      200.0   8.215385       2375.0    ACT
+9     Pale Horizon    science       50.0   7.100000       2371.0    MNT
+10      Ember Gate   EXPLORER     9999.0   8.800000       2376.0    ACT
+11      Nova Crest     Patrol       25.0   8.215385       2371.0    RET
+12    Iron Horizon      CARGO       50.0   6.500000       2365.0    MNT
+13      Dark Comet    Fighter       12.0   9.800000       2374.0    ACT
+14     Silver Wake      cargo       60.0   7.800000       2368.0    ACT</code></pre>
+</div>
+</div>
+<p>This applies the cleaning from Part 1 in a compact block so Part 2 begins with a DataFrame that has no missing values. The numeric columns are filled, and <code>max_speed</code> has been converted from text. The string and formatting problems in <code>ship_class</code> are intentionally left for Part 3.</p>
+<section id="removing-duplicate-rows" class="level3">
+<h3 class="anchored" data-anchor-id="removing-duplicate-rows">Removing duplicate rows</h3>
+<p>The dataset contains two ships that appear twice: exact copies of the same row. <code>drop_duplicates()</code> removes them.</p>
+<div id="da18a9fa" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rows before: </span><span class="sc">{</span><span class="bu">len</span>(fleet)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> fleet.drop_duplicates()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rows after: </span><span class="sc">{</span><span class="bu">len</span>(fleet)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows before: 15
+Rows after: 13
+         ship_name ship_class  crew_size  max_speed  launch_year status
+0           Aurora   Explorer      150.0   9.200000       2371.0    ACT
+1    Nebula Runner    cargo         45.0   6.800000       2368.0    ACT
+2       Dark Comet    Fighter       12.0   9.800000       2374.0    ACT
+3     Star Whisper   Science        80.0   7.500000       2370.0    RET
+4     Iron Horizon      CARGO       50.0   6.500000       2365.0    MNT
+5      Void Dancer   Explorer      120.0   9.000000       2373.0    ACT
+6       Solar Wind     patrol       30.0   8.400000       2369.0    ACT
+7   Crimson Falcon    fighter       15.0   9.600000       2372.0    RET
+8      Dust Runner      Cargo      200.0   8.215385       2375.0    ACT
+9     Pale Horizon    science       50.0   7.100000       2371.0    MNT
+10      Ember Gate   EXPLORER     9999.0   8.800000       2376.0    ACT
+11      Nova Crest     Patrol       25.0   8.215385       2371.0    RET
+14     Silver Wake      cargo       60.0   7.800000       2368.0    ACT</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p><code>drop_duplicates()</code> keeps the first occurrence of each duplicate and removes the rest. The result is a DataFrame where every row is unique.</p>
+<p>By default it compares all columns. If you only want to detect duplicates based on specific columns, pass a <code>subset</code> list. For example, <code>drop_duplicates(subset=['ship_name'])</code> would remove any row where the ship name already appeared, even if other columns differ.</p>
+</section>
+<section id="recoding-values-with-map" class="level3">
+<h3 class="anchored" data-anchor-id="recoding-values-with-map">Recoding values with map()</h3>
+<p>The <code>status</code> column contains short codes: <code>ACT</code>, <code>RET</code>, and <code>MNT</code>. These are efficient to store but not readable in a report or visualization. <code>map()</code> replaces values using a dictionary.</p>
+<div id="ebf36805" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>status_labels <span class="op">=</span> {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ACT'</span>: <span class="st">'Active'</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'RET'</span>: <span class="st">'Retired'</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'MNT'</span>: <span class="st">'Maintenance'</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'status'</span>] <span class="op">=</span> fleet[<span class="st">'status'</span>].<span class="bu">map</span>(status_labels)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[[<span class="st">'ship_name'</span>, <span class="st">'status'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         ship_name       status
+0           Aurora       Active
+1    Nebula Runner       Active
+2       Dark Comet       Active
+3     Star Whisper      Retired
+4     Iron Horizon  Maintenance
+5      Void Dancer       Active
+6       Solar Wind       Active
+7   Crimson Falcon      Retired
+8      Dust Runner       Active
+9     Pale Horizon  Maintenance
+10      Ember Gate       Active
+11      Nova Crest      Retired
+14     Silver Wake       Active</code></pre>
+</div>
+</div>
+<p><strong>Understanding the code:</strong></p>
+<p><code>map()</code> takes a dictionary and replaces each value in the Series with the corresponding dictionary value. <code>ACT</code> becomes <code>Active</code>, <code>RET</code> becomes <code>Retired</code>, <code>MNT</code> becomes <code>Maintenance</code>. Values not found in the dictionary become <code>NaN</code>, so make sure your dictionary covers every value in the column.</p>
+<p>This is different from <code>fillna()</code>, which fills blank cells. <code>map()</code> replaces existing values with new ones.</p>
+</section>
+<section id="renaming-columns" class="level3">
+<h3 class="anchored" data-anchor-id="renaming-columns">Renaming columns</h3>
+<p><code>rename()</code> changes column names without modifying the data.</p>
+<div id="44039494" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> fleet.rename(columns<span class="op">=</span>{</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'status'</span>: <span class="st">'fleet_status'</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_speed'</span>: <span class="st">'top_speed'</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet.columns)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['ship_name', 'ship_class', 'crew_size', 'top_speed', 'launch_year',
+       'fleet_status'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<p><strong>Understanding the code:</strong></p>
+<p>The <code>columns</code> parameter takes a dictionary where each key is the current column name and each value is the new name. You only need to include columns you want to rename. Columns not in the dictionary are left unchanged.</p>
+<p>Like most pandas methods, <code>rename()</code> returns a new DataFrame. Assigning back to <code>fleet</code> updates the variable.</p>
+</section>
+<section id="detecting-and-handling-outliers" class="level3">
+<h3 class="anchored" data-anchor-id="detecting-and-handling-outliers">Detecting and handling outliers</h3>
+<p>Before binning <code>crew_size</code>, check whether the values are reasonable.</p>
+<div id="9de83d09" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'crew_size'</span>].describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>count      13.000000
+mean      833.538462
+std      2754.444851
+min        12.000000
+25%        30.000000
+50%        50.000000
+75%       120.000000
+max      9999.000000
+Name: crew_size, dtype: float64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>The maximum value is <code>9999.0</code>. Every other crew size is between 12 and 200. A crew of 9999 on a small fleet registry dataset is almost certainly a data entry error rather than a real value. Before binning, that outlier needs to be addressed.</p>
+<p>Boolean indexing identifies it:</p>
+<div id="a1ee16b3" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows where crew_size is unusually large</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[fleet[<span class="st">'crew_size'</span>] <span class="op">&gt;</span> <span class="dv">1000</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     ship_name ship_class  crew_size  top_speed  launch_year fleet_status
+10  Ember Gate   EXPLORER     9999.0        8.8       2376.0       Active</code></pre>
+</div>
+</div>
+<p>Once identified, you can choose to remove the row or replace the value with <code>NaN</code>. Here we replace it with <code>NaN</code> and then fill with the median. Using the median rather than the mean matters here: the mean would be distorted by that 9999 value, while the median is resistant to it.</p>
+<div id="054302af" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the outlier with NaN, then fill with median</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>fleet.loc[fleet[<span class="st">'crew_size'</span>] <span class="op">&gt;</span> <span class="dv">1000</span>, <span class="st">'crew_size'</span>] <span class="op">=</span> np.nan</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>crew_median <span class="op">=</span> fleet[<span class="st">'crew_size'</span>].median()</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'crew_size'</span>] <span class="op">=</span> fleet[<span class="st">'crew_size'</span>].fillna(crew_median)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'crew_size'</span>].describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>count     13.000000
+mean      68.230769
+std       56.123604
+min       12.000000
+25%       30.000000
+50%       50.000000
+75%       80.000000
+max      200.000000
+Name: crew_size, dtype: float64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the code:</strong></p>
+<p><code>fleet.loc[condition, column] = value</code> is <strong>label-based assignment</strong>. The first argument selects rows by a boolean condition, the second argument names the column, and the assignment replaces the values that match. This is the standard pandas pattern for replacing specific values in place.</p>
+<p>After the replacement, <code>crew_size</code> has no outlier. The describe output now shows a reasonable max value, and the median is a meaningful fill for the one missing entry.</p>
+</section>
+<section id="binning-continuous-values-with-pd.cut" class="level3">
+<h3 class="anchored" data-anchor-id="binning-continuous-values-with-pd.cut">Binning continuous values with pd.cut()</h3>
+<p><code>crew_size</code> is a continuous numeric column. For some analyses, it is more useful to group ships into size categories than to work with the raw numbers. <code>pd.cut()</code> creates those groups.</p>
+<div id="f97640c1" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>size_bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">300</span>]</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>size_labels <span class="op">=</span> [<span class="st">'Small'</span>, <span class="st">'Medium'</span>, <span class="st">'Large'</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'crew_category'</span>] <span class="op">=</span> pd.cut(fleet[<span class="st">'crew_size'</span>], bins<span class="op">=</span>size_bins, labels<span class="op">=</span>size_labels)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[[<span class="st">'ship_name'</span>, <span class="st">'crew_size'</span>, <span class="st">'crew_category'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         ship_name  crew_size crew_category
+0           Aurora      150.0         Large
+1    Nebula Runner       45.0        Medium
+2       Dark Comet       12.0         Small
+3     Star Whisper       80.0        Medium
+4     Iron Horizon       50.0        Medium
+5      Void Dancer      120.0         Large
+6       Solar Wind       30.0         Small
+7   Crimson Falcon       15.0         Small
+8      Dust Runner      200.0         Large
+9     Pale Horizon       50.0        Medium
+10      Ember Gate       50.0        Medium
+11      Nova Crest       25.0         Small
+14     Silver Wake       60.0        Medium</code></pre>
+</div>
+</div>
+<p><strong>Understanding the code:</strong></p>
+<p><strong><code>pd.cut()</code></strong> divides a continuous column into intervals based on the bin edges you provide.</p>
+<p><code>bins</code> defines the edges of each interval. <code>[0, 30, 100, 300]</code> creates three intervals: 0 to 30, 30 to 100, and 100 to 300. By default, the left edge is excluded and the right edge is included, so a crew of 30 falls in the first bin (Small) and a crew of 31 falls in the second (Medium).</p>
+<p><code>labels</code> assigns a name to each interval. There must be one fewer label than there are bin edges because labels name the spaces between edges, not the edges themselves.</p>
+<p>The result is a new column where each ship is assigned to a size category. Categorical grouping like this is useful when you want summaries or charts that treat values as groups rather than as individual numbers.</p>
+<div id="a0ba0570" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'crew_category'</span>].value_counts())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>crew_category
+Medium    6
+Small     4
+Large     3
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p><code>value_counts()</code> shows how many ships fall into each category. This is a quick sanity check: if all ships ended up in one category, the bin edges probably need adjustment.</p>
+</section>
+</section>
+<section id="part-3-string-manipulation" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-string-manipulation">Part 3: String Manipulation</h2>
+<p>The <code>ship_class</code> column has two problems that were visible from the first <code>.info()</code> call: inconsistent casing (<code>Explorer</code>, <code>EXPLORER</code>, <code>explorer</code>) and extra whitespace around some values (<code>cargo</code>, <code>Science</code>). These problems mean that <code>Cargo</code>, <code>CARGO</code>, and <code>cargo</code> look like three different classes to pandas even though they represent the same thing. Grouping, filtering, or counting by <code>ship_class</code> would produce wrong results until the column is cleaned.</p>
+<p>pandas provides a <strong><code>str</code> accessor</strong> for applying string methods to an entire Series column at once. Instead of writing a loop, you call <code>fleet['ship_class'].str.method()</code> and the method is applied to every value in the column.</p>
+<section id="cleaning-whitespace" class="level3">
+<h3 class="anchored" data-anchor-id="cleaning-whitespace">Cleaning whitespace</h3>
+<div id="4d72d03b" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Before strip:"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'ship_class'</span>].unique())</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'ship_class'</span>] <span class="op">=</span> fleet[<span class="st">'ship_class'</span>].<span class="bu">str</span>.strip()</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">After strip:"</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'ship_class'</span>].unique())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Before strip:
+['Explorer' '  cargo  ' 'Fighter' ' Science ' 'CARGO' 'patrol' 'fighter'
+ 'Cargo' 'science' 'EXPLORER' 'Patrol' 'cargo']
+
+After strip:
+['Explorer' 'cargo' 'Fighter' 'Science' 'CARGO' 'patrol' 'fighter' 'Cargo'
+ 'science' 'EXPLORER' 'Patrol']</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p><code>str.strip()</code> removes leading and trailing whitespace from each value. The <code>cargo</code> and <code>Science</code> entries become <code>cargo</code> and <code>Science</code>. Values that had no extra whitespace are unchanged.</p>
+<p>This is the same <code>strip()</code> method you have used on individual strings throughout the course. The <code>str</code> accessor applies it to every value in the column without a loop.</p>
+</section>
+<section id="standardizing-case" class="level3">
+<h3 class="anchored" data-anchor-id="standardizing-case">Standardizing case</h3>
+<p>After stripping whitespace, the column still has <code>cargo</code>, <code>CARGO</code>, <code>Cargo</code>, <code>Science</code>, <code>science</code>, and similar variations. <code>str.lower()</code> converts every value to lowercase, making comparisons consistent.</p>
+<div id="6f867be2" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'ship_class'</span>] <span class="op">=</span> fleet[<span class="st">'ship_class'</span>].<span class="bu">str</span>.lower()</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'ship_class'</span>].value_counts())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ship_class
+cargo       4
+explorer    3
+fighter     2
+science     2
+patrol      2
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<p><strong>Understanding the output:</strong></p>
+<p>The class names are now consistent lowercase strings. <code>value_counts()</code> shows the actual count for each class instead of treating <code>Cargo</code>, <code>CARGO</code>, and <code>cargo</code> as separate categories.</p>
+<p>Other case methods follow the same pattern: <code>str.upper()</code> converts to uppercase, and <code>str.title()</code> capitalizes the first letter of each word. Use whichever produces the format your analysis requires. The important thing is that the entire column is consistent.</p>
+</section>
+<section id="filtering-with-str.contains" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-with-str.contains">Filtering with str.contains()</h3>
+<p><code>str.contains()</code> checks whether each value in a column contains a given substring and returns a boolean Series. Combined with boolean indexing, it filters rows by a text pattern.</p>
+<div id="ac84acc3" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all ships whose class contains 'fighter'</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>fighters <span class="op">=</span> fleet[fleet[<span class="st">'ship_class'</span>].<span class="bu">str</span>.contains(<span class="st">'fighter'</span>)]</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fighters[[<span class="st">'ship_name'</span>, <span class="st">'ship_class'</span>, <span class="st">'crew_category'</span>, <span class="st">'fleet_status'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        ship_name ship_class crew_category fleet_status
+2      Dark Comet    fighter         Small       Active
+7  Crimson Falcon    fighter         Small      Retired</code></pre>
+</div>
+</div>
+<p><strong>Understanding the code:</strong></p>
+<p><code>str.contains('fighter')</code> returns <code>True</code> for every row where <code>ship_class</code> includes the substring <code>fighter</code>. Because we standardized the column to lowercase in the previous step, <code>'fighter'</code> matches all fighter ships regardless of how the original file capitalized them.</p>
+<p>Without the case standardization from the previous step, this filter would miss ships that were entered as <code>Fighter</code> or <code>FIGHTER</code> in the original file. This is why cleaning order matters: strip first, standardize case second, then filter or group.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="what-youve-learned" class="level3">
+<h3 class="anchored" data-anchor-id="what-youve-learned">What You’ve Learned</h3>
+<p>This demo covered three categories of data cleaning operations from Chapter 7.</p>
+<p>Handling missing data: <code>isnull().sum()</code> identifies where missing values are and how many exist. <code>dropna()</code> removes rows containing them, with <code>subset</code> limiting which columns trigger the removal. <code>fillna()</code> replaces missing values with a constant or a computed value such as the column mean or median. <code>pd.to_numeric(errors='coerce')</code> converts a text column to numeric, replacing any non-convertible strings with <code>NaN</code> so they can then be filled.</p>
+<p>Data transformation: <code>drop_duplicates()</code> removes exact row copies. <code>map()</code> recodes values using a dictionary, replacing stored codes with readable labels. <code>rename()</code> changes column names. Boolean indexing with <code>.loc</code> assignment identifies and replaces outlier values before they distort calculations. <code>pd.cut()</code> groups a continuous numeric column into labeled intervals.</p>
+<p>String manipulation: the <code>str</code> accessor applies standard string methods to every value in a column. <code>str.strip()</code> removes leading and trailing whitespace. <code>str.lower()</code> standardizes casing. <code>str.contains()</code> returns a boolean Series for filtering rows by substring.</p>
+<p>The sequence matters. In this demo, removing outliers before binning and standardizing case before filtering both produced correct results because the operations were applied in the right order. Applying them out of order would have silently produced wrong results.</p>
+</section>
+<section id="what-the-textbook-covers-next" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-textbook-covers-next">What the Textbook Covers Next</h3>
+<p>Chapter 7 covers several topics not in this demo.</p>
+<p><code>fillna()</code> supports method-based filling with <code>method='ffill'</code> (forward fill, which propagates the last valid value forward) and <code>method='bfill'</code> (back fill). These are useful for time-ordered data where a missing value should inherit the value before or after it.</p>
+<p><code>replace()</code> substitutes specific values with new ones, similar to <code>map()</code> but more flexible. It accepts dictionaries, lists, and regular expressions.</p>
+<p>The string manipulation section of the chapter covers regular expressions for pattern-based matching and substitution. Regular expressions let you match text based on structure rather than exact characters, which is useful for cleaning phone numbers, postal codes, or any field with a predictable but variable format.</p>
+<p><code>pd.get_dummies()</code> converts a categorical column into a set of binary indicator columns, one per category. This is a common preparation step before certain types of analysis.</p>
+<p>The chapter also covers extension data types (Section 7.3) and categorical data (Section 7.5), both of which address how pandas represents data internally for efficiency and correctness.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/SCTCC-Computer-Programming\.github\.io\/cmsc-1217\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

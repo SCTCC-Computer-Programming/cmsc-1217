@@ -410,6 +410,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Week 8 (Starts 2 MAR)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 (Starts 16 MAR)</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -443,6 +449,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../assignments/week-08/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 8 (Starts 2 MAR)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-10/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 (Starts 16 MAR)</span></a>
   </div>
 </li>
       </ul>
@@ -578,7 +590,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="importing-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="importing-numpy">Importing NumPy</h2>
-<div id="ad45fdba" class="cell" data-execution_count="1">
+<div id="04f2bd8c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Importing the library</strong></p>
@@ -594,7 +606,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>NumPy’s key advantages:</strong></p>
 <p>NumPy arrays are specialized for numerical data. They’re: - <strong>Faster</strong>: Operations run at speeds close to compiled C code (10-100x faster than pure Python) - <strong>More convenient</strong>: Write mathematical operations in a single line instead of loops - <strong>Memory efficient</strong>: Store data more compactly than Python lists - <strong>Expressive</strong>: Code that works with arrays often reads more like mathematical notation</p>
 <p>Here is an example. We’ll do the same task (multiply every number by 2) using both approaches:</p>
-<div id="489fb1db" class="cell" data-execution_count="2">
+<div id="7d1b9364" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python list approach</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>doubled_list <span class="op">=</span> [x <span class="op">*</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> my_list]</span>
@@ -632,7 +644,7 @@ Array result: [ 2  4  6  8 10]</code></pre>
 <section id="creating-numpy-arrays-the-basics" class="level2">
 <h2 class="anchored" data-anchor-id="creating-numpy-arrays-the-basics">Creating NumPy Arrays: The Basics</h2>
 <p>The fundamental object in NumPy is the <strong>ndarray</strong> (n-dimensional array). It is a container for numbers arranged in one or more dimensions. Arrays are similar to Python lists, but with important differences: all elements must be the same data type (like all integers or all floats), and arrays support efficient mathematical operations on entire collections of data at once.</p>
-<div id="04832e20" class="cell" data-execution_count="3">
+<div id="21d753ce" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array from a Python list</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array from list:"</span>, arr1)</span>
@@ -683,7 +695,7 @@ Type: &lt;class 'numpy.ndarray'&gt;
 <section id="array-attributes-understanding-your-data" class="level2">
 <h2 class="anchored" data-anchor-id="array-attributes-understanding-your-data">Array Attributes: Understanding Your Data</h2>
 <p>Every NumPy array has attributes that provide important information about its structure and contents. These attributes help you understand the shape, size, and type of data you’re working with.</p>
-<div id="d091ee57" class="cell" data-execution_count="4">
+<div id="489d72b7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>], [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]])</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array:"</span>)</span>
@@ -753,7 +765,7 @@ Total elements: 12</code></pre>
 <section id="array-creation-functions" class="level2">
 <h2 class="anchored" data-anchor-id="array-creation-functions">Array Creation Functions</h2>
 <p>Instead of manually typing out values, NumPy provides convenient functions to create arrays with specific patterns. This is especially useful when you need placeholder arrays or want to generate sequences of numbers.</p>
-<div id="1125e156" class="cell" data-execution_count="5">
+<div id="a541a63d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array of zeros</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>zeros <span class="op">=</span> np.zeros(<span class="dv">5</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Zeros:"</span>, zeros)</span>
@@ -830,7 +842,7 @@ Empty (random values):
 <section id="creating-sequences-with-arange-and-linspace" class="level2">
 <h2 class="anchored" data-anchor-id="creating-sequences-with-arange-and-linspace">Creating Sequences with arange and linspace</h2>
 <p>Two of the most useful array creation functions generate sequences of numbers. These are similar to Python’s <code>range()</code> but return NumPy arrays and have additional features.</p>
-<div id="d6a4555e" class="cell" data-execution_count="6">
+<div id="486c5fa0" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arange: like Python's range, but returns an array</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>seq1 <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"arange(10):"</span>, seq1)</span>
@@ -902,7 +914,7 @@ linspace(0, 1, 11): [0.  0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1. ]</code></pre>
 <section id="data-types-dtypes" class="level2">
 <h2 class="anchored" data-anchor-id="data-types-dtypes">Data Types (dtypes)</h2>
 <p>In a previous section, we saw that arrays have a <code>dtype</code> attribute. Now we’ll explore how to work with data types: how NumPy infers them, how to specify them explicitly, and how to convert between them. Understanding data types is important for memory management, numerical precision, and ensuring your calculations produce the correct results.</p>
-<div id="a573b65e" class="cell" data-execution_count="7">
+<div id="85f7a5b6" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NumPy infers the dtype</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>int_arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Integer array dtype:"</span>, int_arr.dtype)</span>
@@ -974,7 +986,7 @@ Original: [1.  2.5 3.7]</code></pre>
 <section id="array-arithmetic-vectorized-operations" class="level2">
 <h2 class="anchored" data-anchor-id="array-arithmetic-vectorized-operations">Array Arithmetic: Vectorized Operations</h2>
 <p>One of NumPy’s core features is <strong>vectorization</strong>, which allows mathematical operations to be applied to entire arrays without explicit loops. When you perform an operation on a NumPy array, the operation is automatically applied to every element in the array. This approach, called vectorized computing, produces cleaner code and significantly faster execution compared to iterating through arrays with Python loops. Vectorization works with both scalar values (single numbers) and operations between multiple arrays of the same shape.</p>
-<div id="4244ffb3" class="cell" data-execution_count="8">
+<div id="ce3856a5" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Arithmetic with scalars</span></span>
@@ -1044,7 +1056,7 @@ Multiply arrays: [ 10  40  90 160 250]</code></pre>
 <section id="basic-indexing-and-slicing-1d-arrays" class="level2">
 <h2 class="anchored" data-anchor-id="basic-indexing-and-slicing-1d-arrays">Basic Indexing and Slicing (1D Arrays)</h2>
 <p>NumPy arrays support indexing and slicing operations similar to Python lists, allowing you to access individual elements or subsets of data. However, NumPy introduces important behavioral differences, particularly in how slices are handled. Understanding these differences is critical for working with arrays effectively. The most significant difference is that NumPy array slices create <strong>views</strong> rather than copies, meaning modifications to a slice affect the original array. This section covers single-element indexing, slice notation, and the distinction between views and copies.</p>
-<div id="ed6e043e" class="cell" data-execution_count="9">
+<div id="d65583df" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>])</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Single element indexing</span></span>
@@ -1151,7 +1163,7 @@ Original array: [ 10  20 999  40  50  60  70]</code></pre>
 <section id="indexing-2d-arrays" class="level2">
 <h2 class="anchored" data-anchor-id="indexing-2d-arrays">Indexing 2D Arrays</h2>
 <p>Two-dimensional arrays represent data in rows and columns, similar to spreadsheets or matrices. NumPy provides intuitive syntax for accessing elements, entire rows, entire columns, or rectangular sub-regions of 2D arrays. Indexing uses the format <code>[row, column]</code>, where both indices are specified within a single set of brackets separated by a comma. Understanding 2D indexing is essential for working with tabular data, images, and matrix operations.</p>
-<div id="9cee96f6" class="cell" data-execution_count="10">
+<div id="0b82f3ca" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>arr2d <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]])</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2D Array:"</span>)</span>
@@ -1230,7 +1242,7 @@ First 2 rows, first 2 columns:
 <section id="boolean-indexing-filtering-with-conditions" class="level2">
 <h2 class="anchored" data-anchor-id="boolean-indexing-filtering-with-conditions">Boolean Indexing: Filtering with Conditions</h2>
 <p>Boolean indexing is a powerful NumPy feature that allows you to filter array elements based on conditional expressions. Instead of writing explicit loops with if statements, you can create boolean arrays (arrays of True/False values) by applying conditions to your data, then use those boolean arrays as indices to select only the elements that meet your criteria. This technique is fundamental to data analysis workflows, where filtering datasets based on conditions is a common operation. Boolean indexing is both more concise and more efficient than traditional loop-based filtering.</p>
-<div id="95e59463" class="cell" data-execution_count="11">
+<div id="859bb5e1" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> np.array([<span class="dv">72</span>, <span class="dv">65</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">68</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">82</span>])</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temperatures:"</span>, temperatures)</span>
@@ -1305,7 +1317,7 @@ Comfortable temps (70-80): [72 80 78]</code></pre>
 <section id="universal-functions-ufuncs" class="level2">
 <h2 class="anchored" data-anchor-id="universal-functions-ufuncs">Universal Functions (ufuncs)</h2>
 <p>Universal functions, or ufuncs, are a core component of NumPy’s efficiency. These are functions that operate element-wise on arrays, applying a mathematical operation to each element without explicit loops. Ufuncs are implemented in compiled C code, making them significantly faster than equivalent Python loops. NumPy provides a comprehensive library of ufuncs covering mathematical operations, trigonometric functions, logarithms, exponentials, and comparison operations. Ufuncs can be unary (operating on a single array) or binary (operating on two arrays).</p>
-<div id="19957b5c" class="cell" data-execution_count="12">
+<div id="97c9bb60" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">16</span>, <span class="dv">25</span>])</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array:"</span>, arr)</span>
@@ -1383,7 +1395,7 @@ Minimum (element-wise): [1 2 3 2 1]</code></pre>
 <section id="array-oriented-programming-statistical-methods" class="level2">
 <h2 class="anchored" data-anchor-id="array-oriented-programming-statistical-methods">Array-Oriented Programming: Statistical Methods</h2>
 <p>NumPy arrays include built-in methods for computing descriptive statistics, enabling efficient data analysis without explicit loops. These statistical methods operate on entire arrays and return summary values that describe the central tendency, spread, and other properties of the data. Because these methods are implemented in optimized C code, they execute significantly faster than equivalent Python loops. Understanding these methods is essential for exploratory data analysis and quantitative research.</p>
-<div id="ad8e14a0" class="cell" data-execution_count="13">
+<div id="2560f4c8" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>, <span class="dv">12</span>, <span class="dv">89</span>, <span class="dv">34</span>, <span class="dv">56</span>, <span class="dv">78</span>, <span class="dv">90</span>, <span class="dv">11</span>])</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data:"</span>, data)</span>
@@ -1481,7 +1493,7 @@ Cumulative sum: [ 23  68 135 147 236 270 326 404 494 505]</code></pre>
 <h2 class="anchored" data-anchor-id="operations-on-multidimensional-arrays-axis-argument">Operations on Multidimensional Arrays: Axis Argument</h2>
 <p>Statistical operations on multidimensional arrays can be performed along specific dimensions using the <code>axis</code> parameter. This allows you to compute statistics separately for different slices of your data. For example, consider a dataset tracking daily sales for multiple stores. You might want to know the total sales for each store (summing across days), the total sales for each day (summing across stores), or the overall total (summing everything). The <code>axis</code> parameter controls which dimension is collapsed during the calculation. Understanding how axis works is fundamental to working effectively with multidimensional data.</p>
 <p>In the following example, we’ll work with sales data for three stores over four days. Each row represents a store, and each column represents a day.</p>
-<div id="60f6f43d" class="cell" data-execution_count="14">
+<div id="857e597b" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sales data: 3 stores, 4 days</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>sales <span class="op">=</span> np.array([</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">130</span>, <span class="dv">145</span>],  <span class="co"># Store A</span></span>
@@ -1575,7 +1587,7 @@ Average daily sales per store: [136.25 107.5  142.5 ]</code></pre>
 <section id="boolean-array-methods" class="level2">
 <h2 class="anchored" data-anchor-id="boolean-array-methods">Boolean Array Methods</h2>
 <p>Boolean arrays, which contain True and False values, have specialized methods for testing conditions and counting occurrences. These methods allow you to quickly answer questions like “Does any element meet this condition?” or “Do all elements meet this condition?” without writing explicit loops. Additionally, because NumPy treats True as 1 and False as 0 in numerical contexts, you can use arithmetic operations like <code>sum()</code> to count how many elements satisfy a condition. These methods are particularly useful for data validation and quality assessment.</p>
-<div id="5707a53b" class="cell" data-execution_count="15">
+<div id="6c891283" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> np.array([<span class="dv">85</span>, <span class="dv">92</span>, <span class="dv">78</span>, <span class="dv">95</span>, <span class="dv">88</span>, <span class="dv">73</span>, <span class="dv">90</span>, <span class="dv">87</span>])</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Scores:"</span>, scores)</span>
@@ -1653,7 +1665,7 @@ Percentage who passed: 75.0 %</code></pre>
 <section id="sorting" class="level2">
 <h2 class="anchored" data-anchor-id="sorting">Sorting</h2>
 <p>NumPy provides efficient sorting capabilities for arrays, with options to either create a sorted copy or sort an array in place. Understanding the different sorting methods is important for organizing data and implementing algorithms that require sorted inputs. NumPy also provides the ability to obtain the indices that would sort an array, which is useful when you need to sort multiple related arrays in the same order or when you need to track the original positions of elements after sorting.</p>
-<div id="7a838cdd" class="cell" data-execution_count="16">
+<div id="00d04a94" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">4</span>])</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Original:"</span>, data)</span>
@@ -1723,7 +1735,7 @@ Values in sorted order: [10 20 30 40 50]</code></pre>
 <section id="unique-values-and-set-operations" class="level2">
 <h2 class="anchored" data-anchor-id="unique-values-and-set-operations">Unique Values and Set Operations</h2>
 <p>NumPy provides functions for identifying unique values in arrays and performing mathematical set operations like union, intersection, and difference. These operations are essential for data cleaning (removing duplicates), frequency analysis (counting occurrences), and comparing datasets. Set operations treat arrays as collections of distinct elements, similar to mathematical sets, allowing you to identify commonalities and differences between datasets. All set operation functions automatically sort their results.</p>
-<div id="457d5b4d" class="cell" data-execution_count="17">
+<div id="8094e4a6" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array with duplicates</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> np.array([<span class="st">'Alice'</span>, <span class="st">'Bob'</span>, <span class="st">'Alice'</span>, <span class="st">'Charlie'</span>, <span class="st">'Bob'</span>, <span class="st">'Alice'</span>])</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1813,7 +1825,7 @@ Set difference (in arr1, not arr2): [1 2]</code></pre>
 <section id="conditional-logic-np.where" class="level2">
 <h2 class="anchored" data-anchor-id="conditional-logic-np.where">Conditional Logic: np.where</h2>
 <p>The <code>np.where</code> function provides vectorized conditional logic, functioning as an element-wise if-else statement for arrays. This function eliminates the need for explicit loops when applying conditional transformations to data. <code>np.where</code> can be used in two ways: to find the indices where a condition is true, or to select values based on a condition. The function supports nested conditions for complex multi-case logic. Understanding <code>np.where</code> is essential for data transformation tasks like categorization, conditional replacement, and implementing business rules across datasets.</p>
-<div id="15b04486" class="cell" data-execution_count="18">
+<div id="f812dff0" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> np.array([<span class="dv">85</span>, <span class="dv">92</span>, <span class="dv">78</span>, <span class="dv">95</span>, <span class="dv">88</span>, <span class="dv">73</span>, <span class="dv">90</span>, <span class="dv">67</span>])</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple use: where is condition True?</span></span>
@@ -1894,7 +1906,7 @@ With bonuses (for scores &gt;= 90): [ 85 112  78 120  88  73 112  67]</code></pr
 <section id="random-number-generation" class="level2">
 <h2 class="anchored" data-anchor-id="random-number-generation">Random Number Generation</h2>
 <p>NumPy provides comprehensive tools for generating random numbers from various probability distributions. Random number generation is fundamental to simulations, statistical sampling, hypothesis testing, and creating synthetic datasets for algorithm development and testing. NumPy’s random module includes functions for generating uniform random numbers, normally distributed values, random integers, and random samples from existing arrays. Understanding how to control randomness through seeds and how to select appropriate distributions is essential for reproducible scientific computing.</p>
-<div id="8a096c45" class="cell" data-execution_count="19">
+<div id="cf872a17" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1998,7 +2010,7 @@ Random choices: ['red' 'green' 'blue' 'yellow' 'red' 'yellow' 'blue' 'blue' 'blu
 <section id="file-input-and-output-with-numpy" class="level2">
 <h2 class="anchored" data-anchor-id="file-input-and-output-with-numpy">File Input and Output with NumPy</h2>
 <p>NumPy provides functions for saving arrays to disk and loading them back into memory, enabling persistent storage of numerical data between program executions. NumPy supports two primary file formats: a binary format (<code>.npy</code>) optimized for NumPy arrays, and text-based formats for interoperability with other tools. Binary format preserves data types exactly and offers faster read/write speeds, while text formats provide human readability and compatibility with spreadsheet applications and other programming languages. Choosing the appropriate format depends on your use case and whether interoperability or performance is the priority.</p>
-<div id="ba7e9beb" class="cell" data-execution_count="20">
+<div id="25fcdd5a" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">"data"</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
