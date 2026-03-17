@@ -587,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="creating-a-sample-csv-file" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-sample-csv-file">Creating a sample CSV file</h3>
 <p>First, we’ll create a CSV file using <code>open()</code>. This lets you see exactly what the raw file contains before pandas reads it.</p>
-<div id="a1b1d787" class="cell" data-execution_count="1">
+<div id="7f45e16a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CSV file with fleet registry data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_registry.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'ship_name,ship_class,crew_size,max_speed,launch_year</span><span class="ch">\n</span><span class="st">'</span>)</span>
@@ -622,7 +622,7 @@ Crimson Falcon,Fighter,15,9.6,2372
 </section>
 <section id="your-first-pd.read_csv-call" class="level3">
 <h3 class="anchored" data-anchor-id="your-first-pd.read_csv-call">Your first pd.read_csv() call</h3>
-<div id="c4734bd6" class="cell" data-execution_count="2">
+<div id="57f603ae" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -648,7 +648,7 @@ Crimson Falcon,Fighter,15,9.6,2372
 <section id="type-inference" class="level3">
 <h3 class="anchored" data-anchor-id="type-inference">Type inference</h3>
 <p>One important thing <code>pd.read_csv()</code> does automatically is figure out what type of data each column contains. Let’s check what it decided:</p>
-<div id="ea177fe0" class="cell" data-execution_count="3">
+<div id="2b420f58" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check what types pandas inferred</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet.dtypes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -671,7 +671,7 @@ dtype: object</code></pre>
 <section id="reading-a-file-without-a-header-row" class="level4">
 <h4 class="anchored" data-anchor-id="reading-a-file-without-a-header-row">Reading a file without a header row</h4>
 <p>Not every CSV file has a header row. What happens if we read one without telling pandas?</p>
-<div id="827cea51" class="cell" data-execution_count="4">
+<div id="eecbf173" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CSV file with no header row</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_no_header.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'Aurora,Explorer,150,9.2,2371</span><span class="ch">\n</span><span class="st">'</span>)</span>
@@ -693,7 +693,7 @@ dtype: object</code></pre>
 </div>
 <p><strong>Understanding the problem:</strong></p>
 <p>By default, <code>pd.read_csv()</code> assumes the first row is the header. Since this file has no header, pandas used the first data row (“Aurora,Explorer,150,9.2,2371”) as column names. That first record is now lost from the data, and the column names are meaningless.</p>
-<div id="5e6db7fa" class="cell" data-execution_count="5">
+<div id="114c5d7d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix: tell pandas there's no header row</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fleet_no_header <span class="op">=</span> pd.read_csv(<span class="st">'fleet_no_header.csv'</span>, header<span class="op">=</span><span class="va">None</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"With header=None:"</span>)</span>
@@ -709,7 +709,7 @@ dtype: object</code></pre>
 </div>
 <p><strong>Understanding <code>header=None</code>:</strong></p>
 <p>Setting <code>header=None</code> tells pandas that no row in the file contains column names. pandas assigns default integer column names (0, 1, 2, 3, 4) instead. The data is correct now, and all four records are present.</p>
-<div id="8892b89a" class="cell" data-execution_count="6">
+<div id="ee456c97" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Better: provide your own column names</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fleet_named <span class="op">=</span> pd.read_csv(<span class="st">'fleet_no_header.csv'</span>, header<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                           names<span class="op">=</span>[<span class="st">'ship_name'</span>, <span class="st">'ship_class'</span>, <span class="st">'crew_size'</span>, </span>
@@ -731,7 +731,7 @@ dtype: object</code></pre>
 <section id="setting-the-index-during-loading" class="level4">
 <h4 class="anchored" data-anchor-id="setting-the-index-during-loading">Setting the index during loading</h4>
 <p>In Week 5, you learned to use <code>.set_index()</code> to make a column the row index after loading. You can also do this during loading with the <code>index_col</code> parameter.</p>
-<div id="87d1aef6" class="cell" data-execution_count="7">
+<div id="52252964" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a column as the row index during loading</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fleet_indexed <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry.csv'</span>, index_col<span class="op">=</span><span class="st">'ship_name'</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_indexed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -754,7 +754,7 @@ Crimson Falcon    Fighter         15        9.6         2372</code></pre>
 <section id="selecting-specific-columns" class="level4">
 <h4 class="anchored" data-anchor-id="selecting-specific-columns">Selecting specific columns</h4>
 <p>Sometimes a file has more columns than you need. Rather than loading everything and then dropping columns, you can tell pandas to load only the columns you want.</p>
-<div id="32bc450d" class="cell" data-execution_count="8">
+<div id="2b0ba309" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load only certain columns</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fleet_subset <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry.csv'</span>, </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                            usecols<span class="op">=</span>[<span class="st">'ship_name'</span>, <span class="st">'ship_class'</span>, <span class="st">'crew_size'</span>])</span>
@@ -777,7 +777,7 @@ Crimson Falcon    Fighter         15        9.6         2372</code></pre>
 <section id="reading-a-limited-number-of-rows" class="level4">
 <h4 class="anchored" data-anchor-id="reading-a-limited-number-of-rows">Reading a limited number of rows</h4>
 <p>When working with a large file, you may want to peek at the first few rows before loading the entire dataset. The <code>nrows</code> parameter handles this.</p>
-<div id="0178fcbf" class="cell" data-execution_count="9">
+<div id="ab20e96f" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read only the first 3 rows</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fleet_preview <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry.csv'</span>, nrows<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet_preview)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -795,7 +795,7 @@ Crimson Falcon    Fighter         15        9.6         2372</code></pre>
 <section id="handling-missing-data-during-loading" class="level3">
 <h3 class="anchored" data-anchor-id="handling-missing-data-during-loading">Handling missing data during loading</h3>
 <p>Real-world data often has missing values. They might appear as empty fields, placeholder text like “UNKNOWN”, or sentinel values like “-999”. pandas can detect and handle these during loading.</p>
-<div id="614a0ec6" class="cell" data-execution_count="10">
+<div id="809647af" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CSV file with missing and problematic values</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'fleet_missing.csv'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">'ship_name,ship_class,crew_size,max_speed,launch_year</span><span class="ch">\n</span><span class="st">'</span>)</span>
@@ -834,7 +834,7 @@ dtype: object</code></pre>
 <p><strong>Understanding the problem:</strong></p>
 <p>Look at the data types. <code>crew_size</code> and <code>max_speed</code> should be numeric, but some rows contain text placeholders (“UNKNOWN”, “MISSING”) or empty fields. pandas handles empty fields automatically by inserting <code>NaN</code> and adjusting the column type. But it does not recognize custom placeholders like “UNKNOWN” or “MISSING” as missing values. When even one value in a column is text, pandas treats the entire column as a text type, which means you cannot compute statistics on it.</p>
 <p>In your manual parsing pipeline, this is where <code>try/except</code> would catch the <code>ValueError</code> when you tried to convert “UNKNOWN” to a number. <code>pd.read_csv()</code> has its own way to handle this.</p>
-<div id="202a67c9" class="cell" data-execution_count="11">
+<div id="67e5ee34" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tell pandas what values represent missing data</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fleet_clean <span class="op">=</span> pd.read_csv(<span class="st">'fleet_missing.csv'</span>, </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                           na_values<span class="op">=</span>[<span class="st">'UNKNOWN'</span>, <span class="st">'MISSING'</span>])</span>
@@ -870,7 +870,7 @@ dtype: object</code></pre>
 <section id="writing-dataframes-to-csv" class="level3">
 <h3 class="anchored" data-anchor-id="writing-dataframes-to-csv">Writing DataFrames to CSV</h3>
 <p>So far, we’ve focused on reading data into pandas. But the workflow often goes both directions: you load data, process it, and then save the results. Just as <code>pd.read_csv()</code> reads data in, <code>to_csv()</code> writes data out.</p>
-<div id="e255e4eb" class="cell" data-execution_count="12">
+<div id="774a65ac" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the clean fleet data</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry.csv'</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -895,7 +895,7 @@ dtype: object</code></pre>
 </div>
 <p><strong>Understanding the output:</strong></p>
 <p>Notice the extra column at the beginning. That’s the row index (0, 1, 2, …). By default, <code>to_csv()</code> writes the index as the first column. This is often not what you want.</p>
-<div id="1f7edfe4" class="cell" data-execution_count="13">
+<div id="79863f14" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write without the index</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>fleet.to_csv(<span class="st">'fleet_output_clean.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -925,7 +925,7 @@ Crimson Falcon,Fighter,15,9.6,2372
 <section id="what-json-looks-like" class="level3">
 <h3 class="anchored" data-anchor-id="what-json-looks-like">What JSON looks like</h3>
 <p>JSON is built from structures you already know from Python: - JSON objects are like Python dictionaries: <code>{"key": "value"}</code> - JSON arrays are like Python lists: <code>[1, 2, 3]</code> - Objects and arrays can be nested inside each other</p>
-<div id="b7dffa4b" class="cell" data-execution_count="14">
+<div id="b0bffb77" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A JSON string representing planetary survey data</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>json_string <span class="op">=</span> <span class="st">'''[</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="st">    {"planet": "Verdantis", "sector": "Alpha-7", "atmosphere": "nitrogen-oxygen", "avg_temp_c": 22, "moons": 2},</span></span>
@@ -953,7 +953,7 @@ Crimson Falcon,Fighter,15,9.6,2372
 <section id="pythons-json-module" class="level3">
 <h3 class="anchored" data-anchor-id="pythons-json-module">Python’s json module</h3>
 <p>Python has a built-in <code>json</code> module for converting between JSON strings and Python objects.</p>
-<div id="ea3c3e9b" class="cell" data-execution_count="15">
+<div id="1cfed648" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse JSON string into Python objects</span></span>
@@ -975,7 +975,7 @@ First planet:
 <p><strong>Understanding <code>json.loads()</code>:</strong></p>
 <p><code>json.loads()</code> (the “s” stands for “string”) takes a JSON string and converts it to Python objects: - JSON objects become Python dictionaries - JSON arrays become Python lists - JSON strings become Python strings - JSON numbers become Python ints or floats</p>
 <p>After parsing, <code>planets</code> is a regular Python list of dictionaries. You can loop through it, access dictionary keys, and work with it using all the Python skills you already have.</p>
-<div id="93b83326" class="cell" data-execution_count="16">
+<div id="1e59b582" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access individual records and fields</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Planet names:"</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> planet <span class="kw">in</span> planets:</span>
@@ -1014,7 +1014,7 @@ Formatted JSON (first 200 characters):
 <section id="pandas-json-support" class="level3">
 <h3 class="anchored" data-anchor-id="pandas-json-support">pandas JSON support</h3>
 <p>Since a list of dictionaries with consistent keys is essentially tabular data, pandas can convert it directly to a DataFrame.</p>
-<div id="56c4ea84" class="cell" data-execution_count="17">
+<div id="6a4cb68d" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the parsed JSON (list of dicts) to a DataFrame</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>planets_df <span class="op">=</span> pd.DataFrame(planets)</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(planets_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1030,7 +1030,7 @@ Formatted JSON (first 200 characters):
 <p><strong>Understanding the conversion:</strong></p>
 <p>This is the same <code>pd.DataFrame()</code> call from Week 5. You pass a list of dictionaries where each dictionary becomes a row and the keys become column names. The JSON parsing step (<code>json.loads()</code>) gave you a list of dictionaries, and pandas knows how to handle that directly.</p>
 <p>pandas also has <code>pd.read_json()</code> which can read JSON files directly into a DataFrame. Let’s write our data to a JSON file first, then read it:</p>
-<div id="4cbddc81" class="cell" data-execution_count="18">
+<div id="f789667a" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the JSON string to a file</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'planets.json'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    f.write(json_string)</span>
@@ -1052,7 +1052,7 @@ Formatted JSON (first 200 characters):
 </section>
 <section id="writing-json" class="level3">
 <h3 class="anchored" data-anchor-id="writing-json">Writing JSON</h3>
-<div id="42a55495" class="cell" data-execution_count="19">
+<div id="f7f37f40" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write a DataFrame to a JSON file</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>planets_df.to_json(<span class="st">'planets_output.json'</span>, orient<span class="op">=</span><span class="st">'records'</span>, indent<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1122,7 +1122,7 @@ Formatted JSON (first 200 characters):
 <h3 class="anchored" data-anchor-id="making-an-api-request">Making an API request</h3>
 <p>Python’s <code>requests</code> library makes HTTP requests simple. We’ll use the GitHub API as an example. It provides public data about GitHub repositories without requiring an account or API key.</p>
 <p>The following code cells require internet access to reach the GitHub API. If you are working offline or the request fails, read through the code and explanations to understand the pattern. The concepts (make a request, check the response, parse JSON, convert to DataFrame) are what matter. You can re-run these cells later when you have internet access.</p>
-<div id="e2bba67f" class="cell" data-execution_count="20">
+<div id="db987cbd" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Request recent issues from the pandas GitHub repository</span></span>
@@ -1149,7 +1149,7 @@ Number of items: 30</code></pre>
 <section id="from-api-response-to-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="from-api-response-to-dataframe">From API response to DataFrame</h3>
 <p>Now that we have a successful response, let’s see what the API returned and convert it to a DataFrame. The GitHub API returns a list of dictionaries, one per issue. Each dictionary contains many fields.</p>
-<div id="0855a3a0" class="cell" data-execution_count="21">
+<div id="463501de" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse the JSON response</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> resp.json()</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1163,7 +1163,7 @@ Number of items: 30</code></pre>
 </div>
 <p><strong>Understanding the response:</strong></p>
 <p>Each issue is a dictionary with many fields: title, body, user information, labels, timestamps, and more. Most API responses contain more data than you need. The next step is to convert to a DataFrame and select the relevant columns.</p>
-<div id="7bb5f81e" class="cell" data-execution_count="22">
+<div id="e44533e9" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>issues <span class="op">=</span> pd.DataFrame(data)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1172,28 +1172,28 @@ Number of items: 30</code></pre>
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(issues_subset.head(<span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   number                                              title state  \
-0   64644                      PERF: cythonize scalar fillna  open   
-1   64643  BUG: fix float-to-int64 OOB handling on ARM in...  open   
-2   64642  PERF/DEP: from_records 2D ndarray optimization...  open   
-3   64641  PERF: use StringHashTable for StringArray.valu...  open   
-4   64640  DEPR: Deprecate xlrd and pyxlsb Excel engines ...  open   
-5   64639  BUG: distinguish bool from int in object-dtype...  open   
-6   64638  PERF: fix slow repr for Series/DataFrame with ...  open   
-7   64637  fix: BUG: constructing string ArrowExtensionAr...  open   
-8   64635  BUG: mask(inplace=True) gives where() results ...  open   
-9   64634  BUG: Fix 2D ExtensionArray handling in constru...  open   
+0   64645  DEPR: deprecate parsing quarterly strings in T...  open   
+1   64644                      PERF: cythonize scalar fillna  open   
+2   64643  BUG: fix float-to-int64 OOB handling on ARM in...  open   
+3   64642  PERF/DEP: from_records 2D ndarray optimization...  open   
+4   64641  PERF: use StringHashTable for StringArray.valu...  open   
+5   64640  DEPR: Deprecate xlrd and pyxlsb Excel engines ...  open   
+6   64639  BUG: distinguish bool from int in object-dtype...  open   
+7   64638  PERF: fix slow repr for Series/DataFrame with ...  open   
+8   64637  fix: BUG: constructing string ArrowExtensionAr...  open   
+9   64635  BUG: mask(inplace=True) gives where() results ...  open   
 
              created_at  
-0  2026-03-17T00:07:03Z  
-1  2026-03-16T23:54:40Z  
-2  2026-03-16T23:41:42Z  
-3  2026-03-16T22:44:29Z  
-4  2026-03-16T22:32:17Z  
-5  2026-03-16T22:10:30Z  
-6  2026-03-16T22:10:03Z  
-7  2026-03-16T21:57:48Z  
-8  2026-03-16T21:28:09Z  
-9  2026-03-16T20:57:42Z  </code></pre>
+0  2026-03-17T00:10:45Z  
+1  2026-03-17T00:07:03Z  
+2  2026-03-16T23:54:40Z  
+3  2026-03-16T23:41:42Z  
+4  2026-03-16T22:44:29Z  
+5  2026-03-16T22:32:17Z  
+6  2026-03-16T22:10:30Z  
+7  2026-03-16T22:10:03Z  
+8  2026-03-16T21:57:48Z  
+9  2026-03-16T21:28:09Z  </code></pre>
 </div>
 </div>
 <p><strong>Understanding the workflow:</strong></p>
