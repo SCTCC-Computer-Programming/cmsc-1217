@@ -10,6 +10,7 @@ format:
 
 - Here is the link to the **[Week 10 demo](week-10-demo.html)**.
 - <a href="week-10-demo.ipynb" download="week-10-demo.ipynb"> Download Jupyter Notebook </a>
+- <a href="fleet_registry_v2.csv" download="fleet_registry_v2.csv"> Download Dataset </a>
 
 ## Part 1: Reading
 
