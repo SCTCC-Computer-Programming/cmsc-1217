@@ -1,0 +1,42 @@
+---
+title: "Week 11 Guide"
+subtitle: "Cumulative Application of Chapters 1–7"
+format:
+  html:
+    toc: true
+---
+
+Week 11 is a cumulative application of everything from Chapters 1–7. The focus this week is data cleaning: the work that happens between loading a file and being able to trust what it contains. You will apply the Chapter 7 toolkit alongside the loading skills from Week 7 and the DataFrame analysis operations from Weeks 5 and 6. In prior application weeks, data arrived with structural problems: files that needed manual parsing, JSON that needed to be navigated, CSVs with placeholder values that required loading parameters. This week the loading is handled by a single `pd.read_csv()` call. The work is in what comes after: assessing the data, identifying what is wrong, and resolving each problem before analysis begins.
+
+**Assignment:**
+
+- Here is the link to the **[Week 11 Assignment](../../assignments/week-11/index.qmd)**.
+
+## Concepts applied this week
+
+### Data cleaning and preparation (Chapter 7)
+
+Real data collected from real systems rarely arrives ready to analyze. Fields get left blank, staff members enter placeholder values instead of leaving cells empty, the same category name gets typed a dozen different ways, records get submitted twice. These are not unusual problems. They are normal characteristics of data that was collected by people under real conditions.
+
+Chapter 7 introduced the tools pandas provides to address each of these problems. This week you apply all of them to a single dataset. You will use `isnull().sum()` and `.info()` to assess what the file contains before you touch it. You will use `pd.to_numeric()` to fix columns that loaded as the wrong type because of placeholder entries. You will use `fillna()` and `dropna()` to handle missing values, `describe()` and `.loc` to find and replace outliers, `drop_duplicates()` to remove duplicate records, `map()` to replace stored codes with readable labels, and the `str` accessor to standardize inconsistent string columns.
+
+The reason you do this work before analyzing is straightforward: every calculation you run depends on the data being correct. An enrollment count that includes duplicates is wrong. A fee total computed from a column that still has unconverted placeholder values is wrong. Cleaning is not a preliminary step you complete to get to the real work. It is part of the work.
+
+### Data loading and analysis (Chapters 5–7)
+
+Loading the file with `pd.read_csv()` is the starting point. Once the data is clean, the analysis uses the same DataFrame operations you have applied in Weeks 5, 6, and 8: boolean indexing, `.value_counts()`, `.sort_values()`, and `pd.cut()` for grouping continuous values into labeled categories. The analytical questions are not where the new challenge lives this week. Getting to them with data you can trust is.
+
+## Week 11 tasks
+
+1. Complete the **Week 11 Assignment** (parks and recreation registration analysis).
+2. Record and submit your video reflection.
+
+## Knowledge goals for Week 11
+
+By the end of Week 11, you should be able to:
+
+* load a CSV file and assess its quality using `.info()` and `isnull().sum()` before making any changes
+* identify columns with missing values, unexpected types, and inconsistent string values, and apply the correct Chapter 7 tool to each
+* explain why cleaning order matters and how an unresolved problem in one column can affect decisions in another
+* apply the complete Chapter 7 cleaning workflow to a real dataset and verify the result before moving to analysis
+* use Chapters 5–7 DataFrame operations to answer analytical questions on a clean dataset

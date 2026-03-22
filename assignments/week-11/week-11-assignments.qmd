@@ -1,0 +1,146 @@
+---
+title: "Week 11 Assignment"
+subtitle: "Parks and Recreation Registration Analysis"
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** All items are submitted in D2L (Week 11 Dropbox).
+
+**Reading:** Chapters 1–7 (cumulative).
+
+**Dataset:**
+
+- <a href="parks_registration.csv" download="parks_registration.csv"> Download Registration Log (CSV) </a>
+
+## The Situation
+
+You have been asked to help the Maplewood Parks and Recreation Department prepare for their spring session review. The department runs eight programs across four categories: Aquatics, Fitness, Arts, and Youth Sports. Each season, the front desk coordinator, Renee, exports registration data from the department's shared spreadsheet so the program director can review enrollment numbers, instructor workloads, and outstanding payments before the session begins.
+
+Renee flagged a few things when she sent the file. The spreadsheet has been updated by several staff members throughout the enrollment period, and not everyone followed the same conventions. Some fields were left blank when information was not yet available; others were filled with something temporary and never updated. Fee amounts for a handful of participants were still marked as pending at the time of entry. There was also a known system issue earlier in the season that caused two registrations to be submitted twice before it was caught and fixed.
+
+The program director needs answers, but the data is not ready to be analyzed as-is. Your job is to load the file, assess what you find, resolve what needs to be resolved, and then answer the questions the department needs for their review.
+
+## What You Need to Deliver
+
+### Part 1: Load and Assess
+
+Before loading the file, open it in a text editor or inspect it with Python's file reading tools and note what you observe about its structure and any visible problems.
+
+Load the file with `pd.read_csv()`. Then assess what pandas made of it:
+
+- Show the output of `.info()` and explain what the column types tell you
+- Run `isnull().sum()` and identify which columns have missing values and how many
+- Identify any columns where the data type is unexpected and explain why pandas inferred that type
+
+Your assessment should give a clear picture of what needs to be fixed before any analysis can run.
+
+### Part 2: Clean the Data
+
+Based on what you found in Part 1 and what you know about how this data was collected, work through everything that needs to be addressed before analysis can begin. For each issue you identify and resolve, use a markdown cell to explain what the problem was, what you did about it, and why you made that choice. A cleaning decision without a justification is not complete.
+
+Your cleaning should address each of the following:
+
+- Column types that do not match the data they contain and why pandas inferred the type it did
+- Missing values across any columns, including decisions about whether to remove or fill them and what value to use
+- Values that are present but not usable for analysis as-is
+- Text columns where the same value appears in more than one form
+- Duplicate records
+
+When you are done, verify the DataFrame is in the expected state before moving on.
+
+### Part 3: Analysis
+
+With a clean DataFrame, answer the following questions for the department's spring review. All analysis must use methods covered in Chapters 1–7. If a method feels unfamiliar or was not used in prior weeks, it is likely out of scope. Use filtering, aggregation, and DataFrame operations you have already practiced.
+
+**Enrollment summary.** How many registrations does each program have? Show counts sorted from highest to lowest.
+
+**Age group breakdown.** Group participants into three age categories: Youth (under 18), Adult (18 to 60), and Senior (60 and older). Show how many registrations fall into each group, and then show how those groups break down across each program category.
+
+**Fees by category.** How much in registration fees has been collected for each of the four program categories? Show one total per category.
+
+**Instructor load.** How many registrations is each instructor responsible for, including records where no instructor was assigned?
+
+**Outstanding payments.** How many registrations have not been fully paid, and what is the total amount still outstanding?
+
+### Save Your Results
+
+Save the cleaned DataFrame to a file called `registrations_cleaned.csv`. Do not write the row index to the file.
+
+## Technical Requirements
+
+Your notebook must demonstrate a complete workflow from raw file to final analysis. It must run successfully using Restart Kernel and Run All.
+
+Load the file with `pd.read_csv()`. Do not manually parse it. All cleaning and analysis must use the pandas and NumPy methods covered in Chapters 1–7. Do not use methods from chapters not yet covered in the course.
+
+**Data loading and assessment (Chapter 6 and Chapter 7 skills):**
+
+Use `pd.read_csv()` to load the file. Use `.info()` and `isnull().sum()` to assess what pandas made of the data before touching it. Inspect column types and missing value counts as your first step, not after.
+
+**Data cleaning (Chapter 7 skills):**
+
+Apply the appropriate Chapter 7 methods to each quality issue: type conversion, missing value handling, deduplication, value recoding, and string standardization. Each cleaning step should produce a verifiable result. Use markdown cells to document your reasoning, not just your code.
+
+**Analysis (Chapters 5–7 skills):**
+
+Use DataFrame operations for all analysis. Filtering, counting, grouping continuous values into categories, and computing totals should all use the pandas tools you have practiced. Avoid raw loops for anything a DataFrame operation can handle.
+
+**Notebook organization:**
+
+Structure your notebook so each part is clearly labeled. Use markdown cells to explain decisions, not just actions. Make it easy to verify that every required output is present.
+
+## Video Reflection
+
+Record a short video demonstrating your understanding of this assignment.
+
+**Part 1: Walk through your cleaning decisions**
+
+Your video must address the following two cleaning steps from Part 2:
+
+- How you identified and resolved the registration fee column type problem
+- How you identified and resolved the participant age issue, including how you handled the value that was present but not valid
+
+Then choose one additional cleaning step from Part 2 and walk through it using the same approach.
+
+For each one, explain:
+
+- What the problem was and how you identified it
+- What method you used and what the key parameter or argument controls
+- Why you made the specific choices you made
+
+**Part 2: Reflect on your learning**
+
+Choose ONE of the following:
+
+- **Challenge or error:** Describe a problem you ran into while completing this assignment, how you diagnosed it, and how you resolved it
+- **Key takeaway:** Explain one concept from Chapter 7 that this assignment made clearer and why it matters for real data work
+
+**Video submission requirements:**
+
+- Clear video and audio quality
+- Introduce yourself at the beginning (name)
+- Name your video file: `lastname_Week11Reflection`
+- Upload your video to **Kaltura**
+- **Do not** embed the video in the Dropbox submission
+- Paste the **share link** into the D2L assignment text submission box
+- Make sure the link text includes `lastname_Week11Reflection` in the link name
+
+## D2L Submission Checklist
+
+Submit the following items to the **Week 11 Dropbox** in D2L:
+
+### Notebook file
+
+- `lastname_week11_assignment.ipynb`
+
+### Video submission (link only)
+
+- Video filename: `lastname_Week11Reflection`
+- Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)
+
+**Before you submit:**
+
+- Run "Restart Kernel and Run All" to confirm your notebook executes without errors
+- Verify all required outputs are visible in the notebook
+- Check that your video link works and includes the correct filename

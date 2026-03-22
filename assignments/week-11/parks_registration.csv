@@ -1,0 +1,63 @@
+registration_id,participant_name,program_name,category,instructor,participant_age,registration_fee,session,payment_status,enrollment_date
+REG-001,Sandra Obi,Morning Lap Swim,Aquatics,Kim Nakamura,34,45.0,Spring 2026,PD,2026-01-15
+REG-002,Tom Galvez,Morning Lap Swim,aquatics,Kim Nakamura,67,45.0,Spring 2026,PD,2026-01-16
+REG-003,Priti Rao,Morning Lap Swim,AQUATICS,Kim Nakamura,52,TBD,Spring 2026,PEND,2026-01-18
+REG-004,Leon Chu,Morning Lap Swim,Aquatics,Kim Nakamura,28,45.0,Spring 2026,UNPD,2026-01-20
+REG-005,Maria Esteves,Morning Lap Swim,  Aquatics  ,Kim Nakamura,,45.0,Spring 2026,PD,2026-01-22
+REG-006,Darnell Hayes,Morning Lap Swim,Aquatics,Kim Nakamura,41,45.0,Spring 2026,PD,2026-01-24
+REG-007,Dorothy Park,Water Aerobics,Aquatics,Kim Nakamura,71,30.0,Spring 2026,PD,2026-01-15
+REG-008,Frank Olsen,Water Aerobics,Aquatics,Kim Nakamura,63,30.0,Spring 2026,PD,2026-01-17
+REG-009,Yuki Tanaka,Water Aerobics,aquatics,,58,30.0,Spring 2026,UNPD,2026-01-19
+REG-010,Hana Petrov,Water Aerobics,Aquatics,Kim Nakamura,72,TBD,Spring 2026,PEND,2026-01-21
+REG-011,Carl Mbeki,Water Aerobics,Aquatics,Kim Nakamura,65,30.0,Spring 2026,PD,2026-01-23
+REG-012,Sylvia Nguyen,Water Aerobics,Aquatics,Kim Nakamura,68,30.0,Spring 2026,PD,2026-01-24
+REG-013,Arthur Bloom,Water Aerobics,AQUATICS,Kim Nakamura,,30.0,Spring 2026,PD,2026-01-25
+REG-014,Bette Osei,Water Aerobics,Aquatics,Kim Nakamura,77,30.0,Spring 2026,UNPD,2026-01-26
+REG-015,Aisha Nwosu,Evening Yoga,Fitness,Dale Frost,42,35.0,Spring 2026,PD,2026-01-15
+REG-016,Ben Torres,Evening Yoga,fitness,Dale Frost,35,35.0,Spring 2026,PD,2026-01-16
+REG-017,Chloe Adeyemi,Evening Yoga,Fitness,Dale Frost,48,TBD,Spring 2026,PEND,2026-01-18
+REG-018,Dave Kim,Evening Yoga,  Fitness,Dale Frost,29,35.0,Spring 2026,UNPD,2026-01-20
+REG-019,Elena Rossi,Evening Yoga,Fitness,,55,35.0,Spring 2026,PD,2026-01-22
+REG-020,Fiona Achebe,Evening Yoga,Fitness,Dale Frost,31,35.0,Spring 2026,PD,2026-01-23
+REG-021,George Lamb,Evening Yoga,Fitness,Dale Frost,44,35.0,Spring 2026,PD,2026-01-24
+REG-022,Helena Voss,Evening Yoga,fitness,Dale Frost,,TBD,Spring 2026,PEND,2026-01-25
+REG-023,Isaac Bello,Evening Yoga,Fitness,Dale Frost,37,35.0,Spring 2026,UNPD,2026-01-26
+REG-024,Fred Laurent,Senior Fitness,Fitness,Dale Frost,68,25.0,Spring 2026,PD,2026-01-15
+REG-025,Grace Wong,Senior Fitness,Fitness,Dale Frost,74,25.0,Spring 2026,PD,2026-01-17
+REG-026,Harold Nkosi,Senior Fitness,fitness,Dale Frost,999,25.0,Spring 2026,PD,2026-01-19
+REG-027,Iris Chen,Senior Fitness,Fitness,Dale Frost,62,,Spring 2026,PEND,2026-01-21
+REG-028,Jack Dube,Senior Fitness,Fitness,Dale Frost,70,25.0,Spring 2026,PD,2026-01-23
+REG-029,Karen Muller,Watercolor Workshop,Arts,Priya Osei,44,40.0,Spring 2026,PD,2026-01-15
+REG-030,Leo Ferreira,Watercolor Workshop,arts,Priya Osei,29,40.0,Spring 2026,PD,2026-01-16
+REG-031,Mia Johansson,Watercolor Workshop,Arts,Priya Osei,61,40.0,Spring 2026,UNPD,2026-01-18
+REG-032,Noel Okafor,Watercolor Workshop,Arts  ,Priya Osei,38,TBD,Spring 2026,PEND,2026-01-20
+REG-033,Olivia Park,Watercolor Workshop,Arts,,52,40.0,Spring 2026,PD,2026-01-22
+REG-034,Patrick Seo,Watercolor Workshop,Arts,Priya Osei,57,40.0,Spring 2026,PD,2026-01-24
+REG-035,Paul Reeves,Pottery Basics,Arts,Priya Osei,33,50.0,Spring 2026,PD,2026-01-15
+REG-036,Quinn Adebayo,Pottery Basics,Arts,Priya Osei,47,50.0,Spring 2026,PD,2026-01-17
+REG-037,Rosa Nakamura,Pottery Basics,arts,Priya Osei,,50.0,Spring 2026,UNPD,2026-01-19
+REG-038,Sam Diallo,Pottery Basics,Arts,Priya Osei,39,,Spring 2026,PD,2026-01-21
+REG-039,Tina Larsen,Pottery Basics,Arts,Priya Osei,56,50.0,Spring 2026,PD,2026-01-23
+REG-040,Ulrich Baah,Pottery Basics,ARTS,Priya Osei,42,50.0,Spring 2026,PD,2026-01-25
+REG-041,Vera Okafor,Pottery Basics,Arts,Priya Osei,36,50.0,Spring 2026,UNPD,2026-01-26
+REG-042,Uma Osei,Youth Soccer,Youth Sports,Marcus Webb,11,55.0,Spring 2026,PD,2026-01-15
+REG-043,Victor Nwachukwu,Youth Soccer,youth sports,Marcus Webb,9,55.0,Spring 2026,PD,2026-01-16
+REG-044,Wendy Abe,Youth Soccer,Youth Sports,Marcus Webb,13,55.0,Spring 2026,UNPD,2026-01-18
+REG-045,Xander Frost,Youth Soccer,Youth sports  ,Marcus Webb,8,55.0,Spring 2026,PD,2026-01-20
+REG-046,Yara Eze,Youth Soccer,Youth Sports,Marcus Webb,12,55.0,Spring 2026,PD,2026-01-22
+REG-047,Zoe Mensah,Youth Soccer,Youth Sports,Marcus Webb,10,55.0,Spring 2026,PD,2026-01-23
+REG-048,Andre Lima,Youth Soccer,Youth Sports,,14,55.0,Spring 2026,PD,2026-01-24
+REG-049,Bria Olawale,Youth Soccer,youth sports,Marcus Webb,11,TBD,Spring 2026,PEND,2026-01-25
+REG-050,Colin Adesanya,Youth Soccer,Youth Sports,Marcus Webb,13,55.0,Spring 2026,PD,2026-01-26
+REG-051,Dana Petrov,Youth Soccer,Youth Sports,Marcus Webb,9,55.0,Spring 2026,UNPD,2026-01-27
+REG-052,Zara Patel,Youth Basketball,Youth Sports,Marcus Webb,14,55.0,Spring 2026,PD,2026-01-15
+REG-053,Aaron Mbeki,Youth Basketball,Youth Sports,Marcus Webb,10,55.0,Spring 2026,PD,2026-01-17
+REG-054,Beth Olumide,Youth Basketball,youth sports,,16,55.0,Spring 2026,UNPD,2026-01-19
+REG-055,Carlos Vega,Youth Basketball,Youth Sports,Marcus Webb,11,55.0,Spring 2026,PD,2026-01-21
+REG-056,Diana Osei,Youth Basketball,Youth Sports,Marcus Webb,9,55.0,Spring 2026,PD,2026-01-23
+REG-057,Evan Chukwu,Youth Basketball,Youth Sports,Marcus Webb,15,55.0,Spring 2026,PD,2026-01-24
+REG-058,Fatima Diallo,Youth Basketball,Youth Sports,Marcus Webb,12,55.0,Spring 2026,PD,2026-01-25
+REG-059,Gavin Osei,Youth Basketball,YOUTH SPORTS,Marcus Webb,13,55.0,Spring 2026,PD,2026-01-26
+REG-060,Hannah Wren,Youth Basketball,Youth Sports,Marcus Webb,10,55.0,Spring 2026,UNPD,2026-01-27
+REG-042,Uma Osei,Youth Soccer,Youth Sports,Marcus Webb,11,55.0,Spring 2026,PD,2026-01-15
+REG-052,Zara Patel,Youth Basketball,Youth Sports,Marcus Webb,14,55.0,Spring 2026,PD,2026-01-15
