@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 5 Assignments – CMSC 1217 : Introduction to Data Analytics</title>
+<title>Week 11 Assignment – CMSC 1217 : Introduction to Data Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -271,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 5 Assignments</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 11 Assignment</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -502,10 +502,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1-reading" id="toc-part-1-reading" class="nav-link active" data-scroll-target="#part-1-reading">Part 1: Reading</a></li>
-  <li><a href="#part-2-work-through-the-week-5-demo" id="toc-part-2-work-through-the-week-5-demo" class="nav-link" data-scroll-target="#part-2-work-through-the-week-5-demo">Part 2: Work through the Week 5 Demo</a></li>
-  <li><a href="#part-3-d2l-quiz" id="toc-part-3-d2l-quiz" class="nav-link" data-scroll-target="#part-3-d2l-quiz">Part 3: D2L Quiz</a></li>
-  <li><a href="#d2l-submission-checklist" id="toc-d2l-submission-checklist" class="nav-link" data-scroll-target="#d2l-submission-checklist">D2L submission checklist</a></li>
+  <li><a href="#the-situation" id="toc-the-situation" class="nav-link active" data-scroll-target="#the-situation">The Situation</a></li>
+  <li><a href="#what-you-need-to-deliver" id="toc-what-you-need-to-deliver" class="nav-link" data-scroll-target="#what-you-need-to-deliver">What You Need to Deliver</a>
+  <ul class="collapse">
+  <li><a href="#part-1-load-and-assess" id="toc-part-1-load-and-assess" class="nav-link" data-scroll-target="#part-1-load-and-assess">Part 1: Load and Assess</a></li>
+  <li><a href="#part-2-clean-the-data" id="toc-part-2-clean-the-data" class="nav-link" data-scroll-target="#part-2-clean-the-data">Part 2: Clean the Data</a></li>
+  <li><a href="#part-3-analysis" id="toc-part-3-analysis" class="nav-link" data-scroll-target="#part-3-analysis">Part 3: Analysis</a></li>
+  <li><a href="#save-your-results" id="toc-save-your-results" class="nav-link" data-scroll-target="#save-your-results">Save Your Results</a></li>
+  </ul></li>
+  <li><a href="#technical-requirements" id="toc-technical-requirements" class="nav-link" data-scroll-target="#technical-requirements">Technical Requirements</a></li>
+  <li><a href="#video-reflection" id="toc-video-reflection" class="nav-link" data-scroll-target="#video-reflection">Video Reflection</a></li>
+  <li><a href="#d2l-submission-checklist" id="toc-d2l-submission-checklist" class="nav-link" data-scroll-target="#d2l-submission-checklist">D2L Submission Checklist</a>
+  <ul class="collapse">
+  <li><a href="#notebook-file" id="toc-notebook-file" class="nav-link" data-scroll-target="#notebook-file">Notebook file</a></li>
+  <li><a href="#video-submission-link-only" id="toc-video-submission-link-only" class="nav-link" data-scroll-target="#video-submission-link-only">Video submission (link only)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -515,8 +526,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 5 Assignments</h1>
-<p class="subtitle lead">Chapter 5 Reading, pandas Demo, and D2L Quiz</p>
+<h1 class="title">Week 11 Assignment</h1>
+<p class="subtitle lead">Parks and Recreation Registration Analysis</p>
 </div>
 
 
@@ -528,7 +539,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 5, 2026</p>
+      <p class="date-modified">March 17, 2026</p>
     </div>
   </div>
     
@@ -539,52 +550,128 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><strong>Submission location:</strong> All items are submitted in D2L (Week 11 Dropbox).</p>
+<p><strong>Reading:</strong> Chapters 1–7 (cumulative).</p>
+<p><strong>Dataset:</strong></p>
 <ul>
-<li>Here is the link to the <strong><a href="../../assignments/week-05/week-5-demo.html">Week 5 demo</a></strong>.</li>
-<li><a href="week-5-demo.ipynb" download="week-5-demo.ipynb"> Download Jupyter Notebook </a></li>
+<li><a href="parks_registration.csv" download="parks_registration.csv"> Download Registration Log (CSV) </a></li>
 </ul>
-<section id="part-1-reading" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-reading">Part 1: Reading</h2>
-<p>Read <strong>all of Chapter 5</strong>.</p>
-<p>Chapter 5 introduces pandas, the primary library for working with tabular data in Python. You’ll learn about Series (1D labeled arrays) and DataFrames (2D labeled tables), how to select data by labels and positions, and how pandas automatically aligns data during operations. The demo provides hands-on practice with these concepts using concrete examples.</p>
+<section id="the-situation" class="level2">
+<h2 class="anchored" data-anchor-id="the-situation">The Situation</h2>
+<p>You have been asked to help the Maplewood Parks and Recreation Department prepare for their spring session review. The department runs eight programs across four categories: Aquatics, Fitness, Arts, and Youth Sports. Each season, the front desk coordinator, Renee, exports registration data from the department’s shared spreadsheet so the program director can review enrollment numbers, instructor workloads, and outstanding payments before the session begins.</p>
+<p>Renee flagged a few things when she sent the file. The spreadsheet has been updated by several staff members throughout the enrollment period, and not everyone followed the same conventions. Some fields were left blank when information was not yet available; others were filled with something temporary and never updated. Fee amounts for a handful of participants were still marked as pending at the time of entry. There was also a known system issue earlier in the season that caused two registrations to be submitted twice before it was caught and fixed.</p>
+<p>The program director needs answers, but the data is not ready to be analyzed as-is. Your job is to load the file, assess what you find, resolve what needs to be resolved, and then answer the questions the department needs for their review.</p>
 </section>
-<section id="part-2-work-through-the-week-5-demo" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-work-through-the-week-5-demo">Part 2: Work through the Week 5 Demo</h2>
-<p>The Week 5 demo covers:</p>
-<ol type="1">
-<li>Creating and working with Series (1D labeled arrays with index)</li>
-<li>Series attributes and operations (<code>.iloc</code>, <code>.values</code>, vectorization, boolean indexing)</li>
-<li>Creating DataFrames from dictionaries, lists of dictionaries, and understanding structure</li>
-<li>DataFrame attributes (<code>.shape</code>, <code>.dtypes</code>, <code>.columns</code>, <code>.head()</code>, <code>.info()</code>)</li>
-<li>Selection methods: <code>.loc</code> for labels, <code>.iloc</code> for positions, single vs double brackets</li>
-<li>Boolean indexing for filtering data with conditions, using <code>&amp;</code> and <code>|</code> operators</li>
-<li>Automatic alignment: how pandas matches data by labels and handles mismatched indices with NaN</li>
-<li>Statistical methods: <code>.mean()</code>, <code>.describe()</code>, understanding the <code>axis</code> parameter, <code>.sort_values()</code></li>
-</ol>
-</section>
-<section id="part-3-d2l-quiz" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-d2l-quiz">Part 3: D2L Quiz</h2>
-<p>Complete the <strong>Week 5 D2L quiz</strong> (pandas concepts).</p>
-<p>The quiz covers:</p>
+<section id="what-you-need-to-deliver" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-need-to-deliver">What You Need to Deliver</h2>
+<section id="part-1-load-and-assess" class="level3">
+<h3 class="anchored" data-anchor-id="part-1-load-and-assess">Part 1: Load and Assess</h3>
+<p>Before loading the file, open it in a text editor or inspect it with Python’s file reading tools and note what you observe about its structure and any visible problems.</p>
+<p>Load the file with <code>pd.read_csv()</code>. Then assess what pandas made of it:</p>
 <ul>
-<li><strong>Series fundamentals:</strong> creation, default index, custom labels, dictionary to Series, display format</li>
-<li><strong>Series operations:</strong> <code>.iloc</code> accessor, label-based access, vectorized operations, boolean indexing</li>
-<li><strong>DataFrame fundamentals:</strong> creation from dictionaries and lists, <code>.set_index()</code>, mixed data types, columns as Series</li>
-<li><strong>DataFrame structure:</strong> <code>.shape</code>, <code>.dtypes</code>, <code>.columns</code>, <code>.head()</code>, <code>.tail()</code>, <code>.info()</code></li>
-<li><strong>Selection methods:</strong> <code>.loc</code> vs <code>.iloc</code>, single vs double brackets, boolean indexing, multiple conditions with <code>&amp;</code> and <code>|</code></li>
-<li><strong>Automatic alignment:</strong> behavior with mismatched indices, NaN handling, importance for data integrity</li>
-<li><strong>Operations and statistics:</strong> creating new columns, <code>axis</code> parameter, <code>.describe()</code>, <code>.sort_values()</code></li>
-<li><strong>Tool progression:</strong> understanding how pandas builds on NumPy (connection to Week 3)</li>
+<li>Show the output of <code>.info()</code> and explain what the column types tell you</li>
+<li>Run <code>isnull().sum()</code> and identify which columns have missing values and how many</li>
+<li>Identify any columns where the data type is unexpected and explain why pandas inferred that type</li>
+</ul>
+<p>Your assessment should give a clear picture of what needs to be fixed before any analysis can run.</p>
+</section>
+<section id="part-2-clean-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="part-2-clean-the-data">Part 2: Clean the Data</h3>
+<p>Based on what you found in Part 1 and what you know about how this data was collected, work through everything that needs to be addressed before analysis can begin. For each issue you identify and resolve, use a markdown cell to explain what the problem was, what you did about it, and why you made that choice. A cleaning decision without a justification is not complete.</p>
+<p>Your cleaning should address each of the following:</p>
+<ul>
+<li>Column types that do not match the data they contain and why pandas inferred the type it did</li>
+<li>Missing values across any columns, including decisions about whether to remove or fill them and what value to use</li>
+<li>Values that are present but not usable for analysis as-is</li>
+<li>Text columns where the same value appears in more than one form</li>
+<li>Duplicate records</li>
+</ul>
+<p>When you are done, verify the DataFrame is in the expected state before moving on.</p>
+</section>
+<section id="part-3-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="part-3-analysis">Part 3: Analysis</h3>
+<p>With a clean DataFrame, answer the following questions for the department’s spring review. All analysis must use methods covered in Chapters 1–7. If a method feels unfamiliar or was not used in prior weeks, it is likely out of scope. Use filtering, aggregation, and DataFrame operations you have already practiced.</p>
+<p><strong>Enrollment summary.</strong> How many registrations does each program have? Show counts sorted from highest to lowest.</p>
+<p><strong>Age group breakdown.</strong> Group participants into three age categories: Youth (under 18), Adult (18 to 60), and Senior (60 and older). Show how many registrations fall into each group, and then show how those groups break down across each program category.</p>
+<p><strong>Fees by category.</strong> How much in registration fees has been collected for each of the four program categories? Show one total per category.</p>
+<p><strong>Instructor load.</strong> How many registrations is each instructor responsible for, including records where no instructor was assigned?</p>
+<p><strong>Outstanding payments.</strong> How many registrations have not been fully paid, and what is the total amount still outstanding?</p>
+</section>
+<section id="save-your-results" class="level3">
+<h3 class="anchored" data-anchor-id="save-your-results">Save Your Results</h3>
+<p>Save the cleaned DataFrame to a file called <code>registrations_cleaned.csv</code>. Do not write the row index to the file.</p>
+</section>
+</section>
+<section id="technical-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="technical-requirements">Technical Requirements</h2>
+<p>Your notebook must demonstrate a complete workflow from raw file to final analysis. It must run successfully using Restart Kernel and Run All.</p>
+<p>Load the file with <code>pd.read_csv()</code>. Do not manually parse it. All cleaning and analysis must use the pandas and NumPy methods covered in Chapters 1–7. Do not use methods from chapters not yet covered in the course.</p>
+<p><strong>Data loading and assessment (Chapter 6 and Chapter 7 skills):</strong></p>
+<p>Use <code>pd.read_csv()</code> to load the file. Use <code>.info()</code> and <code>isnull().sum()</code> to assess what pandas made of the data before touching it. Inspect column types and missing value counts as your first step, not after.</p>
+<p><strong>Data cleaning (Chapter 7 skills):</strong></p>
+<p>Apply the appropriate Chapter 7 methods to each quality issue: type conversion, missing value handling, deduplication, value recoding, and string standardization. Each cleaning step should produce a verifiable result. Use markdown cells to document your reasoning, not just your code.</p>
+<p><strong>Analysis (Chapters 5–7 skills):</strong></p>
+<p>Use DataFrame operations for all analysis. Filtering, counting, grouping continuous values into categories, and computing totals should all use the pandas tools you have practiced. Avoid raw loops for anything a DataFrame operation can handle.</p>
+<p><strong>Notebook organization:</strong></p>
+<p>Structure your notebook so each part is clearly labeled. Use markdown cells to explain decisions, not just actions. Make it easy to verify that every required output is present.</p>
+</section>
+<section id="video-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="video-reflection">Video Reflection</h2>
+<p>Record a short video demonstrating your understanding of this assignment.</p>
+<p><strong>Part 1: Walk through your cleaning decisions</strong></p>
+<p>Your video must address the following two cleaning steps from Part 2:</p>
+<ul>
+<li>How you identified and resolved the registration fee column type problem</li>
+<li>How you identified and resolved the participant age issue, including how you handled the value that was present but not valid</li>
+</ul>
+<p>Then choose one additional cleaning step from Part 2 and walk through it using the same approach.</p>
+<p>For each one, explain:</p>
+<ul>
+<li>What the problem was and how you identified it</li>
+<li>What method you used and what the key parameter or argument controls</li>
+<li>Why you made the specific choices you made</li>
+</ul>
+<p><strong>Part 2: Reflect on your learning</strong></p>
+<p>Choose ONE of the following:</p>
+<ul>
+<li><strong>Challenge or error:</strong> Describe a problem you ran into while completing this assignment, how you diagnosed it, and how you resolved it</li>
+<li><strong>Key takeaway:</strong> Explain one concept from Chapter 7 that this assignment made clearer and why it matters for real data work</li>
+</ul>
+<p><strong>Video submission requirements:</strong></p>
+<ul>
+<li>Clear video and audio quality</li>
+<li>Introduce yourself at the beginning (name)</li>
+<li>Name your video file: <code>lastname_Week11Reflection</code></li>
+<li>Upload your video to <strong>Kaltura</strong></li>
+<li><strong>Do not</strong> embed the video in the Dropbox submission</li>
+<li>Paste the <strong>share link</strong> into the D2L assignment text submission box</li>
+<li>Make sure the link text includes <code>lastname_Week11Reflection</code> in the link name</li>
 </ul>
 </section>
 <section id="d2l-submission-checklist" class="level2">
-<h2 class="anchored" data-anchor-id="d2l-submission-checklist">D2L submission checklist</h2>
+<h2 class="anchored" data-anchor-id="d2l-submission-checklist">D2L Submission Checklist</h2>
+<p>Submit the following items to the <strong>Week 11 Dropbox</strong> in D2L:</p>
+<section id="notebook-file" class="level3">
+<h3 class="anchored" data-anchor-id="notebook-file">Notebook file</h3>
 <ul>
-<li><strong>Week 5 D2L quiz</strong> (no file uploads required this week)</li>
+<li><code>lastname_week11_assignment.ipynb</code></li>
 </ul>
-<p><strong>Note:</strong> This week emphasizes reading Chapter 5, understanding the demo, and demonstrating comprehension through the quiz. Focus on understanding pandas fundamentals—Series, DataFrames, selection methods, and automatic alignment—rather than just completing steps. The pandas patterns you learn this week are the foundation for all data manipulation tasks that follow.</p>
+</section>
+<section id="video-submission-link-only" class="level3">
+<h3 class="anchored" data-anchor-id="video-submission-link-only">Video submission (link only)</h3>
+<ul>
+<li>Video filename: <code>lastname_Week11Reflection</code></li>
+<li>Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)</li>
+</ul>
+<p><strong>Before you submit:</strong></p>
+<ul>
+<li>Run “Restart Kernel and Run All” to confirm your notebook executes without errors</li>
+<li>Verify all required outputs are visible in the notebook</li>
+<li>Check that your video link works and includes the correct filename</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

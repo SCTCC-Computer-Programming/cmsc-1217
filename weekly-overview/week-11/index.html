@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 5 Assignments – CMSC 1217 : Introduction to Data Analytics</title>
+<title>Week 11 Guide – CMSC 1217 : Introduction to Data Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -271,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 5 Assignments</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weekly-overview/week-06/index.html">Weekly Overview</a></li><li class="breadcrumb-item"><a href="../../weekly-overview/week-11/index.html">Week 11 (Starts 23 MAR)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -377,7 +377,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weekly-overview/week-11/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-11/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 11 (Starts 23 MAR)</span></a>
   </div>
 </li>
@@ -502,10 +502,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1-reading" id="toc-part-1-reading" class="nav-link active" data-scroll-target="#part-1-reading">Part 1: Reading</a></li>
-  <li><a href="#part-2-work-through-the-week-5-demo" id="toc-part-2-work-through-the-week-5-demo" class="nav-link" data-scroll-target="#part-2-work-through-the-week-5-demo">Part 2: Work through the Week 5 Demo</a></li>
-  <li><a href="#part-3-d2l-quiz" id="toc-part-3-d2l-quiz" class="nav-link" data-scroll-target="#part-3-d2l-quiz">Part 3: D2L Quiz</a></li>
-  <li><a href="#d2l-submission-checklist" id="toc-d2l-submission-checklist" class="nav-link" data-scroll-target="#d2l-submission-checklist">D2L submission checklist</a></li>
+  <li><a href="#concepts-applied-this-week" id="toc-concepts-applied-this-week" class="nav-link active" data-scroll-target="#concepts-applied-this-week">Concepts applied this week</a>
+  <ul class="collapse">
+  <li><a href="#data-cleaning-and-preparation-chapter-7" id="toc-data-cleaning-and-preparation-chapter-7" class="nav-link" data-scroll-target="#data-cleaning-and-preparation-chapter-7">Data cleaning and preparation (Chapter 7)</a></li>
+  <li><a href="#data-loading-and-analysis-chapters-57" id="toc-data-loading-and-analysis-chapters-57" class="nav-link" data-scroll-target="#data-loading-and-analysis-chapters-57">Data loading and analysis (Chapters 5–7)</a></li>
+  </ul></li>
+  <li><a href="#week-11-tasks" id="toc-week-11-tasks" class="nav-link" data-scroll-target="#week-11-tasks">Week 11 tasks</a></li>
+  <li><a href="#knowledge-goals-for-week-11" id="toc-knowledge-goals-for-week-11" class="nav-link" data-scroll-target="#knowledge-goals-for-week-11">Knowledge goals for Week 11</a></li>
   </ul>
 </nav>
     </div>
@@ -513,10 +516,10 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weekly-overview/week-06/index.html">Weekly Overview</a></li><li class="breadcrumb-item"><a href="../../weekly-overview/week-11/index.html">Week 11 (Starts 23 MAR)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 5 Assignments</h1>
-<p class="subtitle lead">Chapter 5 Reading, pandas Demo, and D2L Quiz</p>
+<h1 class="title">Week 11 Guide</h1>
+<p class="subtitle lead">Cumulative Application of Chapters 1–7</p>
 </div>
 
 
@@ -528,7 +531,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 5, 2026</p>
+      <p class="date-modified">March 22, 2026</p>
     </div>
   </div>
     
@@ -539,50 +542,41 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Week 11 is a cumulative application of everything from Chapters 1–7. The focus this week is data cleaning: the work that happens between loading a file and being able to trust what it contains. You will apply the Chapter 7 toolkit alongside the loading skills from Week 7 and the DataFrame analysis operations from Weeks 5 and 6. In prior application weeks, data arrived with structural problems: files that needed manual parsing, JSON that needed to be navigated, CSVs with placeholder values that required loading parameters. This week the loading is handled by a single <code>pd.read_csv()</code> call. The work is in what comes after: assessing the data, identifying what is wrong, and resolving each problem before analysis begins.</p>
+<p><strong>Assignment:</strong></p>
 <ul>
-<li>Here is the link to the <strong><a href="../../assignments/week-05/week-5-demo.html">Week 5 demo</a></strong>.</li>
-<li><a href="week-5-demo.ipynb" download="week-5-demo.ipynb"> Download Jupyter Notebook </a></li>
+<li>Here is the link to the <strong><a href="../../assignments/week-11/index.html">Week 11 Assignment</a></strong>.</li>
 </ul>
-<section id="part-1-reading" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-reading">Part 1: Reading</h2>
-<p>Read <strong>all of Chapter 5</strong>.</p>
-<p>Chapter 5 introduces pandas, the primary library for working with tabular data in Python. You’ll learn about Series (1D labeled arrays) and DataFrames (2D labeled tables), how to select data by labels and positions, and how pandas automatically aligns data during operations. The demo provides hands-on practice with these concepts using concrete examples.</p>
+<section id="concepts-applied-this-week" class="level2">
+<h2 class="anchored" data-anchor-id="concepts-applied-this-week">Concepts applied this week</h2>
+<section id="data-cleaning-and-preparation-chapter-7" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning-and-preparation-chapter-7">Data cleaning and preparation (Chapter 7)</h3>
+<p>Real data collected from real systems rarely arrives ready to analyze. Fields get left blank, staff members enter placeholder values instead of leaving cells empty, the same category name gets typed a dozen different ways, records get submitted twice. These are not unusual problems. They are normal characteristics of data that was collected by people under real conditions.</p>
+<p>Chapter 7 introduced the tools pandas provides to address each of these problems. This week you apply all of them to a single dataset. You will use <code>isnull().sum()</code> and <code>.info()</code> to assess what the file contains before you touch it. You will use <code>pd.to_numeric()</code> to fix columns that loaded as the wrong type because of placeholder entries. You will use <code>fillna()</code> and <code>dropna()</code> to handle missing values, <code>describe()</code> and <code>.loc</code> to find and replace outliers, <code>drop_duplicates()</code> to remove duplicate records, <code>map()</code> to replace stored codes with readable labels, and the <code>str</code> accessor to standardize inconsistent string columns.</p>
+<p>The reason you do this work before analyzing is straightforward: every calculation you run depends on the data being correct. An enrollment count that includes duplicates is wrong. A fee total computed from a column that still has unconverted placeholder values is wrong. Cleaning is not a preliminary step you complete to get to the real work. It is part of the work.</p>
 </section>
-<section id="part-2-work-through-the-week-5-demo" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-work-through-the-week-5-demo">Part 2: Work through the Week 5 Demo</h2>
-<p>The Week 5 demo covers:</p>
+<section id="data-loading-and-analysis-chapters-57" class="level3">
+<h3 class="anchored" data-anchor-id="data-loading-and-analysis-chapters-57">Data loading and analysis (Chapters 5–7)</h3>
+<p>Loading the file with <code>pd.read_csv()</code> is the starting point. Once the data is clean, the analysis uses the same DataFrame operations you have applied in Weeks 5, 6, and 8: boolean indexing, <code>.value_counts()</code>, <code>.sort_values()</code>, and <code>pd.cut()</code> for grouping continuous values into labeled categories. The analytical questions are not where the new challenge lives this week. Getting to them with data you can trust is.</p>
+</section>
+</section>
+<section id="week-11-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="week-11-tasks">Week 11 tasks</h2>
 <ol type="1">
-<li>Creating and working with Series (1D labeled arrays with index)</li>
-<li>Series attributes and operations (<code>.iloc</code>, <code>.values</code>, vectorization, boolean indexing)</li>
-<li>Creating DataFrames from dictionaries, lists of dictionaries, and understanding structure</li>
-<li>DataFrame attributes (<code>.shape</code>, <code>.dtypes</code>, <code>.columns</code>, <code>.head()</code>, <code>.info()</code>)</li>
-<li>Selection methods: <code>.loc</code> for labels, <code>.iloc</code> for positions, single vs double brackets</li>
-<li>Boolean indexing for filtering data with conditions, using <code>&amp;</code> and <code>|</code> operators</li>
-<li>Automatic alignment: how pandas matches data by labels and handles mismatched indices with NaN</li>
-<li>Statistical methods: <code>.mean()</code>, <code>.describe()</code>, understanding the <code>axis</code> parameter, <code>.sort_values()</code></li>
+<li>Complete the <strong>Week 11 Assignment</strong> (parks and recreation registration analysis).</li>
+<li>Record and submit your video reflection.</li>
 </ol>
 </section>
-<section id="part-3-d2l-quiz" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-d2l-quiz">Part 3: D2L Quiz</h2>
-<p>Complete the <strong>Week 5 D2L quiz</strong> (pandas concepts).</p>
-<p>The quiz covers:</p>
+<section id="knowledge-goals-for-week-11" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-goals-for-week-11">Knowledge goals for Week 11</h2>
+<p>By the end of Week 11, you should be able to:</p>
 <ul>
-<li><strong>Series fundamentals:</strong> creation, default index, custom labels, dictionary to Series, display format</li>
-<li><strong>Series operations:</strong> <code>.iloc</code> accessor, label-based access, vectorized operations, boolean indexing</li>
-<li><strong>DataFrame fundamentals:</strong> creation from dictionaries and lists, <code>.set_index()</code>, mixed data types, columns as Series</li>
-<li><strong>DataFrame structure:</strong> <code>.shape</code>, <code>.dtypes</code>, <code>.columns</code>, <code>.head()</code>, <code>.tail()</code>, <code>.info()</code></li>
-<li><strong>Selection methods:</strong> <code>.loc</code> vs <code>.iloc</code>, single vs double brackets, boolean indexing, multiple conditions with <code>&amp;</code> and <code>|</code></li>
-<li><strong>Automatic alignment:</strong> behavior with mismatched indices, NaN handling, importance for data integrity</li>
-<li><strong>Operations and statistics:</strong> creating new columns, <code>axis</code> parameter, <code>.describe()</code>, <code>.sort_values()</code></li>
-<li><strong>Tool progression:</strong> understanding how pandas builds on NumPy (connection to Week 3)</li>
+<li>load a CSV file and assess its quality using <code>.info()</code> and <code>isnull().sum()</code> before making any changes</li>
+<li>identify columns with missing values, unexpected types, and inconsistent string values, and apply the correct Chapter 7 tool to each</li>
+<li>explain why cleaning order matters and how an unresolved problem in one column can affect decisions in another</li>
+<li>apply the complete Chapter 7 cleaning workflow to a real dataset and verify the result before moving to analysis</li>
+<li>use Chapters 5–7 DataFrame operations to answer analytical questions on a clean dataset</li>
 </ul>
-</section>
-<section id="d2l-submission-checklist" class="level2">
-<h2 class="anchored" data-anchor-id="d2l-submission-checklist">D2L submission checklist</h2>
-<ul>
-<li><strong>Week 5 D2L quiz</strong> (no file uploads required this week)</li>
-</ul>
-<p><strong>Note:</strong> This week emphasizes reading Chapter 5, understanding the demo, and demonstrating comprehension through the quiz. Focus on understanding pandas fundamentals—Series, DataFrames, selection methods, and automatic alignment—rather than just completing steps. The pandas patterns you learn this week are the foundation for all data manipulation tasks that follow.</p>
 
 
 </section>
