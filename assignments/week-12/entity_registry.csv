@@ -1,0 +1,11 @@
+entity_id,entity_name,classification,origin_dimension,threat_level
+ENT-001,Cthulhu,Ancient One,R'lyeh,10
+ENT-002,Nyarlathotep,Ancient One,Outer Void,9
+ENT-003,Dagon,Herald,Deep Abyss,7
+ENT-004,Shoggoth,Servant,Primordial Deep,6
+ENT-005,Mi-Go,Manifestation,Yuggoth,5
+ENT-006,Deep One,Servant,Deep Abyss,4
+ENT-007,Byakhee,Herald,Outer Void,5
+ENT-008,Star Spawn,Servant,R'lyeh,7
+ENT-009,Yog-Sothoth,Ancient One,All Dimensions,10
+ENT-010,Shub-Niggurath,Ancient One,Black Woods,9

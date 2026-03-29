@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>General Course Policies – CMSC 1217 : Introduction to Data Analytics</title>
+<title>Week 12 Guide – CMSC 1217 : Introduction to Data Analytics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -271,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/general-policies.html">General Policies</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weekly-overview/week-06/index.html">Weekly Overview</a></li><li class="breadcrumb-item"><a href="../../weekly-overview/week-12/index.html">Week 12 (Starts 30 MAR)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -330,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../shared/policies/general-policies.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">General Policies</span></a>
   </div>
 </li>
@@ -383,7 +383,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weekly-overview/week-12/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weekly-overview/week-12/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 12 (Starts 30 MAR)</span></a>
   </div>
 </li>
@@ -509,14 +509,33 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chapter-8-concepts-used-this-week" id="toc-chapter-8-concepts-used-this-week" class="nav-link active" data-scroll-target="#chapter-8-concepts-used-this-week">Chapter 8 concepts used this week</a>
+  <ul class="collapse">
+  <li><a href="#combining-dataframes-with-pd.concat" id="toc-combining-dataframes-with-pd.concat" class="nav-link" data-scroll-target="#combining-dataframes-with-pd.concat">Combining DataFrames with pd.concat()</a></li>
+  <li><a href="#hierarchical-indexing" id="toc-hierarchical-indexing" class="nav-link" data-scroll-target="#hierarchical-indexing">Hierarchical indexing</a></li>
+  <li><a href="#joining-dataframes-with-pd.merge" id="toc-joining-dataframes-with-pd.merge" class="nav-link" data-scroll-target="#joining-dataframes-with-pd.merge">Joining DataFrames with pd.merge()</a></li>
+  <li><a href="#join-types" id="toc-join-types" class="nav-link" data-scroll-target="#join-types">Join types</a></li>
+  <li><a href="#reshaping-with-pd.melt" id="toc-reshaping-with-pd.melt" class="nav-link" data-scroll-target="#reshaping-with-pd.melt">Reshaping with pd.melt()</a></li>
+  </ul></li>
+  <li><a href="#reading-expectations-for-week-12" id="toc-reading-expectations-for-week-12" class="nav-link" data-scroll-target="#reading-expectations-for-week-12">Reading expectations for Week 12</a></li>
+  <li><a href="#week-12-tasks" id="toc-week-12-tasks" class="nav-link" data-scroll-target="#week-12-tasks">Week 12 tasks</a></li>
+  <li><a href="#knowledge-goals-for-week-12" id="toc-knowledge-goals-for-week-12" class="nav-link" data-scroll-target="#knowledge-goals-for-week-12">Knowledge goals for Week 12</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../course/syllabus.html">Course information</a></li><li class="breadcrumb-item"><a href="../../shared/policies/general-policies.html">General Policies</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weekly-overview/week-06/index.html">Weekly Overview</a></li><li class="breadcrumb-item"><a href="../../weekly-overview/week-12/index.html">Week 12 (Starts 30 MAR)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">General Course Policies</h1>
+<h1 class="title">Week 12 Guide</h1>
+<p class="subtitle lead">Chapter 8 — Data Wrangling: Join, Combine, and Reshape</p>
 </div>
 
 
@@ -528,7 +547,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 4, 2026</p>
+      <p class="date-modified">March 28, 2026</p>
     </div>
   </div>
     
@@ -539,63 +558,81 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="academic-integrity" class="level3">
-<h3 class="anchored" data-anchor-id="academic-integrity">Academic integrity</h3>
+<p>Every file you have worked with in this course has been a single source. You loaded it, cleaned it, and ran analysis on it. Chapter 8 addresses the situations where data does not arrive that way. Incident records might live in one file while entity details live in another. Monthly measurements might be spread across columns instead of rows. The tools this week solve the problem of data that needs to be combined or restructured before analysis can begin.</p>
+<p>Chapter 8 covers three categories of operations: combining DataFrames with <code>pd.concat()</code>, joining DataFrames on shared keys with <code>pd.merge()</code>, and reshaping between wide and long format with <code>pd.melt()</code>. The chapter opens with hierarchical indexing, which provides the conceptual foundation for several of the reshaping operations. There is no walkthrough video this week. The demo is self-contained: read the setup text before each code block, run the cell, and read the explanation that follows.</p>
+<p><strong>Week 12 Demo:</strong></p>
 <ul>
-<li>Students must maintain academic integrity (no cheating, plagiarism, unauthorized materials, falsification, etc.).</li>
-<li>Violations follow SCTCC Academic Integrity Policy/Procedure and may be recorded; disciplinary action may apply.</li>
-<li>Academic integrity violations result in a <strong>grade reduction</strong>.</li>
+<li>Here is the link to the <strong><a href="../../assignments/week-12/index.html">Week 12 Assignment</a></strong>.</li>
 </ul>
+<section id="chapter-8-concepts-used-this-week" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-8-concepts-used-this-week">Chapter 8 concepts used this week</h2>
+<section id="combining-dataframes-with-pd.concat" class="level3">
+<h3 class="anchored" data-anchor-id="combining-dataframes-with-pd.concat">Combining DataFrames with pd.concat()</h3>
+<p><code>pd.concat()</code> stacks DataFrames that share the same column structure. The most common use is combining records from separate files into a single working table before analysis. Pass a list of DataFrames and pandas stacks their rows in order.</p>
+<p>The index behavior is the key thing to understand. Each source DataFrame has its own index, and without intervention those indexes are preserved in the result. If both DataFrames use the default integer index starting at 0, the combined result will have duplicate index values. The <code>ignore_index=True</code> parameter discards the original indexes and assigns a clean sequential index from 0 to the end. Use it when the original row numbering carries no meaning and you just want one continuous table.</p>
+<p><code>pd.concat()</code> also works along columns with <code>axis="columns"</code>, and the <code>keys=</code> parameter can label each source in a new hierarchical index level so you can trace where each row came from. Chapter 8 covers both.</p>
 </section>
-<section id="professional-conduct-and-behavior" class="level3">
-<h3 class="anchored" data-anchor-id="professional-conduct-and-behavior">Professional conduct and behavior</h3>
-<ul>
-<li>Online discussions must be civil, respectful, and relevant.</li>
-<li>Disruptive behavior on any course communication platform is not tolerated; may result in grade penalties and/or removal per the Code of Student Conduct.</li>
-<li>Respect for differing viewpoints is required; maintain professional language and conduct.</li>
-<li>If disruptive behavior causes a student to miss an assignment, they receive <strong>no credit</strong> for that assignment.</li>
-<li>If sanctioned for disruptive behavior, students waive the right to a warning on a second occurrence.</li>
-<li><strong>Substance policy for online sessions:</strong> inebriation/being under the influence, displaying alcohol, or drug paraphernalia results in removal from the session and/or course; no smoking during online school activites.</li>
-</ul>
+<section id="hierarchical-indexing" class="level3">
+<h3 class="anchored" data-anchor-id="hierarchical-indexing">Hierarchical indexing</h3>
+<p>Hierarchical indexing allows a pandas object to have multiple levels of labels on a row or column axis. A <strong>MultiIndex</strong> is what you see when a Series or DataFrame has two or more index levels instead of one. It shows up naturally as the output of certain reshape and grouping operations, and understanding what it is prevents confusion when you encounter it.</p>
+<p>The practical entry points are <code>set_index()</code> and <code>reset_index()</code>. <code>set_index()</code> promotes one or more columns into the row index, which is useful when a column serves as an identifier rather than a measurement. <code>reset_index()</code> does the reverse, moving index levels back into columns and restoring the default integer index. You will use both as supporting steps alongside merges and reshapes.</p>
 </section>
-<section id="student-privacy-third-party-communication" class="level3">
-<h3 class="anchored" data-anchor-id="student-privacy-third-party-communication">Student privacy / third-party communication</h3>
-<ul>
-<li>Course progress is discussed <strong>only with the student</strong>, not parents/guardians/third parties, unless an Information Release is on file.</li>
-<li>If a third party contacts the instructor, the instructor will defer communication to the student.</li>
-<li>Students may not invite third parties to attend any online activity (office hours, group meetings).</li>
-<li>Requests to release progress information to a third party should go through the Dean’s office.</li>
-</ul>
+<section id="joining-dataframes-with-pd.merge" class="level3">
+<h3 class="anchored" data-anchor-id="joining-dataframes-with-pd.merge">Joining DataFrames with pd.merge()</h3>
+<p>If you have taken database modeling, <code>pd.merge()</code> operates on the same logic as a SQL JOIN: rows from two tables are matched based on a shared key column, and the result combines the columns from both. The <code>on=</code> parameter names the key column when it has the same name in both DataFrames. When the key columns have different names, <code>left_on=</code> and <code>right_on=</code> specify them separately.</p>
+<p>The join type that matters most to understand is the <strong>many-to-one</strong> join, which is the most common in practice. One table has multiple rows sharing the same key value (many incidents referencing the same entity), and the other table has one row per key value (one entity record per entity). The merge matches each incident row to its corresponding entity record, expanding the incident table with the entity’s details.</p>
+<p>Chapter 8 also covers merging on index values using <code>left_index=True</code> and <code>right_index=True</code>, and the <code>join()</code> method as a shorthand for index-based merges.</p>
 </section>
-<section id="attendance-participation" class="level3">
-<h3 class="anchored" data-anchor-id="attendance-participation">Attendance / participation</h3>
-<ul>
-<li>Attendance is expected and monitored; students are responsible for tracking absences.</li>
-<li>Attendance is determined by <strong>D2L logins</strong> and <strong>weekly assignment submissions</strong>.</li>
-<li>Not logging in and/or not submitting work for a week counts as an absence (including weeks without due assignments unless it’s a scheduled holiday/break).</li>
-<li>Students must log in and complete an activity by <strong>11:30 PM on the first Wednesday of week 1</strong> or they may be dropped.</li>
-<li>Missing <strong>two consecutive weeks</strong> → dropped.</li>
-<li>Missing <strong>two total weeks</strong> → one-letter-grade reduction (10% of total points).</li>
-<li>Missing <strong>three total weeks</strong> → an additional one-letter-grade reduction.</li>
-<li>Additional absences beyond three → additional letter-grade reduction per occurrence.</li>
-<li>Attendance is handled <strong>per class</strong> (one class doesn’t cover another).</li>
-</ul>
+<section id="join-types" class="level3">
+<h3 class="anchored" data-anchor-id="join-types">Join types</h3>
+<p>The <code>how=</code> parameter in <code>pd.merge()</code> controls which rows survive when keys do not match between tables.</p>
+<p><code>how="inner"</code> keeps only rows where the key appears in both tables. Rows with no match are dropped from both sides. This is the default, and it is the most likely to produce a result that is smaller than what you expected if the tables are not perfectly aligned.</p>
+<p><code>how="left"</code> keeps every row from the left table. When a key appears in the left table but not the right, the right-side columns are filled with <code>NaN</code>. Use this when the left table defines the scope of your analysis and you want unmatched rows visible rather than dropped.</p>
+<p><code>how="right"</code> keeps every row from the right table, with <code>NaN</code> for unmatched left-side columns. <code>how="outer"</code> keeps all rows from both tables, with <code>NaN</code> wherever a match does not exist on either side.</p>
+<p>Choosing a join type is a data question, not a technical one. It depends on what you need to know and whether missing matches should appear as <code>NaN</code> or be excluded from the result.</p>
+<p><code>combine_first()</code> addresses a related but different situation: patching missing values in one DataFrame with values from another at matching index positions. Rather than merging two tables into one expanded result, it fills gaps in the calling object wherever the passed object has a value. Chapter 8 covers this in the section on combining data with overlap.</p>
 </section>
-<section id="technology-and-platform-expectations" class="level3">
-<h3 class="anchored" data-anchor-id="technology-and-platform-expectations">Technology and platform expectations</h3>
-<ul>
-<li>Students are responsible for having required computer/technology for the course.</li>
-<li>Students are responsible for learning and using D2L (primary channel for schedules, grades, and announcements).</li>
-</ul>
+<section id="reshaping-with-pd.melt" class="level3">
+<h3 class="anchored" data-anchor-id="reshaping-with-pd.melt">Reshaping with pd.melt()</h3>
+<p><strong>Wide format</strong> stores one subject per row with multiple measurements spread across columns. A monthly sightings table with one row per entity and columns for January through June is wide format. It is intuitive to read as a table, but it is difficult to analyze because the measurements you want to filter, sort, or compare are spread across six columns rather than stored in one.</p>
+<p><strong>Long format</strong> restructures this so each row holds a single observation: one subject, one time period, one value. After reshaping, you have a <code>month</code> column and a <code>sighting_count</code> column. Filtering to a single month, finding the maximum value across all months, or sorting by count all become single-column operations.</p>
+<p><code>pd.melt()</code> converts wide to long format. The <code>id_vars</code> parameter names the columns that stay as identifiers and repeat for each observation. <code>var_name</code> names the new column that holds the former column headers. <code>value_name</code> names the new column that holds the values. A table with 10 entities and 6 month columns becomes 60 rows, one per entity-month pair.</p>
+<p>The inverse operation, converting long format back to wide, is <code>pivot()</code>. The lower-level operations <code>stack()</code> and <code>unstack()</code> rotate column labels into row labels and back. <code>stack()</code> is equivalent to what <code>pd.melt()</code> does via hierarchical indexing; <code>unstack()</code> is equivalent to <code>pivot()</code>. Chapter 8 covers all three.</p>
 </section>
-<section id="email-communication" class="level3">
-<h3 class="anchored" data-anchor-id="email-communication">Email communication</h3>
+</section>
+<section id="reading-expectations-for-week-12" class="level2">
+<h2 class="anchored" data-anchor-id="reading-expectations-for-week-12">Reading expectations for Week 12</h2>
+<p>As you read Chapter 8 and work through the demo, check whether you can explain the following in your own words:</p>
+<ol type="1">
+<li>What does <code>pd.concat()</code> do, and what problem does <code>ignore_index=True</code> solve?</li>
+<li>What is a <strong>MultiIndex</strong>, and what do <code>set_index()</code> and <code>reset_index()</code> do?</li>
+<li>What does <code>pd.merge()</code> do, and what does the <code>on=</code> parameter specify?</li>
+<li>What is a many-to-one join, and what does the result look like?</li>
+<li>What does each <code>how=</code> option keep: <code>"inner"</code>, <code>"left"</code>, <code>"right"</code>, and <code>"outer"</code>?</li>
+<li>What is the difference between wide format and long format, and which is easier to analyze?</li>
+<li>What do <code>id_vars</code>, <code>var_name</code>, and <code>value_name</code> control in <code>pd.melt()</code>?</li>
+<li>What does <code>combine_first()</code> do, and how is it different from a merge?</li>
+</ol>
+</section>
+<section id="week-12-tasks" class="level2">
+<h2 class="anchored" data-anchor-id="week-12-tasks">Week 12 tasks</h2>
+<ol type="1">
+<li>Read <strong>Chapter 8</strong> (complete).</li>
+<li>Work through the <strong><a href="../../assignments/week-12/index.html">Week 12 demo</a></strong> in your Jupyter environment. There is no walkthrough video; the demo is self-contained.</li>
+<li>Complete the <strong>Week 12 D2L quiz</strong> (data wrangling concepts).</li>
+</ol>
+</section>
+<section id="knowledge-goals-for-week-12" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-goals-for-week-12">Knowledge goals for Week 12</h2>
+<p>By the end of Week 12, you should be able to:</p>
 <ul>
-<li>Email is the primary method to contact the instructor; students must use their <strong>college email account</strong>.</li>
-<li>Emails must include a subject line with <strong>course name and section/class time</strong>.</li>
-<li>Students are expected to check email daily and read instructor messages/attachments.</li>
-<li>On nights homework is due, only <strong>administrative</strong> email items will be answered; <strong>technical homework questions</strong> will not be addressed.</li>
-<li>Response time: by end of next business day; Friday emails answered Monday.</li>
+<li>combine DataFrames with <code>pd.concat()</code> and explain when <code>ignore_index=True</code> is needed</li>
+<li>explain what a <code>MultiIndex</code> is and use <code>set_index()</code> and <code>reset_index()</code> as supporting operations</li>
+<li>join two DataFrames with <code>pd.merge()</code> using a shared key column</li>
+<li>choose the appropriate join type (<code>"inner"</code>, <code>"left"</code>, <code>"right"</code>, <code>"outer"</code>) based on what the analysis requires</li>
+<li>explain what a many-to-one join is and what happens to unmatched rows for each join type</li>
+<li>describe the difference between wide and long format and explain why long format is easier to analyze</li>
+<li>reshape a wide DataFrame into long format using <code>pd.melt()</code> with <code>id_vars</code>, <code>var_name</code>, and <code>value_name</code></li>
 </ul>
 
 

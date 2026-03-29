@@ -1,0 +1,16 @@
+incident_id,entity_id,location,date,investigator,anomaly_severity,containment_status
+INC-001,ENT-001,Arkham,2024-03-12,Dr. Armitage,5,Active
+INC-002,ENT-002,Dunwich,2024-03-15,Dr. Armitage,4,Unknown
+INC-003,ENT-001,Innsmouth,2024-04-02,Agent Peaslee,5,Active
+INC-004,ENT-004,Kingsport,2024-04-10,Agent Dyer,3,Contained
+INC-005,ENT-003,Arkham,2024-04-18,Dr. Armitage,4,Contained
+INC-006,ENT-005,Dunwich,2024-05-01,Agent Peaslee,2,Contained
+INC-007,ENT-006,Innsmouth,2024-05-09,Agent Dyer,3,Active
+INC-008,ENT-001,Arkham,2024-05-22,Dr. Armitage,5,Active
+INC-009,ENT-008,Kingsport,2024-06-03,Agent Peaslee,4,Unknown
+INC-010,ENT-002,Arkham,2024-06-14,Agent Dyer,4,Active
+INC-011,ENT-004,Dunwich,2024-06-20,Dr. Armitage,3,Contained
+INC-012,ENT-003,Kingsport,2024-07-05,Agent Peaslee,4,Unknown
+INC-013,ENT-006,Arkham,2024-07-11,Agent Dyer,2,Contained
+INC-014,ENT-005,Innsmouth,2024-07-19,Dr. Armitage,3,Active
+INC-015,ENT-008,Dunwich,2024-07-28,Agent Peaslee,4,Active
