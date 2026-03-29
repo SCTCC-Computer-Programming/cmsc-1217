@@ -1,0 +1,61 @@
+---
+title: "Week 12 Assignments"
+subtitle: "Chapter 8 Reading, Data Wrangling Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+---
+
+- Here is the link to the **[Week 12 demo](week-12-demo.html)**.
+- <a href="week-12-demo.ipynb" download="week-12-demo.ipynb"> Download Jupyter Notebook </a>
+- <a href="entity_registry.csv" download="entity_registry.csv"> Download Entity Registry (CSV) </a>
+- <a href="incident_reports_north.csv" download="incident_reports_north.csv"> Download Incident Reports North (CSV) </a>
+- <a href="incident_reports_south.csv" download="incident_reports_south.csv"> Download Incident Reports South (CSV) </a>
+- <a href="monthly_sightings.csv" download="monthly_sightings.csv"> Download Monthly Sightings (CSV) </a>
+
+## Part 1: Reading
+
+Read **all of Chapter 8**.
+
+Chapter 8 covers the tools pandas provides for working with data spread across multiple sources: joining two DataFrames on a shared key with `pd.merge()`, stacking DataFrames with `pd.concat()`, and reshaping data between wide and long formats with `pivot()` and `pd.melt()`. The demo focuses on the combining and reshaping operations you are most likely to use. Read the full chapter for the complete picture, including `combine_first()`, `stack()` and `unstack()`, and the relationship between `pivot()` and hierarchical indexing.
+
+## Part 2: Work through the Week 12 Demo
+
+There is no walkthrough video this week. The demo is self-contained: read the setup text before each code block, run the cell, then read the explanation that follows. Work through it cell by cell in order, since earlier cells create DataFrames that later cells depend on.
+
+Before running any cells, download all four CSV files from this page and place them in your `week12` folder alongside the notebook.
+
+The Week 12 demo covers:
+
+1. Loading two regional incident report files with `pd.read_csv()` and examining their structure
+2. Combining DataFrames with `pd.concat()`: stacking rows from two sources into one working table
+3. The `ignore_index=True` parameter: why duplicate index values occur without it and how to produce a clean sequential index
+4. Loading `entity_registry.csv` as a lookup table and understanding the shared key that connects it to the incident data
+5. Inner joins with `pd.merge()`: keeping only rows where the key appears in both DataFrames, and identifying what gets dropped
+6. Left joins: keeping all rows from the left DataFrame and showing unmatched rows as `NaN`
+7. Right joins: keeping all rows from the right DataFrame, with `NaN` where no match exists in the left
+8. Outer joins: keeping all rows from both DataFrames, with `NaN` where no match exists on either side
+9. The `on=`, `left_on=`, and `right_on=` parameters for specifying join keys
+10. Wide versus long data format: what makes wide format difficult to analyze and why long format is preferred for filtering and sorting
+11. Reshaping wide data to long format with `pd.melt()`: the `id_vars`, `var_name`, and `value_name` parameters
+12. Analyzing long-format data: sorting by a single column and filtering by category value
+
+## Part 3: D2L Quiz
+
+Complete the **Week 12 D2L quiz** (data wrangling concepts).
+
+The quiz covers:
+
+- **Hierarchical indexing:** what a `MultiIndex` is, partial indexing, `set_index()` and `reset_index()`
+- **Merging and joining:** what `pd.merge()` does, the four `how=` options (inner, left, right, outer) and what each keeps, many-to-one versus many-to-many behavior, and key column parameters (`on=`, `left_on=`, `right_on=`, `left_index=`, `right_index=`)
+- **Concatenating:** `pd.concat()` default behavior, `ignore_index=True`, the `keys=` parameter, and `axis="columns"`
+- **Combining with overlap:** `combine_first()` for patching missing values in one DataFrame with values from another at matching index positions
+- **Reshaping:** `stack()` and `unstack()` as inverse operations, `pivot()` for long-to-wide reshaping, and `pd.melt()` for wide-to-long reshaping including `id_vars`, `var_name`, and `value_name`
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+* **Week 12 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 8, working through the demo, and demonstrating comprehension through the quiz. The combining and reshaping operations introduced this week are the foundation for working with data that arrives in multiple files or the wrong shape. There are no coding or file upload submissions this week.

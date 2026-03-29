@@ -1,0 +1,13 @@
+incident_id,entity_id,location,date,investigator,anomaly_severity,containment_status
+INC-016,ENT-007,Miskatonic Valley,2024-03-08,Agent Waite,3,Contained
+INC-017,ENT-001,Providence,2024-03-20,Agent Waite,5,Active
+INC-018,ENT-002,Salem,2024-04-05,Dr. Morgan,4,Unknown
+INC-019,ENT-004,Miskatonic Valley,2024-04-14,Agent Waite,2,Contained
+INC-020,ENT-007,Providence,2024-04-25,Dr. Morgan,3,Active
+INC-021,ENT-005,Salem,2024-05-07,Agent Waite,2,Contained
+INC-022,ENT-001,Miskatonic Valley,2024-05-16,Dr. Morgan,5,Active
+INC-023,ENT-007,Salem,2024-06-01,Agent Waite,4,Unknown
+INC-024,ENT-002,Providence,2024-06-12,Dr. Morgan,3,Active
+INC-025,ENT-004,Salem,2024-06-28,Agent Waite,3,Contained
+INC-026,ENT-005,Miskatonic Valley,2024-07-08,Dr. Morgan,2,Contained
+INC-027,ENT-007,Providence,2024-07-22,Agent Waite,4,Active

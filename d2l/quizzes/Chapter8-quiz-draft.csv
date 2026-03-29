@@ -1,0 +1,249 @@
+NewQuestion,MC,
+QuestionText,"What is hierarchical indexing in pandas?"
+Option,0,"A method for sorting a DataFrame by multiple columns"
+Option,0,"A way to create nested for loops over DataFrame rows"
+Option,100,"A feature that allows multiple levels of labels on a row or column axis"
+Option,0,"A technique for storing DataFrames in memory more efficiently"
+
+NewQuestion,MC,
+QuestionText,"What is a MultiIndex in pandas?"
+Option,100,"An index with two or more levels of labels on an axis"
+Option,0,"An index that allows duplicate row labels"
+Option,0,"A way to index into multiple DataFrames at once"
+Option,0,"A numeric index that supports negative positions"
+
+NewQuestion,MC,
+QuestionText,"What does partial indexing allow with a hierarchically indexed Series?"
+Option,100,"Selecting a subset of data using only an outer-level label"
+Option,0,"Selecting rows by their integer position across all levels"
+Option,0,"Filtering rows where any level contains a missing value"
+Option,0,"Sorting the index by a specific level"
+
+NewQuestion,MC,
+QuestionText,"What does the set_index() method do?"
+Option,0,"Replaces the existing index with a sequential integer index"
+Option,0,"Sorts the DataFrame by the values in a specified column"
+Option,100,"Moves one or more columns into the row index"
+Option,0,"Creates a copy of the DataFrame with a new name"
+
+NewQuestion,MC,
+QuestionText,"What does reset_index() do to a hierarchically indexed DataFrame?"
+Option,0,"Removes all index levels and drops that data"
+Option,100,"Moves the index levels back into columns and restores the default integer index"
+Option,0,"Sorts the index from the outermost to the innermost level"
+Option,0,"Resets the index to start from 1 instead of 0"
+
+NewQuestion,MC,
+QuestionText,"What operation does pd.merge() perform?"
+Option,0,"Appends one DataFrame to the bottom of another"
+Option,0,"Combines DataFrames by aligning on their row indexes"
+Option,0,"Concatenates the columns of two DataFrames side by side"
+Option,100,"Combines two DataFrames by matching rows based on shared key values"
+
+NewQuestion,MC,
+QuestionText,"What does how='inner' produce in pd.merge()?"
+Option,0,"All rows from both DataFrames, with NaN for non-matching rows"
+Option,100,"Only the rows where the key value appears in both DataFrames"
+Option,0,"All rows from the left DataFrame, with NaN where no match exists in the right"
+Option,0,"All rows from the right DataFrame, with NaN where no match exists in the left"
+
+NewQuestion,MC,
+QuestionText,"What does how='left' produce in pd.merge()?"
+Option,0,"Only the rows where the key value appears in both DataFrames"
+Option,0,"All rows from the right DataFrame, with NaN in left-side columns where no match exists"
+Option,0,"All rows from both DataFrames, with NaN for non-matching rows on either side"
+Option,100,"All rows from the left DataFrame, with NaN in right-side columns where no match exists"
+
+NewQuestion,MC,
+QuestionText,"What does how='outer' produce in pd.merge()?"
+Option,100,"All rows from both DataFrames, with NaN wherever a match does not exist on either side"
+Option,0,"Only the rows where the key value appears in both DataFrames"
+Option,0,"All rows from the left DataFrame, with NaN where no match exists"
+Option,0,"All rows from the right DataFrame, with NaN where no match exists"
+
+NewQuestion,MC,
+QuestionText,"In pd.merge(), what does the on= parameter specify?"
+Option,0,"The type of join to perform (inner, left, right, outer)"
+Option,0,"The axis along which to combine the DataFrames"
+Option,0,"Whether to include or exclude the index in the result"
+Option,100,"The column name to use as the join key when both DataFrames share the same column name"
+
+NewQuestion,MC,
+QuestionText,"When the key columns have different names in the two DataFrames, which parameters do you use?"
+Option,0,"on= with a list of both column names"
+Option,0,"key_left= and key_right="
+Option,100,"left_on= and right_on="
+Option,0,"merge_left= and merge_right="
+
+NewQuestion,MC,
+QuestionText,"What does left_index=True tell pd.merge()?"
+Option,0,"Use the left DataFrame's first column as the join key"
+Option,100,"Use the left DataFrame's row index as the join key"
+Option,0,"Keep only the left DataFrame's columns in the result"
+Option,0,"Sort the result by the left DataFrame's index"
+
+NewQuestion,MC,
+QuestionText,"What is a many-to-one join?"
+Option,0,"A join where every key appears exactly once in both tables"
+Option,0,"A join where each row in the result comes from more than one source table"
+Option,0,"A join that combines more than two DataFrames at once"
+Option,100,"A join where multiple rows in one table share the same key value that appears once in the other table"
+
+NewQuestion,MC,
+QuestionText,"What is the Cartesian product behavior that occurs in a many-to-many merge?"
+Option,0,"The result has as many rows as the smaller of the two input DataFrames"
+Option,0,"Duplicate keys are dropped and only unique combinations are kept"
+Option,100,"Every matching row from the left is paired with every matching row from the right for the same key"
+Option,0,"All non-matching rows are removed and only exact key matches appear"
+
+NewQuestion,MC,
+QuestionText,"What does pd.concat() do by default when given a list of DataFrames?"
+Option,0,"Joins DataFrames side by side, adding columns from each"
+Option,100,"Stacks DataFrames vertically, combining rows along axis='index'"
+Option,0,"Merges DataFrames on overlapping column names"
+Option,0,"Creates a hierarchical index by combining the indexes of each DataFrame"
+
+NewQuestion,MC,
+QuestionText,"What does ignore_index=True do in pd.concat()?"
+Option,100,"Discards the original indexes and assigns a new sequential integer index"
+Option,0,"Removes the index entirely from the resulting DataFrame"
+Option,0,"Raises an error if any of the DataFrames have overlapping index values"
+Option,0,"Keeps the original indexes but moves them to a separate column"
+
+NewQuestion,MC,
+QuestionText,"What does the keys= parameter in pd.concat() do?"
+Option,100,"Creates a hierarchical index that labels each row with the source it came from"
+Option,0,"Specifies which columns to use as join keys when merging DataFrames"
+Option,0,"Renames the columns of the resulting DataFrame"
+Option,0,"Selects only the specified columns from each DataFrame before concatenating"
+
+NewQuestion,MC,
+QuestionText,"What does pd.concat() produce when passed axis='columns'?"
+Option,0,"A Series with a hierarchical index"
+Option,0,"A DataFrame with rows from all input DataFrames stacked vertically"
+Option,100,"A DataFrame with the columns of all input DataFrames combined side by side"
+Option,0,"A DataFrame sorted by the column names from all input DataFrames"
+
+NewQuestion,MC,
+QuestionText,"What does combine_first() do?"
+Option,0,"Merges two DataFrames on their first column"
+Option,0,"Returns the first non-null value across all columns for each row"
+Option,100,"Fills missing values in the calling object with corresponding values from the passed object"
+Option,0,"Concatenates two DataFrames and keeps only the first occurrence of duplicate rows"
+
+NewQuestion,MC,
+QuestionText,"What does the stack() method do to a DataFrame?"
+Option,0,"Adds a new row to the bottom of the DataFrame"
+Option,100,"Rotates the innermost column level into the innermost row level, producing a Series"
+Option,0,"Sorts the DataFrame by stacking rows in alphabetical order"
+Option,0,"Combines multiple DataFrames vertically into one"
+
+NewQuestion,MC,
+QuestionText,"What does unstack() do to a hierarchically indexed Series?"
+Option,100,"Pivots an inner row index level into columns, producing a DataFrame"
+Option,0,"Removes the outermost level of a hierarchical index"
+Option,0,"Converts all row labels to sequential integers"
+Option,0,"Splits the Series into separate Series for each index level"
+
+NewQuestion,MC,
+QuestionText,"What is the relationship between stack() and unstack()?"
+Option,0,"stack() works on DataFrames and unstack() works on Series"
+Option,0,"They perform the same operation but in opposite directions on the column axis"
+Option,0,"stack() creates a MultiIndex and unstack() flattens it back to a single level"
+Option,100,"They are inverse operations: stack() rotates columns to rows and unstack() rotates rows to columns"
+
+NewQuestion,MC,
+QuestionText,"What does the pivot() method do?"
+Option,0,"Rotates column labels into row labels, producing a Series"
+Option,100,"Reshapes a long-format DataFrame into wide format using one column as the row index and another as column headers"
+Option,0,"Stacks multiple DataFrames vertically with a new hierarchical key"
+Option,0,"Combines two DataFrames by matching values in a shared column"
+
+NewQuestion,MC,
+QuestionText,"What does pd.melt() do?"
+Option,100,"Reshapes a wide-format DataFrame into long format by unpivoting columns into rows"
+Option,0,"Combines multiple DataFrames into one by merging on shared keys"
+Option,0,"Removes rows where multiple columns contain the same value"
+Option,0,"Converts a hierarchically indexed DataFrame into a flat structure"
+
+NewQuestion,MC,
+QuestionText,"In pd.melt(), what does the id_vars parameter specify?"
+Option,0,"The columns that will become the new row values after reshaping"
+Option,0,"The name to assign to the column that holds the original column headers"
+Option,0,"The number of rows to include in the long-format result"
+Option,100,"The columns that should remain as identifier columns and repeat for each observation"
+
+NewQuestion,MC,
+QuestionText,"In pd.melt(), what does the var_name parameter control?"
+Option,0,"The name of the column that will hold the reshaped values"
+Option,100,"The name assigned to the new column that holds the original column headers"
+Option,0,"Which columns to include as value columns during reshaping"
+Option,0,"The order in which columns are unpivoted"
+
+NewQuestion,M,
+QuestionText,"Match each pd.merge() how= option with the rows it keeps in the result."
+Choice,1,"how='inner'"
+Match,1,"Only rows where the key appears in both tables"
+Choice,2,"how='left'"
+Match,2,"All rows from the left table; NaN for unmatched right-side columns"
+Choice,3,"how='right'"
+Match,3,"All rows from the right table; NaN for unmatched left-side columns"
+Choice,4,"how='outer'"
+Match,4,"All rows from both tables; NaN wherever a match does not exist"
+
+NewQuestion,M,
+QuestionText,"Match each pd.concat() parameter with what it controls."
+Choice,1,"axis='columns'"
+Match,1,"Combines DataFrames side by side instead of stacking rows"
+Choice,2,"ignore_index=True"
+Match,2,"Discards original indexes and assigns a new sequential index"
+Choice,3,"keys="
+Match,3,"Labels each source in a new hierarchical index level"
+Choice,4,"join='inner'"
+Match,4,"Keeps only columns that appear in all input DataFrames"
+
+NewQuestion,M,
+QuestionText,"Match each reshape operation with what it does."
+Choice,1,"stack()"
+Match,1,"Rotates column labels into row labels"
+Choice,2,"unstack()"
+Match,2,"Rotates row labels into column labels"
+Choice,3,"pivot()"
+Match,3,"Reshapes long format to wide format"
+Choice,4,"pd.melt()"
+Match,4,"Reshapes wide format to long format"
+
+NewQuestion,MS,
+QuestionText,"Which statements about pd.merge() behavior are TRUE? (Select all that apply.)"
+Option,1,"The default join type is inner if how= is not specified"
+Option,1,"When the key column has the same name in both DataFrames, on= can be omitted and pandas will infer it"
+Option,1,"A many-to-many merge produces a row for every combination of matching key values"
+Option,0,"pd.merge() requires both DataFrames to have the same number of rows"
+
+NewQuestion,MS,
+QuestionText,"Which statements about pd.concat() are TRUE? (Select all that apply.)"
+Option,1,"Without ignore_index=True, duplicate index values from separate DataFrames are preserved"
+Option,1,"The keys= parameter can be used to identify which source DataFrame each row came from"
+Option,1,"pd.concat() can combine more than two DataFrames by passing a list"
+Option,0,"pd.concat() always requires DataFrames to have the same columns"
+
+NewQuestion,MS,
+QuestionText,"Which statements about stack() and unstack() are TRUE? (Select all that apply.)"
+Option,1,"stack() and unstack() are inverse operations"
+Option,1,"Unstacking can introduce NaN values when not all combinations of index levels exist"
+Option,1,"You can specify which level to stack or unstack by passing a level number or name"
+Option,0,"stack() always produces a DataFrame and unstack() always produces a Series"
+
+NewQuestion,MS,
+QuestionText,"Which statements about pd.melt() are TRUE? (Select all that apply.)"
+Option,1,"id_vars specifies the columns that stay as identifiers and repeat for each row"
+Option,1,"var_name names the new column that holds the original column headers"
+Option,1,"value_name names the new column that holds the values"
+Option,0,"pd.melt() requires the DataFrame to have a hierarchical index before reshaping"
+
+NewQuestion,MS,
+QuestionText,"Which of the following topics are covered in Chapter 8 of the textbook? (Select all that apply.)"
+Option,1,"Hierarchical indexing with MultiIndex"
+Option,1,"Database-style joins with pd.merge()"
+Option,1,"Reshaping between wide and long format with pivot() and melt()"
+Option,0,"Visualizing merged DataFrames with matplotlib"
