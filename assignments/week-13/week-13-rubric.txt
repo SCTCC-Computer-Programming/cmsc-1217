@@ -1,0 +1,153 @@
+Week 13 Assignment Rubric
+Course: CMSC-1217 Introduction to Data Analytics with Python
+
+Format: Pass/Fail per criterion
+Pass: 0.1–1.0 points
+Fail: 0.0 points
+
+---
+
+CRITERION 1: Part 1 -- Load and assess
+
+PASS: Both files loaded and inspected before any changes are made. Assessment
+documents column structure, confirms both files share the same structure, and
+identifies where quality issues exist. Findings described specifically in a
+markdown cell -- not just stated that problems exist.
+
+FAIL: Files not loaded correctly, assessment outputs missing, or findings
+described too vaguely to confirm the student identified the actual issues.
+
+---
+
+CRITERION 2: Part 2 -- Combine
+
+PASS: Both logs combined into a single working DataFrame. Markdown cell
+explains what happens to the index when two DataFrames are combined this way
+and describes what was done to produce a clean result.
+
+FAIL: Files not combined, or no explanation of index behavior provided.
+
+---
+
+CRITERION 3: Part 2 -- Clean
+
+PASS: Quality issue identified in Part 1 resolved in the combined DataFrame.
+Markdown cell explains what the problem was, what was done to address it, and
+why that approach was appropriate. Result verified before moving on.
+
+FAIL: Issue not resolved, or no documented justification for the approach
+taken.
+
+---
+
+CRITERION 4: Part 3 -- Bestiary join
+ASSIGNMENT-LEVEL FAIL: YES
+
+PASS: Bestiary joined to the combined encounter log. Markdown cell written
+before the code explains the join type chosen and addresses both of the
+following: what happens to encounter records with no matching entry in the
+bestiary, and what happens to bestiary entries that do not appear in the
+encounter logs. Result shape shown and confirmed.
+
+FAIL: Join not performed, justification missing, or justification does not
+address both asymmetry conditions.
+
+---
+
+CRITERION 5: Part 4 -- Analysis
+ASSIGNMENT-LEVEL FAIL: YES
+
+PASS: All four questions answered with correct results using methods from
+Chapters 1--8. Encounter outcome counts shown sorted correctly. Creature type
+counts shown for all types in the data. Challenge rating summary statistics
+and top-five creatures shown. Group encounter counts and Victory rates shown
+as percentages.
+
+FAIL: One or more questions missing, results inconsistent with a clean and
+correctly joined dataset, or methods outside Chapters 1--8 used.
+
+---
+
+CRITERION 6: Part 5 -- Reshape
+
+PASS: Monthly encounters table loaded and displayed in wide format before
+reshaping. Reshaped to long format so each row represents one creature in one
+month. Markdown cell explains what changed between the two formats and what
+each parameter in the reshape call controls. First rows of the result shown to
+confirm the shape.
+
+FAIL: Table not reshaped, wide format not shown before reshaping, or no
+explanation of what changed and what the parameters control.
+
+---
+
+CRITERION 7: Part 5 -- Long-format analysis
+
+PASS: All three questions answered correctly using the long-format DataFrame.
+Single-month peak row shown. March encounter counts shown sorted correctly.
+Goblin counts shown across all six months in the order they appear in the
+reshaped table.
+
+FAIL: One or more questions missing or answered using the wide-format table
+rather than the reshaped result.
+
+---
+
+CRITERION 8: Notebook execution and organization
+
+PASS: Notebook runs from top to bottom using Restart Kernel and Run All
+without errors. All parts clearly labeled. All required outputs visible in the
+notebook.
+
+FAIL: Notebook produces errors on clean run, parts not labeled, or required
+outputs missing.
+
+---
+
+CRITERION 9: Video -- Merge decision
+ASSIGNMENT-LEVEL FAIL: YES
+
+PASS: Student explains which join type was chosen and why. Walks through what
+would have been different with a different join type, naming specifically which
+rows would appear or disappear. Explanation matches what the notebook code
+actually does.
+
+FAIL: Video missing this segment, explanation does not address the comparison
+to an alternative join type, or explanation does not match the notebook.
+
+---
+
+CRITERION 10: Video -- Melt operation
+ASSIGNMENT-LEVEL FAIL: YES
+
+PASS: Student walks through what the monthly encounters table looked like
+before and after the reshape. Explains what each parameter in the reshape call
+controlled. Explains why the long format is easier to work with for the Part 5
+analysis questions. Explanation matches the notebook.
+
+FAIL: Video missing this segment, explanation does not cover all required
+elements, or explanation does not match the notebook.
+
+---
+
+CRITERION 11: Video -- Reflection
+ASSIGNMENT-LEVEL FAIL: YES
+
+PASS: Substantive reflection on either a specific challenge encountered (with
+description of the problem, how it was diagnosed, and how it was resolved) or
+a key concept from Chapter 8 that the assignment clarified (with explanation
+of why it matters). Specific enough to confirm the student completed the work.
+
+FAIL: Reflection missing, too brief or generic to confirm completion, or does
+not address the required elements.
+
+---
+
+TOTAL: [sum of criteria scores]
+
+Grade thresholds:
+A: 9.9 points minimum
+B: 8.8 points minimum
+C: 7.7 points minimum
+D: 6.6 points minimum
+F: 0 points minimum

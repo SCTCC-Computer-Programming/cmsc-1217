@@ -1,0 +1,13 @@
+creature_id,creature_name,creature_type,challenge_rating,habitat
+CRE-001,Goblin,Humanoid,1,Forest
+CRE-002,Skeleton,Undead,1,Dungeon
+CRE-003,Wolf,Beast,1,Forest
+CRE-004,Orc,Humanoid,2,Mountains
+CRE-005,Zombie,Undead,2,Dungeon
+CRE-006,Giant Spider,Beast,3,Cavern
+CRE-007,Troll,Giant,5,Swamp
+CRE-008,Wyvern,Dragon,6,Mountains
+CRE-009,Vampire,Undead,8,Dungeon
+CRE-010,Mind Flayer,Aberration,8,Underdark
+CRE-011,Ancient Dragon,Dragon,17,Mountains
+CRE-012,Tarrasque,Monstrosity,30,Unknown

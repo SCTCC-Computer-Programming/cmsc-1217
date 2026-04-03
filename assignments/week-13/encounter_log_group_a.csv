@@ -1,0 +1,17 @@
+encounter_id,session_id,creature_id,location,party_size,outcome,date
+ENC-A-001,SES-A-01,CRE-001,Thornwood,4,Victory,2024-01-14
+ENC-A-002,SES-A-01,CRE-003,Thornwood,4,Victory,2024-01-14
+ENC-A-003,SES-A-01,CRE-006,Thornwood,4,Retreat,2024-01-14
+ENC-A-004,SES-A-02,CRE-002,Ashvault,5,Victory,2024-02-04
+ENC-A-005,SES-A-02,CRE-005,Ashvault,5,Victory,2024-02-04
+ENC-A-006,SES-A-02,CRE-009,Ashvault,5,Defeat,2024-02-04
+ENC-A-007,SES-A-03,CRE-004,Ironpass,4,Victory,2024-03-11
+ENC-A-008,SES-A-03,CRE-008,Ironpass,4,Retreat,2024-03-11
+ENC-A-009,SES-A-03,CRE-001,Ironpass,4,Victory,2024-03-11
+ENC-A-010,SES-A-03,CRE-004,Ironpass,4,Victory,2024-03-11
+ENC-A-011,SES-A-04,CRE-007,Mirewood,3,Victory,2024-04-08
+ENC-A-012,SES-A-04,CRE-006,Mirewood,3,Victory,2024-04-08
+ENC-A-013,SES-A-04,CRE-099,Mirewood,3,Defeat,2024-04-08
+ENC-A-014,SES-A-05,CRE-010,Sunken Citadel,5,Retreat,2024-05-20
+ENC-A-015,SES-A-05,CRE-002,Sunken Citadel,5,Victory,2024-05-20
+ENC-A-016,SES-A-05,CRE-009,Sunken Citadel,5,Defeat,2024-05-20

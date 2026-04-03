@@ -1,0 +1,134 @@
+---
+title: "Week 13 Assignment"
+subtitle: "RPG League Season Recap"
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** All items are submitted in D2L (Week 13 Dropbox).
+
+**Reading:** Chapters 1–8 (cumulative).
+
+**Datasets:**
+
+- <a href="encounter_log_group_a.csv" download="encounter_log_group_a.csv"> Download Encounter Log: Group A (CSV) </a>
+- <a href="encounter_log_group_b.csv" download="encounter_log_group_b.csv"> Download Encounter Log: Group B (CSV) </a>
+- <a href="bestiary.csv" download="bestiary.csv"> Download Bestiary (CSV) </a>
+- <a href="monthly_encounters.csv" download="monthly_encounters.csv"> Download Monthly Encounters (CSV) </a>
+
+## The Situation
+
+A regional tabletop RPG league ran two separate groups through a shared campaign setting over a six-month season. Each group kept its own encounter log. Every time the party fought a creature, someone recorded what creature it was, how many players were at the table, where the session took place, and how it turned out.
+
+The two groups logged their data independently, so the records exist in two separate files with the same structure. The league also maintains a bestiary: a reference table that maps creature IDs to names, types, challenge ratings, and habitats. Finally, the league tracked how often each creature appeared in encounters across the six months of the season in a separate summary table.
+
+The coordinator wants a unified picture of the season before the end-of-year recap. That means combining the two logs, enriching the combined data with creature details from the bestiary, and analyzing the monthly encounter trends. Your job is to build that picture.
+
+## What You Need to Deliver
+
+### Part 1: Load and Assess
+
+Load both encounter log files. Before doing anything else, inspect both DataFrames and document what you find: confirm that the column structure matches across both files, identify where missing values exist and how many, and flag any quality issues that will need to be addressed before analysis. Your assessment should be specific. If you find a problem, name it and describe where it appears.
+
+### Part 2: Combine and Clean
+
+Combine both encounter logs into a single working DataFrame. Use a markdown cell to explain what the index behavior is when combining two DataFrames this way and what you did to produce a clean sequential index.
+
+After combining, address any quality issues you identified in Part 1. For each issue you fix, use a markdown cell to explain what the problem was, what you did, and why that was the right choice. Verify the cleaned DataFrame before moving on.
+
+### Part 3: Enrich with the Bestiary
+
+Load `bestiary.csv` and examine its structure. Identify the column that connects it to the combined encounter log.
+
+Join the bestiary to the combined encounter log. Before writing the code, use a markdown cell to explain which join type you are using and why. Your explanation should address what happens to encounter records that have no matching bestiary entry, and what happens to bestiary creatures that never appear in either log. A join type selection without a written justification is not complete.
+
+Show the shape of the result and confirm it matches your expectation.
+
+### Part 4: Analysis
+
+With the merged DataFrame, answer the following questions for the coordinator's season recap. All analysis must use methods from Chapters 1--8.
+
+**Encounter outcomes.** How many encounters ended in each outcome (Victory, Defeat, Retreat) across both groups combined? Show counts sorted from most to least common.
+
+**Creature type breakdown.** How many encounters involved each creature type? Show counts for all types that appear in the data.
+
+**Challenge rating distribution.** What are the summary statistics for challenge rating across all matched encounters? Then show the five highest challenge rating creatures the groups actually encountered, sorted from highest to lowest.
+
+**Group comparison.** How many encounters did each group log, and what was each group's Victory rate as a percentage of their total encounters?
+
+### Part 5: Reshape and Analyze
+
+Load `monthly_encounters.csv` and display it as-is so the wide format is visible.
+
+Reshape the table into long format so that each row represents one creature in one month. Use a markdown cell to explain what changed between the wide and long versions and what each parameter in your reshape call controls. Show the first several rows of the result to confirm the shape is correct.
+
+With the long-format DataFrame, answer the following:
+
+**Single-month peak.** Which creature had the highest encounter count in any single month? Show that row from the long-format table.
+
+**March breakdown.** Show all encounter counts for March, sorted from most to least active.
+
+**One creature across the season.** Show the encounter counts for Goblin across all six months in the order they appear in the reshaped table.
+
+### Part 6: Save
+
+Save the merged DataFrame from Part 3 to a file called `encounters_merged.csv`. Do not write the row index to the file.
+
+## Technical Requirements
+
+Your notebook must demonstrate the complete workflow from raw files to finished analysis. It must run successfully using Restart Kernel and Run All.
+
+All combining, joining, and reshaping must use the Chapter 8 tools: `pd.concat()` for stacking the two logs, `pd.merge()` for the bestiary join, and `pd.melt()` for reshaping the monthly table. All cleaning must use the Chapter 7 methods you have already practiced. All analysis must use DataFrame operations -- no raw loops for filtering or computing statistics.
+
+Markdown cells are required at every decision point. Loading data and running code without explaining what you found and why you made the choices you made is not sufficient.
+
+Structure your notebook so each part is clearly labeled. Make it easy to verify that every required output is present.
+
+## Video Reflection
+
+Record a short video demonstrating your understanding of this assignment.
+
+**Part 1: Walk through two decisions**
+
+Address both of the following in your video:
+
+**The merge decision.** Explain which join type you chose for the bestiary merge and why. Walk through what would have been different if you had chosen a different join type. Be specific about which rows would appear or disappear and why that matters for the analysis.
+
+**The melt operation.** Walk through what the monthly encounters table looked like before and after the reshape. Explain what each parameter controlled and why long format is easier to work with for the analysis questions in Part 5.
+
+**Part 2: Reflect on your learning**
+
+Choose ONE of the following:
+
+- **Challenge or error:** Describe a problem you ran into while completing this assignment, how you diagnosed it, and how you resolved it
+- **Key takeaway:** Explain one concept from Chapter 8 that this assignment made clearer and why it matters for working with real data
+
+**Video submission requirements:**
+
+- Clear video and audio quality
+- Introduce yourself at the beginning (name)
+- Name your video file: `lastname_Week13Reflection`
+- Upload your video to **Kaltura**
+- **Do not** embed the video in the Dropbox submission
+- Paste the **share link** into the D2L assignment text submission box
+- Make sure the link text includes `lastname_Week13Reflection` in the link name
+
+## D2L Submission Checklist
+
+Submit the following items to the **Week 13 Dropbox** in D2L:
+
+### Notebook file
+
+- `lastname_week13_assignment.ipynb`
+
+### Video submission (link only)
+
+- Video filename: `lastname_Week13Reflection`
+- Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)
+
+**Before you submit:**
+
+- Run "Restart Kernel and Run All" to confirm your notebook executes without errors
+- Verify all required outputs are visible in the notebook
+- Check that your video link works and includes the correct filename

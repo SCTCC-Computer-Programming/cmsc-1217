@@ -1,0 +1,32 @@
+---
+title: "Week 13 Guide"
+subtitle: "Cumulative Application of Chapters 1–8"
+format:
+  html:
+    toc: true
+---
+
+Week 13 is a cumulative application of everything from Chapters 1--8. You will work with encounter data from a regional tabletop RPG league, applying the combining, joining, and reshaping operations from Chapter 8 alongside the cleaning and analysis skills from prior weeks.
+
+**Assignment:**
+
+- Here is the link to the **[Week 13 Assignment](../../assignments/week-13/index.qmd)**.
+
+## Concepts reinforced this week
+
+This week applies the Chapter 8 operations from the Week 12 demo: combining DataFrames from multiple sources, joining tables on a shared key, and reshaping between wide and long format. Chapter 7 cleaning tools are part of the workflow where the data requires them.
+
+## Week 13 tasks
+
+1. Complete the **Week 13 Assignment** (RPG league season recap).
+2. Record and submit your video reflection.
+
+## Knowledge goals for Week 13
+
+By the end of Week 13, you should be able to:
+
+* combine two DataFrames with `pd.concat()` and explain what happens to the index when two sources are stacked
+* choose a join type for `pd.merge()` and justify that choice based on what the analysis requires from unmatched rows
+* explain what happens to rows with no matching key value in each of the four join types
+* reshape a wide DataFrame to long format with `pd.melt()` and explain what changed structurally and why it matters for analysis
+* identify and resolve inconsistencies in a combined dataset using Chapter 7 string and type tools
