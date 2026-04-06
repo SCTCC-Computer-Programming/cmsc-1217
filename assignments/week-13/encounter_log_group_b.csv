@@ -1,0 +1,15 @@
+encounter_id,session_id,creature_id,location,party_size,outcome,date
+ENC-B-001,SES-B-01,CRE-001,Grimholt,4,Victory,2024-01-21
+ENC-B-002,SES-B-01,CRE-004,Grimholt,4,victory,2024-01-21
+ENC-B-003,SES-B-01,CRE-003,Grimholt,4,Victory,2024-01-21
+ENC-B-004,SES-B-02,CRE-007,Fenmarsh,5,Retreat,2024-02-18
+ENC-B-005,SES-B-02,CRE-006,Fenmarsh,5,Victory,2024-02-18
+ENC-B-006,SES-B-02,CRE-098,Fenmarsh,5,defeat,2024-02-18
+ENC-B-007,SES-B-02,CRE-005,Fenmarsh,5,Victory,2024-02-18
+ENC-B-008,SES-B-03,CRE-008,Drakespine,3,Victory,2024-03-25
+ENC-B-009,SES-B-03,CRE-004,Drakespine,3,Victory,2024-03-25
+ENC-B-010,SES-B-03,CRE-001,Drakespine,3,Retreat,2024-03-25
+ENC-B-011,SES-B-04,CRE-010,The Black Mere,4,Defeat,2024-04-29
+ENC-B-012,SES-B-04,CRE-009,The Black Mere,4,Defeat,2024-04-29
+ENC-B-013,SES-B-04,CRE-002,The Black Mere,4,Victory,2024-04-29
+ENC-B-014,SES-B-04,CRE-005,The Black Mere,4,victory,2024-04-29

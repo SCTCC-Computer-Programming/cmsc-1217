@@ -1,5 +1,33 @@
 [
   {
+    "objectID": "weekly-overview/week-13/week-13-overview.html",
+    "href": "weekly-overview/week-13/week-13-overview.html",
+    "title": "Week 13 Guide",
+    "section": "",
+    "text": "Week 13 is a cumulative application of everything from Chapters 1–8. You will work with encounter data from a regional tabletop RPG league, applying the combining, joining, and reshaping operations from Chapter 8 alongside the cleaning and analysis skills from prior weeks.\nAssignment:"
+  },
+  {
+    "objectID": "weekly-overview/week-13/week-13-overview.html#concepts-reinforced-this-week",
+    "href": "weekly-overview/week-13/week-13-overview.html#concepts-reinforced-this-week",
+    "title": "Week 13 Guide",
+    "section": "Concepts reinforced this week",
+    "text": "Concepts reinforced this week\nThis week applies the Chapter 8 operations from the Week 12 demo: combining DataFrames from multiple sources, joining tables on a shared key, and reshaping between wide and long format. Chapter 7 cleaning tools are part of the workflow where the data requires them."
+  },
+  {
+    "objectID": "weekly-overview/week-13/week-13-overview.html#week-13-tasks",
+    "href": "weekly-overview/week-13/week-13-overview.html#week-13-tasks",
+    "title": "Week 13 Guide",
+    "section": "Week 13 tasks",
+    "text": "Week 13 tasks\n\nComplete the Week 13 Assignment (RPG league season recap).\nRecord and submit your video reflection."
+  },
+  {
+    "objectID": "weekly-overview/week-13/week-13-overview.html#knowledge-goals-for-week-13",
+    "href": "weekly-overview/week-13/week-13-overview.html#knowledge-goals-for-week-13",
+    "title": "Week 13 Guide",
+    "section": "Knowledge goals for Week 13",
+    "text": "Knowledge goals for Week 13\nBy the end of Week 13, you should be able to:\n\ncombine two DataFrames with pd.concat() and explain what happens to the index when two sources are stacked\nchoose a join type for pd.merge() and justify that choice based on what the analysis requires from unmatched rows\nexplain what happens to rows with no matching key value in each of the four join types\nreshape a wide DataFrame to long format with pd.melt() and explain what changed structurally and why it matters for analysis\nidentify and resolve inconsistencies in a combined dataset using Chapter 7 string and type tools"
+  },
+  {
     "objectID": "weekly-overview/week-12/index.html",
     "href": "weekly-overview/week-12/index.html",
     "title": "Week 12 Guide",
@@ -774,6 +802,48 @@
       "Course information",
       "Syllabus"
     ]
+  },
+  {
+    "objectID": "assignments/week-13/week-13-assignments.html",
+    "href": "assignments/week-13/week-13-assignments.html",
+    "title": "Week 13 Assignment",
+    "section": "",
+    "text": "Submission location: All items are submitted in D2L (Week 13 Dropbox).\nReading: Chapters 1–8 (cumulative).\nDatasets:"
+  },
+  {
+    "objectID": "assignments/week-13/week-13-assignments.html#the-situation",
+    "href": "assignments/week-13/week-13-assignments.html#the-situation",
+    "title": "Week 13 Assignment",
+    "section": "The Situation",
+    "text": "The Situation\nA regional tabletop RPG league ran two separate groups through a shared campaign setting over a six-month season. Each group kept its own encounter log. Every time the party fought a creature, someone recorded what creature it was, how many players were at the table, where the session took place, and how it turned out.\nThe two groups logged their data independently, so the records exist in two separate files with the same structure. The league also maintains a bestiary: a reference table that maps creature IDs to names, types, challenge ratings, and habitats. Finally, the league tracked how often each creature appeared in encounters across the six months of the season in a separate summary table.\nThe coordinator wants a unified picture of the season before the end-of-year recap. That means combining the two logs, enriching the combined data with creature details from the bestiary, and analyzing the monthly encounter trends. Your job is to build that picture."
+  },
+  {
+    "objectID": "assignments/week-13/week-13-assignments.html#what-you-need-to-deliver",
+    "href": "assignments/week-13/week-13-assignments.html#what-you-need-to-deliver",
+    "title": "Week 13 Assignment",
+    "section": "What You Need to Deliver",
+    "text": "What You Need to Deliver\n\nPart 1: Load and Assess\nLoad both encounter log files. Before doing anything else, inspect both DataFrames and document what you find: confirm that the column structure matches across both files, identify where missing values exist and how many, and flag any quality issues that will need to be addressed before analysis. Your assessment should be specific. If you find a problem, name it and describe where it appears.\n\n\nPart 2: Combine and Clean\nCombine both encounter logs into a single working DataFrame. Use a markdown cell to explain what the index behavior is when combining two DataFrames this way and what you did to produce a clean sequential index.\nAfter combining, address any quality issues you identified in Part 1. For each issue you fix, use a markdown cell to explain what the problem was, what you did, and why that was the right choice. Verify the cleaned DataFrame before moving on.\n\n\nPart 3: Enrich with the Bestiary\nLoad bestiary.csv and examine its structure. Identify the column that connects it to the combined encounter log.\nJoin the bestiary to the combined encounter log. Before writing the code, use a markdown cell to explain which join type you are using and why. Your explanation should address what happens to encounter records that have no matching bestiary entry, and what happens to bestiary creatures that never appear in either log. A join type selection without a written justification is not complete.\nShow the shape of the result and confirm it matches your expectation.\n\n\nPart 4: Analysis\nWith the merged DataFrame, answer the following questions for the coordinator’s season recap. All analysis must use methods from Chapters 1–8.\nEncounter outcomes. How many encounters ended in each outcome (Victory, Defeat, Retreat) across both groups combined? Show counts sorted from most to least common.\nCreature type breakdown. How many encounters involved each creature type? Show counts for all types that appear in the data.\nChallenge rating distribution. What are the summary statistics for challenge rating across all matched encounters? Then show the five highest challenge rating creatures the groups actually encountered, sorted from highest to lowest.\nGroup comparison. How many encounters did each group log, and what was each group’s Victory rate as a percentage of their total encounters?\n\n\nPart 5: Reshape and Analyze\nLoad monthly_encounters.csv and display it as-is so the wide format is visible.\nReshape the table into long format so that each row represents one creature in one month. Use a markdown cell to explain what changed between the wide and long versions and what each parameter in your reshape call controls. Show the first several rows of the result to confirm the shape is correct.\nWith the long-format DataFrame, answer the following:\nSingle-month peak. Which creature had the highest encounter count in any single month? Show that row from the long-format table.\nMarch breakdown. Show all encounter counts for March, sorted from most to least active.\nOne creature across the season. Show the encounter counts for Goblin across all six months in the order they appear in the reshaped table.\n\n\nPart 6: Save\nSave the merged DataFrame from Part 3 to a file called encounters_merged.csv. Do not write the row index to the file."
+  },
+  {
+    "objectID": "assignments/week-13/week-13-assignments.html#technical-requirements",
+    "href": "assignments/week-13/week-13-assignments.html#technical-requirements",
+    "title": "Week 13 Assignment",
+    "section": "Technical Requirements",
+    "text": "Technical Requirements\nYour notebook must demonstrate the complete workflow from raw files to finished analysis. It must run successfully using Restart Kernel and Run All.\nAll combining, joining, and reshaping must use the Chapter 8 tools: pd.concat() for stacking the two logs, pd.merge() for the bestiary join, and pd.melt() for reshaping the monthly table. All cleaning must use the Chapter 7 methods you have already practiced. All analysis must use DataFrame operations – no raw loops for filtering or computing statistics.\nMarkdown cells are required at every decision point. Loading data and running code without explaining what you found and why you made the choices you made is not sufficient.\nStructure your notebook so each part is clearly labeled. Make it easy to verify that every required output is present."
+  },
+  {
+    "objectID": "assignments/week-13/week-13-assignments.html#video-reflection",
+    "href": "assignments/week-13/week-13-assignments.html#video-reflection",
+    "title": "Week 13 Assignment",
+    "section": "Video Reflection",
+    "text": "Video Reflection\nRecord a short video demonstrating your understanding of this assignment.\nPart 1: Walk through two decisions\nAddress both of the following in your video:\nThe merge decision. Explain which join type you chose for the bestiary merge and why. Walk through what would have been different if you had chosen a different join type. Be specific about which rows would appear or disappear and why that matters for the analysis.\nThe melt operation. Walk through what the monthly encounters table looked like before and after the reshape. Explain what each parameter controlled and why long format is easier to work with for the analysis questions in Part 5.\nPart 2: Reflect on your learning\nChoose ONE of the following:\n\nChallenge or error: Describe a problem you ran into while completing this assignment, how you diagnosed it, and how you resolved it\nKey takeaway: Explain one concept from Chapter 8 that this assignment made clearer and why it matters for working with real data\n\nVideo submission requirements:\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week13Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week13Reflection in the link name"
+  },
+  {
+    "objectID": "assignments/week-13/week-13-assignments.html#d2l-submission-checklist",
+    "href": "assignments/week-13/week-13-assignments.html#d2l-submission-checklist",
+    "title": "Week 13 Assignment",
+    "section": "D2L Submission Checklist",
+    "text": "D2L Submission Checklist\nSubmit the following items to the Week 13 Dropbox in D2L:\n\nNotebook file\n\nlastname_week13_assignment.ipynb\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week13Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)\n\nBefore you submit:\n\nRun “Restart Kernel and Run All” to confirm your notebook executes without errors\nVerify all required outputs are visible in the notebook\nCheck that your video link works and includes the correct filename"
   },
   {
     "objectID": "assignments/week-12/week-12-demo.html",
@@ -1898,7 +1968,7 @@
     "href": "assignments/week-07/week-7-demo.html#part-3-interacting-with-web-apis",
     "title": "Week 7 Demo: Data Loading with pandas",
     "section": "Part 3: Interacting with Web APIs",
-    "text": "Part 3: Interacting with Web APIs\nParts 1 and 2 covered loading data from local files, both CSV and JSON. But a large amount of data is available through web APIs (Application Programming Interfaces). A web API lets you request specific data from a server over the internet and receive a structured response, usually in JSON format. This is where the JSON skills from Part 2 become directly practical.\n\nWhat a web API is\nWhen you visit a website, your browser sends a request to a server and gets back an HTML page for humans to read. A web API works the same way, but the response is structured data (usually JSON) designed for programs to process.\nThe pattern is straightforward: 1. Send an HTTP request to a URL (the API endpoint) 2. Receive a response containing structured data 3. Parse the response (usually JSON) 4. Work with the data in Python\n\n\nMaking an API request\nPython’s requests library makes HTTP requests simple. We’ll use the GitHub API as an example. It provides public data about GitHub repositories without requiring an account or API key.\nThe following code cells require internet access to reach the GitHub API. If you are working offline or the request fails, read through the code and explanations to understand the pattern. The concepts (make a request, check the response, parse JSON, convert to DataFrame) are what matter. You can re-run these cells later when you have internet access.\n\nimport requests\n\n# Request recent issues from the pandas GitHub repository\n# (This is the same API endpoint used in the textbook's Chapter 6 example)\nurl = 'https://api.github.com/repos/pandas-dev/pandas/issues'\nresp = requests.get(url)\nresp.raise_for_status()\n\nprint(f\"Status code: {resp.status_code}\")\nprint(f\"Response type: {type(resp.json())}\")\nprint(f\"Number of items: {len(resp.json())}\")\n\nStatus code: 200\nResponse type: &lt;class 'list'&gt;\nNumber of items: 30\n\n\nIf import requests gives a ModuleNotFoundError, you need to install the library. Run pip install requests in your terminal, then restart your kernel and try again.\nUnderstanding the request:\nrequests.get(url) sends an HTTP GET request to the GitHub API. This is the same kind of request your browser makes when you visit a web page, but instead of HTML, the server returns JSON data.\nresp.raise_for_status() checks whether the request succeeded. If something went wrong (server error, invalid URL, rate limit exceeded), this raises an exception. This is similar to how you use try/except to catch errors in file processing. A status code of 200 means success.\nresp.json() parses the JSON response into Python objects (a list of dictionaries in this case). This is equivalent to calling json.loads() on the response text, which you used in Part 2.\n\n\nFrom API response to DataFrame\nNow that we have a successful response, let’s see what the API returned and convert it to a DataFrame. The GitHub API returns a list of dictionaries, one per issue. Each dictionary contains many fields.\n\n# Parse the JSON response\ndata = resp.json()\n\n# Look at the keys available in one issue\nprint(\"Available fields in each issue:\")\nprint(sorted(data[0].keys()))\n\nAvailable fields in each issue:\n['active_lock_reason', 'assignee', 'assignees', 'author_association', 'body', 'closed_at', 'closed_by', 'comments', 'comments_url', 'created_at', 'draft', 'events_url', 'html_url', 'id', 'labels', 'labels_url', 'locked', 'milestone', 'node_id', 'number', 'performed_via_github_app', 'pull_request', 'reactions', 'repository_url', 'state', 'state_reason', 'timeline_url', 'title', 'type', 'updated_at', 'url', 'user']\n\n\nUnderstanding the response:\nEach issue is a dictionary with many fields: title, body, user information, labels, timestamps, and more. Most API responses contain more data than you need. The next step is to convert to a DataFrame and select the relevant columns.\n\n# Convert to DataFrame\nissues = pd.DataFrame(data)\n\n# Select useful columns\nissues_subset = issues[['number', 'title', 'state', 'created_at']]\nprint(issues_subset.head(10))\n\n   number                                              title state  \\\n0   64914              TST: Add regression test for GH#29576  open   \n1   64911                      Adds arrow accessors to table  open   \n2   64910                        DOC:  Arrow Series Accessor  open   \n3   64909  CI: Replace deprecated actions/gh-actions-cach...  open   \n4   64908  BUG: warn when DataFrame.update finds no match...  open   \n5   64907  ENH: Raise ValueError when numeric_only=None i...  open   \n6   64905  PERF: [POC] use xsimd with meson simd module t...  open   \n7   64904  BUG: Fix read_sas IndexError for SAS7BDAT file...  open   \n8   64902    BUG: make %p (AM/PM) parsing locale-independent  open   \n9   64899  BUG: Add %n directive to Timestamp.strftime fo...  open   \n\n             created_at  \n0  2026-03-29T17:54:23Z  \n1  2026-03-28T18:11:25Z  \n2  2026-03-28T18:09:19Z  \n3  2026-03-28T18:07:56Z  \n4  2026-03-28T17:51:19Z  \n5  2026-03-28T16:28:44Z  \n6  2026-03-28T11:31:54Z  \n7  2026-03-28T02:17:00Z  \n8  2026-03-27T22:52:26Z  \n9  2026-03-27T18:23:35Z  \n\n\nUnderstanding the workflow:\nThis is the same pd.DataFrame() call you’ve been using. A list of dictionaries becomes a DataFrame where each dictionary is a row. Then we use column selection (double brackets from Week 5) to keep just the columns we need.\nThe result is a clean, labeled DataFrame created from live data on the internet. You went from a URL to an analyzable DataFrame in a few lines of code.\nThe specific issues shown depend on when you run this code. GitHub issues are created and updated constantly, so your output will differ from someone who runs this at a different time.\n\n\nA note about APIs\nThe GitHub API we used here is public and doesn’t require authentication for basic requests. But there are important practical considerations.\nMost APIs limit how many requests you can make per hour. The GitHub API allows 60 requests per hour without authentication. If you exceed the limit, requests will fail temporarily.\nMany APIs also require an API key or account credentials. This is how services control access and track usage. The textbook covers this briefly, and you’ll encounter it when working with data from services like Twitter, weather providers, or financial data platforms.\nNot all APIs return simple lists of dictionaries, either. Some wrap data in metadata, use pagination for large results, or nest data in complex structures. The json.loads() + pd.DataFrame() approach gives you more control for these cases than pd.read_json() alone."
+    "text": "Part 3: Interacting with Web APIs\nParts 1 and 2 covered loading data from local files, both CSV and JSON. But a large amount of data is available through web APIs (Application Programming Interfaces). A web API lets you request specific data from a server over the internet and receive a structured response, usually in JSON format. This is where the JSON skills from Part 2 become directly practical.\n\nWhat a web API is\nWhen you visit a website, your browser sends a request to a server and gets back an HTML page for humans to read. A web API works the same way, but the response is structured data (usually JSON) designed for programs to process.\nThe pattern is straightforward: 1. Send an HTTP request to a URL (the API endpoint) 2. Receive a response containing structured data 3. Parse the response (usually JSON) 4. Work with the data in Python\n\n\nMaking an API request\nPython’s requests library makes HTTP requests simple. We’ll use the GitHub API as an example. It provides public data about GitHub repositories without requiring an account or API key.\nThe following code cells require internet access to reach the GitHub API. If you are working offline or the request fails, read through the code and explanations to understand the pattern. The concepts (make a request, check the response, parse JSON, convert to DataFrame) are what matter. You can re-run these cells later when you have internet access.\n\nimport requests\n\n# Request recent issues from the pandas GitHub repository\n# (This is the same API endpoint used in the textbook's Chapter 6 example)\nurl = 'https://api.github.com/repos/pandas-dev/pandas/issues'\nresp = requests.get(url)\nresp.raise_for_status()\n\nprint(f\"Status code: {resp.status_code}\")\nprint(f\"Response type: {type(resp.json())}\")\nprint(f\"Number of items: {len(resp.json())}\")\n\nStatus code: 200\nResponse type: &lt;class 'list'&gt;\nNumber of items: 30\n\n\nIf import requests gives a ModuleNotFoundError, you need to install the library. Run pip install requests in your terminal, then restart your kernel and try again.\nUnderstanding the request:\nrequests.get(url) sends an HTTP GET request to the GitHub API. This is the same kind of request your browser makes when you visit a web page, but instead of HTML, the server returns JSON data.\nresp.raise_for_status() checks whether the request succeeded. If something went wrong (server error, invalid URL, rate limit exceeded), this raises an exception. This is similar to how you use try/except to catch errors in file processing. A status code of 200 means success.\nresp.json() parses the JSON response into Python objects (a list of dictionaries in this case). This is equivalent to calling json.loads() on the response text, which you used in Part 2.\n\n\nFrom API response to DataFrame\nNow that we have a successful response, let’s see what the API returned and convert it to a DataFrame. The GitHub API returns a list of dictionaries, one per issue. Each dictionary contains many fields.\n\n# Parse the JSON response\ndata = resp.json()\n\n# Look at the keys available in one issue\nprint(\"Available fields in each issue:\")\nprint(sorted(data[0].keys()))\n\nAvailable fields in each issue:\n['active_lock_reason', 'assignee', 'assignees', 'author_association', 'body', 'closed_at', 'closed_by', 'comments', 'comments_url', 'created_at', 'draft', 'events_url', 'html_url', 'id', 'labels', 'labels_url', 'locked', 'milestone', 'node_id', 'number', 'performed_via_github_app', 'pull_request', 'reactions', 'repository_url', 'state', 'state_reason', 'timeline_url', 'title', 'type', 'updated_at', 'url', 'user']\n\n\nUnderstanding the response:\nEach issue is a dictionary with many fields: title, body, user information, labels, timestamps, and more. Most API responses contain more data than you need. The next step is to convert to a DataFrame and select the relevant columns.\n\n# Convert to DataFrame\nissues = pd.DataFrame(data)\n\n# Select useful columns\nissues_subset = issues[['number', 'title', 'state', 'created_at']]\nprint(issues_subset.head(10))\n\n   number                                              title state  \\\n0   65083   Refactor source file inspection logic in conf.py  open   \n1   65082  DOC: Fix incorrect source link for DataFrame d...  open   \n2   65078  DOC: clarify bool vs int behavior in factorize...  open   \n3   65076  DOC: Fix dark mode text color in tutorial data...  open   \n4   65075                 CI: Build documentation using pixi  open   \n5   65072                                 Improve dropna doc  open   \n6   65071  DOC: Add comprehensive merge join examples for...  open   \n7   65069              BUG: fixed Interval to_json/read_json  open   \n8   65067  WARN: add FutureWarning when DataFrame.update(...  open   \n9   65066  BUG: escape SQL identifiers in ADBCDatabase to...  open   \n\n             created_at  \n0  2026-04-05T15:02:15Z  \n1  2026-04-05T13:25:05Z  \n2  2026-04-05T05:36:21Z  \n3  2026-04-04T22:28:35Z  \n4  2026-04-04T21:19:58Z  \n5  2026-04-04T17:18:38Z  \n6  2026-04-04T17:03:53Z  \n7  2026-04-04T14:21:28Z  \n8  2026-04-04T07:44:44Z  \n9  2026-04-04T07:28:35Z  \n\n\nUnderstanding the workflow:\nThis is the same pd.DataFrame() call you’ve been using. A list of dictionaries becomes a DataFrame where each dictionary is a row. Then we use column selection (double brackets from Week 5) to keep just the columns we need.\nThe result is a clean, labeled DataFrame created from live data on the internet. You went from a URL to an analyzable DataFrame in a few lines of code.\nThe specific issues shown depend on when you run this code. GitHub issues are created and updated constantly, so your output will differ from someone who runs this at a different time.\n\n\nA note about APIs\nThe GitHub API we used here is public and doesn’t require authentication for basic requests. But there are important practical considerations.\nMost APIs limit how many requests you can make per hour. The GitHub API allows 60 requests per hour without authentication. If you exceed the limit, requests will fail temporarily.\nMany APIs also require an API key or account credentials. This is how services control access and track usage. The textbook covers this briefly, and you’ll encounter it when working with data from services like Twitter, weather providers, or financial data platforms.\nNot all APIs return simple lists of dictionaries, either. Some wrap data in metadata, use pagination for large results, or nest data in complex structures. The json.loads() + pd.DataFrame() approach gives you more control for these cases than pd.read_json() alone."
   },
   {
     "objectID": "assignments/week-07/week-7-demo.html#conclusion",
@@ -2171,6 +2241,78 @@
     "title": "Week 12 Demo: Combining and Reshaping DataFrames",
     "section": "Conclusion",
     "text": "Conclusion\n\nWhat You’ve Learned\nThis demo introduced three tools for working with data spread across multiple sources.\npd.concat() stacks DataFrames that share the same structure. Use ignore_index=True when the row index carries no meaningful information and you want a clean sequential index in the result. Pass any number of DataFrames in a list.\npd.merge() joins two DataFrames on a shared key column, the same logic as a SQL JOIN. The how parameter controls which rows survive: \"inner\" keeps only matching rows, \"left\" keeps all rows from the left table, \"right\" keeps all rows from the right table, and \"outer\" keeps all rows from both. The choice of join type is a data question, not a technical one. It depends on what you need to know and whether missing matches should appear as NaN or be dropped entirely.\npd.melt() reshapes wide data into long format. id_vars identifies which columns stay as identifiers, var_name names the new column holding the former column headers, and value_name names the new column holding the values. Long format makes filtering, sorting, and grouping operations straightforward because each observation is a single row.\nset_index() and reset_index() move columns in and out of the index. set_index() promotes a column to the index; reset_index() moves the index back into a column and restores the default integer index. They appear frequently as supporting operations alongside merges and reshapes.\n\n\nWhat the Textbook Covers Next\nChapter 8 goes further than this demo on several topics worth reading.\nHierarchical indexing and MultiIndex: pandas supports multiple levels of row or column labels. A MultiIndex allows you to represent higher-dimensional data in a flat table. The swaplevel() and sort_index(level=) methods manipulate level order. This is the foundation for stack() and unstack().\nstack() and unstack(): stack() rotates column labels into row labels, producing a Series from a DataFrame. unstack() does the reverse. These are the lower-level operations that pivot() and melt() build on.\npivot(): The inverse of melt(). Converts long format back to wide format using one column as the row index, one as the column headers, and one as the values.\ncombine_first(): Patches missing values in one DataFrame with values from another at matching index positions. Useful for filling gaps from a secondary source without a full merge.\n\n\nApplying These Tools in Week 13\nWeek 13 is a cumulative application week. You will work with a multi-source dataset that requires you to combine, join, and reshape data before analysis can begin. The workflow follows the same pattern you have built across prior application weeks: assess the data, prepare it, then analyze it. The Chapter 8 tools are the preparation step for data that starts in multiple files or the wrong shape."
+  },
+  {
+    "objectID": "assignments/week-13/index.html",
+    "href": "assignments/week-13/index.html",
+    "title": "Week 13 Assignment",
+    "section": "",
+    "text": "Submission location: All items are submitted in D2L (Week 13 Dropbox).\nReading: Chapters 1–8 (cumulative).\nDatasets:",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 13 (Starts 6 APR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-13/index.html#the-situation",
+    "href": "assignments/week-13/index.html#the-situation",
+    "title": "Week 13 Assignment",
+    "section": "The Situation",
+    "text": "The Situation\nA regional tabletop RPG league ran two separate groups through a shared campaign setting over a six-month season. Each group kept its own encounter log. Every time the party fought a creature, someone recorded what creature it was, how many players were at the table, where the session took place, and how it turned out.\nThe two groups logged their data independently, so the records exist in two separate files with the same structure. The league also maintains a bestiary: a reference table that maps creature IDs to names, types, challenge ratings, and habitats. Finally, the league tracked how often each creature appeared in encounters across the six months of the season in a separate summary table.\nThe coordinator wants a unified picture of the season before the end-of-year recap. That means combining the two logs, enriching the combined data with creature details from the bestiary, and analyzing the monthly encounter trends. Your job is to build that picture.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 13 (Starts 6 APR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-13/index.html#what-you-need-to-deliver",
+    "href": "assignments/week-13/index.html#what-you-need-to-deliver",
+    "title": "Week 13 Assignment",
+    "section": "What You Need to Deliver",
+    "text": "What You Need to Deliver\n\nPart 1: Load and Assess\nLoad both encounter log files. Before doing anything else, inspect both DataFrames and document what you find: confirm that the column structure matches across both files, identify where missing values exist and how many, and flag any quality issues that will need to be addressed before analysis. Your assessment should be specific. If you find a problem, name it and describe where it appears.\n\n\nPart 2: Combine and Clean\nCombine both encounter logs into a single working DataFrame. Use a markdown cell to explain what the index behavior is when combining two DataFrames this way and what you did to produce a clean sequential index.\nAfter combining, address any quality issues you identified in Part 1. For each issue you fix, use a markdown cell to explain what the problem was, what you did, and why that was the right choice. Verify the cleaned DataFrame before moving on.\n\n\nPart 3: Enrich with the Bestiary\nLoad bestiary.csv and examine its structure. Identify the column that connects it to the combined encounter log.\nJoin the bestiary to the combined encounter log. Before writing the code, use a markdown cell to explain which join type you are using and why. Your explanation should address what happens to encounter records that have no matching bestiary entry, and what happens to bestiary creatures that never appear in either log. A join type selection without a written justification is not complete.\nShow the shape of the result and confirm it matches your expectation.\n\n\nPart 4: Analysis\nWith the merged DataFrame, answer the following questions for the coordinator’s season recap. All analysis must use methods from Chapters 1–8.\nEncounter outcomes. How many encounters ended in each outcome (Victory, Defeat, Retreat) across both groups combined? Show counts sorted from most to least common.\nCreature type breakdown. How many encounters involved each creature type? Show counts for all types that appear in the data.\nChallenge rating distribution. What are the summary statistics for challenge rating across all matched encounters? Then show the five highest challenge rating creatures the groups actually encountered, sorted from highest to lowest.\nGroup comparison. How many encounters did each group log, and what was each group’s Victory rate as a percentage of their total encounters?\n\n\nPart 5: Reshape and Analyze\nLoad monthly_encounters.csv and display it as-is so the wide format is visible.\nReshape the table into long format so that each row represents one creature in one month. Use a markdown cell to explain what changed between the wide and long versions and what each parameter in your reshape call controls. Show the first several rows of the result to confirm the shape is correct.\nWith the long-format DataFrame, answer the following:\nSingle-month peak. Which creature had the highest encounter count in any single month? Show that row from the long-format table.\nMarch breakdown. Show all encounter counts for March, sorted from most to least active.\nOne creature across the season. Show the encounter counts for Goblin across all six months in the order they appear in the reshaped table.\n\n\nPart 6: Save\nSave the merged DataFrame from Part 3 to a file called encounters_merged.csv. Do not write the row index to the file.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 13 (Starts 6 APR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-13/index.html#technical-requirements",
+    "href": "assignments/week-13/index.html#technical-requirements",
+    "title": "Week 13 Assignment",
+    "section": "Technical Requirements",
+    "text": "Technical Requirements\nYour notebook must demonstrate the complete workflow from raw files to finished analysis. It must run successfully using Restart Kernel and Run All.\nAll combining, joining, and reshaping must use the Chapter 8 tools: pd.concat() for stacking the two logs, pd.merge() for the bestiary join, and pd.melt() for reshaping the monthly table. All cleaning must use the Chapter 7 methods you have already practiced. All analysis must use DataFrame operations – no raw loops for filtering or computing statistics.\nMarkdown cells are required at every decision point. Loading data and running code without explaining what you found and why you made the choices you made is not sufficient.\nStructure your notebook so each part is clearly labeled. Make it easy to verify that every required output is present.",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 13 (Starts 6 APR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-13/index.html#video-reflection",
+    "href": "assignments/week-13/index.html#video-reflection",
+    "title": "Week 13 Assignment",
+    "section": "Video Reflection",
+    "text": "Video Reflection\nRecord a short video demonstrating your understanding of this assignment.\nPart 1: Walk through two decisions\nAddress both of the following in your video:\nThe merge decision. Explain which join type you chose for the bestiary merge and why. Walk through what would have been different if you had chosen a different join type. Be specific about which rows would appear or disappear and why that matters for the analysis.\nThe melt operation. Walk through what the monthly encounters table looked like before and after the reshape. Explain what each parameter controlled and why long format is easier to work with for the analysis questions in Part 5.\nPart 2: Reflect on your learning\nChoose ONE of the following:\n\nChallenge or error: Describe a problem you ran into while completing this assignment, how you diagnosed it, and how you resolved it\nKey takeaway: Explain one concept from Chapter 8 that this assignment made clearer and why it matters for working with real data\n\nVideo submission requirements:\n\nClear video and audio quality\nIntroduce yourself at the beginning (name)\nName your video file: lastname_Week13Reflection\nUpload your video to Kaltura\nDo not embed the video in the Dropbox submission\nPaste the share link into the D2L assignment text submission box\nMake sure the link text includes lastname_Week13Reflection in the link name",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 13 (Starts 6 APR)"
+    ]
+  },
+  {
+    "objectID": "assignments/week-13/index.html#d2l-submission-checklist",
+    "href": "assignments/week-13/index.html#d2l-submission-checklist",
+    "title": "Week 13 Assignment",
+    "section": "D2L Submission Checklist",
+    "text": "D2L Submission Checklist\nSubmit the following items to the Week 13 Dropbox in D2L:\n\nNotebook file\n\nlastname_week13_assignment.ipynb\n\n\n\nVideo submission (link only)\n\nVideo filename: lastname_Week13Reflection\nSubmit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)\n\nBefore you submit:\n\nRun “Restart Kernel and Run All” to confirm your notebook executes without errors\nVerify all required outputs are visible in the notebook\nCheck that your video link works and includes the correct filename",
+    "crumbs": [
+      "Home",
+      "Weekly Assignments",
+      "Week 13 (Starts 6 APR)"
+    ]
   },
   {
     "objectID": "course/schedule.html",
@@ -2839,5 +2981,53 @@
     "title": "Week 11 Guide",
     "section": "Knowledge goals for Week 11",
     "text": "Knowledge goals for Week 11\nBy the end of Week 11, you should be able to:\n\nload a CSV file and assess its quality using .info() and isnull().sum() before making any changes\nidentify columns with missing values, unexpected types, and inconsistent string values, and apply the correct Chapter 7 tool to each\nexplain why cleaning order matters and how an unresolved problem in one column can affect decisions in another\napply the complete Chapter 7 cleaning workflow to a real dataset and verify the result before moving to analysis\nuse Chapters 5–7 DataFrame operations to answer analytical questions on a clean dataset"
+  },
+  {
+    "objectID": "weekly-overview/week-13/index.html",
+    "href": "weekly-overview/week-13/index.html",
+    "title": "Week 13 Guide",
+    "section": "",
+    "text": "Week 13 is a cumulative application of everything from Chapters 1–8. You will work with encounter data from a regional tabletop RPG league, applying the combining, joining, and reshaping operations from Chapter 8 alongside the cleaning and analysis skills from prior weeks.\nAssignment:",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 13 (Starts 6 APR)"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-13/index.html#concepts-reinforced-this-week",
+    "href": "weekly-overview/week-13/index.html#concepts-reinforced-this-week",
+    "title": "Week 13 Guide",
+    "section": "Concepts reinforced this week",
+    "text": "Concepts reinforced this week\nThis week applies the Chapter 8 operations from the Week 12 demo: combining DataFrames from multiple sources, joining tables on a shared key, and reshaping between wide and long format. Chapter 7 cleaning tools are part of the workflow where the data requires them.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 13 (Starts 6 APR)"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-13/index.html#week-13-tasks",
+    "href": "weekly-overview/week-13/index.html#week-13-tasks",
+    "title": "Week 13 Guide",
+    "section": "Week 13 tasks",
+    "text": "Week 13 tasks\n\nComplete the Week 13 Assignment (RPG league season recap).\nRecord and submit your video reflection.",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 13 (Starts 6 APR)"
+    ]
+  },
+  {
+    "objectID": "weekly-overview/week-13/index.html#knowledge-goals-for-week-13",
+    "href": "weekly-overview/week-13/index.html#knowledge-goals-for-week-13",
+    "title": "Week 13 Guide",
+    "section": "Knowledge goals for Week 13",
+    "text": "Knowledge goals for Week 13\nBy the end of Week 13, you should be able to:\n\ncombine two DataFrames with pd.concat() and explain what happens to the index when two sources are stacked\nchoose a join type for pd.merge() and justify that choice based on what the analysis requires from unmatched rows\nexplain what happens to rows with no matching key value in each of the four join types\nreshape a wide DataFrame to long format with pd.melt() and explain what changed structurally and why it matters for analysis\nidentify and resolve inconsistencies in a combined dataset using Chapter 7 string and type tools",
+    "crumbs": [
+      "Home",
+      "Weekly Overview",
+      "Week 13 (Starts 6 APR)"
+    ]
   }
 ]

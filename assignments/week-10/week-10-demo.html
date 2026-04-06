@@ -422,6 +422,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Week 12 (Starts 30 MAR)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-13/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 13 (Starts 6 APR)</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -467,6 +473,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../assignments/week-12/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 12 (Starts 30 MAR)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-13/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 13 (Starts 6 APR)</span></a>
   </div>
 </li>
       </ul>
@@ -597,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="loading-the-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="loading-the-dataset">Loading the dataset</h3>
 <p>Start by looking at the raw file contents, then load it with pandas and inspect what came through.</p>
-<div id="f7b00fd8" class="cell" data-execution_count="1">
+<div id="74432fa3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,7 +638,7 @@ Silver Wake,cargo,60,7.8,2368,ACT
 </div>
 <p><strong>Understanding the output:</strong></p>
 <p>Reading the file as plain text shows exactly what is stored on disk. Look at the <code>ship_class</code> column: some entries have extra spaces around them, and the casing varies across rows. Look at the <code>max_speed</code> column: two rows have <code>UNKNOWN</code> where a number should be. Look at <code>crew_size</code> and <code>launch_year</code>: two rows have blank fields. These are the problems the demo addresses. Seeing them in the raw file first makes it clear that these are data quality issues, not something pandas introduced during loading.</p>
-<div id="8693e5a6" class="cell" data-execution_count="2">
+<div id="cf5b4fe1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the file and inspect what pandas produced</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry_v2.csv'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fleet.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -655,7 +667,7 @@ memory usage: 852.0+ bytes</code></pre>
 <section id="identifying-missing-values" class="level3">
 <h3 class="anchored" data-anchor-id="identifying-missing-values">Identifying missing values</h3>
 <p><code>isnull()</code> checks every cell in the DataFrame and returns <code>True</code> where a value is missing and <code>False</code> where it is not. Calling <code>.sum()</code> on that result counts the <code>True</code> values per column.</p>
-<div id="04913906" class="cell" data-execution_count="3">
+<div id="cd934d23" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet.isnull().<span class="bu">sum</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ship_name      0
@@ -673,7 +685,7 @@ dtype: int64</code></pre>
 <section id="dropping-rows-with-missing-data" class="level3">
 <h3 class="anchored" data-anchor-id="dropping-rows-with-missing-data">Dropping rows with missing data</h3>
 <p><code>dropna()</code> removes rows that contain missing values. By default it removes any row where at least one column is <code>NaN</code>.</p>
-<div id="8bfc31b2" class="cell" data-execution_count="4">
+<div id="1eae9b96" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Original row count: </span><span class="sc">{</span><span class="bu">len</span>(fleet)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After dropna(): </span><span class="sc">{</span><span class="bu">len</span>(fleet.dropna())<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -685,7 +697,7 @@ After dropna(): 13</code></pre>
 <p>The default behavior is aggressive. A row missing only <code>launch_year</code> gets dropped even if every other column is complete. For this dataset, that means losing a row where only one field is blank. Whether that is acceptable depends on what your analysis needs.</p>
 <p><code>dropna()</code> returns a new DataFrame. The original <code>fleet</code> is unchanged unless you assign the result back.</p>
 <p><code>dropna(subset=...)</code> limits which columns trigger the drop. A row is only removed if it has a missing value in one of the specified columns.</p>
-<div id="d2d34c2d" class="cell" data-execution_count="5">
+<div id="767c709f" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only drop rows missing crew_size -- keep rows missing only launch_year</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fleet_crew_required <span class="op">=</span> fleet.dropna(subset<span class="op">=</span>[<span class="st">'crew_size'</span>])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"After dropna(subset=['crew_size']): </span><span class="sc">{</span><span class="bu">len</span>(fleet_crew_required)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -699,7 +711,7 @@ After dropna(): 13</code></pre>
 <section id="filling-missing-values" class="level3">
 <h3 class="anchored" data-anchor-id="filling-missing-values">Filling missing values</h3>
 <p>Instead of removing rows with missing data, you can fill them. <code>fillna()</code> replaces <code>NaN</code> with a value you provide.</p>
-<div id="9483d934" class="cell" data-execution_count="6">
+<div id="2fed9338" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing launch_year with a constant</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a preview -- fleet is not modified</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'launch_year'</span>].fillna(<span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -724,7 +736,7 @@ Name: launch_year, dtype: float64</code></pre>
 </div>
 <p><strong>Understanding the output:</strong></p>
 <p>The blank entry is now <code>0.0</code>. This works, but the result is misleading: a launch year of 0 does not mean anything in this dataset. Filling with a constant makes sense when there is a meaningful default (for example, filling a missing sales quantity with 0 if no sale occurred). For a numeric measurement like a year or a speed, filling with the column mean or median is usually more appropriate.</p>
-<div id="7c2e6e7e" class="cell" data-execution_count="7">
+<div id="31e1e71b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing launch_year with the column mean</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>year_mean <span class="op">=</span> fleet[<span class="st">'launch_year'</span>].mean()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean launch year: </span><span class="sc">{</span>year_mean<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
@@ -757,7 +769,7 @@ Name: launch_year, dtype: float64</code></pre>
 <section id="converting-columns-to-numeric-types" class="level3">
 <h3 class="anchored" data-anchor-id="converting-columns-to-numeric-types">Converting columns to numeric types</h3>
 <p><code>max_speed</code> is still a text column because the <code>UNKNOWN</code> strings blocked type inference during loading. Replacing those strings with <code>NaN</code> and converting the column to a numeric type requires one step: <code>pd.to_numeric()</code>.</p>
-<div id="2d61e33a" class="cell" data-execution_count="8">
+<div id="34057a46" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"max_speed type before: </span><span class="sc">{</span>fleet[<span class="st">'max_speed'</span>]<span class="sc">.</span>dtype<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># errors='coerce' replaces any value that cannot be converted with NaN</span></span>
@@ -791,7 +803,7 @@ max_speed type after: float64
 <p>The default behavior (<code>errors='raise'</code>) raises an exception when it encounters a non-numeric value. That would fail here because <code>UNKNOWN</code> is not a number.</p>
 <p><code>errors='coerce'</code> replaces any non-convertible value with <code>NaN</code> instead of raising an error. The string <code>UNKNOWN</code> becomes <code>NaN</code>, and the column type becomes <code>float64</code>. The values that were already numeric are unchanged.</p>
 <p>Now that the column is numeric, you can fill the missing values using the same <code>fillna()</code> approach from above.</p>
-<div id="c607bcda" class="cell" data-execution_count="9">
+<div id="f3b9ad06" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>speed_mean <span class="op">=</span> fleet[<span class="st">'max_speed'</span>].mean()</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'max_speed'</span>] <span class="op">=</span> fleet[<span class="st">'max_speed'</span>].fillna(speed_mean)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[[<span class="st">'ship_name'</span>, <span class="st">'max_speed'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -822,7 +834,7 @@ max_speed type after: float64
 <section id="part-2-data-transformation" class="level2">
 <h2 class="anchored" data-anchor-id="part-2-data-transformation">Part 2: Data Transformation</h2>
 <p>This part starts with a fresh load of the file. The missing data work in Part 1 modified <code>fleet</code> in place across several cells. Starting fresh here makes the state of the DataFrame explicit.</p>
-<div id="47a88092" class="cell" data-execution_count="10">
+<div id="195946f3" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fresh load for Part 2 -- convert max_speed and fill missing values</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> pd.read_csv(<span class="st">'fleet_registry_v2.csv'</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'max_speed'</span>] <span class="op">=</span> pd.to_numeric(fleet[<span class="st">'max_speed'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
@@ -854,7 +866,7 @@ max_speed type after: float64
 <section id="removing-duplicate-rows" class="level3">
 <h3 class="anchored" data-anchor-id="removing-duplicate-rows">Removing duplicate rows</h3>
 <p>The dataset contains two ships that appear twice: exact copies of the same row. <code>drop_duplicates()</code> removes them.</p>
-<div id="0ddc9621" class="cell" data-execution_count="11">
+<div id="7d2f678a" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rows before: </span><span class="sc">{</span><span class="bu">len</span>(fleet)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> fleet.drop_duplicates()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Rows after: </span><span class="sc">{</span><span class="bu">len</span>(fleet)<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -885,7 +897,7 @@ Rows after: 13
 <section id="recoding-values-with-map" class="level3">
 <h3 class="anchored" data-anchor-id="recoding-values-with-map">Recoding values with map()</h3>
 <p>The <code>status</code> column contains short codes: <code>ACT</code>, <code>RET</code>, and <code>MNT</code>. These are efficient to store but not readable in a report or visualization. <code>map()</code> replaces values using a dictionary.</p>
-<div id="1ce67361" class="cell" data-execution_count="12">
+<div id="b0192d12" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>status_labels <span class="op">=</span> {</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ACT'</span>: <span class="st">'Active'</span>,</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'RET'</span>: <span class="st">'Retired'</span>,</span>
@@ -918,7 +930,7 @@ Rows after: 13
 <section id="renaming-columns" class="level3">
 <h3 class="anchored" data-anchor-id="renaming-columns">Renaming columns</h3>
 <p><code>rename()</code> changes column names without modifying the data.</p>
-<div id="20831a1d" class="cell" data-execution_count="13">
+<div id="6fb74fe3" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fleet <span class="op">=</span> fleet.rename(columns<span class="op">=</span>{</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'status'</span>: <span class="st">'fleet_status'</span>,</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'max_speed'</span>: <span class="st">'top_speed'</span></span>
@@ -937,7 +949,7 @@ Rows after: 13
 <section id="detecting-and-handling-outliers" class="level3">
 <h3 class="anchored" data-anchor-id="detecting-and-handling-outliers">Detecting and handling outliers</h3>
 <p>Before binning <code>crew_size</code>, check whether the values are reasonable.</p>
-<div id="35245ae5" class="cell" data-execution_count="14">
+<div id="13a70628" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'crew_size'</span>].describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>count      13.000000
@@ -954,7 +966,7 @@ Name: crew_size, dtype: float64</code></pre>
 <p><strong>Understanding the output:</strong></p>
 <p>The maximum value is <code>9999.0</code>. Every other crew size is between 12 and 200. A crew of 9999 on a small fleet registry dataset is almost certainly a data entry error rather than a real value. Before binning, that outlier needs to be addressed.</p>
 <p>Boolean indexing identifies it:</p>
-<div id="a52f71ab" class="cell" data-execution_count="15">
+<div id="7be55b69" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find rows where crew_size is unusually large</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[fleet[<span class="st">'crew_size'</span>] <span class="op">&gt;</span> <span class="dv">1000</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -963,7 +975,7 @@ Name: crew_size, dtype: float64</code></pre>
 </div>
 </div>
 <p>Once identified, you can choose to remove the row or replace the value with <code>NaN</code>. Here we replace it with <code>NaN</code> and then fill with the median. Using the median rather than the mean matters here: the mean would be distorted by that 9999 value, while the median is resistant to it.</p>
-<div id="62a77da9" class="cell" data-execution_count="16">
+<div id="de321906" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the outlier with NaN, then fill with median</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>fleet.loc[fleet[<span class="st">'crew_size'</span>] <span class="op">&gt;</span> <span class="dv">1000</span>, <span class="st">'crew_size'</span>] <span class="op">=</span> np.nan</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -990,7 +1002,7 @@ Name: crew_size, dtype: float64</code></pre>
 <section id="binning-continuous-values-with-pd.cut" class="level3">
 <h3 class="anchored" data-anchor-id="binning-continuous-values-with-pd.cut">Binning continuous values with pd.cut()</h3>
 <p><code>crew_size</code> is a continuous numeric column. For some analyses, it is more useful to group ships into size categories than to work with the raw numbers. <code>pd.cut()</code> creates those groups.</p>
-<div id="55544e38" class="cell" data-execution_count="17">
+<div id="68d8d99e" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>size_bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">300</span>]</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>size_labels <span class="op">=</span> [<span class="st">'Small'</span>, <span class="st">'Medium'</span>, <span class="st">'Large'</span>]</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1018,7 +1030,7 @@ Name: crew_size, dtype: float64</code></pre>
 <p><code>bins</code> defines the edges of each interval. <code>[0, 30, 100, 300]</code> creates three intervals: 0 to 30, 30 to 100, and 100 to 300. By default, the left edge is excluded and the right edge is included, so a crew of 30 falls in the first bin (Small) and a crew of 31 falls in the second (Medium).</p>
 <p><code>labels</code> assigns a name to each interval. There must be one fewer label than there are bin edges because labels name the spaces between edges, not the edges themselves.</p>
 <p>The result is a new column where each ship is assigned to a size category. Categorical grouping like this is useful when you want summaries or charts that treat values as groups rather than as individual numbers.</p>
-<div id="0ab10d9a" class="cell" data-execution_count="18">
+<div id="e66fce66" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'crew_category'</span>].value_counts())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>crew_category
@@ -1038,7 +1050,7 @@ Name: count, dtype: int64</code></pre>
 <p>pandas provides a <strong><code>str</code> accessor</strong> for applying string methods to an entire Series column at once. Instead of writing a loop, you call <code>fleet['ship_class'].str.method()</code> and the method is applied to every value in the column.</p>
 <section id="cleaning-whitespace" class="level3">
 <h3 class="anchored" data-anchor-id="cleaning-whitespace">Cleaning whitespace</h3>
-<div id="182fdf91" class="cell" data-execution_count="19">
+<div id="703b9ec5" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Before strip:"</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'ship_class'</span>].unique())</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1063,7 +1075,7 @@ After strip:
 <section id="standardizing-case" class="level3">
 <h3 class="anchored" data-anchor-id="standardizing-case">Standardizing case</h3>
 <p>After stripping whitespace, the column still has <code>cargo</code>, <code>CARGO</code>, <code>Cargo</code>, <code>Science</code>, <code>science</code>, and similar variations. <code>str.lower()</code> converts every value to lowercase, making comparisons consistent.</p>
-<div id="27424708" class="cell" data-execution_count="20">
+<div id="2cba9d51" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>fleet[<span class="st">'ship_class'</span>] <span class="op">=</span> fleet[<span class="st">'ship_class'</span>].<span class="bu">str</span>.lower()</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fleet[<span class="st">'ship_class'</span>].value_counts())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1084,7 +1096,7 @@ Name: count, dtype: int64</code></pre>
 <section id="filtering-with-str.contains" class="level3">
 <h3 class="anchored" data-anchor-id="filtering-with-str.contains">Filtering with str.contains()</h3>
 <p><code>str.contains()</code> checks whether each value in a column contains a given substring and returns a boolean Series. Combined with boolean indexing, it filters rows by a text pattern.</p>
-<div id="ee2c1f70" class="cell" data-execution_count="21">
+<div id="1858ac09" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all ships whose class contains 'fighter'</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>fighters <span class="op">=</span> fleet[fleet[<span class="st">'ship_class'</span>].<span class="bu">str</span>.contains(<span class="st">'fighter'</span>)]</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fighters[[<span class="st">'ship_name'</span>, <span class="st">'ship_class'</span>, <span class="st">'crew_category'</span>, <span class="st">'fleet_status'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

@@ -1,0 +1,11 @@
+creature_id,creature_name,Jan,Feb,Mar,Apr,May,Jun
+CRE-001,Goblin,8,5,9,7,6,8
+CRE-002,Skeleton,3,4,2,5,3,4
+CRE-003,Wolf,4,3,5,2,4,3
+CRE-004,Orc,5,6,7,5,4,6
+CRE-005,Zombie,2,3,2,4,3,2
+CRE-006,Giant Spider,3,2,4,3,5,3
+CRE-007,Troll,1,2,1,2,1,3
+CRE-008,Wyvern,1,1,2,1,2,1
+CRE-009,Vampire,2,1,2,2,1,2
+CRE-010,Mind Flayer,1,0,1,1,0,1
