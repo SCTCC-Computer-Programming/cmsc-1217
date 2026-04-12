@@ -1,0 +1,139 @@
+---
+title: "Week 15 Assignment"
+subtitle: "Waystation Veridian Trading Post — Season Analysis"
+format:
+  html:
+    toc: true
+---
+
+**Submission location:** All items are submitted in D2L (Week 15 Dropbox).
+
+**Reading:** Chapters 1–9 (cumulative).
+
+**Dataset:**
+
+- <a href="trading_post_log.csv" download="trading_post_log.csv"> Download Trading Post Log (CSV) </a>
+
+## The Situation
+
+Waystation Veridian sits at the intersection of three shipping lanes in the outer rim. Its trading post serves registered fleet crews on scheduled supply runs and independent crews passing through on contract work. Over the past quarter, the post's three staff members (Vex, Orin, and Sable) have logged every transaction: the item sold, how many units, the price, the crew type, and how payment was made.
+
+The waystation commander has asked for a visual summary of the quarter's activity before the next supply shipment arrives. Your job is to load the transaction log, prepare it for analysis, answer a set of operational questions, produce the visualizations the commander needs, and deliver a saved summary figure.
+
+## What You Need to Deliver
+
+### Part 1: Load and Prepare
+
+Load the transaction log and inspect what you find. Examine the column types and identify anything that will need to be resolved before calculations can run. For any column that requires conversion, explain in a markdown cell why it loaded the way it did and what you did to fix it. Then add a column that represents the total value of each transaction.
+
+Show the shape and column types of the cleaned DataFrame in a markdown cell to confirm it is ready for analysis before moving on to Part 2.
+
+### Part 2: Exploratory Analysis
+
+Before building any visualizations, answer the following questions using DataFrame operations. Each answer should appear as output in the notebook.
+
+- How many transactions fall into each item category?
+- Which staff member processed the most transactions?
+- What is the total transaction value by category?
+- What is the average unit price broken down by crew type?
+
+These results should inform the choices you make in Part 3.
+
+### Part 3: Visualizations
+
+Produce the following four visualizations. For each one, include a markdown cell before the code explaining what analytical question the visualization is meant to answer, and a markdown cell after describing what the plot shows and what conclusion you draw from it.
+
+Each visualization must have a descriptive title and labeled axes.
+
+**Visualization 1: Transaction counts by category**
+
+Show how many transactions fall into each item category.
+
+**Visualization 2: Unit price distribution**
+
+Show how unit prices are distributed across all transactions. Choose a bin count that reveals the shape of the data without obscuring it.
+
+**Visualization 3: Unit price vs. quantity ordered**
+
+Examine whether there is a relationship between how much an item costs and how many units a crew orders in a single transaction. Color-code the points by crew type.
+
+**Visualization 4: Unit price by item category**
+
+Compare how unit prices are distributed within each item category, including the spread and any outliers. Use a plot type that shows the full distribution rather than a single summary value.
+
+### Part 4: Save a Summary Figure
+
+Build a single figure with two panels, each containing one of your Part 3 visualizations. Add a title to the figure as a whole. Save it to a file named `veridian_summary.png` at 150 dots per inch.
+
+Use a markdown cell to confirm the file was saved and explain why the figure must be saved before it is displayed.
+
+## Technical Requirements
+
+Your notebook must demonstrate a complete workflow from raw file to saved figure. It must run successfully using Restart Kernel and Run All.
+
+Load the file using the pandas CSV reading function covered in Chapter 6. Do not manually parse it. All data preparation, analysis, and visualization must use methods covered in Chapters 1–9. If a method was not covered in the course, it is out of scope for this assignment.
+
+**Data preparation:**
+
+Identify and resolve the type issue in Part 1 using the type conversion approach covered in Chapter 7. Add the transaction value column using a column operation covered in Chapter 5.
+
+**Exploratory analysis:**
+
+Use DataFrame operations for all four questions in Part 2. Filtering, aggregation, and sorting should use the pandas tools covered in Chapters 1–9.
+
+**Visualizations:**
+
+All four visualizations must use the Figure and Axes approach covered in the Week 14 demo: create a Figure and Axes with the appropriate function, direct each plot to a named Axes object, and customize titles and labels using Axes methods. The multi-panel figure in Part 4 must be saved before the figure is rendered.
+
+**Notebook organization:**
+
+Structure your notebook so each part is clearly labeled. Use markdown cells to explain analytical decisions, not just actions. Every visualization must be accompanied by the before-and-after markdown explanation described in Part 3.
+
+## Video Reflection
+
+Record a short video demonstrating your understanding of this assignment.
+
+**Part 1: Walk through two visualization decisions**
+
+Choose two of your four visualizations and for each one explain:
+
+- What analytical question the visualization is meant to answer
+- Why that plot type was the right choice for that question
+- What the visualization shows and what conclusion you draw from it
+
+**Part 2: Reflect on your learning**
+
+Choose ONE of the following:
+
+- **Challenge or error:** Describe a problem you encountered while completing this assignment, how you diagnosed it, and how you resolved it
+- **Key takeaway:** Explain one concept from Chapter 9 that this assignment made clearer and why it matters for real data work
+
+**Video submission requirements:**
+
+- Clear video and audio quality
+- Introduce yourself at the beginning (name)
+- Name your video file: `lastname_Week15Reflection`
+- Upload your video to **Kaltura**
+- **Do not** embed the video in the Dropbox submission
+- Paste the **share link** into the D2L assignment text submission box
+- Make sure the link text includes `lastname_Week15Reflection` in the link name
+
+## D2L Submission Checklist
+
+Submit the following items to the **Week 15 Dropbox** in D2L:
+
+### Notebook file
+
+- `lastname_week15_assignment.ipynb`
+
+### Video submission (link only)
+
+- Video filename: `lastname_Week15Reflection`
+- Submit: Paste the share link into the D2L text submission box (do not embed the video in the Dropbox)
+
+**Before you submit:**
+
+- Run Restart Kernel and Run All to confirm your notebook executes without errors from top to bottom
+- Verify all four visualizations and the saved summary figure are present in the notebook
+- Confirm `veridian_summary.png` was created in your working directory
+- Check that your video link works and the filename matches the required format

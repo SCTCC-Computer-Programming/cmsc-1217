@@ -1,0 +1,45 @@
+---
+title: "Week 14 Guide"
+subtitle: "Chapter 9 — Plotting and Visualization"
+format:
+  html:
+    toc: true
+---
+
+Every analysis in this course has produced a DataFrame or a table as its output: a filtered result, a grouped summary, a reshaped dataset. Chapter 9 introduces the tools for converting that tabular output into visual form. The primary library is `matplotlib`, which provides direct control over every element of a figure. pandas and `seaborn` build on top of matplotlib and provide higher-level interfaces for producing common chart types directly from a DataFrame.
+
+Chapter 9 covers the matplotlib Figure and Axes model, bar charts, histograms, scatter plots, and box plots using both pandas and seaborn, and how to save figures to disk. There is no walkthrough video this week. The demo is self-contained: read the setup text before each code block, run the cell, and read the explanation that follows.
+
+**Week 14 Demo:**
+
+- Here is the link to the **[Week 14 Assignment](../../assignments/week-14/index.qmd)**.
+
+## Reading expectations for Week 14
+
+As you read Chapter 9 and work through the demo, check whether you can explain the following in your own words:
+
+1. What is the difference between a **Figure** and an **Axes** in matplotlib, and what does `plt.subplots()` return?
+2. Why is calling methods on an `ax` object preferred over calling top-level `plt` functions when building a multi-panel figure?
+3. Which plot type is appropriate for comparing a single summary value across categories, and which is appropriate for showing the distribution of a continuous variable?
+4. What does the `ax=ax` argument accomplish when passed to a pandas plot method, and why does it matter for layout?
+5. What is the key interface difference between seaborn functions like `sns.boxplot()` and pandas plot methods like `plot.bar()`?
+6. What does the `hue=` parameter add to a seaborn plot?
+7. What is the difference between axes-level and figure-level seaborn functions, and why does the distinction matter for layout integration?
+8. Why must `plt.savefig()` be called before `plt.show()`, and what is the difference between saving as `.png` versus `.svg`?
+
+## Week 14 tasks
+
+1. Read **all of Chapter 9**.
+2. Work through the **[Week 14 demo](../../assignments/week-14/index.qmd)**.
+3. Complete the **Week 14 D2L quiz** (plotting and visualization concepts).
+
+## Knowledge goals for Week 14
+
+By the end of Week 14, you should be able to:
+
+* explain the relationship between matplotlib, pandas plotting, and seaborn as three layers of the Python visualization stack
+* describe the difference between a Figure and an Axes object and explain why `plt.subplots()` is the standard way to create both
+* choose the appropriate plot type for a given analytical question: bar for category comparisons, histogram for distributions, scatter for relationships, box for group distributions
+* create bar, histogram, scatter, and box plots from a DataFrame using pandas plot methods and `sns.boxplot()`, directing output to a specific Axes with `ax=ax`
+* customize a figure using `ax` methods and save it to a file with `plt.savefig()`, specifying resolution and format
+* explain the difference between axes-level and figure-level seaborn functions and when each is appropriate

@@ -1,0 +1,51 @@
+date,item_name,category,quantity,unit_price,crew_type,payment_method,staff
+2387-03-02,Hull Patch Kit,Equipment,4,$34.99,registered,credits,Vex
+2387-03-02,Protein Bar Case,Supplies,1,$6.99,registered,voucher,Sable
+2387-03-04,Ration Pack,Supplies,3,$8.99,independent,credits,Orin
+2387-03-04,Plasma Cutter,Equipment,1,$59.99,registered,voucher,Sable
+2387-03-05,Protein Bar Case,Supplies,1,$6.99,registered,credits,Orin
+2387-03-07,Star Map Bundle,Navigation,1,$49.99,independent,barter,Sable
+2387-03-09,Stellar Compass,Navigation,2,$34.99,independent,credits,Vex
+2387-03-10,Ration Pack,Supplies,4,$8.99,independent,credits,Sable
+2387-03-13,Med Kit,Supplies,2,$19.99,registered,barter,Orin
+2387-03-15,Fuel Cell,Supplies,4,$14.99,registered,barter,Vex
+2387-03-16,Navigation Chart,Navigation,4,$24.99,registered,credits,Vex
+2387-03-18,Stellar Compass,Navigation,3,$34.99,registered,credits,Orin
+2387-03-19,Cargo Net,Supplies,1,$9.99,registered,barter,Vex
+2387-03-20,Protein Bar Case,Supplies,2,$6.99,independent,barter,Orin
+2387-03-22,Navigation Chart,Navigation,2,$24.99,registered,credits,Vex
+2387-03-23,Fuel Cell,Supplies,4,$14.99,registered,credits,Orin
+2387-03-23,Stellar Compass,Navigation,2,$34.99,independent,voucher,Orin
+2387-03-24,Distress Beacon,Equipment,1,$44.99,independent,voucher,Sable
+2387-03-25,Shield Module,Equipment,1,$89.99,independent,credits,Vex
+2387-03-29,Targeting Scope,Equipment,1,$74.99,registered,credits,Sable
+2387-03-31,Star Map Bundle,Navigation,4,$49.99,registered,voucher,Sable
+2387-04-01,Hull Patch Kit,Equipment,1,$34.99,independent,voucher,Vex
+2387-04-02,Ration Pack,Supplies,1,$8.99,independent,credits,Vex
+2387-04-03,Med Kit,Supplies,1,$19.99,independent,credits,Orin
+2387-04-03,Oxygen Canister,Supplies,1,$12.99,registered,voucher,Vex
+2387-04-08,Navigation Chart,Navigation,4,$24.99,registered,credits,Orin
+2387-04-09,Comms Array,Equipment,1,$129.99,registered,credits,Sable
+2387-04-12,Ration Pack,Supplies,1,$8.99,registered,credits,Orin
+2387-04-12,Stellar Compass,Navigation,4,$34.99,independent,credits,Orin
+2387-04-14,Star Map Bundle,Navigation,1,$49.99,registered,voucher,Sable
+2387-04-15,Protein Bar Case,Supplies,1,$6.99,registered,barter,Sable
+2387-04-15,Distress Beacon,Equipment,2,$44.99,registered,credits,Orin
+2387-04-16,Fuel Cell,Supplies,2,$14.99,registered,credits,Orin
+2387-04-18,Protein Bar Case,Supplies,1,$6.99,registered,voucher,Vex
+2387-04-18,Navigation Chart,Navigation,4,$24.99,independent,credits,Orin
+2387-04-18,Shield Module,Equipment,4,$89.99,registered,barter,Orin
+2387-04-18,Navigation Chart,Navigation,2,$24.99,independent,credits,Sable
+2387-04-20,Protein Bar Case,Supplies,1,$6.99,independent,credits,Orin
+2387-04-22,Stellar Compass,Navigation,1,$34.99,registered,credits,Orin
+2387-04-22,Targeting Scope,Equipment,1,$74.99,independent,credits,Vex
+2387-04-22,Oxygen Canister,Supplies,1,$12.99,registered,barter,Orin
+2387-04-25,Navigation Chart,Navigation,1,$24.99,registered,credits,Orin
+2387-04-26,Star Map Bundle,Navigation,1,$49.99,registered,barter,Sable
+2387-04-26,Protein Bar Case,Supplies,2,$6.99,registered,voucher,Vex
+2387-04-27,Warp Coil,Navigation,2,$199.99,independent,barter,Orin
+2387-04-27,Plasma Cutter,Equipment,1,$59.99,registered,credits,Sable
+2387-04-27,Star Map Bundle,Navigation,2,$49.99,independent,voucher,Orin
+2387-04-27,Fuel Cell,Supplies,2,$14.99,registered,credits,Orin
+2387-04-29,Stellar Compass,Navigation,1,$34.99,registered,credits,Orin
+2387-04-29,Navigation Chart,Navigation,2,$24.99,independent,barter,Vex

@@ -1,0 +1,33 @@
+---
+title: "Week 15 Guide"
+subtitle: "Cumulative Application of Chapters 1–9"
+format:
+  html:
+    toc: true
+---
+
+Week 15 is a cumulative application of everything from Chapters 1–9. You will work with a transaction log from a deep space trading post, applying the type conversion and DataFrame preparation skills from prior weeks alongside the visualization tools from Chapter 9. The assignment asks you to build a complete workflow from raw file to saved figure: load and prepare the data, answer a set of operational questions, produce four visualizations, and deliver a multi-panel summary figure to the waystation commander.
+
+**Assignment:**
+
+- Here is the link to the **[Week 15 Assignment](../../assignments/week-15/index.qmd)**.
+
+## Concepts reinforced this week
+
+This week applies the Chapter 9 visualization tools from the Week 14 demo: building bar charts, histograms, scatter plots, and box plots from a DataFrame using the Figure and Axes approach, and saving a figure to disk. Type conversion from Chapter 7 and DataFrame operations from Chapters 5 and 6 are part of the preparation workflow before any visualization can run.
+
+## Week 15 tasks
+
+1. Complete the **Week 15 Assignment** (Waystation Veridian trading post analysis).
+2. Record and submit your video reflection.
+
+## Knowledge goals for Week 15
+
+By the end of Week 15, you should be able to:
+
+* choose the appropriate visualization type for a given analytical question and explain why that type fits the question
+* build bar, histogram, scatter, and box plots from a DataFrame using the Figure and Axes approach, directing each plot to a named Axes object
+* interpret a scatter plot where no clear relationship is visible and explain what that result means analytically
+* customize a figure with a descriptive title, labeled axes, and color-coded groups using Axes methods
+* build a multi-panel figure and save it to a file at a specified resolution before displaying it
+* explain why a figure must be saved before it is displayed and what happens if the order is reversed

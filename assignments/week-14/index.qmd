@@ -1,0 +1,59 @@
+---
+title: "Week 14 Assignments"
+subtitle: "Chapter 9 Reading, Plotting and Visualization Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+---
+
+- Here is the link to the **[Week 14 demo](week-14-demo.html)**.
+- <a href="week-14-demo.ipynb" download="week-14-demo.ipynb"> Download Jupyter Notebook </a>
+- <a href="brewing_log.csv" download="brewing_log.csv"> Download Brewing Log (CSV) </a>
+
+## Part 1: Reading
+
+Read **all of Chapter 9**.
+
+Chapter 9 introduces matplotlib, the foundational plotting library in Python, along with the pandas and seaborn interfaces that build on top of it. The chapter covers how to create and customize figures, how to produce common plot types directly from a DataFrame, and how to use seaborn for statistical visualizations. The demo works through the core operations; read the full chapter for annotations, tick customization, matplotlib styles, and the seaborn figure-level functions that extend beyond what the demo covers.
+
+## Part 2: Work through the Week 14 Demo
+
+There is no walkthrough video this week. The demo is self-contained: read the setup text before each code block, run the cell, then read the explanation that follows. Work through it cell by cell in order, since earlier cells create variables and figures that later cells depend on.
+
+Before running any cells, download `brewing_log.csv` from this page and place it in your `week14` folder alongside the notebook.
+
+The Week 14 demo covers:
+
+1. Loading `brewing_log.csv` with `on_bad_lines="skip"` and examining why two columns load as `object` instead of numeric
+2. Identifying and removing non-numeric rows using `pd.to_numeric(errors="coerce")` and a boolean mask
+3. The matplotlib Figure and Axes model: the Figure as the outermost container and each Axes as an individual plot with its own axes, title, and data
+4. `plt.subplots()`, the `figsize=` argument, and accessing individual panels through `axes[0]` and `axes[1]`
+5. Vertical bar charts with `plot.bar()`, the `ax=ax` pattern for directing output to a specific Axes, and `ax.axvline()` for drawing reference lines
+6. Horizontal bar charts with `plot.barh()` and why sorting before plotting controls the visual ranking
+7. Histograms with `plot.hist()`: the `bins=` parameter, `alpha=` for transparency, and overlapping distributions using a groupby loop
+8. Scatter plots with `plot.scatter()`: the required `x=` and `y=` column arguments, `s=` for point size, and color-coding by group
+9. Box plots with `sns.boxplot()`: the `data=`, `x=`, `y=`, `hue=`, and `palette=` parameters, and the `ax=` parameter for layout integration
+10. Saving figures with `plt.savefig()`: why it must be called before `plt.show()`, `dpi=` for resolution, `bbox_inches="tight"` for trimming whitespace, and how file format is determined by extension
+
+## Part 3: D2L Quiz
+
+Complete the **Week 14 D2L quiz** (plotting and visualization concepts).
+
+The quiz covers:
+
+- **matplotlib fundamentals:** the standard import convention, `%matplotlib inline`, the Figure and Axes model, `plt.subplots()`, `figsize=`, `plt.tight_layout()`, and `plt.show()`
+- **Axes customization:** `ax.set_title()`, `ax.axvline()`, and the difference between `ax.set_title()` and `plt.suptitle()`
+- **Bar plots:** `plot.bar()` for vertical charts, `plot.barh()` for horizontal, and the `ax=ax` pattern
+- **Histograms:** `plot.hist()`, the `bins=` parameter, `alpha=` for transparency, and `edgecolor=`
+- **Scatter plots:** `plot.scatter()`, the required `x=` and `y=` arguments, and the `s=` parameter
+- **seaborn:** `sns.boxplot()` and its `data=`, `x=`, `y=`, `hue=`, `palette=`, and `ax=` parameters; figure-level vs axes-level functions; `plt.style.use()`
+- **Saving figures:** `plt.savefig()`, `dpi=`, `bbox_inches=`, and the difference between raster and vector file formats
+- **Plot type selection:** when to use bar charts, histograms, scatter plots, and box plots
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+* **Week 14 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 9, working through the demo, and demonstrating comprehension through the quiz. The matplotlib Figure and Axes model is the foundation for all visualization work that follows; understanding how pandas and seaborn both direct output to the same Axes object is the key concept this week. There are no coding or file upload submissions this week.
