@@ -428,6 +428,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Week 13 (Starts 6 APR)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-14/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 14 (Starts 13 APR)</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -479,6 +485,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../assignments/week-13/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 13 (Starts 6 APR)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-14/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 14 (Starts 13 APR)</span></a>
   </div>
 </li>
       </ul>
@@ -608,7 +620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>incident_reports_south.csv</code></li>
 <li><code>monthly_sightings.csv</code></li>
 </ul>
-<div id="23497377" class="cell" data-execution_count="1">
+<div id="38ef67ca" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
@@ -622,7 +634,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="load-the-regional-files" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-regional-files">Load the regional files</h3>
-<div id="f2d9a7f9" class="cell" data-execution_count="2">
+<div id="323a8977" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>north <span class="op">=</span> pd.read_csv(<span class="st">"incident_reports_north.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>south <span class="op">=</span> pd.read_csv(<span class="st">"incident_reports_south.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -643,7 +655,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 2                 5             Active  </code></pre>
 </div>
 </div>
-<div id="9f6ac7bd" class="cell" data-execution_count="3">
+<div id="00c4b437" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Southern Bureau:"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(south.shape)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(south.head(<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -667,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="concatenate-with-pd.concat" class="level3">
 <h3 class="anchored" data-anchor-id="concatenate-with-pd.concat">Concatenate with <code>pd.concat()</code></h3>
-<div id="9c5ce901" class="cell" data-execution_count="4">
+<div id="772d5518" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>all_incidents <span class="op">=</span> pd.concat([north, south], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Combined: </span><span class="sc">{</span>all_incidents<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -704,7 +716,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="verify-the-result" class="level3">
 <h3 class="anchored" data-anchor-id="verify-the-result">Verify the result</h3>
-<div id="cd7d7d00" class="cell" data-execution_count="5">
+<div id="1b04b9ea" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(all_incidents.info())</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Missing values:"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(all_incidents.isnull().<span class="bu">sum</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -751,7 +763,7 @@ dtype: int64</code></pre>
 </section>
 <section id="load-the-entity-registry" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-entity-registry">Load the entity registry</h3>
-<div id="b1eee53c" class="cell" data-execution_count="6">
+<div id="eb0be46e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>registry <span class="op">=</span> pd.read_csv(<span class="st">"entity_registry.csv"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(registry)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -773,7 +785,7 @@ dtype: int64</code></pre>
 </section>
 <section id="inner-join-keep-only-matching-rows" class="level3">
 <h3 class="anchored" data-anchor-id="inner-join-keep-only-matching-rows">Inner join: keep only matching rows</h3>
-<div id="b2b2490f" class="cell" data-execution_count="7">
+<div id="11aa5471" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>merged_inner <span class="op">=</span> pd.merge(all_incidents, registry, on<span class="op">=</span><span class="st">"entity_id"</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Incidents: </span><span class="sc">{</span><span class="bu">len</span>(all_incidents)<span class="sc">}</span><span class="ss"> rows"</span>)</span>
@@ -791,7 +803,7 @@ Entities in result: ['Byakhee', 'Cthulhu', 'Dagon', 'Deep One', 'Mi-Go', 'Nyarla
 <p><strong>Understanding the inner join:</strong></p>
 <p>The <code>on="entity_id"</code> parameter tells pandas which column to use as the join key. An inner join keeps only rows where the key value appears in <strong>both</strong> tables. Every incident references an entity, so all 27 incident rows survive. But look at the entity count: only 8 of the 10 entities in the registry appear in the result.</p>
 <p>To confirm which entities were dropped, compare the entity IDs in each table directly.</p>
-<div id="0efb8b1f" class="cell" data-execution_count="8">
+<div id="9f445c81" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>registry_entities <span class="op">=</span> <span class="bu">set</span>(registry[<span class="st">"entity_id"</span>])</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>incident_entities <span class="op">=</span> <span class="bu">set</span>(all_incidents[<span class="st">"entity_id"</span>])</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>missing <span class="op">=</span> registry_entities <span class="op">-</span> incident_entities</span>
@@ -809,7 +821,7 @@ Entities in result: ['Byakhee', 'Cthulhu', 'Dagon', 'Deep One', 'Mi-Go', 'Nyarla
 </section>
 <section id="left-join-keep-all-rows-from-the-left-table" class="level3">
 <h3 class="anchored" data-anchor-id="left-join-keep-all-rows-from-the-left-table">Left join: keep all rows from the left table</h3>
-<div id="ebc6a6c6" class="cell" data-execution_count="9">
+<div id="f2ce921f" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>merged_left <span class="op">=</span> pd.merge(registry, all_incidents, on<span class="op">=</span><span class="st">"entity_id"</span>, how<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Left join result: </span><span class="sc">{</span><span class="bu">len</span>(merged_left)<span class="sc">}</span><span class="ss"> rows"</span>)</span>
@@ -831,7 +843,7 @@ Rows where incident_id is NaN (no incidents):
 </section>
 <section id="right-join-keep-all-rows-from-the-right-table" class="level3">
 <h3 class="anchored" data-anchor-id="right-join-keep-all-rows-from-the-right-table">Right join: keep all rows from the right table</h3>
-<div id="4d38f492" class="cell" data-execution_count="10">
+<div id="704ac7bf" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>merged_right <span class="op">=</span> pd.merge(registry, all_incidents, on<span class="op">=</span><span class="st">"entity_id"</span>, how<span class="op">=</span><span class="st">"right"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Right join result: </span><span class="sc">{</span><span class="bu">len</span>(merged_right)<span class="sc">}</span><span class="ss"> rows"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -844,7 +856,7 @@ Rows where incident_id is NaN (no incidents):
 </section>
 <section id="outer-join-keep-all-rows-from-both-tables" class="level3">
 <h3 class="anchored" data-anchor-id="outer-join-keep-all-rows-from-both-tables">Outer join: keep all rows from both tables</h3>
-<div id="0580d295" class="cell" data-execution_count="11">
+<div id="a72c18de" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>merged_outer <span class="op">=</span> pd.merge(registry, all_incidents, on<span class="op">=</span><span class="st">"entity_id"</span>, how<span class="op">=</span><span class="st">"outer"</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Outer join result: </span><span class="sc">{</span><span class="bu">len</span>(merged_outer)<span class="sc">}</span><span class="ss"> rows"</span>)</span>
@@ -873,7 +885,7 @@ Rows with NaN in incident_id (entities with no incidents):
 <section id="the-scenario-2" class="level3">
 <h3 class="anchored" data-anchor-id="the-scenario-2">The scenario</h3>
 <p>The Bureau also tracks monthly sighting counts for each entity. The data arrived in <strong>wide format</strong>: one row per entity, with each month as its own column.</p>
-<div id="4d3c694e" class="cell" data-execution_count="12">
+<div id="84f7056e" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sightings <span class="op">=</span> pd.read_csv(<span class="st">"monthly_sightings.csv"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sightings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -896,7 +908,7 @@ Rows with NaN in incident_id (entities with no incidents):
 </section>
 <section id="reshape-from-wide-to-long-with-pd.melt" class="level3">
 <h3 class="anchored" data-anchor-id="reshape-from-wide-to-long-with-pd.melt">Reshape from wide to long with <code>pd.melt()</code></h3>
-<div id="4cd29040" class="cell" data-execution_count="13">
+<div id="3050cdb3" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sightings_long <span class="op">=</span> pd.melt(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    sightings,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">"entity_id"</span>, <span class="st">"entity_name"</span>],</span>
@@ -936,7 +948,7 @@ Long format: (60, 4)
 </section>
 <section id="analyze-the-long-format-data" class="level3">
 <h3 class="anchored" data-anchor-id="analyze-the-long-format-data">Analyze the long format data</h3>
-<div id="c95419e3" class="cell" data-execution_count="14">
+<div id="f433c52d" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which entity had the highest sighting count in any single month?</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>top <span class="op">=</span> sightings_long.sort_values(<span class="st">"sighting_count"</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">5</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Top 5 single-month sighting counts:"</span>)</span>
@@ -951,7 +963,7 @@ Long format: (60, 4)
 51  Nyarlathotep   Jun               6</code></pre>
 </div>
 </div>
-<div id="13b014ce" class="cell" data-execution_count="15">
+<div id="d19f59aa" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to a single month</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>may_sightings <span class="op">=</span> sightings_long[sightings_long[<span class="st">"month"</span>] <span class="op">==</span> <span class="st">"May"</span>].sort_values(</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sighting_count"</span>, ascending<span class="op">=</span><span class="va">False</span></span>
