@@ -434,6 +434,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Week 14 (Starts 13 APR)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weekly-overview/week-15/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 15 (Starts 20 APR)</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -491,6 +497,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../assignments/week-14/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 14 (Starts 13 APR)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/week-15/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 15 (Starts 20 APR)</span></a>
   </div>
 </li>
       </ul>
@@ -630,7 +642,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A <strong>Series</strong> is a one-dimensional array with labels. It’s like a NumPy array, but each value has an associated label (index).</p>
 <section id="creating-a-series-from-a-list" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-series-from-a-list">Creating a Series from a list</h3>
-<div id="d9720599" class="cell" data-execution_count="1">
+<div id="f5a13f2a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -655,7 +667,7 @@ dtype: int64</code></pre>
 </section>
 <section id="creating-a-series-with-custom-labels" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-series-with-custom-labels">Creating a Series with custom labels</h3>
-<div id="6dbf9dee" class="cell" data-execution_count="2">
+<div id="cab61f96" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Series with custom index labels</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> pd.Series(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">68</span>, <span class="dv">70</span>, <span class="dv">73</span>],</span>
@@ -675,7 +687,7 @@ dtype: int64</code></pre>
 </section>
 <section id="creating-a-series-from-a-dictionary" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-series-from-a-dictionary">Creating a Series from a dictionary</h3>
-<div id="ddeb257d" class="cell" data-execution_count="3">
+<div id="500d996b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Series from a dictionary</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Keys become the index, values become the data</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> pd.Series({</span>
@@ -699,7 +711,7 @@ dtype: int64</code></pre>
 </section>
 <section id="accessing-values-in-a-series" class="level3">
 <h3 class="anchored" data-anchor-id="accessing-values-in-a-series">Accessing values in a Series</h3>
-<div id="542603cc" class="cell" data-execution_count="4">
+<div id="6e06f085" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access by label</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Wednesday's temperature:"</span>, temperatures[<span class="st">'Wednesday'</span>])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -727,7 +739,7 @@ dtype: int64</code></pre>
 </section>
 <section id="vectorized-operations-on-series" class="level3">
 <h3 class="anchored" data-anchor-id="vectorized-operations-on-series">Vectorized operations on Series</h3>
-<div id="c4e16960" class="cell" data-execution_count="5">
+<div id="cf79a976" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Fahrenheit to Celsius (remember Week 3 vectorization?)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>celsius <span class="op">=</span> (temperatures <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span><span class="op">/</span><span class="dv">9</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Temperatures in Celsius:"</span>)</span>
@@ -760,7 +772,7 @@ dtype: int64</code></pre>
 </section>
 <section id="series-attributes" class="level3">
 <h3 class="anchored" data-anchor-id="series-attributes">Series attributes</h3>
-<div id="28a21aa9" class="cell" data-execution_count="6">
+<div id="e9f6d01e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore Series attributes</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Values (as NumPy array):"</span>, temperatures.values)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index labels:"</span>, temperatures.index)</span>
@@ -788,7 +800,7 @@ Size: 5</code></pre>
 <p>A <strong>DataFrame</strong> is a two-dimensional labeled data structure with columns. Think of it as a table or spreadsheet where: - Each column is a Series - Rows have labels (the index) - Columns have names - Different columns can contain different data types</p>
 <section id="creating-a-dataframe-from-a-dictionary" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-dataframe-from-a-dictionary">Creating a DataFrame from a dictionary</h3>
-<div id="46d83444" class="cell" data-execution_count="7">
+<div id="b6436153" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame from a dictionary of lists</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Each key becomes a column name, each list becomes the column values</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> pd.DataFrame({</span>
@@ -817,7 +829,7 @@ Size: 5</code></pre>
 </section>
 <section id="setting-a-meaningful-index" class="level3">
 <h3 class="anchored" data-anchor-id="setting-a-meaningful-index">Setting a meaningful index</h3>
-<div id="64055271" class="cell" data-execution_count="8">
+<div id="05a90a4e" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the 'student' column as the index</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> grades.set_index(<span class="st">'student'</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -839,7 +851,7 @@ Eve         95     92     94</code></pre>
 </section>
 <section id="creating-a-dataframe-from-a-list-of-dictionaries" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-dataframe-from-a-list-of-dictionaries">Creating a DataFrame from a list of dictionaries</h3>
-<div id="a3793ff1" class="cell" data-execution_count="9">
+<div id="6f54d19a" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame from a list of dictionaries</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Each dictionary becomes a row</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> pd.DataFrame([</span>
@@ -864,7 +876,7 @@ Eve         95     92     94</code></pre>
 </section>
 <section id="dataframe-attributes-and-methods" class="level3">
 <h3 class="anchored" data-anchor-id="dataframe-attributes-and-methods">DataFrame attributes and methods</h3>
-<div id="b0388d30" class="cell" data-execution_count="10">
+<div id="3d69c0d9" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore DataFrame structure</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape (rows, columns):"</span>, grades.shape)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Column names:"</span>, grades.columns.tolist())</span>
@@ -893,7 +905,7 @@ dtype: object</code></pre>
 </section>
 <section id="viewing-dataframe-data" class="level3">
 <h3 class="anchored" data-anchor-id="viewing-dataframe-data">Viewing DataFrame data</h3>
-<div id="298c0976" class="cell" data-execution_count="11">
+<div id="a09ab19b" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View first and last rows</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"First 3 rows:"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades.head(<span class="dv">3</span>))</span>
@@ -944,7 +956,7 @@ None</code></pre>
 <p>DataFrames support multiple ways to select data. Understanding these selection methods is fundamental to working with pandas.</p>
 <section id="selecting-columns" class="level3">
 <h3 class="anchored" data-anchor-id="selecting-columns">Selecting columns</h3>
-<div id="abe79275" class="cell" data-execution_count="12">
+<div id="f90e15b7" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a single column (returns a Series)</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>quiz1_scores <span class="op">=</span> grades[<span class="st">'quiz1'</span>]</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Quiz 1 scores:"</span>)</span>
@@ -988,7 +1000,7 @@ Type: &lt;class 'pandas.core.frame.DataFrame'&gt;</code></pre>
 </section>
 <section id="selecting-rows-with-loc-label-based" class="level3">
 <h3 class="anchored" data-anchor-id="selecting-rows-with-loc-label-based">Selecting rows with loc (label-based)</h3>
-<div id="9d29cd16" class="cell" data-execution_count="13">
+<div id="2ce29c56" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a single row by label (returns a Series)</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>alice_scores <span class="op">=</span> grades.loc[<span class="st">'Alice'</span>]</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Alice's scores:"</span>)</span>
@@ -1032,7 +1044,7 @@ Name: Alice, dtype: int64</code></pre>
 </section>
 <section id="selecting-rows-with-iloc-position-based" class="level3">
 <h3 class="anchored" data-anchor-id="selecting-rows-with-iloc-position-based">Selecting rows with iloc (position-based)</h3>
-<div id="cc38240e" class="cell" data-execution_count="14">
+<div id="dfa34382" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select by position (like NumPy indexing)</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># First student's scores</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>first_student <span class="op">=</span> grades.iloc[<span class="dv">0</span>]</span>
@@ -1082,7 +1094,7 @@ Name: Alice, dtype: int64</code></pre>
 </section>
 <section id="boolean-indexing" class="level3">
 <h3 class="anchored" data-anchor-id="boolean-indexing">Boolean indexing</h3>
-<div id="a2e82993" class="cell" data-execution_count="15">
+<div id="1f937886" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter rows based on a condition (like Week 3 NumPy)</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>high_scorers <span class="op">=</span> grades[grades[<span class="st">'final'</span>] <span class="op">&gt;=</span> <span class="dv">90</span>]</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Students with final scores &gt;= 90:"</span>)</span>
@@ -1114,7 +1126,7 @@ Eve         95     92     94</code></pre>
 <p><strong>Single condition</strong>: <code>grades['final'] &gt;= 90</code> creates a boolean Series (True/False for each student), then <code>grades[...]</code> selects only the True rows.</p>
 <p><strong>Multiple conditions</strong>: Use <code>&amp;</code> for “and”, <code>|</code> for “or”, <code>~</code> for “not”. Each condition must be in parentheses: <code>(condition1) &amp; (condition2)</code>.</p>
 <p><strong>The boolean Series</strong>:</p>
-<div id="928d4cff" class="cell" data-execution_count="16">
+<div id="14699252" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades[<span class="st">'final'</span>] <span class="op">&gt;=</span> <span class="dv">90</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Output:</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># student</span></span>
@@ -1143,7 +1155,7 @@ Name: final, dtype: bool</code></pre>
 <p>This is what makes pandas different from NumPy.</p>
 <section id="arithmetic-with-series" class="level3">
 <h3 class="anchored" data-anchor-id="arithmetic-with-series">Arithmetic with Series</h3>
-<div id="995b0c7b" class="cell" data-execution_count="17">
+<div id="4facf7ea" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create two Series with the same index</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>monday_sales <span class="op">=</span> pd.Series([<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>], index<span class="op">=</span>[<span class="st">'Product A'</span>, <span class="st">'Product B'</span>, <span class="st">'Product C'</span>])</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>tuesday_sales <span class="op">=</span> pd.Series([<span class="dv">120</span>, <span class="dv">140</span>, <span class="dv">210</span>], index<span class="op">=</span>[<span class="st">'Product A'</span>, <span class="st">'Product B'</span>, <span class="st">'Product C'</span>])</span>
@@ -1184,7 +1196,7 @@ dtype: int64</code></pre>
 </section>
 <section id="automatic-alignment-with-mismatched-indices" class="level3">
 <h3 class="anchored" data-anchor-id="automatic-alignment-with-mismatched-indices">Automatic alignment with mismatched indices</h3>
-<div id="7d7a5060" class="cell" data-execution_count="18">
+<div id="b26319bb" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create two Series with different (but overlapping) indices</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>monday_sales <span class="op">=</span> pd.Series([<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>], </span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                         index<span class="op">=</span>[<span class="st">'Product A'</span>, <span class="st">'Product B'</span>, <span class="st">'Product C'</span>])</span>
@@ -1240,7 +1252,7 @@ dtype: float64</code></pre>
 </section>
 <section id="column-operations-in-dataframes" class="level3">
 <h3 class="anchored" data-anchor-id="column-operations-in-dataframes">Column operations in DataFrames</h3>
-<div id="b95ae5ef" class="cell" data-execution_count="19">
+<div id="1ac2cf2b" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate total quiz score for each student</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>grades[<span class="st">'total_quiz'</span>] <span class="op">=</span> grades[<span class="st">'quiz1'</span>] <span class="op">+</span> grades[<span class="st">'quiz2'</span>]</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Grades with total quiz score:"</span>)</span>
@@ -1297,7 +1309,7 @@ Eve         95     92     94         187      93.5            93.8</code></pre>
 <p>pandas provides built-in methods for computing statistics on Series and DataFrames, similar to NumPy but with label preservation.</p>
 <section id="computing-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="computing-statistics">Computing statistics</h3>
-<div id="1c9993ca" class="cell" data-execution_count="20">
+<div id="08f7f3c7" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistics on a single column (returns a number)</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Quiz 1 average:"</span>, grades[<span class="st">'quiz1'</span>].mean())</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Quiz 1 std dev:"</span>, grades[<span class="st">'quiz1'</span>].std())</span>
@@ -1330,7 +1342,7 @@ dtype: float64</code></pre>
 </section>
 <section id="the-describe-method" class="level3">
 <h3 class="anchored" data-anchor-id="the-describe-method">The describe method</h3>
-<div id="53000e42" class="cell" data-execution_count="21">
+<div id="c515a9be" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get a comprehensive statistical summary</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades[[<span class="st">'quiz1'</span>, <span class="st">'quiz2'</span>, <span class="st">'final'</span>]].describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1351,7 +1363,7 @@ max    95.000000  92.000000  94.00000</code></pre>
 </section>
 <section id="computing-along-an-axis" class="level3">
 <h3 class="anchored" data-anchor-id="computing-along-an-axis">Computing along an axis</h3>
-<div id="51574437" class="cell" data-execution_count="22">
+<div id="2b5e057a" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute statistics along different axes</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># axis=0 means "down the rows" (aggregate each column)</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Column means (one value per column):"</span>)</span>
@@ -1385,7 +1397,7 @@ dtype: float64</code></pre>
 </section>
 <section id="sorting" class="level3">
 <h3 class="anchored" data-anchor-id="sorting">Sorting</h3>
-<div id="f5d9988a" class="cell" data-execution_count="23">
+<div id="dcf21eac" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by a column (ascending)</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>sorted_by_final <span class="op">=</span> grades.sort_values(<span class="st">'final'</span>)</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Students sorted by final exam score:"</span>)</span>
