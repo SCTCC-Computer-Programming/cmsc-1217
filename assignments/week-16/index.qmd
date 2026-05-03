@@ -1,0 +1,66 @@
+---
+title: "Week 16 Assignments"
+subtitle: "Chapter 10 Reading, Data Aggregation Demo, and D2L Quiz"
+format:
+  html:
+    toc: true
+---
+
+- Here is the link to the **[Week 16 demo](week-16-demo.html)**.
+- <a href="week-16-demo.ipynb" download="week-16-demo.ipynb"> Download Jupyter Notebook </a>
+- <a href="artemis_base_log.csv" download="artemis_base_log.csv"> Download Artemis Base Log (CSV) </a>
+
+## Part 1: Reading
+
+Read **all of Chapter 10**.
+
+Chapter 10 introduces the pandas tools for computing statistics within groups of rows. The central pattern is called split-apply-combine: a DataFrame is split into groups based on one or more keys, a function is applied to each group, and the results are combined into a single output.
+
+The chapter covers `.groupby()` as the entry point, the aggregation methods and the `.agg()` interface, the general-purpose `.apply()` method, `.transform()` for attaching a group statistic back to every row of the original DataFrame, and `pivot_table` and `crosstab` for summary tables with group keys along both rows and columns. The demo works through the core operations in each of these areas. Read the full chapter for additional detail, including custom aggregation functions, `.filter()` for group-level conditions, grouping by index level with `level=`, quantile analysis with `pd.qcut()`, and the hierarchical column output produced when aggregating multiple columns with a list of functions.
+
+## Part 2: Work through the Week 16 Demo
+
+There is no walkthrough video this week. The demo is self-contained: read the setup text before each code block, run the cell, then read the explanation that follows. Work through it cell by cell in order, since earlier cells create variables and columns that later cells depend on.
+
+Before running any cells, download `artemis_base_log.csv` from this page and place it in your `week16` folder alongside the notebook.
+
+The Week 16 demo covers:
+
+1. Loading `artemis_base_log.csv` and examining the structure of the activity log
+2. Creating a `DataFrameGroupBy` object with `.groupby()` and seeing that no computation happens until an aggregation method is called
+3. Iterating over groups to see the rows contained in each group directly
+4. Counting rows per group with `.size()` and the difference between `.size()` and `.count()`
+5. Computing group means by selecting a column and calling an aggregation method on the GroupBy object
+6. How `groupby` handles missing values in the aggregated column, and the `dropna=False` parameter for missing group keys
+7. Multi-key grouping with a list of column names and the hierarchical index that appears in the result
+8. The `.agg()` method called three ways: with a single function name as a string, with a list of function names, and with a dictionary mapping columns to different functions
+9. The `as_index=False` parameter for returning group keys as columns rather than as the index
+10. The `.apply()` method for returning multiple rows per group using a custom function, including how to select a subset of columns before calling apply
+11. The `.transform()` method for attaching a group statistic back to every row of the original DataFrame
+12. `pivot_table` with the `index`, `columns`, `values`, and `aggfunc` arguments, plus `fill_value` and `margins=True` for totals
+13. Changing the aggregation function in a pivot table from total to mean
+14. Cross-tabulation with `pd.crosstab` as a frequency-table shortcut for `pivot_table`
+
+## Part 3: D2L Quiz
+
+Complete the **Week 16 D2L quiz** (data aggregation and group operations).
+
+The quiz covers:
+
+- **Split-apply-combine:** the three-step pattern, what `.groupby()` returns, and the valid forms a grouping key can take
+- **Grouping mechanics:** single-key and multi-key grouping, iterating over groups, `.size()` versus `.count()`, and the hierarchical index produced by multi-key groupings
+- **Missing values:** default exclusion of rows with `NaN` in the grouping key, and the `dropna=False` parameter for keeping them as their own group
+- **Aggregation methods:** the optimized aggregation functions (`mean`, `sum`, `count`, `min`, `max`, `quantile`, `first`, and so on), and the `.agg()` method called with a string, a list of functions, a list of `(name, function)` tuples, or a dictionary mapping columns to functions
+- **Output shape:** hierarchical column labels when multiple value columns are aggregated with a list of functions, and `as_index=False` for flat output
+- **`.apply()`:** what apply does with the function you pass, how apply differs from agg in output shape, and the `group_keys=False` parameter
+- **Quantile bucket analysis:** using `pd.cut()` or `pd.qcut()` to produce a Categorical and passing it to `groupby()` as the grouping key
+- **`.transform()`:** the three constraints on transform functions, the shape difference between transform and aggregation, and the "unwrapped" pattern of doing arithmetic between transform outputs
+- **Pivot tables and crosstab:** the `values`, `index`, `columns`, `aggfunc`, `fill_value`, and `margins` arguments of `pivot_table`, the default aggregation function, and how `pd.crosstab` specializes `pivot_table` for frequency counts
+
+## D2L submission checklist
+
+Complete the following in D2L:
+
+* **Week 16 D2L quiz** (no file uploads required this week)
+
+**Note:** This week focuses on reading Chapter 10, working through the demo, and demonstrating comprehension through the quiz. Split-apply-combine is the pattern behind most summary reports and pivot tables produced with pandas. Understanding how the GroupBy object works, when to use `.agg()` versus `.apply()` versus `.transform()`, and how `pivot_table` relates to a groupby plus a reshape is the foundation for the application work that follows. There are no coding or file upload submissions this week.

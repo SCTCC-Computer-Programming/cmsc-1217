@@ -1,0 +1,44 @@
+---
+title: "Week 16 Guide"
+subtitle: "Chapter 10 — Data Aggregation and Group Operations"
+format:
+  html:
+    toc: true
+---
+
+Every analysis you have done in this course has worked on DataFrames one value, one row, or one whole column at a time. You have filtered rows with boolean indexing, computed statistics across entire columns with methods like `.mean()` and `.sum()`, merged tables on shared keys, and built visualizations from the results. Earlier assignments have also asked grouping questions: how many transactions per customer type, how many encounters per outcome, the total transaction value by category. Up to this point you have answered those questions with `value_counts()`, boolean indexing, and manual filter-and-aggregate patterns. Chapter 10 introduces the tool designed specifically for that work: `groupby()`, together with the split-apply-combine pattern it implements. Looking forward to the discussion on the concepts this week!
+
+In recognition of the recent Artemis II mission, which on April 6, 2026 carried astronauts Reid Wiseman, Victor Glover, Christina Koch, and Jeremy Hansen 252,756 miles from Earth, the farthest distance human beings have ever traveled and a new record beyond the one Apollo 13 set in 1970, we will work through Chapter 10 using an activity log from a fictional lunar research outpost called Artemis Base Gamma. Each row of the log is one recorded task on the base: who did it, in which module, what kind of activity, and how much time, power, and oxygen it consumed.
+
+**Week 16 Demo:**
+
+- Here is the link to the **[Week 16 Assignment](../../assignments/week-16/index.qmd)**.
+
+## Reading expectations for Week 16
+
+As you read Chapter 10 and work through the demo, check whether you can explain the following in your own words:
+
+1. What is the split-apply-combine pattern, and what role does `.groupby()` play in each of the three steps?
+2. What does `df.groupby("key")` actually return, and why does no computation happen until you call an aggregation method?
+3. What is the difference between `.size()` and `.count()` on a GroupBy object?
+4. What are the three ways `.agg()` can be called, and what does each produce?
+5. What is the key difference between `.agg()`, `.apply()`, and `.transform()` in terms of the shape of their output?
+6. How does `pivot_table` relate to `groupby` plus a reshape, and what do `fill_value` and `margins=True` control?
+7. What does `pd.crosstab` do that `pivot_table` also does, and why is there a dedicated function for it?
+
+## Week 16 tasks
+
+1. Read **all of Chapter 10**.
+2. Work through the Week 16 Demo on the Assignments Page: **[Week 16 Assignments](../../assignments/week-16/index.qmd)**.
+3. Complete the **Week 16 D2L quiz** (data aggregation and group operations concepts).
+
+## Knowledge goals for Week 16
+
+By the end of Week 16, you should be able to:
+
+* explain split-apply-combine and identify what `.groupby()` does at each of the three steps
+* create a GroupBy object and describe why no computation runs until an aggregation method is called
+* compute group summaries using `.agg()` with a string, a list of functions, and a dictionary, and describe the shape of the output each produces
+* distinguish between `.apply()`, `.agg()`, and `.transform()` based on output shape and use case
+* build two-dimensional summary tables with `pivot_table`, including the `fill_value` and `margins=True` arguments
+* produce frequency tables with `pd.crosstab` and explain its relationship to `pivot_table`

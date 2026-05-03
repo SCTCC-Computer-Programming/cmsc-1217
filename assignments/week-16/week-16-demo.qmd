@@ -1,0 +1,462 @@
+# Week 16 Demo: Data Aggregation and Group Operations
+
+## How to Work Through This Demo
+
+Before every code block, read the setup text that explains what the code is about to do. After running the cell, read the explanation that follows to understand what the output shows. Run cells in order from top to bottom. Earlier cells create variables that later cells depend on.
+
+If any cell produces an error, check that you ran all the cells above it first. Use Restart Kernel and Run All to reset if needed.
+
+---
+
+## Introduction
+
+Every analysis in this course so far has worked on DataFrames one row at a time. You filtered rows with boolean indexing, computed statistics on whole columns, and built visualizations from the result. What you have not yet done is compute statistics *within groups*. If you wanted the average power usage per module, or the total hours each crew member logged, the DataFrame operations you know would either require writing a loop or filtering the table once per group and combining the results by hand.
+
+Chapter 10 introduces the pandas tool designed for exactly that problem: `groupby()`. The pattern is called *split-apply-combine*. You split the DataFrame into groups based on a key, apply a function to each group, and combine the results into a single output. A single line of code replaces what would otherwise be a loop that has to track which rows belong to which group.
+
+If you have taken database modeling, `groupby()` will look familiar. It implements the same logic as SQL's `GROUP BY` clause: grouping rows by a shared key and computing aggregate functions per group.
+
+This demo uses an activity log from **Artemis Base Gamma**, a lunar research outpost with a ten-person crew operating over a twenty-sol mission window. Each row in the log is one recorded task: who did it, in which module, what kind of activity, how long it took, and how much power and oxygen it consumed. Mission Control needs summary reports of crew performance, module usage, and resource consumption. Every one of those reports is a group operation.
+
+The demo follows this structure:
+
+1. How to think about group operations
+2. Aggregation with multiple keys and multiple functions
+3. Apply for custom per-group operations
+4. Transform for broadcasting group statistics
+5. Pivot tables and cross-tabulation
+
+---
+
+## Setup
+
+Download `artemis_base_log.csv` from the course page and place it in your `week16` folder alongside this notebook.
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+---
+
+## Part 1: How to Think About Group Operations
+
+### Load the activity log
+
+```{python}
+log = pd.read_csv("artemis_base_log.csv")
+
+print(f"Shape: {log.shape}")
+print(log.dtypes)
+print()
+print(log.head())
+```
+
+**Understanding the output:**
+
+The log has 243 rows and 9 columns. Each row is one logged activity. The categorical columns (`crew_member`, `rank`, `crew_role`, `module`, `activity_type`) identify who did what and where. The numeric columns (`duration_hours`, `power_kwh`, `oxygen_liters`) are the measurements.
+
+Notice that `oxygen_liters` is `float64` rather than `int64` or some other integer type. That is because three rows have blank values (sensor dropouts during the mission). How `groupby` handles those missing values is covered later in Part 1.
+
+### Create a GroupBy object
+
+The first step in any group operation is to call `.groupby()` on the DataFrame, passing the column you want to group by.
+
+```{python}
+grouped = log.groupby("crew_role")
+
+print(grouped)
+print(type(grouped))
+```
+
+**Understanding the GroupBy object:**
+
+The result is not a DataFrame. It is a `DataFrameGroupBy` object. Internally, pandas has identified the groups and recorded which rows belong to which group, but it has not actually computed anything yet. No aggregation runs until you ask for one by calling a method like `.sum()` or `.mean()` on the object.
+
+This is the *split* step of split-apply-combine. The rows have been organized into groups (one per unique `crew_role` value), but no function has been applied yet.
+
+### See what is inside the groups
+
+The GroupBy object does not display its contents when you print it, but you can iterate over it to see each group directly. Iterating yields pairs of `(group_name, group_rows)`.
+
+```{python}
+for name, group in log.groupby("crew_role"):
+    print(f"--- {name} ({len(group)} rows) ---")
+    print(group.head(2))
+    print()
+```
+
+**Understanding the output:**
+
+Each iteration produces one group: the group name (the unique `crew_role` value) and a smaller DataFrame containing only the rows that belong to that group. The loop runs five times because there are five unique roles. Printing the first two rows of each group confirms that the split step has already happened internally.
+
+You will rarely write this loop in practice because the aggregation methods handle the splitting, applying, and combining automatically. But seeing the groups directly makes the abstraction concrete: the GroupBy object is holding a collection of smaller DataFrames, one per unique key value, ready for a function to be applied.
+
+### Count rows per group with `.size()`
+
+To count the rows in each group, call `.size()` on the GroupBy object.
+
+```{python}
+print(log.groupby("crew_role").size())
+```
+
+**Understanding the output:**
+
+The result is a Series. The index is the unique `crew_role` values and the values are the counts. This tells you how many rows in the log belong to each role: 26 activities logged by the Commander, 69 by Engineers, 25 by the Medic, and so on.
+
+`.size()` counts every row in the group regardless of what is in the columns. A related method, `.count()`, counts non-null values per column and returns a DataFrame with one count per (group, column) pair. For a simple row count, use `.size()`.
+
+### Compute a group mean
+
+To compute an aggregated statistic instead of a row count, select the column you want to aggregate and call an aggregation method on it.
+
+```{python}
+print(log.groupby("module")["power_kwh"].mean().round(2))
+```
+
+**Understanding the output:**
+
+This is the split-apply-combine pattern in full:
+
+- **Split:** the log is grouped by `module`.
+- **Apply:** `.mean()` is computed on the `power_kwh` column of each group.
+- **Combine:** the five group means are assembled into a Series indexed by module name.
+
+Lab activities average 12.83 kWh per task, Greenhouse activities average 9.45 kWh, and Habitat activities average 1.74 kWh. The Lab uses roughly seven times the power per task that the Habitat does, which matches expectations because Lab instruments are energy-intensive while Habitat activities are mostly communication and light life support.
+
+### Missing values are dropped automatically
+
+The `oxygen_liters` column has three missing values. Aggregating it demonstrates how `groupby` treats those missing entries.
+
+```{python}
+print(log.groupby("crew_role")["oxygen_liters"].mean().round(1))
+```
+
+**Understanding the default behavior:**
+
+The result is a clean Series with no warnings and no `NaN` values anywhere. By default, `groupby` excludes missing values from aggregation calculations. The three rows with missing oxygen measurements are simply left out of the mean for whichever group they belong to.
+
+This is usually the behavior you want. If a sensor failed on three EVAs, you do not want those gaps to distort the mean for the whole group.
+
+### Include missing values as their own group
+
+Missing values in the *grouping key* are a different situation. By default, rows with a missing group key are excluded entirely from the result. To include them as their own `NaN` group, pass `dropna=False` to `groupby`.
+
+```{python}
+# Set one crew_role value to NaN to show how dropna works
+log_with_missing = log.copy()
+log_with_missing.loc[0, "crew_role"] = np.nan
+
+# Default behavior: missing keys are dropped
+print("Default (dropna=True):")
+print(log_with_missing.groupby("crew_role").size())
+print()
+
+# With dropna=False: missing keys become a NaN group
+print("With dropna=False:")
+print(log_with_missing.groupby("crew_role", dropna=False).size())
+```
+
+**Understanding the output:**
+
+With the default behavior, the row with a missing `crew_role` is silently excluded. The group counts sum to 242 instead of 243. With `dropna=False`, a `NaN` group appears in the result containing the one missing-key row. The total now matches.
+
+Which behavior is correct depends on the analysis. If missing group keys represent incomplete records that should not contribute to the summary, the default is fine. If missing group keys are themselves meaningful (an "uncategorized" category worth reporting), use `dropna=False`.
+
+---
+
+## Part 2: Aggregation with Multiple Keys and Multiple Functions
+
+### Group by multiple keys
+
+Passing a list of columns to `groupby` creates groups defined by unique combinations of those columns.
+
+```{python}
+print(log.groupby(["crew_role", "activity_type"])["duration_hours"].sum().round(1))
+```
+
+**Understanding the output:**
+
+The result is a Series with a hierarchical index (a `MultiIndex` from Week 12's chapter). The outer level is `crew_role` and the inner level is `activity_type`. Each unique combination of the two is one group, and the value is the total hours logged for that combination.
+
+You can read the result as: Commanders logged 23.4 total hours of EVA activity; Engineers logged 99.2 total hours of Maintenance; Scientists logged 108.2 total hours of Research. The role specialization pattern is visible in the numbers.
+
+The hierarchical index is the natural output shape for multi-key groupings. If you want it as a two-dimensional table with `crew_role` as rows and `activity_type` as columns, `.unstack()` from Chapter 8 does exactly that.
+
+### Aggregate with `.agg()` using a single function
+
+The `.agg()` method is the general-purpose aggregation interface. Called with a single string, it does the same thing as the matching method call.
+
+```{python}
+print(log.groupby("module")["power_kwh"].agg("mean").round(2))
+```
+
+**Understanding `.agg()`:**
+
+This produces the same result as `log.groupby("module")["power_kwh"].mean()`. For simple cases, the method call is shorter and preferred. `.agg()` becomes useful when you want to apply multiple functions at once or different functions to different columns.
+
+### Apply multiple aggregation functions at once
+
+Passing a list to `.agg()` computes all the listed functions and returns a DataFrame with one column per function.
+
+```{python}
+print(log.groupby("module")["power_kwh"].agg(["count", "mean", "sum", "min", "max"]).round(2))
+```
+
+**Understanding the output:**
+
+The result is a DataFrame indexed by module, with one column per aggregation. From the Lab row alone you can read that 50 activities were logged in the Lab, averaging 12.83 kWh each, summing to 641.31 kWh total, with individual tasks ranging from 1.86 kWh to 27.05 kWh.
+
+The function names become the column names automatically. String names are available for the common built-in aggregations: `count`, `mean`, `sum`, `min`, `max`, `median`, `std`, `var`, `first`, `last`. These built-in versions are written in optimized low-level code, which makes them faster than a custom Python function passed to `.agg()`. For everyday aggregations, prefer the string names.
+
+### Apply different functions to different columns
+
+Passing a dictionary to `.agg()` applies a different aggregation to each named column.
+
+```{python}
+mission_summary = log.groupby("crew_role").agg({
+    "duration_hours": "sum",
+    "power_kwh": "mean",
+    "oxygen_liters": "sum"
+}).round(2)
+
+print(mission_summary)
+```
+
+**Understanding the dictionary form:**
+
+The keys of the dictionary are column names in the source DataFrame. The values are the aggregation functions to apply to each. For the Artemis log, this produces a clean mission summary: total hours worked per role, average power per task per role, and total oxygen consumed per role.
+
+The total hours column reveals how work was distributed: Engineers logged 206.4 hours and Specialists logged 244.0 hours, while the Commander logged only 54.0.
+
+### Return aggregated results without a group-key index
+
+By default, the group keys become the index of the result. To return them as regular columns instead, pass `as_index=False` to `groupby`.
+
+```{python}
+flat_summary = log.groupby("crew_role", as_index=False).agg({
+    "duration_hours": "sum",
+    "power_kwh": "mean",
+    "oxygen_liters": "sum"
+}).round(2)
+
+print(flat_summary)
+```
+
+**Understanding `as_index=False`:**
+
+The result has `crew_role` as a regular column rather than as the index. This is often what you want when the next step is to save the summary to a CSV file, merge it with another DataFrame, or pass it to a plotting function that expects a flat DataFrame.
+
+The same result can be produced by calling `.reset_index()` on the indexed version, but `as_index=False` is faster because it avoids building the index in the first place.
+
+---
+
+## Part 3: Apply for Custom Per-Group Operations
+
+`.agg()` works when you want a single value per group (a scalar like a sum or a mean). When you want something more complex from each group, such as the top N rows by some criterion or a custom calculation that returns multiple rows, use `.apply()`.
+
+### Return the top activities per crew member
+
+Suppose Mission Control wants to see each crew member's two longest-duration activities. The question requires returning multiple rows per group, which rules out `.agg()`. Define a function that takes a DataFrame and returns the top N rows by duration, then apply it per group.
+
+```{python}
+def top_n(group, n=2):
+    return group.sort_values("duration_hours", ascending=False).head(n)
+
+top_activities = log.groupby("crew_member")[
+    ["activity_type", "module", "duration_hours"]
+].apply(top_n, n=2)
+
+print(top_activities)
+```
+
+**Understanding `.apply()`:**
+
+`.apply()` splits the DataFrame into groups, calls the function on each group, and combines the results. The function receives a smaller DataFrame containing only the rows for one group, and it can return whatever makes sense for the analysis: a single value, a Series, or a DataFrame. Here it returns a DataFrame of two rows per group, and `.apply()` stacks them into one combined result.
+
+Selecting the three columns before calling `.apply()` (`[["activity_type", "module", "duration_hours"]]`) keeps the output focused on what matters. Without that selection, every column of the log would appear in the result, which would be harder to read.
+
+`.apply()` is the most general GroupBy method, but that flexibility has a cost: it is slower than the built-in aggregations like `.sum()` and `.mean()` because it calls your Python function once per group. For simple aggregations, prefer `.agg()` with the built-in function names.
+
+---
+
+## Part 4: Transform for Broadcasting Group Statistics
+
+`.agg()` and `.apply()` both *shrink* the data. The output has one row per group, which is fewer rows than the original DataFrame. For the Artemis log, `.agg("sum")` on `duration_hours` grouped by `crew_member` would produce a 10-row Series: one total per crew member.
+
+Sometimes you want the opposite. You want to compute a group statistic and then attach it back to every row in the original DataFrame, so you can use it in a per-row calculation. You still need the per-group total, but you also need it available on every original row, not collapsed into a 10-row summary.
+
+`.transform()` does exactly that. It computes a value for each group, then copies that value back onto every row that belongs to the group. The result has 243 rows, the same as the original log. Pandas calls this "broadcasting" a value: the single group value gets spread out across all the rows in the group.
+
+### Compute each activity as a percentage of the crew member's total
+
+To flag which activities represented a large share of a crew member's time, you need each row's duration as a percentage of that crew member's total duration. That requires two pieces of information on each row: the row's own duration (already there) and the crew member's total (needs to be computed per group and attached).
+
+```{python}
+log["crew_total_hours"] = log.groupby("crew_member")["duration_hours"].transform("sum")
+log["pct_of_crew_hours"] = (log["duration_hours"] / log["crew_total_hours"] * 100).round(1)
+
+print(log[["crew_member", "duration_hours",
+           "crew_total_hours", "pct_of_crew_hours"]].head(10))
+```
+
+**Understanding `.transform()`:**
+
+`.transform("sum")` computes the sum of `duration_hours` within each `crew_member` group, then copies that single per-group value back to every row belonging to the group. The result has 243 rows (the same number as the original log), not one row per crew member.
+
+Compare this to `.agg("sum")`, which would have produced a 10-row Series (one sum per crew member). Because `.transform()` produces one value per original row rather than one per group, the result can be assigned directly as a new column on the original DataFrame.
+
+Once the group total is on every row, computing the per-row percentage is a standard column-arithmetic operation. The first entry in the output shows Nakamura's 4.1-hour activity representing 7.6% of their 54.0 total mission hours.
+
+`.transform()` is the pattern for normalizing values within groups, computing running totals within groups, or comparing individual rows to their group's average.
+
+---
+
+## Part 5: Pivot Tables and Cross-Tabulation
+
+### The `pivot_table` method
+
+A *pivot table* is a two-dimensional summary where one variable is arranged along the rows and another along the columns. Pivot tables are the standard reporting format in spreadsheet applications like Excel, and pandas provides them through the `pivot_table` method.
+
+Every pivot table is internally a `groupby` followed by a reshape. The method exists because the pattern is so common that having a dedicated interface is cleaner than writing the equivalent `groupby().agg().unstack()` by hand.
+
+### A basic pivot table
+
+```{python}
+module_activity = log.pivot_table(
+    index="module",
+    columns="activity_type",
+    values="duration_hours",
+    aggfunc="sum"
+)
+
+print(module_activity.round(1))
+```
+
+**Understanding `pivot_table`:**
+
+The four main arguments:
+
+- `index`: the column whose unique values become the row labels
+- `columns`: the column whose unique values become the column labels
+- `values`: the column whose values are aggregated
+- `aggfunc`: the function used to aggregate the values in each cell
+
+Modules run down the rows, activity types across the columns, and total hours logged appear in each cell. The `NaN` values mark combinations that never occurred. EVAs only happen through the Airlock; Research only happens in the Lab and Greenhouse; Communication only happens in the Habitat.
+
+### Replace missing cells with zero
+
+For a reporting view, you usually want empty combinations to show as zero rather than as `NaN`. Pass `fill_value=0`.
+
+```{python}
+module_activity_filled = log.pivot_table(
+    index="module",
+    columns="activity_type",
+    values="duration_hours",
+    aggfunc="sum",
+    fill_value=0
+)
+
+print(module_activity_filled.round(1))
+```
+
+**Understanding `fill_value`:**
+
+The `NaN` entries are replaced with 0 in the output. A module-activity combination with no logged hours now shows as zero rather than as missing.
+
+Be deliberate about when you use `fill_value`. If the distinction between "no activity was logged" and "activity was logged but its total was zero" matters for your analysis, keep the `NaN` so you can tell the two apart. For a summary report where those cases mean the same thing, `fill_value=0` produces a cleaner table.
+
+### Add row and column totals
+
+Adding `margins=True` appends an "All" row and an "All" column containing the totals.
+
+```{python}
+module_activity_totals = log.pivot_table(
+    index="module",
+    columns="activity_type",
+    values="duration_hours",
+    aggfunc="sum",
+    fill_value=0,
+    margins=True
+)
+
+print(module_activity_totals.round(1))
+```
+
+**Understanding `margins`:**
+
+The bottom row shows totals across all modules for each activity type. The rightmost column shows totals across all activity types for each module. The bottom-right corner is the grand total: the sum of all duration_hours in the entire log.
+
+Marginal totals are standard in reporting because they let a reader check individual cells against the row and column totals at a glance. The default name for the margin row and column is `"All"`; pass `margins_name="Total"` or any other string to change it.
+
+### Change the aggregation function
+
+The `aggfunc` argument accepts any function name that `groupby` accepts. Using `"mean"` gives you average task duration per cell instead of the total.
+
+```{python}
+module_activity_mean = log.pivot_table(
+    index="module",
+    columns="activity_type",
+    values="duration_hours",
+    aggfunc="mean",
+    fill_value=0
+)
+
+print(module_activity_mean.round(2))
+```
+
+**Understanding the output:**
+
+The same pivot structure now shows average duration per task. EVAs through the Airlock average about 4.98 hours per task; Research sessions in the Lab average 3.92 hours. The story is different from the total-hours view: totals tell you where time was *spent* overall, while means tell you how long individual tasks of each type typically ran.
+
+### Cross-tabulation with `pd.crosstab`
+
+When the aggregation you want is simply a count of rows (how many observations fall into each cell), pandas provides a specialized function, `pd.crosstab`. It is shorthand for a `pivot_table` call with `aggfunc="count"`.
+
+```{python}
+role_activity_freq = pd.crosstab(log["crew_role"], log["activity_type"], margins=True)
+
+print(role_activity_freq)
+```
+
+**Understanding `pd.crosstab`:**
+
+The first two arguments are the row and column variables. Unlike `pivot_table`, which takes column names and a DataFrame, `crosstab` takes the Series themselves. The result is a frequency table: the number of activities logged for each (crew_role, activity_type) combination.
+
+The pattern shows the crew's work distribution clearly. Engineers logged 36 Maintenance activities, Scientists logged 28 Research activities, and Specialists spread their work across categories with a heavy concentration in EVA (26) and Communication (15). The "All" row and column are the marginal totals, the same as they would be in a `pivot_table` call with `margins=True`.
+
+`crosstab` is the right tool when you want a frequency table. For anything more complex (sums, means, custom functions), use `pivot_table`.
+
+---
+
+## Conclusion
+
+### What You've Learned
+
+`groupby()` creates a `DataFrameGroupBy` object that splits the DataFrame by one or more keys. No computation runs until you ask for one by calling an aggregation method. Aggregation methods like `.mean()`, `.sum()`, `.count()`, and `.size()` compute a single value per group. Missing values in the aggregated column are excluded automatically; missing values in the group key are excluded by default and included with `dropna=False`.
+
+`.agg()` is the general aggregation interface. Called with a string, it behaves like the matching method. Called with a list of function names, it computes every function and returns a DataFrame with one column per function. Called with a dictionary mapping column names to function names, it applies a different aggregation to each column. The dictionary form is the most common shape for building summary reports.
+
+`.apply()` is the most general GroupBy method. It passes each group as a smaller DataFrame to a function you write and combines the results into an output. Use it when you need multiple rows per group or custom logic that `.agg()` cannot express. `.transform()` also performs a per-group computation, but instead of returning one row per group, it copies the group value back to every original row. The result has the same number of rows as the input, so it can be assigned directly as a new column.
+
+`pivot_table` produces two-dimensional summaries with group keys along both axes. The `index`, `columns`, `values`, and `aggfunc` arguments map directly onto a `groupby` followed by a reshape. `fill_value` replaces missing cells with a constant; `margins=True` adds row and column totals. `pd.crosstab` is a specialized version of `pivot_table` for frequency tables.
+
+### What the Textbook Covers Next
+
+Chapter 10 covers several topics not included in this demo.
+
+**Custom aggregation functions.** You can pass a user-defined Python function to `.agg()` and it will be applied per group. The textbook shows examples with lambda functions and named tuples for assigning column names to custom aggregations. Optimized built-in functions are faster, so reserve custom functions for cases where no built-in does the job.
+
+**Filtering groups.** `.filter()` keeps or drops whole groups based on a group-level condition. For example, keeping only groups whose size exceeds some threshold, or whose group mean is above a cutoff.
+
+**Grouping by index level.** When a DataFrame has a hierarchical index (a `MultiIndex` from Chapter 8), you can group by an index level directly using `level=` instead of a column name.
+
+**Group transforms with unwrapped output.** Beyond the `transform("sum")` pattern shown in the demo, Chapter 10 covers more sophisticated within-group operations, including ranking rows within their group, centering each value by subtracting the group's mean, and writing custom transform functions.
+
+**Quantile analysis.** The `qcut` function and the `.quantile()` GroupBy method support grouping rows into quantile bins and analyzing each bin separately. This pattern comes up in segmentation work, where you want to compare the top 25% of observations against the bottom 25%.
+
+**Hierarchical column output.** Aggregating multiple columns with a list of functions produces a DataFrame with hierarchical column labels (a column `MultiIndex`). The textbook shows how to work with that output shape.
+
+### Applying These Tools in Week 17
+
+Week 17 is a cumulative application week. You will work with a new dataset that requires you to compute grouped summaries, build a pivot table, and interpret the results in context. The Chapter 10 tools are the primary skills being applied, alongside the data preparation and visualization skills from earlier chapters.
