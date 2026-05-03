@@ -1,0 +1,11 @@
+settlement_id,settlement_name,region,population_estimate,faction,threat_level
+S-001,Ash Harbor,Coastal,340,Mariners,2
+S-002,Ironworks,Coastal,180,Neutral,3
+S-003,Lantern's End,Valley,420,Agrarian League,1
+S-004,Millbrook,Valley,260,Agrarian League,1
+S-005,Brackwater,Valley,150,Neutral,3
+S-006,Saltflats,Eastern Waste,90,Neutral,4
+S-007,Old 40,Eastern Waste,210,Mariners,3
+S-008,Cairn Ridge,Northern Range,310,Highlanders,2
+S-009,Copperline,Northern Range,170,Highlanders,3
+S-010,Hollowgate,Northern Range,60,,5
